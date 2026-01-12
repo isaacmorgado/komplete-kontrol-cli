@@ -93,8 +93,8 @@
       "cachedAt": "2026-01-12T22:16:02Z"
     },
     "/Users/imorgado/.claude/commands/auto.md": {
-      "hash": "4985a6dfb68c3e38319742b8ae35794a512d90ed9a098f0abf02ab88f1fb4e5c",
-      "cachedAt": "2026-01-12T22:31:00Z"
+      "hash": "392c02042162ca976039ab7b011f42eb051f1473380193cb6c035cda06989972",
+      "cachedAt": "2026-01-12T22:41:01Z"
     },
     "/Users/imorgado/Desktop/claude-sovereign/COMMAND-USAGE-GUIDE.md": {
       "hash": "5f9dbda118418afb7db57636eaeccefdaf6c9a7fe0bc633e603e4965a3462dff",
@@ -127,6 +127,14 @@
     "/Users/imorgado/Desktop/claude-sovereign/HONEST-TEST-REPORT.md": {
       "hash": "7e4f7198017474ad9a5c6c113c37bcf7e441be214e0a12deaf078600e61c4a9b",
       "cachedAt": "2026-01-12T22:36:22Z"
+    },
+    "/Users/imorgado/.claude/hooks/coordinator.sh": {
+      "hash": "faf255d93b142b2fbf97137a3ff3a27d5e6a55e5144f243606cedb4bb27118da",
+      "cachedAt": "2026-01-12T22:40:34Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/INTEGRATION-FIXES.md": {
+      "hash": "137944e3d96dccee25d7f546027d083369da575a3970e164c85e335042486806",
+      "cachedAt": "2026-01-12T22:42:55Z"
     }
   }
 }

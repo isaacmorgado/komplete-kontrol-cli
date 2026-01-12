@@ -61,10 +61,10 @@ Parse arguments: $ARGUMENTS
    echo "$(date +%s)" > ~/.claude/autonomous-mode.active
    ```
 
-2. **Load context**:
+2. **Load context and start intelligent coordination**:
    ```bash
    ~/.claude/hooks/memory-manager.sh get-working
-   ~/.claude/hooks/autonomous-orchestrator-v2.sh smart
+   ~/.claude/hooks/coordinator.sh orchestrate
    ```
 
 3. **Report activation**:
@@ -106,6 +106,59 @@ Parse arguments: $ARGUMENTS
 ## Autonomous Behaviors (While Active)
 
 When autonomous mode is active, follow these advanced patterns:
+
+### WHEN TO USE V2 COMMANDS (AUTOMATIC DETECTION)
+
+Claude should automatically use these commands when beneficial:
+
+**Use `/swarm spawn N` when:**
+- Task can be parallelized into N independent parts
+- Examples: "Run all tests", "Generate docs for all modules", "Implement multiple features"
+- Signal words: "comprehensive", "all", "multiple", "parallel"
+- Minimum benefit: 3+ independent subtasks
+```bash
+# Detect and use
+if task contains multiple independent parts:
+    /swarm spawn <count> "<task description>"
+```
+
+**Use `/multi-repo` when:**
+- Task involves changes across multiple related repositories
+- Examples: "Update authentication in all services", "Sync version across repos"
+- Signal words: "microservices", "all repos", "synchronized", "cross-repo"
+- Detection: Multiple git repos referenced in context
+```bash
+# Detect and use
+if multiple repos involved:
+    /multi-repo sync
+    # Make changes
+    /multi-repo checkpoint "Synchronized changes"
+```
+
+**Use `/personality load` when:**
+- Task requires domain-specific expertise
+- Examples: "Security audit" → security-expert, "Optimize performance" → performance-optimizer
+- Signal words match personality domains
+- Available: security-expert, performance-optimizer, api-architect, frontend-specialist, devops-engineer, data-scientist
+```bash
+# Detect and use
+if task is "security audit" or "find vulnerabilities":
+    /personality load security-expert
+elif task is "optimize" or "performance":
+    /personality load performance-optimizer
+elif task is "API design" or "REST":
+    /personality load api-architect
+```
+
+**Use `/voice` when:**
+- User explicitly requests voice control
+- Never auto-activate - requires explicit user command
+
+**Use `/collab` when:**
+- User explicitly joins or starts collaboration session
+- Never auto-activate - requires explicit user command
+
+### CORE AUTONOMOUS LOOP
 
 ### CORE AUTONOMOUS LOOP
 
@@ -419,8 +472,14 @@ mcp__grep__searchGitHub({
 
 **Integrated locations:**
 - ✅ **autonomous-orchestrator-v2**: Auto-detects unfamiliar libraries (analyze command)
-- ✅ **coordinator**: Executes GitHub search before task execution (Phase 1.4a)
+- ✅ **coordinator**: Outputs GitHub search recommendations in autoResearch field
 - ✅ **debug-orchestrator**: Searches GitHub for similar bugs (smart-debug command)
+
+**How it works:**
+1. Coordinator detects task needs library research
+2. Coordinator outputs: `{"autoResearch": {"action": "search_github", "parameters": {...}}}`
+3. Claude sees autoResearch field and executes `mcp__grep__searchGitHub` with parameters
+4. Search results inform implementation
 
 **Time saved**: 10-15 minutes per API integration (automatic search + curated examples)
 
@@ -517,6 +576,11 @@ If you see `"execute_skill": "compact", "then": "checkpoint"`:
 - Run `/checkpoint` manually only when completing build sections (router usually handles this)
 - Run `/document` after passing quality gates
 - **Follow Ken's Prompting Guide**: Short > Long, reference docs don't dump, work focused
+- **V2: Use `/swarm spawn N`** when task has 3+ independent parallel parts
+- **V2: Use `/multi-repo`** when working across multiple repositories
+- **V2: Use `/personality load`** when task needs domain expertise (security, performance, API, etc.)
+- **V2: Run plan-think-act** before starting complex implementations (via hooks/plan-think-act.sh)
+- **V2: Record outcomes** to feedback learning after completing tasks (via hooks/feedback-learning.sh)
 
 ### DO NOT:
 - Ask "should I proceed?" (unless bounded-autonomy requires it)

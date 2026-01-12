@@ -1,0 +1,66 @@
+{
+  "id": "ckpt_1768257634",
+  "description": "Auto-checkpoint after 42 file changes",
+  "timestamp": "2026-01-12T22:40:34Z",
+  "git": {
+    "branch": "master",
+    "commit": "2e798e88ccf8843acc911320d94de5727572c036",
+    "dirty": true
+  },
+  "memory": {
+    "working": {
+      "currentTask": "test fixed coordinator",
+      "currentContext": [
+        {
+          "content": "strategy:incremental,risk:low,plan:plan_1768257583,agent:debugger,mode:reactive,parallel:false",
+          "importance": 5,
+          "addedAt": "2026-01-12T22:39:44Z"
+        }
+      ],
+      "recentActions": [],
+      "pendingItems": [],
+      "scratchpad": "",
+      "lastUpdated": "2026-01-12T22:39:44Z"
+    },
+    "episodic": {
+      "episodes": []
+    },
+    "semantic": {
+      "facts": [],
+      "patterns": [],
+      "preferences": []
+    },
+    "reflections": {
+      "reflections": [
+        {
+          "id": "ref_1768257584",
+          "focus": "what_learned",
+          "content": "From task 'test fixed coordinator': Used incremental strategy with low risk. This insight will improve future decision-making.",
+          "insights": "Used incremental strategy with low risk",
+          "timestamp": "2026-01-12T22:39:44Z"
+        },
+        {
+          "id": "ref_1768257584",
+          "focus": "action_evaluation",
+          "content": "Evaluated: ",
+          "insights": "Score: 5/10. ",
+          "timestamp": "2026-01-12T22:39:44Z"
+        },
+        {
+          "id": "ref_1768257551",
+          "focus": "what_learned",
+          "content": "From task 'test task for debugging': Used incremental strategy with low risk. This insight will improve future decision-making.",
+          "insights": "Used incremental strategy with low risk",
+          "timestamp": "2026-01-12T22:39:11Z"
+        },
+        {
+          "id": "ref_1768257280",
+          "focus": "what_learned",
+          "content": "From task 'test small task': Used incremental strategy with low risk. This insight will improve future decision-making.",
+          "insights": "Used incremental strategy with low risk",
+          "timestamp": "2026-01-12T22:34:40Z"
+        }
+      ]
+    }
+  }
+}
