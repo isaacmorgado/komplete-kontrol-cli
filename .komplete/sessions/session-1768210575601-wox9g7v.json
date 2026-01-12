@@ -1,0 +1,14 @@
+{
+  "id": "session-1768210575601-wox9g7v",
+  "created": "2026-01-12T09:36:15.601Z",
+  "updated": "2026-01-12T09:36:15.608Z",
+  "agent": "chat",
+  "model": "ollama/llama3",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello, reply with just \"working!\""
+    }
+  ],
+  "totalTokens": 0
+}

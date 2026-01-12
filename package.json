@@ -1,0 +1,57 @@
+{
+  "name": "komplete-kontrol-cli",
+  "version": "1.0.0",
+  "description": "The ultimate agentic coding CLI tool with AI intelligence, reverse engineering, and multi-agent capabilities",
+  "type": "module",
+  "bin": {
+    "komplete": "./dist/index.js",
+    "kk": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "bun run src/cli/index.ts",
+    "build": "bun build src/cli/index.ts --outdir dist --target node --format esm --minify",
+    "start": "node dist/cli/index.js",
+    "test": "bun test",
+    "lint": "eslint src/**/*.ts",
+    "extract-models": "bun run scripts/extract-models.ts"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "coding",
+    "agent",
+    "automation",
+    "reverse-engineering",
+    "multi-agent"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.0",
+    "@google/generative-ai": "^0.21.0",
+    "@upstash/redis": "^1.36.0",
+    "better-sqlite3": "^11.8.1",
+    "chalk": "^5.4.1",
+    "chromadb": "^1.9.3",
+    "groq-sdk": "^0.8.0",
+    "ioredis": "^5.4.2",
+    "js-tiktoken": "^1.0.18",
+    "llamaindex": "^0.8.10",
+    "openai": "^4.78.1",
+    "ora": "^8.1.2",
+    "yargs": "^17.7.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "latest",
+    "@types/bun": "latest",
+    "@types/node": "^22.13.5",
+    "@types/yargs": "^17.0.33",
+    "eslint": "^9.18.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  }
+}

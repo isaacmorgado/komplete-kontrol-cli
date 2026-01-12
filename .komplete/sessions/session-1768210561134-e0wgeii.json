@@ -1,0 +1,9 @@
+{
+  "id": "session-1768210561134-e0wgeii",
+  "created": "2026-01-12T09:36:01.135Z",
+  "updated": "2026-01-12T09:36:01.135Z",
+  "agent": "chat",
+  "model": "ollama/llama3",
+  "messages": [],
+  "totalTokens": 0
+}

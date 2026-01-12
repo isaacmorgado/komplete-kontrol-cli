@@ -1,0 +1,8 @@
+{
+  "defaultModel": "or/claude-3.5-sonnet",
+  "fallbackModels": [],
+  "agents": {
+    "maxParallel": 4,
+    "timeoutMs": 30000
+  }
+}

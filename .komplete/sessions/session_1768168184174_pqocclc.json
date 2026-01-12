@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "id": "session_1768168184174_pqocclc",
+    "name": "New Session",
+    "createdAt": "2026-01-11T21:49:44.174Z",
+    "updatedAt": "2026-01-11T21:53:51.045Z",
+    "agent": "general",
+    "model": "or/claude-3.5-sonnet",
+    "messageCount": 0,
+    "totalTokens": 0
+  },
+  "messages": []
+}
