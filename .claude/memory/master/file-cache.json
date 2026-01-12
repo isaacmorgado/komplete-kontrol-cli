@@ -69,8 +69,8 @@
       "cachedAt": "2026-01-12T21:52:05Z"
     },
     "/Users/imorgado/Desktop/claude-sovereign/commands/personality.md": {
-      "hash": "a100f4f92029141df066a1db2ba67e58627562fa1cb5f729c557643ef68d22be",
-      "cachedAt": "2026-01-12T21:52:06Z"
+      "hash": "e26aba073932affdab6d480bc0f19859a4b06dccbc0666a82f26a6a3404692f1",
+      "cachedAt": "2026-01-12T22:15:50Z"
     },
     "/Users/imorgado/Desktop/claude-sovereign/FEATURES-V2.md": {
       "hash": "d9d84839a7a111e9fb4a1a0f0277ff39813df959702d3bc5d50dbd97d9993972",
@@ -89,8 +89,8 @@
       "cachedAt": "2026-01-12T22:03:50Z"
     },
     "/Users/imorgado/Desktop/claude-sovereign/INTEGRATION-GUIDE.md": {
-      "hash": "1c5f9e83229c7cfa13d5b75e8e035cee0689ff7094f9979a086bec3defca43c7",
-      "cachedAt": "2026-01-12T22:05:00Z"
+      "hash": "8bab162c8c69f284dd8307c6e7bf4e0fbe2547a3ffae3c0f256a0c021903f6f2",
+      "cachedAt": "2026-01-12T22:16:02Z"
     },
     "/Users/imorgado/.claude/commands/auto.md": {
       "hash": "7b038d1422361771fbdedba8767063004b0e5c213efe1476795687b936b3e31d",
@@ -99,6 +99,22 @@
     "/Users/imorgado/Desktop/claude-sovereign/COMMAND-USAGE-GUIDE.md": {
       "hash": "5f9dbda118418afb7db57636eaeccefdaf6c9a7fe0bc633e603e4965a3462dff",
       "cachedAt": "2026-01-12T22:06:25Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/personality-loader.sh": {
+      "hash": "85a30b313400dbf37636e8874e5979945af54c24073bd809ef8474594e1ee62a",
+      "cachedAt": "2026-01-12T22:14:11Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/personalities/default.yaml": {
+      "hash": "294cf027691079b0a386dad14cb2b475ac1d0b7a326914700cf31ceea5ccd646",
+      "cachedAt": "2026-01-12T22:14:39Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/personalities/security-expert.yaml": {
+      "hash": "6855846e2dd2f1bfbe11a1a02e52093899586831fe67e4bf75b0b4cf073a373f",
+      "cachedAt": "2026-01-12T22:14:48Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/personalities/performance-optimizer.yaml": {
+      "hash": "9ce876b91e2d0d323a58bf2bff58fa82307ea093cd3fafa0b0e8023ade1d9bb4",
+      "cachedAt": "2026-01-12T22:14:55Z"
     }
   }
 }

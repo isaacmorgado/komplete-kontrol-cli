@@ -146,8 +146,48 @@
       "file": "/Users/imorgado/Desktop/claude-sovereign/COMMAND-USAGE-GUIDE.md",
       "type": "modified",
       "timestamp": "2026-01-12T22:06:25Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/hooks/personality-loader.sh",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:14:11Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/personalities/default.yaml",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:14:39Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/personalities/security-expert.yaml",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:14:48Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/personalities/performance-optimizer.yaml",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:14:55Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/commands/personality.md",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:15:36Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/commands/personality.md",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:15:50Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/INTEGRATION-GUIDE.md",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:15:57Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/claude-sovereign/INTEGRATION-GUIDE.md",
+      "type": "modified",
+      "timestamp": "2026-01-12T22:16:02Z"
     }
   ],
-  "change_count": 29,
+  "change_count": 37,
   "checkpoint_count": 0
 }

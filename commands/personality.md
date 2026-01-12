@@ -8,6 +8,9 @@ allowed-tools: ["Read", "Write", "Edit"]
 
 Configure Claude's behavior, knowledge focus, and communication style for different domains and use cases.
 
+**Backend**: `~/.claude/hooks/personality-loader.sh` (✅ Implemented)
+**Status**: Working - 3 built-in personalities available
+
 ## Usage
 
 ```
@@ -35,48 +38,37 @@ Modify existing personality
 ### current
 Show active personality
 
-## Built-In Personalities
+## Built-In Personalities (✅ Implemented)
 
 ### default
-- Balanced approach
-- General software development
-- Professional tone
+- Balanced general-purpose development
+- Code quality and maintainability focus
+- Pragmatic testing approach
+- Moderate documentation
 
 ### security-expert
-- Focus: Security, vulnerabilities, threat modeling
-- Knowledge: OWASP Top 10, penetration testing, secure coding
-- Behavior: Always considers security implications
-- Tools: Emphasizes RE toolkit, security scanning
+- Security-first development
+- OWASP Top 10 and vulnerability assessment
+- Always validates input, checks for injection attacks
+- Threat modeling and defensive coding
+- Comprehensive security documentation
 
 ### performance-optimizer
-- Focus: Performance, scalability, optimization
-- Knowledge: Profiling, caching, database optimization
-- Behavior: Analyzes performance impact of changes
-- Tools: Benchmarking, load testing
+- Performance and scalability focus
+- Profiling and benchmarking driven
+- Considers Big O complexity and resource efficiency
+- Optimizes hot paths and eliminates bottlenecks
+- Metrics-focused documentation
 
-### api-architect
-- Focus: API design, REST, GraphQL, gRPC
-- Knowledge: API best practices, documentation, versioning
-- Behavior: Designs clean, consistent APIs
-- Tools: OpenAPI, Postman, API testing
+### Additional Personalities (Can be created)
 
-### frontend-specialist
-- Focus: UI/UX, React, Vue, Angular
-- Knowledge: Component design, accessibility, responsive design
-- Behavior: Focuses on user experience
-- Tools: Browser devtools, UI testing
+Use `/personality create <name>` to create custom personalities for:
+- **api-architect**: API design, REST, GraphQL
+- **frontend-specialist**: UI/UX, React/Vue
+- **devops-engineer**: CI/CD, infrastructure
+- **data-scientist**: Data analysis, ML
 
-### devops-engineer
-- Focus: CI/CD, infrastructure, deployment
-- Knowledge: Docker, Kubernetes, cloud platforms
-- Behavior: Automates everything
-- Tools: Bash, infrastructure as code
-
-### data-scientist
-- Focus: Data analysis, ML, statistics
-- Knowledge: Python, pandas, scikit-learn, PyTorch
-- Behavior: Data-driven decisions
-- Tools: Jupyter, visualization libraries
+See personality YAML template for configuration options.
 
 ## Custom Personality Structure
 

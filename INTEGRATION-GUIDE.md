@@ -245,10 +245,11 @@ These have documentation but need full implementation:
 **Status**: Specification complete, speech engine needed
 **TODO**: Integrate Whisper or cloud speech API
 
-### 12. Custom Personalities 📋
-**Command**: `/personality`
-**Status**: Specification complete, config system needed
-**TODO**: Implement personality loader and YAML parser
+### 12. Custom Personalities ✅
+**Hook**: `hooks/personality-loader.sh`
+**Integration**: Via `/personality` command
+**Status**: Working - 3 built-in personalities implemented
+**Usage**: Manual command
 
 ---
 
@@ -332,7 +333,7 @@ cat
 | Multi-Repo | 📋 | N/A | 📋 /multi-repo | ❌ Spec only |
 | Collaboration | 📋 | N/A | 📋 /collab | ❌ Spec only |
 | Voice | 📋 | N/A | 📋 /voice | ❌ Spec only |
-| Personalities | 📋 | N/A | 📋 /personality | ❌ Spec only |
+| Personalities | ✅ | N/A | ✅ /personality | ✅ Complete |
 
 **Legend**:
 - ✅ = Fully working
