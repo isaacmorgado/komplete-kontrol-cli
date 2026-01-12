@@ -1,0 +1,37 @@
+{
+  "id": "ckpt_1768257150",
+  "description": "Auto-checkpoint after 39 file changes",
+  "timestamp": "2026-01-12T22:32:30Z",
+  "git": {
+    "branch": "master",
+    "commit": "0af45335ad3587a01bc4eed844b00cd0d98085e4",
+    "dirty": true
+  },
+  "memory": {
+    "working": {
+      "currentTask": "Test task",
+      "currentContext": [
+        {
+          "content": "Testing context",
+          "importance": 5,
+          "addedAt": "2026-01-12T21:36:22Z"
+        }
+      ],
+      "recentActions": [],
+      "pendingItems": [],
+      "scratchpad": "",
+      "lastUpdated": "2026-01-12T21:36:22Z"
+    },
+    "episodic": {
+      "episodes": []
+    },
+    "semantic": {
+      "facts": [],
+      "patterns": [],
+      "preferences": []
+    },
+    "reflections": {
+      "reflections": []
+    }
+  }
+}
