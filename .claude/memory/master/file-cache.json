@@ -19,6 +19,66 @@
     "/Users/imorgado/Desktop/claude-sovereign/IMPLEMENTATION-SUMMARY.md": {
       "hash": "0e04a77dd188ef959860f47f77448b30fff6bca979c033651d418ea887bfcc14",
       "cachedAt": "2026-01-12T21:21:19Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/COMPREHENSIVE-TEST-FINDINGS.md": {
+      "hash": "e56d5292d00fe6b8218efec56d7a81ecd507f1fab7006ebbc70d06b07b99a44e",
+      "cachedAt": "2026-01-12T21:39:16Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/autonomous-command-router.sh": {
+      "hash": "f133b54aa3bcf55bf29a750e1f0bb37bcee78ef94328bd642f3c2b81ac0465b9",
+      "cachedAt": "2026-01-12T21:47:58Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/message-tracker.sh": {
+      "hash": "2b816d59ad12fa32b3fe02a05f45cfb2f1f46d698c1fc6cda057de9018a761bc",
+      "cachedAt": "2026-01-12T21:47:13Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/context-event-tracker.sh": {
+      "hash": "9b8b4172e42be8d90df9880d13f72706ed6572abeeb00cc22f1b8e30bd004bfb",
+      "cachedAt": "2026-01-12T21:47:59Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/sliding-window.sh": {
+      "hash": "40c862ba9c8704938bb63c6f31acb436d3636cf8f24276cf76833ba669555ded",
+      "cachedAt": "2026-01-12T21:48:32Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/plan-think-act.sh": {
+      "hash": "6e1b9f3b6882f64663b7d6e5593d55e77dfb5dc5e16485e857a49c605a9ef217",
+      "cachedAt": "2026-01-12T21:49:17Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/feedback-learning.sh": {
+      "hash": "4464801379eb74548b4b4887901f927d9a3f3e76fbf2a851fe92046f2fab688b",
+      "cachedAt": "2026-01-12T21:50:05Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/hooks/sandbox-executor.sh": {
+      "hash": "d29d29d6b3ab0f546930d85c053c14833a5ce309d6343ffa14fc989b2337da81",
+      "cachedAt": "2026-01-12T21:50:33Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/commands/multi-repo.md": {
+      "hash": "17a2051d067021b4140936d20d296de42e85362526fad7b2b9fda524e78f7f21",
+      "cachedAt": "2026-01-12T21:50:52Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/commands/swarm.md": {
+      "hash": "fc61ea9c0ccff196979360908825be82bf3e03d9d2a90fb4fb9a39b61b5a2780",
+      "cachedAt": "2026-01-12T21:51:20Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/commands/collab.md": {
+      "hash": "838d15e738b7ee318833da9e1cb3bd35bd9c42eeddea19de00731cb201309c17",
+      "cachedAt": "2026-01-12T21:51:20Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/commands/voice.md": {
+      "hash": "3333bc6e6636b87586a16a79daea3ea86c451113ed0ebc5a1eee3c7e361f678f",
+      "cachedAt": "2026-01-12T21:52:05Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/commands/personality.md": {
+      "hash": "a100f4f92029141df066a1db2ba67e58627562fa1cb5f729c557643ef68d22be",
+      "cachedAt": "2026-01-12T21:52:06Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/FEATURES-V2.md": {
+      "hash": "d9d84839a7a111e9fb4a1a0f0277ff39813df959702d3bc5d50dbd97d9993972",
+      "cachedAt": "2026-01-12T21:53:24Z"
+    },
+    "/Users/imorgado/Desktop/claude-sovereign/V2-IMPLEMENTATION-SUMMARY.md": {
+      "hash": "bef8c5c5652cc04bf008f6edde99e44f37a4c21ea65c5596b32a530431913699",
+      "cachedAt": "2026-01-12T21:54:46Z"
     }
   }
 }

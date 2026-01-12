@@ -1,8 +1,14 @@
 {
-    "currentTask": null,
-    "currentContext": [],
-    "recentActions": [],
-    "pendingItems": [],
-    "scratchpad": "",
-    "lastUpdated": null
+  "currentTask": "Test task",
+  "currentContext": [
+    {
+      "content": "Testing context",
+      "importance": 5,
+      "addedAt": "2026-01-12T21:36:22Z"
+    }
+  ],
+  "recentActions": [],
+  "pendingItems": [],
+  "scratchpad": "",
+  "lastUpdated": "2026-01-12T21:36:22Z"
 }

@@ -70,10 +70,23 @@ analyze_situation() {
 
         build_section_complete)
             # Triggered when a build section is marked complete
-            if $autonomous && $has_buildguide; then
+            if ! $has_buildguide; then
+                log "Skipping build checkpoint: buildguide.md not found"
+                echo '{"command": "none", "reason": "no_buildguide", "note": "buildguide.md not found in project root"}'
+            elif $autonomous; then
                 echo '{"command": "checkpoint", "reason": "build_section_complete", "auto_execute": true, "note": "Update buildguide.md section status"}'
             else
                 echo '{"advisory": "Build section complete. Run /checkpoint to update buildguide.md", "reason": "build_section_complete", "auto_execute": false}'
+            fi
+            ;;
+
+        checkpoint_messages)
+            # Triggered after N messages (Priority 1.1)
+            local message_count="${context:-unknown}"
+            if $autonomous; then
+                echo '{"command": "checkpoint", "reason": "message_threshold", "auto_execute": true, "note": "Checkpoint after '"$message_count"' messages"}'
+            else
+                echo '{"advisory": "Checkpoint recommended after '"$message_count"' messages", "reason": "message_threshold", "auto_execute": false}'
             fi
             ;;
 
