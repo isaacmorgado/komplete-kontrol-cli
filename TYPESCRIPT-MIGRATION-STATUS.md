@@ -103,9 +103,56 @@
 - [ ] Integrate with stuck/complex decision points
 - [ ] Add visualization
 
+### ✅ Phase 2: Safety Features (IN PROGRESS)
+#### 2.5 Bounded Autonomy ✅
+**Status**: Core structure implemented
+**Location**: `src/core/safety/bounded-autonomy/`
+
+**Implemented**:
+- `BoundedAutonomy` main class
+- `BoundaryChecker` for action validation
+- `Escalator` for generating user approval requests
+- `ApprovalTracker` for tracking approved actions
+- `Prohibitions` with three action categories:
+  - Auto-allowed (with limits)
+  - Requires approval
+  - Prohibited
+- Escalation triggers: confidence, risk level, failures, ambiguity, security
+
+**TODO**:
+- [ ] Integrate with autonomous mode coordination
+- [ ] Add LLM integration for dynamic checking
+- [ ] Add logging/audit trail
+- [ ] Create CLI commands for viewing rules
+
+#### 2.6 Swarm Orchestration ✅
+**Status**: Core structure implemented
+**Location**: `src/core/agents/swarm/`
+
+**Implemented**:
+- `SwarmOrchestrator` main class
+- `TaskDecomposer` with 5 intelligent strategies:
+  - Feature implementation (Design → Implement → Test → Integrate)
+  - Testing/Validation (Parallel independent tests)
+  - Refactoring (Sequential modules with dependencies)
+  - Research/Analysis (Parallel investigation)
+  - Generic Parallel (Equal distribution)
+- `AgentSpawner` for distributed execution via Task tool
+- `SwarmCoordinator` for state management and tracking
+- `ResultMerger` for aggregating agent results
+- `GitIntegration` for merge and conflict resolution:
+  - Per-agent temporary branches
+  - Kubernetes-pattern conflict detection
+  - Auto-resolution for package locks and small conflicts
+  - Integration reports
+
+**TODO**:
+- [ ] Implement actual git operations (currently stubs)
+- [ ] Add CLI command `/swarm spawn N <task>`
+- [ ] Integrate with coordinator for auto-spawn detection
+- [ ] Add result persistence
+
 ### 📋 Phase 2: Remaining Features (TODO)
-- [ ] 2.5 Bounded Autonomy (`src/core/safety/bounded-autonomy/`)
-- [ ] 2.6 Swarm Orchestration (`src/core/agents/swarm/`)
 - [ ] 2.7 Debug Orchestrator (`src/core/debug/orchestrator/`)
 - [ ] 2.8 Auto-Checkpoint (`src/core/checkpoint/auto/`)
 - [ ] 2.9 UI Testing (`src/core/testing/ui/`)
