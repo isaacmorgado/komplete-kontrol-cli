@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-12 20:59:20
+**Generated**: 2026-01-12 22:36:55
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -11,6 +11,7 @@
 /Users/imorgado/Desktop/Projects/komplete-kontrol-cli
 ├── 📄 --help
 ├── 📁 .claude/
+├── 📄 auto-continue.local.md
 ├── 📄 checkpoint-state.json
 ├── 📄 file-changes.json
 ├── 📄 health.json
@@ -20,10 +21,12 @@
 │   ├── 📁 master/
 │   │   ├── 📄 actions.jsonl
 │   │   ├── 📁 checkpoints/
+│   │   ├── 📁 embeddings/
 │   │   ├── 📄 episodic.json
 │   │   ├── 📄 file-cache.json
 │   │   ├── 📄 reflections.json
 │   │   ├── 📄 semantic.json
+│   │   ├── 📄 vector-cache.json
 │   │   └── 📄 working.json
 │   ├── 📄 reflections.json
 │   ├── 📄 semantic.json
@@ -53,24 +56,38 @@
 ├── 📁 0.14.10/
 │   └── 📄 7731983317421308213
 └── 📄 CACHEDIR.TAG
+├── 📄 3-LAYER-DEFENSE-VERIFICATION.md
 ├── 📄 ALTERNATIVE-SOLUTION.md
 ├── 📄 AUTO_MODE_SESSION_SUMMARY.md
+├── 📄 CLAUDE-CODE-SOLUTIONS-GUIDE.md
 ├── 📄 CLAUDE.md
+├── 📄 CLAUDED-RATE-LIMIT-FIX.md
 ├── 📄 CLAUDED-WRAPPER-GUIDE.md
 ├── 📄 CLAUDED_VERIFICATION_SUMMARY.md
 ├── 📄 CLAUDE_CODE_FIX.md
+├── 📄 CONSTITUTIONAL-AI-FIX-REPORT.md
+├── 📄 COORDINATOR-FIXES-CODE-DIFF.md
+├── 📄 COORDINATOR-FIXES-COMPARISON.md
+├── 📄 COORDINATOR-FIXES-DOCUMENTATION.md
+├── 📄 COORDINATOR-FIXES-QUICK-REFERENCE.md
 ├── 📄 FEATHERLESS_TEST_RESULTS.md
 ├── 📄 FINAL-FIX-INSTRUCTIONS.md
 ├── 📄 FINAL-SOLUTION-SUMMARY.md
 ├── 📄 FINAL-VERIFICATION-REPORT.md
+├── 📄 FINAL_MODEL_TEST_RESULTS.md
 ├── 📄 FIX-SUMMARY-FOR-MEMORY.md
 ├── 📄 GLM-4.7-CLI-TEST-GUIDE.md
 ├── 📄 GLM-4.7-VERIFICATION-COMPLETE.md
+├── 📄 IMPLEMENTATION_SESSION_SUMMARY.md
+├── 📄 MAX-TOKENS-FIX-REPORT.md
 ├── 📄 MCP_MULTI_MODEL_RESEARCH.md
+├── 📄 MODEL-DISCOVERY-ANALYSIS.md
 ├── 📄 MODEL-PICKER-FIX-V2.md
 ├── 📄 MODEL-PICKER-FIX.md
 ├── 📄 MODEL-SWITCHER-GUIDE.md
+├── 📄 MODEL_INTEGRATION_COMPLETE.md
 ├── 📄 MULTI-MODEL-DELEGATION-GUIDE.md
+├── 📄 QUICK-FIX-SUMMARY.md
 ├── 📄 QUICKSTART.md
 ├── 📄 RATE-LIMIT-PREVENTION-GUIDE.md
 ├── 📄 RATE-LIMIT-QUICK-START.md
@@ -275,6 +292,9 @@
 │   └── 📄 logger.ts
 ├── 📄 test-all-featherless.cjs
 ├── 📄 test-all-providers.cjs
+├── 📄 test-constitutional-ai-fix.sh
+├── 📄 test-coordinator-fixes.sh
+├── 📄 test-coordinator-integration.sh
 ├── 📄 test-final-all-models.cjs
 ├── 📄 test-glm-tools.cjs
 ├── 📄 test-models-loaded.sh
@@ -346,6 +366,7 @@
 ├── 📄 task-execution.test.ts
 └── 📄 token-counter.test.ts
 ├── 📄 tsconfig.json
+├── 📄 verify-constitutional-ai-fix.sh
 ├── 📄 visual-auto-tester-v2.sh
 ├── 📄 visual-auto-tester.sh
 └── 📄 visual-model-tester.sh
@@ -446,12 +467,17 @@
 • ./MULTI-MODEL-DELEGATION-GUIDE.md
 • ./MODEL-SWITCHER-GUIDE.md
 • ./MODEL-PICKER-FIX.md
+• ./CLAUDED-RATE-LIMIT-FIX.md
+• ./MODEL-DISCOVERY-ANALYSIS.md
+• ./CONSTITUTIONAL-AI-FIX-REPORT.md
 • ./plans/strategic-synthesis-plan-remaining.md
 • ./plans/god-mode-vscode-integration-analysis.md
 • ./plans/strategic-synthesis-plan.md
 • ./plans/architectural-enhancement-analysis.md
+• ./MODEL_INTEGRATION_COMPLETE.md
 • ./FIX-SUMMARY-FOR-MEMORY.md
 • ./QUICKSTART.md
+• ./.claude/auto-continue.local.md
 • ./.claude/project-index.md
 • ./docs/providers.md
 • ./docs/PHASE1_SUMMARY.md
@@ -464,16 +490,26 @@
 • ./.memory-test.md
 • ./README.md
 • ./GLM-4.7-VERIFICATION-COMPLETE.md
+• ./COORDINATOR-FIXES-QUICK-REFERENCE.md
 • ./RATE-LIMIT-QUICK-START.md
+• ./QUICK-FIX-SUMMARY.md
 • ./FEATHERLESS_TEST_RESULTS.md
 • ./GLM-4.7-CLI-TEST-GUIDE.md
+• ./FINAL_MODEL_TEST_RESULTS.md
+• ./MAX-TOKENS-FIX-REPORT.md
 • ./FINAL-SOLUTION-SUMMARY.md
 • ./CLAUDE_CODE_FIX.md
 • ./VISUAL_TEST_RESULTS_COMPLETE.md
+• ./COORDINATOR-FIXES-COMPARISON.md
 • ./AUTO_MODE_SESSION_SUMMARY.md
+• ./COORDINATOR-FIXES-DOCUMENTATION.md
+• ./COORDINATOR-FIXES-CODE-DIFF.md
 • ./MODEL-PICKER-FIX-V2.md
+• ./IMPLEMENTATION_SESSION_SUMMARY.md
+• ./3-LAYER-DEFENSE-VERIFICATION.md
 • ./CLAUDE.md
 • ./CLAUDED_VERIFICATION_SUMMARY.md
+• ./CLAUDE-CODE-SOLUTIONS-GUIDE.md
 • ./.memory.md
 
 ### Entry Points
