@@ -385,12 +385,52 @@
       "cachedAt": "2026-01-13T01:42:37Z"
     },
     "/Users/imorgado/.claude/scripts/install-model-switcher.sh": {
-      "hash": "c6df7c34edd8f9a7ecbc8aaa3a6ea314a389c02942185556ceb77e112dc23399",
-      "cachedAt": "2026-01-13T01:41:25Z"
+      "hash": "75279a7cc866cab74a10fef90b774613b0b285d750a8da2c36a99e5d2f46c176",
+      "cachedAt": "2026-01-13T01:53:21Z"
     },
     "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MODEL-SWITCHER-GUIDE.md": {
       "hash": "14931f62bab0522119b5703be7fa447e0cdf5a3449bfa1ca17056165a59484d1",
       "cachedAt": "2026-01-13T01:44:04Z"
+    },
+    "/Users/imorgado/.claude/hooks/post-edit-quality.sh": {
+      "hash": "e376b582c523d4c955a84410482d4b2bcda6746ef4314550242f529561d40195",
+      "cachedAt": "2026-01-13T01:49:08Z"
+    },
+    "/Users/imorgado/.claude/hooks/coordinator.sh": {
+      "hash": "13488dc8cce0d99a4af6245adeeddaed31a564533bae47c53d8abee7aecbf9de",
+      "cachedAt": "2026-01-13T01:50:39Z"
+    },
+    "/Users/imorgado/.claude/hooks/parallel-execution-planner.sh": {
+      "hash": "eed0972a3154a45784ab7c49c46e0c97b2ebc76ed6d1601f1af9c381c7c9c054",
+      "cachedAt": "2026-01-13T01:52:03Z"
+    },
+    "/Users/imorgado/.claude/scripts/clauded.sh": {
+      "hash": "152883bbb887563fd88469a892fbda95e67e736df1c89a7b8c4db51fc99d3316",
+      "cachedAt": "2026-01-13T01:52:55Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDED-WRAPPER-GUIDE.md": {
+      "hash": "7dbb78b906539eca7a0c29e6eecdc8077a1e2302514f9f76d605b35cb6bc7ef8",
+      "cachedAt": "2026-01-13T01:54:23Z"
+    },
+    "/Users/imorgado/.claude/lib/rate-limiter.js": {
+      "hash": "cf0203faa567606d89b46a223eeada04f7774324b8fd94d8c3ba2dd5aec5bcc7",
+      "cachedAt": "2026-01-13T01:56:38Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/RATE-LIMIT-PREVENTION-GUIDE.md": {
+      "hash": "5b79e6a93a8a885660b5161af1555161c254e21657a5d6a72cde6b28dcc24360",
+      "cachedAt": "2026-01-13T01:57:44Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/patch-proxy-rate-limiter.cjs": {
+      "hash": "ac9528b650a58abd3de34a6f83fee427eb5359660d46a27301f52e574e355a76",
+      "cachedAt": "2026-01-13T01:58:20Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/RATE-LIMIT-QUICK-START.md": {
+      "hash": "8fb2727be276d5a9fffdc7811c2cbb7eebfbb605df97d2cf505a7946055cda98",
+      "cachedAt": "2026-01-13T01:59:20Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDED-RATE-LIMIT-FIX.md": {
+      "hash": "28200fba8ca676e1237b3bf6f1040051ccc7a928a099846a075f960272e32e58",
+      "cachedAt": "2026-01-13T02:00:41Z"
     }
   }
 }
