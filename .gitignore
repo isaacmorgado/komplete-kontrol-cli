@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+*.log
+
+# Claude memory and runtime files
+.claude/memory/
+.claude/checkpoint-state.json
+.claude/file-changes.json
+.claude/health.json
+.claude/auto-continue.local.md
+.DS_Store
+
+# Test results
+test-results/

@@ -36,9 +36,15 @@ export class AnthropicProvider implements ILLMProvider {
   private defaultModel: string;
 
   constructor(config: ProviderConfig) {
-    this.client = new Anthropic({
-      apiKey: config.apiKey || process.env.ANTHROPIC_API_KEY
-    });
+    const apiKey = config.apiKey || process.env.ANTHROPIC_API_KEY;
+
+    if (!apiKey) {
+      throw new Error(
+        'ANTHROPIC_API_KEY not set. Please export ANTHROPIC_API_KEY="sk-ant-..." and try again.'
+      );
+    }
+
+    this.client = new Anthropic({ apiKey });
     this.defaultModel = config.defaultModel || 'claude-sonnet-4.5-20250929';
   }
 
