@@ -291,7 +291,9 @@ Be specific and actionable.`;
     if (jsonMatch) {
       try {
         return JSON.parse(jsonMatch[0]);
-      } catch {}
+      } catch {
+        // JSON parse failed, fall through to text parsing
+      }
     }
 
     // Fallback: extract from text
@@ -339,7 +341,7 @@ Be specific and actionable.`;
     const alternatives: string[] = [];
 
     for (const line of lines) {
-      const match = line.match(/^[\d\-\*\.]+\s+(.+)$/);
+      const match = line.match(/^[\d\-*.]+\s+(.+)$/);
       if (match) {
         alternatives.push(match[1].trim());
       }
@@ -391,12 +393,14 @@ Provide:
     // Try JSON array
     try {
       return JSON.parse(sectionText);
-    } catch {}
+    } catch {
+      // Not JSON, fall through to list parsing
+    }
 
     // Extract from list
     return sectionText
       .split('\n')
-      .map(line => line.replace(/^[\-\*\d\.]+\s*/, '').trim())
+      .map(line => line.replace(/^[-*\d.]+\s*/, '').trim())
       .filter(line => line.length > 0);
   }
 

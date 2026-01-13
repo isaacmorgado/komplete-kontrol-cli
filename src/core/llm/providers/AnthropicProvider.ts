@@ -89,7 +89,7 @@ export class AnthropicProvider implements ILLMProvider {
     });
 
     // Accumulate response
-    let fullResponse: any = {
+    const fullResponse: any = {
       id: '',
       model,
       role: 'assistant',
