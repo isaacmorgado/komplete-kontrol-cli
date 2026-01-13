@@ -5,6 +5,9 @@
  * Pattern: Think → Act → Observe → Reflect
  */
 
+import { ActionExecutor, type Action, type ActionResult } from '../ActionExecutor';
+import type { LLMRouter } from '../../llm/Router';
+
 export interface ReflexionCycle {
   thought: string;
   action: string;
@@ -21,17 +24,23 @@ export interface Context {
 
 /**
  * ReAct + Reflexion Agent
- * Implements the Think-Act-Observe-Reflect loop
+ * Implements the Think-Act-Observe-Reflect loop with real action execution
  */
 export class ReflexionAgent {
   private context: Context;
+  private executor?: ActionExecutor;
 
-  constructor(goal: string) {
+  constructor(goal: string, llmRouter?: LLMRouter) {
     this.context = {
       goal,
       history: [],
       metadata: {}
     };
+
+    // Initialize ActionExecutor if LLM router provided
+    if (llmRouter) {
+      this.executor = new ActionExecutor(llmRouter);
+    }
   }
 
   /**
@@ -78,18 +87,58 @@ export class ReflexionAgent {
    * ACT: Execute the action based on reasoning
    */
   private async act(thought: string): Promise<string> {
-    // Execute the actual action
-    // Log decision to audit trail
-    return `Action based on: ${thought}`;
+    if (!this.executor) {
+      // Fallback to placeholder if no executor
+      return `[PLACEHOLDER] Action based on: ${thought}`;
+    }
+
+    try {
+      // Parse thought into actionable command
+      const action: Action = await this.executor.parseThoughtToAction(
+        thought,
+        this.context.goal
+      );
+
+      // Execute the action
+      const result: ActionResult = await this.executor.execute(action);
+
+      // Return action description and result
+      return `${action.type}(${JSON.stringify(action.params)}): ${result.output}`;
+    } catch (error) {
+      const err = error as Error;
+      return `[ERROR] Failed to execute action: ${err.message}`;
+    }
   }
 
   /**
    * OBSERVE: Record the result of the action
    */
   private async observe(action: string): Promise<string> {
-    // Capture the outcome
-    // Record to reinforcement learning
-    return `Observed result of: ${action}`;
+    // Parse action result
+    if (action.startsWith('[ERROR]')) {
+      return `Action failed: ${action}`;
+    }
+
+    if (action.startsWith('[PLACEHOLDER]')) {
+      return `Placeholder action (no real execution): ${action}`;
+    }
+
+    // Extract meaningful observation from action result
+    const actionTypeMatch = action.match(/^(\w+)\(/);
+    const actionType = actionTypeMatch ? actionTypeMatch[1] : 'unknown';
+
+    switch (actionType) {
+      case 'file_write':
+        return `File successfully created/updated`;
+      case 'file_read':
+        return `File contents retrieved`;
+      case 'command':
+        return `Command executed successfully`;
+      case 'llm_generate':
+        return `Code generated successfully`;
+      default:
+        return `Action completed: ${action}`;
+    }
   }
 
   /**

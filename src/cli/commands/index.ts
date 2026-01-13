@@ -9,6 +9,7 @@ export { ReflectCommand } from './ReflectCommand';
 export { ResearchCommand } from './ResearchCommand';
 export { RootCauseCommand } from './RootCauseCommand';
 export { CheckpointCommand } from './CheckpointCommand';
+export { CommitCommand } from './CommitCommand';
 export { BuildCommand } from './BuildCommand';
 export { CollabCommand } from './CollabCommand';
 export { CompactCommand } from './CompactCommand';

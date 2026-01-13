@@ -1,53 +1,43 @@
 {
   "session_start": "2026-01-12T21:18:13Z",
-  "last_checkpoint": "2026-01-13T22:36:19Z",
+  "last_checkpoint": "2026-01-13T22:55:45Z",
   "files_changed": [
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/llm/providers/AnthropicProvider.ts",
-      "type": "modified",
-      "timestamp": "2026-01-13T22:36:29Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/llm/providers/AnthropicProvider.ts",
-      "type": "modified",
-      "timestamp": "2026-01-13T22:36:48Z"
-    },
-    {
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
       "type": "modified",
-      "timestamp": "2026-01-13T22:39:47Z"
+      "timestamp": "2026-01-13T23:02:18Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/GLM-INTEGRATION-COMPLETE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/AUTO-COMMAND-BLOCKING-ANALYSIS.md",
       "type": "modified",
-      "timestamp": "2026-01-13T22:40:47Z"
+      "timestamp": "2026-01-13T23:27:21Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/ActionExecutor.ts",
       "type": "modified",
-      "timestamp": "2026-01-13T22:45:12Z"
+      "timestamp": "2026-01-13T23:28:06Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/smoke-test.sh",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/reflexion/index.ts",
       "type": "modified",
-      "timestamp": "2026-01-13T22:46:23Z"
+      "timestamp": "2026-01-13T23:28:18Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ResearchCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/reflexion/index.ts",
       "type": "modified",
-      "timestamp": "2026-01-13T22:48:56Z"
+      "timestamp": "2026-01-13T23:28:31Z"
     },
     {
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-13T22:49:27Z"
+      "timestamp": "2026-01-13T23:28:58Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/AUTO-COMMAND-FIX-VERIFIED.md",
       "type": "modified",
-      "timestamp": "2026-01-13T22:54:38Z"
+      "timestamp": "2026-01-13T23:31:45Z"
     }
   ],
-  "change_count": 9,
-  "checkpoint_count": 17
+  "change_count": 7,
+  "checkpoint_count": 18
 }

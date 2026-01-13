@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-13 17:36:19
+**Generated**: 2026-01-13 17:55:45
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -13,11 +13,17 @@
 ├── 📁 .claude/
 ├── 📄 auto-continue.local.md
 ├── 📄 checkpoint-state.json
+├── 📁 collab/
 ├── 📁 commands/
 │   └── 📄 commit.md
+├── 📁 docs/
+│   ├── 📁 api-research/
+│   │   └── 📄 https___api_example_com.md
+│   └── 📄 debug-log.md
 ├── 📄 file-changes.json
 ├── 📄 health.json
 ├── 📁 memory/
+│   ├── 📄 compacted-context.md
 │   ├── 📁 master/
 │   │   ├── 📄 actions.jsonl
 │   │   ├── 📁 checkpoints/
@@ -35,7 +41,9 @@
 │   │   ├── 📄 reflections.json
 │   │   ├── 📄 semantic.json
 │   │   └── 📄 working.json
-└── 📄 project-index.md
+├── 📁 multi-repo/
+├── 📄 project-index.md
+└── 📁 voice/
 ├── 📄 .eslintrc.json
 ├── 📄 .gitignore
 ├── 📁 .ruff_cache/
@@ -53,6 +61,7 @@
 ├── 📄 bun.lock
 ├── 📄 CLAUDE.md
 ├── 📄 CLAUDED-INTEGRATION.md
+├── 📄 CLI-COMPREHENSIVE-TEST-REPORT.md
 ├── 📄 CLI-IMPLEMENTATION-SUMMARY.md
 ├── 📄 COMMAND-USAGE-GUIDE.md
 ├── 📁 commands/
@@ -79,6 +88,7 @@
 ├── 📄 END-TO-END-TESTING-STATUS.md
 ├── 📄 FEATURES-V2.md
 ├── 📄 FINAL-VERIFICATION-REPORT.md
+├── 📄 GLM-INTEGRATION-COMPLETE.md
 ├── 📄 HONEST-TEST-REPORT.md
 ├── 📁 hooks/
 ├── 📁 .claude/
@@ -126,18 +136,28 @@
 ├── 📄 README.md
 ├── 📄 run-tests-with-logs.sh
 ├── 📄 SETUP-GUIDE.md
+├── 📄 SMOKE-TEST-RESULTS.md
 ├── 📄 smoke-test.sh
 ├── 📁 src/
 ├── 📁 cli/
 │   ├── 📄 BaseCommand.ts
 │   ├── 📁 commands/
 │   │   ├── 📄 AutoCommand.ts
+│   │   ├── 📄 BuildCommand.ts
+│   │   ├── 📄 CheckpointCommand.ts
+│   │   ├── 📄 CollabCommand.ts
+│   │   ├── 📄 CompactCommand.ts
 │   │   ├── 📄 index.ts
+│   │   ├── 📄 MultiRepoCommand.ts
+│   │   ├── 📄 PersonalityCommand.ts
+│   │   ├── 📄 ReCommand.ts
 │   │   ├── 📄 ReflectCommand.ts
+│   │   ├── 📄 ResearchApiCommand.ts
 │   │   ├── 📄 ResearchCommand.ts
 │   │   ├── 📄 RootCauseCommand.ts
 │   │   ├── 📄 SPARCCommand.ts
-│   │   └── 📄 SwarmCommand.ts
+│   │   ├── 📄 SwarmCommand.ts
+│   │   └── 📄 VoiceCommand.ts
 │   └── 📄 types.ts
 ├── 📁 core/
 │   ├── 📁 agents/
@@ -234,6 +254,8 @@
 • ./README.md
 • ./INTEGRATION-PROGRESS-2026-01-13.md
 • ./CORRECTED-INTEGRATION-STATUS.md
+• ./GLM-INTEGRATION-COMPLETE.md
+• ./CLI-COMPREHENSIVE-TEST-REPORT.md
 • ./AUTO-COMMAND-TEST-LOG.md
 • ./plans 2/ULTIMATE-TOOL-INTEGRATION-PLAN.md
 • ./AUTO-INTEGRATION-AND-TESTING-SUMMARY.md
@@ -255,6 +277,7 @@
 • ./commands/personality.md
 • ./commands/compact.md
 • ./MEMORY-SYSTEM-BUG-REPORT.md
+• ./SMOKE-TEST-RESULTS.md
 • ./TYPESCRIPT-MIGRATION-STATUS.md
 • ./TYPESCRIPT-CLI-COMPLETE.md
 • ./CLAUDED-INTEGRATION.md
@@ -690,10 +713,10 @@
 ## 📊 Project Statistics
 
 **Languages:**
-• JavaScript/TypeScript: 41121 files
+• JavaScript/TypeScript: 41130 files
 • Python: 1 files
 
-**Estimated LOC:** 575222
+**Estimated LOC:** 577563
 
 
 ---
