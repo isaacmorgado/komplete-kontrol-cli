@@ -15,7 +15,7 @@ import type { Message } from '../llm/types';
 const exec = promisify(execCallback);
 
 export interface Action {
-  type: 'file_write' | 'file_read' | 'file_edit' | 'command' | 'llm_generate' | 'git_operation';
+  type: 'file_write' | 'file_read' | 'file_edit' | 'command' | 'llm_generate' | 'git_operation' | 'validate_typescript';
   params: Record<string, any>;
 }
 
@@ -68,6 +68,9 @@ export class ActionExecutor {
             action.params.operation,
             action.params.args
           );
+
+        case 'validate_typescript':
+          return await this.validateTypeScript(action.params.files);
 
         default:
           return {
@@ -248,6 +251,69 @@ export class ActionExecutor {
   ): Promise<ActionResult> {
     const command = `git ${operation} ${args.join(' ')}`;
     return await this.executeCommand(command);
+  }
+
+  /**
+   * Validate TypeScript code by running tsc typecheck
+   * Returns success if no type errors, includes error details if failed
+   */
+  async validateTypeScript(
+    files?: string[]
+  ): Promise<ActionResult> {
+    try {
+      // Use skipLibCheck to avoid dependency type errors
+      const skipLibCheck = '--skipLibCheck';
+      const fileArgs = files && files.length > 0 ? files.join(' ') : '';
+      const command = `bunx tsc --noEmit ${skipLibCheck} ${fileArgs}`;
+
+      const { stdout, stderr } = await exec(command, {
+        cwd: this.workingDir,
+        maxBuffer: 1024 * 1024 * 10
+      });
+
+      // If exec succeeded, no errors
+      return {
+        success: true,
+        output: 'TypeScript validation passed - no type errors',
+        metadata: {
+          errorCount: 0,
+          files: files || ['all']
+        }
+      };
+    } catch (error) {
+      const err = error as Error & { stdout?: string; stderr?: string };
+
+      // tsc exits with non-zero code when there are type errors
+      // Errors are in stderr for bunx tsc
+      const output = err.stderr || err.stdout || '';
+      const hasErrors = output.includes('error TS');
+
+      if (hasErrors) {
+        // Count errors
+        const errorMatches = output.match(/error TS\d+:/g);
+        const errorCount = errorMatches ? errorMatches.length : 0;
+
+        return {
+          success: false,
+          output,
+          error: `TypeScript validation failed with ${errorCount} error(s)`,
+          metadata: {
+            errorCount,
+            files: files || ['all']
+          }
+        };
+      }
+
+      // Non-tsc error (command not found, etc.)
+      return {
+        success: false,
+        output: output,
+        error: err.message,
+        metadata: {
+          files: files || ['all']
+        }
+      };
+    }
   }
 
   /**

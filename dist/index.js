@@ -9909,6 +9909,8 @@ class ActionExecutor {
           return await this.executeLLMGeneration(action.params.prompt, action.params.context);
         case "git_operation":
           return await this.executeGitOperation(action.params.operation, action.params.args);
+        case "validate_typescript":
+          return await this.validateTypeScript(action.params.files);
         default:
           return {
             success: false,
@@ -9928,16 +9930,26 @@ class ActionExecutor {
   async executeFileWrite(filePath, content) {
     const fullPath = path3.resolve(this.workingDir, filePath);
     const dir = path3.dirname(fullPath);
+    let fileExists = false;
+    let existingContent = "";
+    try {
+      existingContent = await fs.readFile(fullPath, "utf-8");
+      fileExists = true;
+    } catch (error2) {
+      fileExists = false;
+    }
     await fs.mkdir(dir, { recursive: true });
     await fs.writeFile(fullPath, content, "utf-8");
     return {
       success: true,
-      output: `File written: ${filePath} (${content.length} bytes)`,
+      output: fileExists ? `File updated: ${filePath} (${content.length} bytes)` : `File created: ${filePath} (${content.length} bytes)`,
       metadata: {
         path: fullPath,
         bytes: content.length,
         lines: content.split(`
-`).length
+`).length,
+        existed: fileExists,
+        previousBytes: fileExists ? existingContent.length : 0
       }
     };
   }
@@ -9997,7 +10009,7 @@ ${prompt}` : prompt
       }
     ];
     const response = await this.llmRouter.route({ messages }, {
-      taskType: "code",
+      taskType: "coding",
       priority: "quality"
     });
     const firstContent = response.content[0];
@@ -10014,6 +10026,50 @@ ${prompt}` : prompt
   async executeGitOperation(operation, args) {
     const command = `git ${operation} ${args.join(" ")}`;
     return await this.executeCommand(command);
+  }
+  async validateTypeScript(files) {
+    try {
+      const skipLibCheck = "--skipLibCheck";
+      const fileArgs = files && files.length > 0 ? files.join(" ") : "";
+      const command = `bunx tsc --noEmit ${skipLibCheck} ${fileArgs}`;
+      const { stdout, stderr } = await exec(command, {
+        cwd: this.workingDir,
+        maxBuffer: 1024 * 1024 * 10
+      });
+      return {
+        success: true,
+        output: "TypeScript validation passed - no type errors",
+        metadata: {
+          errorCount: 0,
+          files: files || ["all"]
+        }
+      };
+    } catch (error2) {
+      const err = error2;
+      const output = err.stderr || err.stdout || "";
+      const hasErrors = output.includes("error TS");
+      if (hasErrors) {
+        const errorMatches = output.match(/error TS\d+:/g);
+        const errorCount = errorMatches ? errorMatches.length : 0;
+        return {
+          success: false,
+          output,
+          error: `TypeScript validation failed with ${errorCount} error(s)`,
+          metadata: {
+            errorCount,
+            files: files || ["all"]
+          }
+        };
+      }
+      return {
+        success: false,
+        output,
+        error: err.message,
+        metadata: {
+          files: files || ["all"]
+        }
+      };
+    }
   }
   async parseThoughtToAction(thought, goal) {
     const prompt = `
@@ -11076,11 +11132,17 @@ class AutoCommand extends BaseCommand {
       if (!config.goal) {
         return this.createFailure('Goal is required. Usage: komplete auto "your goal"');
       }
+      this.currentTaskType = this.detectTaskType(config.goal);
       this.info(`\uD83E\uDD16 Autonomous mode activated`);
       this.info(`Goal: ${source_default2.bold(config.goal)}`);
+      this.info(`Task Type: ${source_default2.cyan(this.currentTaskType)}`);
       console.log("");
       await this.memory.setTask(config.goal, "Autonomous mode execution");
       await this.memory.addContext(`Model: ${config.model || "auto-routed"}`, 9);
+      await this.memory.addContext(`Task Type: ${this.currentTaskType}`, 8);
+      if (this.currentTaskType === "reverse-engineering") {
+        await this.executeReverseEngineeringTools(context2, config.goal);
+      }
       this.contextManager = new ContextManager({
         maxTokens: 128000,
         warningThreshold: 70,
@@ -11185,6 +11247,10 @@ Suggested actions:`));
     if (shouldCommit) {
       await this.performCommit(context2, config.goal);
     }
+    const shouldInvokeRe = this.currentTaskType === "reverse-engineering" && (this.iterations % 15 === 0 || this.iterations - this.lastReIteration >= 15);
+    if (shouldInvokeRe) {
+      await this.performReCommand(context2, config.goal);
+    }
   }
   async performCheckpoint(context2, goal) {
     this.info("\uD83D\uDCF8 Auto-checkpoint triggered");
@@ -11244,6 +11310,25 @@ Suggested actions:`));
       }
     } catch (error2) {
       this.warn("Final checkpoint failed");
+    }
+  }
+  async performReCommand(context2, goal) {
+    this.info("\uD83D\uDD2C Reverse engineering command triggered");
+    try {
+      const targetMatch = goal.match(/(?:analyze|extract|deobfuscate|understand)\s+(.+?)(?:\s|$)/i);
+      const target = targetMatch ? targetMatch[1] : ".";
+      const result = await this.reCommand.execute(context2, {
+        action: "analyze",
+        target
+      });
+      if (result.success) {
+        this.success("Reverse engineering analysis complete");
+      } else {
+        this.warn("Reverse engineering analysis failed (continuing anyway)");
+      }
+      this.lastReIteration = this.iterations;
+    } catch (error2) {
+      this.warn("Reverse engineering command failed (continuing anyway)");
     }
   }
   async executeReflexionCycle(agent, context2, config) {
@@ -11341,6 +11426,156 @@ Has the goal been achieved? Answer with just "YES" or "NO" and brief explanation
   }
   sleep(ms) {
     return new Promise((resolve2) => setTimeout(resolve2, ms));
+  }
+  detectTaskType(goal) {
+    const lowerGoal = goal.toLowerCase();
+    if (lowerGoal.includes("reverse engineer") || lowerGoal.includes("deobfuscate") || lowerGoal.includes("analyze code") || lowerGoal.includes("understand code") || lowerGoal.includes("extract") && (lowerGoal.includes("extension") || lowerGoal.includes("electron") || lowerGoal.includes("app"))) {
+      return "reverse-engineering";
+    }
+    if (lowerGoal.includes("research") || lowerGoal.includes("investigate") || lowerGoal.includes("find") && lowerGoal.includes("examples") || lowerGoal.includes("search") && (lowerGoal.includes("github") || lowerGoal.includes("patterns"))) {
+      return "research";
+    }
+    if (lowerGoal.includes("debug") || lowerGoal.includes("fix") && lowerGoal.includes("bug") || lowerGoal.includes("error") || lowerGoal.includes("issue")) {
+      return "debugging";
+    }
+    if (lowerGoal.includes("document") || lowerGoal.includes("docs") || lowerGoal.includes("readme") || lowerGoal.includes("api docs")) {
+      return "documentation";
+    }
+    if (lowerGoal.includes("refactor") || lowerGoal.includes("clean up") || lowerGoal.includes("improve code") || lowerGoal.includes("optimize")) {
+      return "refactoring";
+    }
+    return "general";
+  }
+  selectPromptForTaskType(goal, taskType) {
+    const memoryContext = this.conversationHistory.length > 0 ? this.conversationHistory.map((m) => typeof m.content === "string" ? m.content : JSON.stringify(m.content)).join(`
+
+`) : "";
+    switch (taskType) {
+      case "reverse-engineering":
+        return `
+Goal: ${goal}
+
+Context:
+${memoryContext}
+
+Instructions for Reverse Engineering:
+1. Analyze the target code thoroughly
+2. Identify patterns, architecture, and dependencies
+3. Document findings clearly
+4. Suggest improvements or security concerns
+
+What is your analysis approach?
+`.trim();
+      case "research":
+        return `
+Goal: ${goal}
+
+Context:
+${memoryContext}
+
+Instructions for Research:
+1. Search memory for relevant information
+2. Search GitHub for code examples and patterns
+3. Analyze findings and synthesize insights
+4. Provide actionable recommendations
+
+What research approach will you take?
+`.trim();
+      case "debugging":
+        return `
+Goal: ${goal}
+
+Context:
+${memoryContext}
+
+Instructions for Debugging:
+1. Reproduce the issue
+2. Analyze the code path causing the error
+3. Form hypotheses about root cause
+4. Test each hypothesis
+5. Apply fix and verify
+
+What is your debugging strategy?
+`.trim();
+      case "documentation":
+        return `
+Goal: ${goal}
+
+Context:
+${memoryContext}
+
+Instructions for Documentation:
+1. Identify what needs to be documented
+2. Structure the documentation logically
+3. Include clear examples and usage
+4. Ensure completeness and accuracy
+
+What documentation structure will you create?
+`.trim();
+      case "refactoring":
+        return `
+Goal: ${goal}
+
+Context:
+${memoryContext}
+
+Instructions for Refactoring:
+1. Analyze current code structure
+2. Identify code smells and anti-patterns
+3. Apply SOLID principles and best practices
+4. Ensure tests pass after refactoring
+
+What refactoring approach will you use?
+`.trim();
+      default:
+        return `
+Goal: ${goal}
+
+Context:
+${memoryContext}
+
+What is the next step to achieve this goal? Think through:
+1. What has been done so far?
+2. What remains to be done?
+3. What is the best next action?
+
+Provide your reasoning and proposed action.
+`.trim();
+    }
+  }
+  async executeReverseEngineeringTools(context2, goal) {
+    this.info("\uD83D\uDD2C Reverse engineering tools detected");
+    try {
+      const targetMatch = goal.match(/(?:analyze|extract|deobfuscate|understand)\s+(.+?)(?:\s|$)/i);
+      const target = targetMatch ? targetMatch[1] : ".";
+      this.info("Running code pattern analysis...");
+      try {
+        const { stdout: analyzeOutput } = await execAsync(`bash src/reversing/re-analyze.sh analyze "${target}"`);
+        this.success("Code analysis complete");
+        console.log(source_default2.gray(analyzeOutput.substring(0, 500) + "..."));
+      } catch (error2) {
+        this.warn("Code analysis failed, continuing...");
+      }
+      this.info("Generating documentation...");
+      try {
+        const { stdout: docsOutput } = await execAsync(`bash src/reversing/re-docs.sh project "${target}"`);
+        this.success("Documentation generated");
+        console.log(source_default2.gray(docsOutput.substring(0, 300) + "..."));
+      } catch (error2) {
+        this.warn("Documentation generation failed, continuing...");
+      }
+      this.info("Generating optimized prompts...");
+      try {
+        const { stdout: promptOutput } = await execAsync(`bash src/reversing/re-prompt.sh understand "${target}"`);
+        this.success("Optimized prompts generated");
+        console.log(source_default2.gray(promptOutput.substring(0, 300) + "..."));
+      } catch (error2) {
+        this.warn("Prompt generation failed, continuing...");
+      }
+      await this.memory.recordEpisode("reverse_engineering", `RE tools executed for: ${target}`, "success", "re-analyze, re-docs, re-prompt");
+    } catch (error2) {
+      this.warn("Reverse engineering tools encountered errors");
+    }
   }
 }
 // src/core/workflows/sparc/index.ts
@@ -14142,7 +14377,7 @@ Checkpoint complete.
       const repoPath = join8(context2.workDir, repo.path);
       console.log(source_default2.cyan(`Executing in: ${repo.name}...`));
       try {
-        const result = execSync6(command, { cwd: repoPath, stdio: "pipe" });
+        const result = execSync6(command, { cwd: repoPath, stdio: "pipe", encoding: "utf-8" });
         console.log(source_default2.gray(`  Output: ${result.substring(0, 200)}...`));
         console.log(source_default2.green(`  ✓ ${repo.name}: Success`));
       } catch (e) {
@@ -14162,7 +14397,7 @@ Execution complete.
   getRepoStatus(repoPath) {
     try {
       execSync6("git rev-parse --git-dir", { cwd: repoPath, stdio: "ignore" });
-      const status = execSync6("git status --short", { cwd: repoPath, stdio: "pipe" });
+      const status = execSync6("git status --short", { cwd: repoPath, stdio: "pipe", encoding: "utf-8" });
       if (status.trim() === "") {
         return "Clean";
       }
