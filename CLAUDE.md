@@ -3,24 +3,23 @@
 Autonomous AI operation system being migrated from bash hooks to TypeScript/Bun. Goal: Integrate Roo Code SPARC methodology, /auto autonomy features, and multi-provider support into a unified modern CLI.
 
 ## Current Focus
-Production-ready TypeScript CLI with 6 autonomous commands. All core integrations complete.
+End-to-end testing infrastructure complete. Ready for user validation with API key.
 
 ## Last Session (2026-01-13)
-- Registered all 6 commands in CLI (auto, sparc, swarm, reflect, research, rootcause)
-- Implemented Git operations in SwarmCommand (merge, conflict detection, auto-resolution)
-- Wired SPARC workflow to LLM Router (5 phases with real LLM calls)
-- Added GitHub MCP integration structure to ResearchCommand
-- Created TESTING-GUIDE.md with comprehensive test instructions
-- Stopped at: Production-ready CLI, all quality gates passed (0 errors)
+- Fixed critical bug: API key validation in AnthropicProvider (prevents hanging)
+- Created comprehensive testing infrastructure (SETUP-GUIDE.md, smoke-test.sh, test reports)
+- Verified all 6 commands architecture (build: 428 KB, 0 errors)
+- Added .gitignore for memory/runtime files
+- Committed testing infrastructure (c902f5b)
+- Stopped at: Production-ready, awaiting ANTHROPIC_API_KEY for LLM integration tests
 
 ## Next Steps
-1. End-to-end testing with real Anthropic API key (see TESTING-GUIDE.md)
-2. Configure GitHub MCP server for real code search (optional)
-3. Add more LLM providers (OpenAI, etc.) if needed
+1. User sets ANTHROPIC_API_KEY environment variable
+2. User runs ./smoke-test.sh for full validation
+3. Configure GitHub MCP server for research command (optional)
 
 ## Key Files
-- `src/index.ts` - CLI entry point with all 6 commands
-- `src/cli/commands/` - Command implementations (AutoCommand, SPARCCommand, etc.)
-- `src/core/workflows/sparc/` - SPARC methodology with LLM integration
-- `src/core/agents/swarm/GitIntegration.ts` - Git merge operations
-- `TESTING-GUIDE.md` - Comprehensive testing instructions
+- `src/core/llm/providers/AnthropicProvider.ts` - API key validation (lines 39-45)
+- `SETUP-GUIDE.md` - Complete setup and usage instructions
+- `END-TO-END-TESTING-STATUS.md` - Testing status and next steps
+- `smoke-test.sh` - Automated test suite for all 6 commands
