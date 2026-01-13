@@ -116,7 +116,7 @@ export class MCPProvider implements ILLMProvider {
 
   constructor(config: ProviderConfig) {
     this.proxyUrl = config.baseUrl || process.env.PROXY_URL || 'http://127.0.0.1:3000';
-    this.defaultModel = config.defaultModel || 'qwen-72b';
+    this.defaultModel = config.defaultModel || 'glm-4.7';
   }
 
   /**

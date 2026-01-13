@@ -87,15 +87,17 @@ export class ProviderRegistry {
 export async function createDefaultRegistry(): Promise<ProviderRegistry> {
   const registry = new ProviderRegistry();
 
-  // Register Anthropic (always available, default)
+  // Register Anthropic (fallback)
   const anthropic = createProvider('anthropic');
-  registry.register('anthropic', anthropic, true);
+  registry.register('anthropic', anthropic);
 
-  // Register MCP (if available)
+  // Register MCP (if available, make it default)
   const mcpAvailable = await isMCPAvailable();
   if (mcpAvailable) {
     const mcp = createProvider('mcp');
-    registry.register('mcp', mcp);
+    registry.register('mcp', mcp, true);
+  } else {
+    registry.register('anthropic', anthropic, true);
   }
 
   return registry;

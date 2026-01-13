@@ -39,9 +39,11 @@ export class AnthropicProvider implements ILLMProvider {
     const apiKey = config.apiKey || process.env.ANTHROPIC_API_KEY;
 
     if (!apiKey) {
-      throw new Error(
-        'ANTHROPIC_API_KEY not set. Please export ANTHROPIC_API_KEY="sk-ant-..." and try again.'
-      );
+      // Don't throw during construction - allow provider to be registered but not used
+      // Error will be thrown when trying to actually use it
+      this.client = null as any;
+      this.defaultModel = config.defaultModel || 'claude-sonnet-4.5-20250929';
+      return;
     }
 
     this.client = new Anthropic({ apiKey });
@@ -52,6 +54,12 @@ export class AnthropicProvider implements ILLMProvider {
    * Send a completion request
    */
   async complete(request: LLMRequest): Promise<LLMResponse> {
+    if (!this.client) {
+      throw new Error(
+        'ANTHROPIC_API_KEY not set. Please export ANTHROPIC_API_KEY="sk-ant-..." or use a different provider (e.g., GLM via MCP).'
+      );
+    }
+
     const model = request.model || this.defaultModel;
 
     // Convert our format to Anthropic format
@@ -76,6 +84,12 @@ export class AnthropicProvider implements ILLMProvider {
    * Send a streaming completion request
    */
   async streamComplete(request: LLMRequest, handler: StreamHandler): Promise<LLMResponse> {
+    if (!this.client) {
+      throw new Error(
+        'ANTHROPIC_API_KEY not set. Please export ANTHROPIC_API_KEY="sk-ant-..." or use a different provider (e.g., GLM via MCP).'
+      );
+    }
+
     const model = request.model || this.defaultModel;
 
     // Convert our format to Anthropic format

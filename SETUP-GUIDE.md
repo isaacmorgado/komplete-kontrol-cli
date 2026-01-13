@@ -1,37 +1,46 @@
 # Komplete Kontrol CLI - Setup Guide
 
-Quick setup guide to get the CLI running with Anthropic API integration.
+Quick setup guide to get the CLI running with GLM 4.7 integration.
 
 ## Prerequisites
 
 - Bun runtime installed
-- Anthropic API key
+- GLM API key from Z.AI (BigModel)
+- Multi-model MCP proxy server (automatically configured)
 
 ## Setup Steps
 
 ### 1. Get API Key
 
-Get your Anthropic API key from: https://console.anthropic.com/
+Get your GLM API key from: https://open.bigmodel.cn/
 
 ### 2. Set Environment Variable
 
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-api03-..."
+export BIGMODEL_API_KEY="your-api-key-here"
 ```
 
 To make it persistent, add to your shell config:
 
 ```bash
 # For bash
-echo 'export ANTHROPIC_API_KEY="sk-ant-api03-..."' >> ~/.bashrc
+echo 'export BIGMODEL_API_KEY="your-api-key-here"' >> ~/.bashrc
 source ~/.bashrc
 
 # For zsh
-echo 'export ANTHROPIC_API_KEY="sk-ant-api03-..."' >> ~/.zshrc
+echo 'export BIGMODEL_API_KEY="your-api-key-here"' >> ~/.zshrc
 source ~/.zshrc
 
 # For fish
-echo 'set -gx ANTHROPIC_API_KEY "sk-ant-api03-..."' >> ~/.config/fish/config.fish
+echo 'set -gx BIGMODEL_API_KEY "your-api-key-here"' >> ~/.config/fish/config.fish
+```
+
+### 2a. Optional: Anthropic Fallback
+
+If you want Anthropic as a fallback provider:
+
+```bash
+export ANTHROPIC_API_KEY="sk-ant-api03-..."
 ```
 
 ### 3. Build the CLI
@@ -234,21 +243,30 @@ bun run dist/index.js rootcause verify \
 
 ## Troubleshooting
 
-### "ANTHROPIC_API_KEY not set"
+### "BIGMODEL_API_KEY not set"
 
-**Solution**: Export your API key:
+**Solution**: Export your GLM API key:
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
+export BIGMODEL_API_KEY="your-api-key-here"
 ```
 
-### "Provider not available: anthropic"
+### "Provider not available: mcp"
 
-**Cause**: API key is invalid or Anthropic SDK failed to initialize.
+**Cause**: Multi-model MCP proxy is not running.
 
 **Solution**:
-1. Verify API key is correct
-2. Check your API key is active in Anthropic console
-3. Try regenerating the key
+1. Verify proxy is running: `curl http://127.0.0.1:3000/v1/messages`
+2. Start proxy if needed: `node ~/.claude/multi-model-mcp-server.js`
+3. Check API key is set correctly
+
+### "Unknown MCP model: glm-4.7"
+
+**Cause**: Model configuration not synced between MCPProvider and proxy.
+
+**Solution**:
+1. Verify GLM MCP server is configured: `grep -A 5 "glm" ~/.claude/multi-model-mcp-server.js`
+2. Rebuild CLI: `bun run build`
+3. Restart proxy server
 
 ### Commands are slow
 
