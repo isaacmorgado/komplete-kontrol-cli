@@ -1,0 +1,10 @@
+{
+  "model": "glm/glm-4.7",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "你好！请用中文介绍你自己，并告诉我你是什么模型。"
+    }
+  ]
+}

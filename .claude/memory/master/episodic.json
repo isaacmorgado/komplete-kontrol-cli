@@ -1,0 +1,26 @@
+{
+  "episodes": [
+    {
+      "id": "ep_1768257886170",
+      "type": "investigation",
+      "description": "Claude Code /model picker cannot be modified - it's hardcoded in minified CLI",
+      "outcome": "blocked",
+      "details": "Tried multiple patch approaches. The RU3() function is minified and hardcoded. claudish doesn't modify picker, uses --model flag instead. Recommend using separate /model commands or --model flag rather than modifying picker.",
+      "importance": 5,
+      "timestamp": "2026-01-12T22:44:46Z",
+      "accessCount": 0,
+      "lastAccessed": null
+    },
+    {
+      "id": "ep_1768257295845",
+      "type": "fix_complete",
+      "description": "Clauded model picker now shows all 15 models from proxy",
+      "outcome": "success",
+      "details": "Root cause: curl subprocess timeout. Solution: Node http module with busy-wait. Verified working: 15/15 models load at CLI startup.",
+      "importance": 5,
+      "timestamp": "2026-01-12T22:34:55Z",
+      "accessCount": 0,
+      "lastAccessed": null
+    }
+  ]
+}

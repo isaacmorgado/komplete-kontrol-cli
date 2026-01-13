@@ -1,0 +1,10 @@
+{
+  "model": "glm/glm-4.7",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello! Please respond with a simple greeting and confirm you are GLM-4.7."
+    }
+  ]
+}

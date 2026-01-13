@@ -1,0 +1,8 @@
+{
+    "model": "rabbit",
+    "model_id": "featherless/WhiteRabbitNeo/Llama-3-WhiteRabbitNeo-8B-v2.0",
+    "timestamp": "20260112_200846",
+    "passed": 2,
+    "failed": 1,
+    "total": 3
+}

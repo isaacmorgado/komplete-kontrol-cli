@@ -1,0 +1,1 @@
+{"id":"2026011309254494f9d3cf2dc64f52","type":"message","role":"assistant","content":[{"type":"text","text":"```python\ndef fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n```"}],"model":"glm-4.7","stop_reason":"end_turn","usage":{"input_tokens":20,"output_tokens":1199}}

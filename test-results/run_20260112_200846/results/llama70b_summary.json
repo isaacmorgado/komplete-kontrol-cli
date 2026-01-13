@@ -1,0 +1,8 @@
+{
+    "model": "llama70b",
+    "model_id": "featherless/huihui-ai/Llama-3.3-70B-Instruct-abliterated",
+    "timestamp": "20260112_200846",
+    "passed": 3,
+    "failed": 0,
+    "total": 3
+}

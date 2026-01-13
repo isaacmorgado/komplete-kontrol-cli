@@ -1,0 +1,8 @@
+{
+    "model": "llama8b",
+    "model_id": "featherless/mlabonne/Meta-Llama-3.1-8B-Instruct-abliterated",
+    "timestamp": "20260112_200846",
+    "passed": 3,
+    "failed": 0,
+    "total": 3
+}

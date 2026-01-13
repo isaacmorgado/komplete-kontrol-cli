@@ -1,0 +1,2 @@
+# Ignore third-party bundled files
+.claude/clauded-cli/cli.js

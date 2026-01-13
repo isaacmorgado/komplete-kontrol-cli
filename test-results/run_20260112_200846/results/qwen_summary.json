@@ -1,0 +1,8 @@
+{
+    "model": "qwen",
+    "model_id": "featherless/huihui-ai/Qwen2.5-72B-Instruct-abliterated",
+    "timestamp": "20260112_200846",
+    "passed": 3,
+    "failed": 0,
+    "total": 3
+}

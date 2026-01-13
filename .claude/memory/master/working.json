@@ -1,0 +1,14 @@
+{
+  "currentTask": null,
+  "currentContext": [
+    {
+      "content": "CLAUDED MODEL PICKER FIX - Complete solution saved at ~/Desktop/Projects/komplete-kontrol-cli/FINAL-FIX-INSTRUCTIONS.md. Patch: patch-model-picker-http.cjs. Test: test-models-loaded.sh. Root cause: curl timeout. Solution: Node http module. Status: VERIFIED WORKING (15/15 models).",
+      "importance": 10,
+      "addedAt": "2026-01-12T22:36:18Z"
+    }
+  ],
+  "recentActions": [],
+  "pendingItems": [],
+  "scratchpad": "",
+  "lastUpdated": "2026-01-12T22:36:18Z"
+}

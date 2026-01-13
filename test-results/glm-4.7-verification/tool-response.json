@@ -1,0 +1,1 @@
+{"id":"20260113092529fd4484fdeedf4c8f","type":"message","role":"assistant","content":[{"type":"text","text":"I'll check the current weather in San Francisco for you."},{"type":"tool_use","id":"call_-7982397687453455952","name":"get_weather","input":{"location":"San Francisco, CA"}}],"model":"glm-4.7","stop_reason":"tool_use","usage":{"input_tokens":214,"output_tokens":111}}

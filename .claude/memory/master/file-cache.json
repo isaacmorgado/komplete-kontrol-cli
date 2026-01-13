@@ -1,0 +1,396 @@
+{
+  "files": {
+    "/Users/imorgado/.claude/GOOGLE_OAUTH_IMPLEMENTATION.md": {
+      "hash": "126a2133d933069b316ac14bb075ba5546a1034b1bee96c44d2e94fd4f47a30f",
+      "cachedAt": "2026-01-12T18:32:05Z"
+    },
+    "/tmp/apply-tweakcc.sh": {
+      "hash": "42086bf5051f648f665c502c7ecb10f8e4623fac2aaf80edb26bbe52e28de544",
+      "cachedAt": "2026-01-12T18:33:43Z"
+    },
+    "/Users/imorgado/.claude/lib/gemini-oauth.js": {
+      "hash": "9e63643f095bf954bd47b3778e092e57b112b316031dbab179828969f06afc8a",
+      "cachedAt": "2026-01-12T23:25:12Z"
+    },
+    "/Users/imorgado/.claude/model-proxy-server-oauth.js": {
+      "hash": "b9afa3bd6bf191a3ce5ff3bfa9e4b346e436c712aa811304eb0cf9b2ba7b4aff",
+      "cachedAt": "2026-01-12T18:35:35Z"
+    },
+    "/tmp/add-oauth-to-proxy.js": {
+      "hash": "87207e162f917af7eb53a55f4e0f64e1ec66e9088929ec57c5174b503165795b",
+      "cachedAt": "2026-01-12T18:36:26Z"
+    },
+    "/tmp/tweakcc/src/patches/customStatusLine.ts": {
+      "hash": "4beab79b4f5b61e560e7afbd94af70bdeef18f538ee6c79c317040e3af718a55",
+      "cachedAt": "2026-01-12T18:37:15Z"
+    },
+    "/Users/imorgado/.tweakcc/config.json": {
+      "hash": "0ddabc02b3a1d7dd758b5b5a1f3ef64a58fb0ede153ddbe2977e58dd1762d99c",
+      "cachedAt": "2026-01-12T18:43:38Z"
+    },
+    "/Users/imorgado/.claude/FINAL_SETUP_INSTRUCTIONS.md": {
+      "hash": "01b672e67fd52adfaf33a6ab221ccc87778369cb23f0f912850dcddb516663ef",
+      "cachedAt": "2026-01-12T18:39:30Z"
+    },
+    "/tmp/quick-restore.sh": {
+      "hash": "0b558cf6ed0726ec381d040c79acdaa3205edf73dceed5ea789f6845efee3a42",
+      "cachedAt": "2026-01-12T18:41:41Z"
+    },
+    "/tmp/tweakcc/src/patches/customStartupArt.ts": {
+      "hash": "b2468905e72c83952b6d5142a4b0195da75099b59bfb0af203325a1607dc4852",
+      "cachedAt": "2026-01-12T18:46:13Z"
+    },
+    "/tmp/restore-claude-working.sh": {
+      "hash": "4fdb911163d8c6d6a6ac0ea3e6bd335669600f0805d721fb5883be3924b55ed2",
+      "cachedAt": "2026-01-12T18:41:54Z"
+    },
+    "/tmp/apply-fixed-patch.sh": {
+      "hash": "f862ff59e894f140f518110d55d8e390dd3cff1d24f8eccbb78891fd5bac10a8",
+      "cachedAt": "2026-01-12T18:43:58Z"
+    },
+    "/Users/imorgado/.claude/model-proxy-server.js": {
+      "hash": "827186aeabd53cb31c29bbd4e3d6d8539b71f7739119cc8aaa1e41bc531fb053",
+      "cachedAt": "2026-01-13T00:04:03Z"
+    },
+    "/tmp/apply-fixed-tweakcc.sh": {
+      "hash": "1f45d96dcf3b04e4e0577fba60b3a1cc798cd87b91046fe2aba3dfdb839da17e",
+      "cachedAt": "2026-01-12T18:45:27Z"
+    },
+    "/Users/imorgado/.claude/ISSUE_RESOLVED_SUMMARY.md": {
+      "hash": "54538c0ad6a8faf6a28835d1d95bfe02bd55c8ed45fa39896ea1099ea7c28d86",
+      "cachedAt": "2026-01-12T18:46:28Z"
+    },
+    "/tmp/fix-claude-and-apply-patch.sh": {
+      "hash": "7b56821b1eab7154f095610ab177c99b12d3574c97b0cc61c5d87d68997e9f30",
+      "cachedAt": "2026-01-12T18:51:39Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/fix-claude-cli.sh": {
+      "hash": "8fc234a63a84fa2e3a89ea854aa5c8bd2c950e0794d328a3bd0b1ab080ef9f87",
+      "cachedAt": "2026-01-12T18:52:33Z"
+    },
+    "/tmp/claude-validation-report.md": {
+      "hash": "827dc8fc05377fe24e260e270d8e6d204c18065f0b63eef1644de8d5cd27d670",
+      "cachedAt": "2026-01-12T18:52:51Z"
+    },
+    "/tmp/unicode-error-verification.md": {
+      "hash": "2c3e25e8915aeaa1c05dbee3647f35a9dcdfdead683d8bc66096775a5159cfad",
+      "cachedAt": "2026-01-12T18:53:00Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/fix-unicode-escapes.js": {
+      "hash": "ae8c652aad1ffbf71fbca7f60f56cd2c5e904fd7aa7039511a24ac1001d8c581",
+      "cachedAt": "2026-01-12T18:53:04Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE_CODE_FIX.md": {
+      "hash": "41713575e59d61a512a2c273f0b10e275bb542c069b26a72808f0e0057fd76a1",
+      "cachedAt": "2026-01-12T18:53:25Z"
+    },
+    "/tmp/technical-deep-dive.md": {
+      "hash": "cd293c6c6b36069834aa39e1c8250ef7a05c500d65fd599fa81161f90d07f2f1",
+      "cachedAt": "2026-01-12T18:53:48Z"
+    },
+    "/tmp/README_VERIFICATION.md": {
+      "hash": "7ca8b27fa2b58bba435e0630619fa4e72b35b6d5830242dfc43ae5e3976dde40",
+      "cachedAt": "2026-01-12T18:54:53Z"
+    },
+    "/tmp/restore-claude.sh": {
+      "hash": "11df625d3bf288129ec5802054fb02fdee5f9766d5f7e505d6547c3a8bb94f59",
+      "cachedAt": "2026-01-12T18:56:09Z"
+    },
+    "/tmp/setup-claude-and-wrapper.sh": {
+      "hash": "7a951b399a143e11feeec35cb09c48ecd30f53bad70f5aaef30ab7f4cca410d0",
+      "cachedAt": "2026-01-12T18:57:48Z"
+    },
+    "/tmp/CLAUDE_SETUP_README.md": {
+      "hash": "8a19e4c6d1b6ddef25f7418cef0d297a6e06d785f12c7db9a6d727a90bccd928",
+      "cachedAt": "2026-01-12T18:59:39Z"
+    },
+    "/tmp/setup-claude-complete.sh": {
+      "hash": "fdfea31e38dd08ada38a3596647fd8f83b4d06feca44a9f6f41828b8534c4a39",
+      "cachedAt": "2026-01-12T19:02:16Z"
+    },
+    "/tmp/CLAUDED_COMPLETE_GUIDE.md": {
+      "hash": "a9ce6b975e2ee45772e383e22478e521dede0063ae0d991bd96cab4c7aeb38bc",
+      "cachedAt": "2026-01-12T19:07:16Z"
+    },
+    "/Users/imorgado/.claude/commands/glm4.md": {
+      "hash": "fb6ec29064b4b21ebaf79b0c1a7bc800c31f540f032416f86b0f3b36a3469c7d",
+      "cachedAt": "2026-01-12T19:13:07Z"
+    },
+    "/Users/imorgado/.claude/commands/llama8b.md": {
+      "hash": "39242410f1cc6125e9b2f8fa9b08f9ae88739bfbd5f87ef7114fb93382df3ea5",
+      "cachedAt": "2026-01-12T19:13:07Z"
+    },
+    "/Users/imorgado/.claude/commands/llama70b.md": {
+      "hash": "24c0e4a19b46fe300c5f974abe0a291ae2bad22d4e36042a2ed82851b56d515c",
+      "cachedAt": "2026-01-12T19:13:08Z"
+    },
+    "/Users/imorgado/.claude/commands/models.md": {
+      "hash": "e492f1d5e020e23de2e2a5c2feea92a139aa8dc46d780b84c4a845166b0a2c4e",
+      "cachedAt": "2026-01-12T19:39:18Z"
+    },
+    "/tmp/complete-fix.sh": {
+      "hash": "3cd11f4eaf1d4c6cc0afe00c9745069e7b0c50abf2c529d22c0321b132b00760",
+      "cachedAt": "2026-01-12T19:13:43Z"
+    },
+    "/tmp/patch-models-in-cli.js": {
+      "hash": "f8ec44ed6b109d9da3a5115b1e7e2d9221c82ad9ee564140d06e645f5b6ac505",
+      "cachedAt": "2026-01-12T19:19:48Z"
+    },
+    "/tmp/install-custom-models.sh": {
+      "hash": "f27e683d8b362b47123761ccb42dca1f5c453323ff7b33489d011d37b7942ee9",
+      "cachedAt": "2026-01-12T19:20:21Z"
+    },
+    "/tmp/CUSTOM_MODELS_INSTALL_GUIDE.md": {
+      "hash": "52d29f614fb1ea62abc6f2c5ec42086546870e80afbf1caae47b7a5c69406539",
+      "cachedAt": "2026-01-12T19:21:10Z"
+    },
+    "/tmp/fetch-featherless-models.js": {
+      "hash": "922db293844dab38c17b87c29f4553fe79e758ac43e8bebe9741d724f5f36e34",
+      "cachedAt": "2026-01-12T19:30:27Z"
+    },
+    "/Users/imorgado/.claude/commands/whiterabbit.md": {
+      "hash": "f3484211d4338e3fb108ba0e98c277612db71bdcd456837e81440837372246c2",
+      "cachedAt": "2026-01-12T19:38:33Z"
+    },
+    "/Users/imorgado/.claude/commands/dolphin.md": {
+      "hash": "10f23c53ecd6f66263d8e98aaaeb7351d76ec8a973dbe8ecadf3d253bb5af918",
+      "cachedAt": "2026-01-12T19:38:37Z"
+    },
+    "/Users/imorgado/.claude/commands/opus.md": {
+      "hash": "68078f148916c21492d2bb5846fa5d8d3ec1bf7c05522015b21bcad031b7a733",
+      "cachedAt": "2026-01-12T19:38:42Z"
+    },
+    "/Users/imorgado/.claude/commands/gemini-pro.md": {
+      "hash": "91a9e41460f79ea3bb34dc36ef632e62df739aaa41a4e54d7618a112ade40d1d",
+      "cachedAt": "2026-01-12T19:38:46Z"
+    },
+    "/Users/imorgado/.claude/commands/glm47.md": {
+      "hash": "856a2f0df256e53315e6037ab3b2f5a85fa699a0a153df15d6aff99b7c10f769",
+      "cachedAt": "2026-01-12T19:38:50Z"
+    },
+    "/tmp/test-featherless-models.js": {
+      "hash": "2f813bc95f5ec638e76db9a205c5add5d1eb5eb7b2e7802310a58646adcff8ca",
+      "cachedAt": "2026-01-12T19:39:45Z"
+    },
+    "/Users/imorgado/Desktop/Tools/MODEL_CONFIGURATION.md": {
+      "hash": "6a7a0cd0b72f1ab54f8a5d665f04977994558f882ed22197253ba1ee865802c3",
+      "cachedAt": "2026-01-12T19:41:30Z"
+    },
+    "/tmp/patch-clauded-models.js": {
+      "hash": "6e95ea302c61cb1032f18df071760cf0038c47548a1f9f4c566d5a8528f47735",
+      "cachedAt": "2026-01-12T19:48:27Z"
+    },
+    "/tmp/create-clauded-wrapper.sh": {
+      "hash": "7a9155b2a61e18ff8ad96e6f3e257e92ef36c234dc47125b9090a1476c3d8a3f",
+      "cachedAt": "2026-01-12T19:49:14Z"
+    },
+    "/Users/imorgado/Desktop/Tools/INSTALL_CLAUDED.sh": {
+      "hash": "2f92fe5d93e063473dd719553c8d5bef1a24cf58512b741f7dacd78f951790f7",
+      "cachedAt": "2026-01-12T19:49:48Z"
+    },
+    "/Users/imorgado/Desktop/Tools/COMPLETE_SETUP_SUMMARY.md": {
+      "hash": "c4d850f4e6e250863257c9fba0200038f6e8e6f2a54d77e38e53df50a622aff5",
+      "cachedAt": "2026-01-12T19:51:12Z"
+    },
+    "/Users/imorgado/Desktop/Tools/verify-setup.sh": {
+      "hash": "ba190613e1ba45e46da7478cfff10f8b20dfa5a8dc0795bd9f139f9bd9fd370f",
+      "cachedAt": "2026-01-12T19:51:58Z"
+    },
+    "/Users/imorgado/Desktop/Tools/README.md": {
+      "hash": "f1b93cc3ca95d23a25dee3eb08a2c4d52cd697e1afe33b63569a278e11b93595",
+      "cachedAt": "2026-01-12T19:52:37Z"
+    },
+    "/tmp/comprehensive-clauded-test.sh": {
+      "hash": "c1fb13408d36ea8521b676c83ec29b16706a42929920aae60dd3aee5aca1c342",
+      "cachedAt": "2026-01-12T20:01:50Z"
+    },
+    "/Users/imorgado/Desktop/Tools/TEST_REPORT.md": {
+      "hash": "56e2f8b39772585d96dd9768a6ec6872a71033282091fd1a965b00ec6c7b2b2e",
+      "cachedAt": "2026-01-12T20:03:37Z"
+    },
+    "/Users/imorgado/Desktop/Tools/QUICK_START.md": {
+      "hash": "b9ab28485d24dd59102e0c6c8ef28e956de9969ae7e6f98f5d518d61cd853deb",
+      "cachedAt": "2026-01-12T20:04:06Z"
+    },
+    "/tmp/test-all-models-edge-cases.js": {
+      "hash": "22581213c333d8079f3360ae070760d8eb207c2f49bf1bde31a0697f1522c15d",
+      "cachedAt": "2026-01-12T20:16:36Z"
+    },
+    "/Users/imorgado/Desktop/Tools/EDGE_CASE_TEST_REPORT.md": {
+      "hash": "2047fa007e04cf505f4817608391cf44661fe9a22e103b16db4e3816d868d37d",
+      "cachedAt": "2026-01-12T20:19:57Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/tests/clauded-model-capabilities.test.ts": {
+      "hash": "2229dddf7af1590fde6d1af8dba72ae38b94a8699ec383ebe6cbbadc3e95425f",
+      "cachedAt": "2026-01-12T20:50:52Z"
+    },
+    "/Users/imorgado/Desktop/Tools/CLAUDED_CAPABILITY_MATRIX.md": {
+      "hash": "c5067e89c98006d7f077dc0181621521c3a2fed42713fa60fb98558e50f1a837",
+      "cachedAt": "2026-01-12T20:53:00Z"
+    },
+    "/Users/imorgado/Desktop/Tools/verify-clauded-capabilities.sh": {
+      "hash": "721ee3f2813d4f04ef6670bffea7a5391742d9d787a266b1ed660ddc1c037b40",
+      "cachedAt": "2026-01-12T20:53:36Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDED_VERIFICATION_SUMMARY.md": {
+      "hash": "5c3013cd64f49be08d4c5fd8e3a4513b363c35f74eaafc9b407c550892efc07b",
+      "cachedAt": "2026-01-12T20:54:33Z"
+    },
+    "/Users/imorgado/Desktop/Tools/CLAUDED_ROO_CODE_MODE_MAPPING.md": {
+      "hash": "b74a74e3fca713e0a1eec407beffd9e0aacc0111830a30a169bac1448a97f164",
+      "cachedAt": "2026-01-12T21:00:19Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/patch-model-picker.js": {
+      "hash": "3c41a86fbd73b07290ba71e836623e3a190d4cadcfc254db3c001f88dfb37982",
+      "cachedAt": "2026-01-12T21:17:25Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/patch-model-picker.cjs": {
+      "hash": "f7587d7ef6ef804996b336db837892276efe264d44785e5cf81c88c2002177f4",
+      "cachedAt": "2026-01-12T21:26:16Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MODEL-PICKER-FIX.md": {
+      "hash": "6e933aaa84146bef867836436e5c787d6c7f3d073e80896351ec193d5d1b20aa",
+      "cachedAt": "2026-01-12T21:42:08Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/patch-model-picker-sync.cjs": {
+      "hash": "3d7afe25682927a847f970357a912cbff598c40c838f6bd3f5f47ef8c87fe1ad",
+      "cachedAt": "2026-01-12T21:53:32Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MODEL-PICKER-FIX-V2.md": {
+      "hash": "8a31f55466607139f7217aa4eb8c7b3914ba325b4bf5226f08c320a4ad1ec4d5",
+      "cachedAt": "2026-01-12T21:54:40Z"
+    },
+    "/tmp/test-clauded-with-debug.sh": {
+      "hash": "8c10bf94dd2f47ccfb204c5dc8e025400cbaf0d45abae06957ca9968b6fd8a94",
+      "cachedAt": "2026-01-12T22:07:13Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/VERIFY-MODEL-PICKER-FIX.sh": {
+      "hash": "1251a689303188498c327e5b62c5109d5fa3c1a75cd41e037a6b676c23316762",
+      "cachedAt": "2026-01-12T22:11:09Z"
+    },
+    "/tmp/debug-clauded.js": {
+      "hash": "5fc5864fb7072aedc9965ea24f720f3aa8cec284a9298edcc18d772d1978796d",
+      "cachedAt": "2026-01-12T22:18:39Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/patch-model-picker-http.cjs": {
+      "hash": "c31de56abbac002d0380c9a70927fca59c3b60f08760b35d75e07558f68d6906",
+      "cachedAt": "2026-01-12T22:25:19Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/FINAL-FIX-INSTRUCTIONS.md": {
+      "hash": "170f71040cd80e2ecb6df667e50f0bfbc957f086a9b261ab70f518a99e5e8729",
+      "cachedAt": "2026-01-12T22:28:13Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/FIX-SUMMARY-FOR-MEMORY.md": {
+      "hash": "2088849a328b72f405a609d37bd1f29d8297f73c043a4b9b1050c2f540ac52ce",
+      "cachedAt": "2026-01-12T22:36:22Z"
+    },
+    "/tmp/simple-model-patch.cjs": {
+      "hash": "298dae1efa767e9fa4ac759c3eddd66a5ad3afaa08c712c29ae3add86cc4e467",
+      "cachedAt": "2026-01-12T22:42:32Z"
+    },
+    "/tmp/apply-alternative-solution.sh": {
+      "hash": "0ef209b2603bc38b74f2ad13dfee211bf0002fe696e7b0b1a7aa4134a289f492",
+      "cachedAt": "2026-01-12T22:46:15Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/FINAL-SOLUTION-SUMMARY.md": {
+      "hash": "7c41b0cb5a0ab5967f0c9d6957e7ee12f5f3c112202f318145f1374752282c27",
+      "cachedAt": "2026-01-12T22:48:30Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/model-test-suite.js": {
+      "hash": "4009639bdbc0c3731488a452f37fffc3c6916212d6b87f402248bb57b53a4c14",
+      "cachedAt": "2026-01-12T22:55:25Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/clauded-v2.sh": {
+      "hash": "c1d0bc90ce53f9ce948aaf1561f93e12f98c6d2746ee3fb857ecf1596d5b612a",
+      "cachedAt": "2026-01-12T23:06:43Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-glm-tools.cjs": {
+      "hash": "23e1d03e2de838f76eaae99f6323c2f683d58269df0b799ea69b74dc74b1a2d7",
+      "cachedAt": "2026-01-12T23:02:07Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-all-featherless.cjs": {
+      "hash": "e0b070b8e6085f7a518ea51bbdcc3d83ff1bed02770e493fab866830d9fb92f4",
+      "cachedAt": "2026-01-12T23:06:44Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-all-providers.cjs": {
+      "hash": "a86a679e3577d333dee28a4d5d6afd5a3e730e0e693438b6d2171e5d1721d7d8",
+      "cachedAt": "2026-01-12T23:15:43Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-final-all-models.cjs": {
+      "hash": "defc7dd22bacc7018b93c94007fe43a7210aa9644a8a7b3368134c45ba804964",
+      "cachedAt": "2026-01-12T23:28:23Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MCP_MULTI_MODEL_RESEARCH.md": {
+      "hash": "1ec1a34e72b696ef735d24155e99087a3478bfd295f89dec5d46c274de6cebae",
+      "cachedAt": "2026-01-13T00:01:22Z"
+    },
+    "/Users/imorgado/.claude/multi-model-mcp-server.js": {
+      "hash": "5d10beb90e4634a901b80979d6e24edc9f934743c8dab5d0402e481912c86e44",
+      "cachedAt": "2026-01-13T00:03:12Z"
+    },
+    "/Users/imorgado/.claude/glm-proxy-server.js": {
+      "hash": "97b004d065a854e69b6cff6d3173baa3f46b1c4f8bc330f96ded849f8d8a053c",
+      "cachedAt": "2026-01-13T00:04:25Z"
+    },
+    "/Users/imorgado/.claude/mcp_servers.json": {
+      "hash": "1c9122cfa03cd17afc8eac9df175a501de6bb0933b49ebd8f07f38a8e11fdc4f",
+      "cachedAt": "2026-01-13T00:04:25Z"
+    },
+    "/Users/imorgado/CLAUDE.md": {
+      "hash": "6364ce808f8577a05e1ee56cce45fd67f7aaf55c51dcae9928070d5a445ac9d4",
+      "cachedAt": "2026-01-13T01:29:22Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/visual-model-tester.sh": {
+      "hash": "9989adc4d08cd6a58b4461e4860927802add361289dfc1d79484454b5e8b4c0f",
+      "cachedAt": "2026-01-13T01:05:06Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/visual-auto-tester.sh": {
+      "hash": "afb16e1e7a6cd7fcec37aa4c5dc4bb6997150c0a8051c949ee3d113b05c72467",
+      "cachedAt": "2026-01-13T01:07:53Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/visual-auto-tester-v2.sh": {
+      "hash": "1e5aa5ab42688c326ae68bb92f7e619587a8fca3ef4cad3bb1493d99f2e15a7a",
+      "cachedAt": "2026-01-13T01:08:39Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/VISUAL_TEST_RESULTS_COMPLETE.md": {
+      "hash": "03331e37028ef614ce4724e89d0e28ec4b365f4a919d8560877b960975c2ab27",
+      "cachedAt": "2026-01-13T01:14:54Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/AUTO_MODE_SESSION_SUMMARY.md": {
+      "hash": "12378162890a3a4ab4296ef0d66d050b2ac1a674fdf5ef96a9a1e527500b4ae5",
+      "cachedAt": "2026-01-13T01:16:29Z"
+    },
+    "/Users/imorgado/Desktop/Tools/crawl4ai-scripts/crawl_glm_docs_20260112.py": {
+      "hash": "55ba0dac2dbb12bde3e3835569cd237597a69af6c9275ec6d7ec1eccdf597066",
+      "cachedAt": "2026-01-13T01:22:18Z"
+    },
+    "/tmp/claude/-Users-imorgado-Desktop-Projects-komplete-kontrol-cli/9668052e-b410-433d-be40-f5ffa9c59cc6/scratchpad/test-glm-4.7.sh": {
+      "hash": "e2da89e780866e91845d4f5c773203dc8e4ed0164e55770210ed019b4aeebbc8",
+      "cachedAt": "2026-01-13T01:24:50Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-results/glm-4.7-verification/GLM-4.7-FEATURE-COMPARISON.md": {
+      "hash": "e709ac4fc66e69efc2d84d4c247f7f181f8739f106c97664cb4be3f9de4142f9",
+      "cachedAt": "2026-01-13T01:27:52Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/GLM-4.7-VERIFICATION-COMPLETE.md": {
+      "hash": "97e4339710f6675302e66b68f832835141ef0e96fba14e4194490ab7194cd77c",
+      "cachedAt": "2026-01-13T01:29:03Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/GLM-4.7-CLI-TEST-GUIDE.md": {
+      "hash": "13647fa0b9c51d5e8f22d2eb1f2738da10965f2b9e76db09372d1b21fed8d6e0",
+      "cachedAt": "2026-01-13T01:33:38Z"
+    },
+    "/Users/imorgado/.claude/scripts/claude-model-switcher.sh": {
+      "hash": "a6817663fb4d7a2fbe311b08052cc3f1cc4ea8e34e1d7d3d42128cad9c442126",
+      "cachedAt": "2026-01-13T01:42:37Z"
+    },
+    "/Users/imorgado/.claude/scripts/install-model-switcher.sh": {
+      "hash": "c6df7c34edd8f9a7ecbc8aaa3a6ea314a389c02942185556ceb77e112dc23399",
+      "cachedAt": "2026-01-13T01:41:25Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MODEL-SWITCHER-GUIDE.md": {
+      "hash": "14931f62bab0522119b5703be7fa447e0cdf5a3449bfa1ca17056165a59484d1",
+      "cachedAt": "2026-01-13T01:44:04Z"
+    }
+  }
+}

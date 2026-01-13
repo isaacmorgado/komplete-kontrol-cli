@@ -1,0 +1,92 @@
+{
+  "id": "ckpt_1768262592",
+  "description": "Auto-checkpoint after 45 file changes",
+  "timestamp": "2026-01-13T00:03:12Z",
+  "git": {
+    "branch": "master",
+    "commit": "429b1e51b785919df4cd5b436647bc7ff79db7f4",
+    "dirty": true
+  },
+  "memory": {
+    "working": {
+      "currentTask": null,
+      "currentContext": [
+        {
+          "content": "CLAUDED MODEL PICKER FIX - Complete solution saved at ~/Desktop/Projects/komplete-kontrol-cli/FINAL-FIX-INSTRUCTIONS.md. Patch: patch-model-picker-http.cjs. Test: test-models-loaded.sh. Root cause: curl timeout. Solution: Node http module. Status: VERIFIED WORKING (15/15 models).",
+          "importance": 10,
+          "addedAt": "2026-01-12T22:36:18Z"
+        }
+      ],
+      "recentActions": [],
+      "pendingItems": [],
+      "scratchpad": "",
+      "lastUpdated": "2026-01-12T22:36:18Z"
+    },
+    "episodic": {
+      "episodes": [
+        {
+          "id": "ep_1768257886170",
+          "type": "investigation",
+          "description": "Claude Code /model picker cannot be modified - it's hardcoded in minified CLI",
+          "outcome": "blocked",
+          "details": "Tried multiple patch approaches. The RU3() function is minified and hardcoded. claudish doesn't modify picker, uses --model flag instead. Recommend using separate /model commands or --model flag rather than modifying picker.",
+          "importance": 5,
+          "timestamp": "2026-01-12T22:44:46Z",
+          "accessCount": 0,
+          "lastAccessed": null
+        },
+        {
+          "id": "ep_1768257295845",
+          "type": "fix_complete",
+          "description": "Clauded model picker now shows all 15 models from proxy",
+          "outcome": "success",
+          "details": "Root cause: curl subprocess timeout. Solution: Node http module with busy-wait. Verified working: 15/15 models load at CLI startup.",
+          "importance": 5,
+          "timestamp": "2026-01-12T22:34:55Z",
+          "accessCount": 0,
+          "lastAccessed": null
+        }
+      ]
+    },
+    "semantic": {
+      "facts": [
+        {
+          "category": "clauded_fix",
+          "key": "patch_location",
+          "value": "~/.claude/clauded-cli/cli.js uses HTTP module to fetch models from http://127.0.0.1:3000/v1/models at startup",
+          "confidence": 1.0,
+          "updatedAt": "2026-01-12T22:35:11Z"
+        },
+        {
+          "category": "clauded_fix",
+          "key": "verification_command",
+          "value": "Test models load: ANTHROPIC_BASE_URL=http://127.0.0.1:3000 node ~/Desktop/Projects/komplete-kontrol-cli/test-models-loaded.sh",
+          "confidence": 1.0,
+          "updatedAt": "2026-01-12T22:35:19Z"
+        },
+        {
+          "category": "clauded_solution",
+          "key": "final_approach",
+          "value": "Use --model flag instead of modifying /model picker. Wrapper at ~/Desktop/Projects/komplete-kontrol-cli/clauded-wrapper.sh. Install: sudo cp clauded-wrapper.sh /usr/local/bin/clauded",
+          "confidence": 1.0,
+          "updatedAt": "2026-01-12T22:47:10Z"
+        }
+      ],
+      "patterns": [
+        {
+          "id": "pat_1768257303996",
+          "type": "debugging",
+          "trigger": "clauded model picker not showing all models",
+          "solution": "Check if execSync+curl is timing out. Replace with Node http.get() using busy-wait pattern. Verify with: ANTHROPIC_BASE_URL=http://127.0.0.1:3000 node -e 'require(~/.claude/clauded-cli/cli.js)'",
+          "successRate": 1.0,
+          "useCount": 0,
+          "createdAt": "2026-01-12T22:35:03Z"
+        }
+      ],
+      "preferences": []
+    },
+    "reflections": {
+      "reflections": []
+    }
+  }
+}

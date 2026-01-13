@@ -1,0 +1,37 @@
+{
+  "facts": [
+    {
+      "category": "clauded_fix",
+      "key": "patch_location",
+      "value": "~/.claude/clauded-cli/cli.js uses HTTP module to fetch models from http://127.0.0.1:3000/v1/models at startup",
+      "confidence": 1.0,
+      "updatedAt": "2026-01-12T22:35:11Z"
+    },
+    {
+      "category": "clauded_fix",
+      "key": "verification_command",
+      "value": "Test models load: ANTHROPIC_BASE_URL=http://127.0.0.1:3000 node ~/Desktop/Projects/komplete-kontrol-cli/test-models-loaded.sh",
+      "confidence": 1.0,
+      "updatedAt": "2026-01-12T22:35:19Z"
+    },
+    {
+      "category": "clauded_solution",
+      "key": "final_approach",
+      "value": "Use --model flag instead of modifying /model picker. Wrapper at ~/Desktop/Projects/komplete-kontrol-cli/clauded-wrapper.sh. Install: sudo cp clauded-wrapper.sh /usr/local/bin/clauded",
+      "confidence": 1.0,
+      "updatedAt": "2026-01-12T22:47:10Z"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "pat_1768257303996",
+      "type": "debugging",
+      "trigger": "clauded model picker not showing all models",
+      "solution": "Check if execSync+curl is timing out. Replace with Node http.get() using busy-wait pattern. Verify with: ANTHROPIC_BASE_URL=http://127.0.0.1:3000 node -e 'require(~/.claude/clauded-cli/cli.js)'",
+      "successRate": 1.0,
+      "useCount": 0,
+      "createdAt": "2026-01-12T22:35:03Z"
+    }
+  ],
+  "preferences": []
+}
