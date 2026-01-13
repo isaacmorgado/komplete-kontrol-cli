@@ -3,8 +3,11 @@
  *
  * Provides .memory.md file format with frontmatter and markdown sections
  * for storing persistent memory that can be easily edited.
+ * Includes file locking mechanism to prevent race conditions during concurrent access.
  */
 
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { ContextError } from '../../types';
 import { createLogger, type ContextLogger } from '../../utils/logger';
 
@@ -43,6 +46,9 @@ export interface MemoryFileConfig {
   filePath: string;
   autoSave: boolean;
   maxSections: number;
+  lockTimeout?: number; // Maximum time to wait for lock (ms)
+  lockRetryDelay?: number; // Initial delay between lock attempts (ms)
+  maxLockRetries?: number; // Maximum number of lock acquisition attempts
 }
 
 /**
@@ -53,43 +59,179 @@ export class MemoryFileHandler {
   private config: MemoryFileConfig;
   private memory: MemoryFile;
   private dirty: boolean;
+  private lockFilePath: string;
 
   constructor(config: MemoryFileConfig, logger?: ContextLogger) {
     this.config = config;
     this.logger = logger ?? createLogger('MemoryFileHandler');
     this.memory = this.createEmptyMemory();
     this.dirty = false;
+    this.lockFilePath = `${config.filePath}.lock`;
     this.logger.debug('Memory file handler initialized', { config } as Record<string, unknown>);
+  }
+
+  /**
+   * Acquire file lock with retry logic
+   *
+   * @throws ContextError if lock cannot be acquired
+   */
+  private async acquireLock(): Promise<void> {
+    const lockTimeout = this.config.lockTimeout ?? 30000; // 30 seconds default
+    const lockRetryDelay = this.config.lockRetryDelay ?? 100; // 100ms default
+    const maxRetries = this.config.maxLockRetries ?? Math.ceil(lockTimeout / lockRetryDelay);
+    
+    const startTime = Date.now();
+    let attempt = 0;
+
+    while (attempt < maxRetries) {
+      attempt++;
+      
+      try {
+        // Try to create lock file exclusively
+        const lockFd = await fs.promises.open(
+          this.lockFilePath,
+          fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY,
+          0o600
+        );
+
+        // Write process ID to lock file
+        const lockContent = JSON.stringify({
+          pid: process.pid,
+          timestamp: new Date().toISOString(),
+          attempt,
+        });
+        await lockFd.writeFile(lockContent, 'utf-8');
+        await lockFd.close();
+
+        this.logger.debug('File lock acquired', {
+          lockFile: this.lockFilePath,
+          attempt,
+          duration: Date.now() - startTime,
+        } as Record<string, unknown>);
+        
+        return;
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === 'EEXIST') {
+          // Lock file exists, check if it's stale
+          try {
+            const lockContent = await fs.promises.readFile(this.lockFilePath, 'utf-8');
+            const lockData = JSON.parse(lockContent);
+            const lockTime = new Date(lockData.timestamp).getTime();
+            const staleThreshold = 60000; // 1 minute stale threshold
+
+            if (Date.now() - lockTime > staleThreshold) {
+              // Lock is stale, remove it
+              this.logger.warn('Removing stale lock file', {
+                lockFile: this.lockFilePath,
+                lockData,
+              } as Record<string, unknown>);
+              await fs.promises.unlink(this.lockFilePath);
+              continue; // Retry immediately
+            }
+          } catch {
+            // Failed to read lock file, continue retrying
+          }
+
+          // Check timeout
+          if (Date.now() - startTime >= lockTimeout) {
+            throw new ContextError(
+              `Failed to acquire file lock after ${lockTimeout}ms. Lock file: ${this.lockFilePath}`,
+              { code: 'LOCK_TIMEOUT' }
+            );
+          }
+
+          // Exponential backoff
+          const delay = lockRetryDelay * Math.pow(1.5, Math.min(attempt, 5));
+          await this.sleep(delay);
+        } else {
+          // Unexpected error
+          throw new ContextError(
+            `Failed to acquire file lock: ${(error as Error).message}`,
+            { code: 'LOCK_ERROR' }
+          );
+        }
+      }
+    }
+
+    throw new ContextError(
+      `Failed to acquire file lock after ${maxRetries} attempts`,
+      { code: 'LOCK_TIMEOUT' }
+    );
+  }
+
+  /**
+   * Release file lock
+   *
+   * @throws ContextError if lock cannot be released
+   */
+  private async releaseLock(): Promise<void> {
+    try {
+      await fs.promises.unlink(this.lockFilePath);
+      this.logger.debug('File lock released', { lockFile: this.lockFilePath } as Record<string, unknown>);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+        this.logger.warn('Failed to release file lock', {
+          lockFile: this.lockFilePath,
+          error: (error as Error).message,
+        } as Record<string, unknown>);
+      }
+    }
+  }
+
+  /**
+   * Execute operation with file lock
+   *
+   * @param operation - Operation to execute while holding lock
+   * @returns Result of operation
+   */
+  private async withLock<T>(operation: () => Promise<T>): Promise<T> {
+    await this.acquireLock();
+    try {
+      return await operation();
+    } finally {
+      await this.releaseLock();
+    }
+  }
+
+  /**
+   * Sleep for specified duration
+   *
+   * @param ms - Duration in milliseconds
+   */
+  private sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   /**
    * Load memory from file
    */
   async load(): Promise<void> {
-    try {
-      const content = await Bun.file(this.config.filePath).text();
-      this.memory = this.parseMemory(content);
-      this.dirty = false;
-      this.logger.info('Memory file loaded', { filePath: this.config.filePath } as Record<string, unknown>);
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        // File doesn't exist, create new
-        this.memory = this.createEmptyMemory();
-        this.dirty = false; // Don't mark as dirty, will be saved when sections are added
-        this.logger.info('Memory file not found, creating new', {
-          filePath: this.config.filePath,
-        } as Record<string, unknown>);
-      } else {
-        this.logger.error('Failed to load memory file', {
-          filePath: this.config.filePath,
-          error,
-        } as Record<string, unknown>);
-        throw new ContextError(
-          `Failed to load memory file: ${this.config.filePath}`,
-          { code: 'MEMORY_LOAD_FAILED' }
-        );
+    await this.withLock(async () => {
+      try {
+        const content = await Bun.file(this.config.filePath).text();
+        this.memory = this.parseMemory(content);
+        this.dirty = false;
+        this.logger.info('Memory file loaded', { filePath: this.config.filePath } as Record<string, unknown>);
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+          // File doesn't exist, create new
+          this.memory = this.createEmptyMemory();
+          this.dirty = false; // Don't mark as dirty, will be saved when sections are added
+          this.logger.info('Memory file not found, creating new', {
+            filePath: this.config.filePath,
+          } as Record<string, unknown>);
+        } else {
+          this.logger.error('Failed to load memory file', {
+            filePath: this.config.filePath,
+            error,
+          } as Record<string, unknown>);
+          throw new ContextError(
+            `Failed to load memory file: ${this.config.filePath}`,
+            { code: 'MEMORY_LOAD_FAILED' }
+          );
+        }
       }
-    }
+    });
   }
 
   /**
@@ -100,13 +242,15 @@ export class MemoryFileHandler {
       return;
     }
 
-    const content = this.serializeMemory(this.memory);
-    await Bun.write(this.config.filePath, content, { createPath: true });
+    await this.withLock(async () => {
+      const content = this.serializeMemory(this.memory);
+      await Bun.write(this.config.filePath, content, { createPath: true });
 
-    this.memory.frontmatter.updated = new Date().toISOString();
-    this.dirty = false;
+      this.memory.frontmatter.updated = new Date().toISOString();
+      this.dirty = false;
 
-    this.logger.debug('Memory file saved', { filePath: this.config.filePath } as Record<string, unknown>);
+      this.logger.debug('Memory file saved', { filePath: this.config.filePath } as Record<string, unknown>);
+    });
   }
 
   /**
@@ -556,6 +700,9 @@ export function createMemoryFileHandler(filePath: string = '.memory.md'): Memory
     filePath,
     autoSave: true,
     maxSections: 100,
+    lockTimeout: 30000, // 30 seconds
+    lockRetryDelay: 100, // 100ms
+    maxLockRetries: 300, // ~30 seconds max
   };
 
   return new MemoryFileHandler(config);

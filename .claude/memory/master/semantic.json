@@ -24,6 +24,33 @@
   ],
   "patterns": [
     {
+      "id": "pat_1768274176708",
+      "type": "optimization",
+      "trigger": "Slow database queries",
+      "solution": "Add index and use query explain plan",
+      "successRate": 0.90,
+      "useCount": 0,
+      "createdAt": "2026-01-13T03:16:16Z"
+    },
+    {
+      "id": "pat_1768274176669",
+      "type": "error_fix",
+      "trigger": "Connection timeout error",
+      "solution": "Increase timeout to 30s and add retry logic",
+      "successRate": 0.95,
+      "useCount": 0,
+      "createdAt": "2026-01-13T03:16:16Z"
+    },
+    {
+      "id": "pat_1768272776431",
+      "type": "error_fix",
+      "trigger": "trigger",
+      "solution": "solution",
+      "successRate": 1.0,
+      "useCount": 0,
+      "createdAt": "2026-01-13T02:52:56Z"
+    },
+    {
       "id": "pat_1768257303996",
       "type": "debugging",
       "trigger": "clauded model picker not showing all models",

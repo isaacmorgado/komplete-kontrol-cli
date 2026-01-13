@@ -97,6 +97,21 @@ export interface EmbeddingsConfig {
    * Request timeout in ms
    */
   timeout?: number;
+
+  /**
+   * Enable graceful degradation when primary provider fails
+   */
+  enableGracefulDegradation?: boolean;
+
+  /**
+   * Fallback provider when primary fails
+   */
+  fallbackProvider?: 'openai' | 'ollama';
+
+  /**
+   * Maximum retries on failure
+   */
+  maxRetries?: number;
 }
 
 /**
@@ -107,6 +122,9 @@ const DEFAULT_CONFIG: EmbeddingsConfig = {
   ollamaBaseUrl: 'http://localhost:11434',
   defaultModel: 'text-embedding-3-small',
   timeout: 30000,
+  enableGracefulDegradation: true,
+  fallbackProvider: 'ollama',
+  maxRetries: 2,
 };
 
 /**
@@ -190,6 +208,30 @@ export class OpenAIEmbeddings implements EmbeddingsProvider {
       'text-embedding-3-large',
       'text-embedding-ada-002',
     ];
+  }
+
+  /**
+   * Check if provider is available
+   */
+  async isAvailable(): Promise<boolean> {
+    try {
+      const apiKey = this.config.openaiApiKey || process.env.OPENAI_API_KEY;
+      if (!apiKey) {
+        return false;
+      }
+      
+      const response = await fetch(`${this.config.openaiBaseUrl}/models`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        signal: AbortSignal.timeout(5000),
+      });
+      
+      return response.ok;
+    } catch {
+      return false;
+    }
   }
 }
 
@@ -294,44 +336,152 @@ export class OllamaEmbeddings implements EmbeddingsProvider {
       return [];
     }
   }
+
+  /**
+   * Check if provider is available
+   */
+  async isAvailable(): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.config.ollamaBaseUrl}/api/tags`, {
+        signal: AbortSignal.timeout(5000),
+      });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
 }
 
 /**
  * Unified Embeddings Manager
  *
- * Routes embedding requests to appropriate provider.
+ * Routes embedding requests to appropriate provider with graceful degradation.
  */
 export class EmbeddingsManager {
   private logger: Logger;
   private openai: OpenAIEmbeddings;
   private ollama: OllamaEmbeddings;
   private defaultProvider: 'openai' | 'ollama';
+  private config: EmbeddingsConfig;
 
   constructor(config: EmbeddingsConfig = {}, logger?: Logger) {
     this.logger = logger?.child('EmbeddingsManager') ?? new Logger().child('EmbeddingsManager');
-    this.openai = new OpenAIEmbeddings(config, this.logger);
-    this.ollama = new OllamaEmbeddings(config, this.logger);
+    this.config = { ...DEFAULT_CONFIG, ...config };
+    this.openai = new OpenAIEmbeddings(this.config, this.logger);
+    this.ollama = new OllamaEmbeddings(this.config, this.logger);
     this.defaultProvider = config.openaiApiKey || process.env.OPENAI_API_KEY ? 'openai' : 'ollama';
 
     this.logger.info('EmbeddingsManager initialized', 'EmbeddingsManager', {
       defaultProvider: this.defaultProvider,
+      gracefulDegradation: this.config.enableGracefulDegradation,
     });
   }
 
   /**
-   * Generate embeddings
+   * Generate embeddings with graceful degradation
    */
   async embed(request: EmbeddingsRequest, provider?: 'openai' | 'ollama'): Promise<EmbeddingsResult> {
     const selectedProvider = provider || this.defaultProvider;
+    const maxRetries = this.config.maxRetries ?? 2;
 
-    switch (selectedProvider) {
-      case 'openai':
-        return this.openai.embed(request);
-      case 'ollama':
-        return this.ollama.embed(request);
-      default:
-        throw new Error(`Unknown embeddings provider: ${selectedProvider}`);
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        switch (selectedProvider) {
+          case 'openai':
+            return await this.openai.embed(request);
+          case 'ollama':
+            return await this.ollama.embed(request);
+          default:
+            throw new Error(`Unknown embeddings provider: ${selectedProvider}`);
+        }
+      } catch (error) {
+        this.logger.warn(
+          `Embedding attempt ${attempt}/${maxRetries} failed for ${selectedProvider}`,
+          'EmbeddingsManager',
+          { error: (error as Error).message }
+        );
+
+        // If graceful degradation is enabled and this is the last attempt
+        if (this.config.enableGracefulDegradation && attempt === maxRetries) {
+          const fallbackProvider = this.config.fallbackProvider;
+
+          if (fallbackProvider && fallbackProvider !== selectedProvider) {
+            this.logger.info(
+              `Attempting fallback from ${selectedProvider} to ${fallbackProvider}`,
+              'EmbeddingsManager'
+            );
+
+            try {
+              const fallbackInstance = fallbackProvider === 'openai' ? this.openai : this.ollama;
+              return await fallbackInstance.embed(request);
+            } catch (fallbackError) {
+              this.logger.error(
+                `Fallback provider ${fallbackProvider} also failed`,
+                'EmbeddingsManager',
+                { error: (fallbackError as Error).message }
+              );
+            }
+          }
+        }
+
+        // If not the last attempt, wait before retrying
+        if (attempt < maxRetries) {
+          const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
     }
+
+    // All attempts failed, return a degraded result
+    this.logger.warn(
+      'All embedding providers failed, returning degraded result',
+      'EmbeddingsManager'
+    );
+
+    return this.getDegradedResult(request);
+  }
+
+  /**
+   * Get a degraded result when all providers fail
+   * This allows the system to continue functioning without embeddings
+   */
+  private getDegradedResult(request: EmbeddingsRequest): EmbeddingsResult {
+    const inputs = Array.isArray(request.input) ? request.input : [request.input];
+
+    // Return zero vectors as fallback
+    const embeddings = inputs.map(() => new Array(1536).fill(0)); // Standard OpenAI embedding dimension
+
+    this.logger.debug(
+      `Returning degraded embeddings for ${inputs.length} input(s)`,
+      'EmbeddingsManager'
+    );
+
+    return {
+      embeddings,
+      model: 'degraded',
+      usage: {
+        promptTokens: 0,
+        totalTokens: 0,
+      },
+    };
+  }
+
+  /**
+   * Check which providers are available
+   */
+  async checkProvidersAvailability(): Promise<{
+    openai: boolean;
+    ollama: boolean;
+  }> {
+    const [openaiAvailable, ollamaAvailable] = await Promise.all([
+      this.openai.isAvailable(),
+      this.ollama.isAvailable(),
+    ]);
+
+    return {
+      openai: openaiAvailable,
+      ollama: ollamaAvailable,
+    };
   }
 
   /**

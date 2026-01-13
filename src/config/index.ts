@@ -12,20 +12,43 @@ import { ConfigError } from '../types';
 import { Logger } from '../utils/logger';
 
 /**
- * Default configuration paths
- */
-const DEFAULT_CONFIG_PATHS = [
-  path.join(process.cwd(), '.kompleterc.json'),
-  path.join(process.cwd(), '.kompleterc'),
-  path.join(process.env.HOME ?? '', '.kompleterc.json'),
-  path.join(process.env.HOME ?? '', '.kompleterc'),
-  path.join(process.env.HOME ?? '', '.config', 'komplete-kontrol', 'config.json'),
-];
-
-/**
  * Environment variable prefix
  */
 const ENV_PREFIX = 'KOMPLETE_';
+
+/**
+ * Get default configuration paths
+ * Can be overridden by KOMPLETE_CONFIG_PATHS environment variable
+ */
+function getDefaultConfigPaths(): string[] {
+  // Check for custom config paths from environment variable
+  const customPaths = process.env[`${ENV_PREFIX}CONFIG_PATHS`];
+  if (customPaths) {
+    try {
+      // Parse comma-separated paths
+      const paths = customPaths.split(',').map(p => p.trim()).filter(p => p.length > 0);
+      if (paths.length > 0) {
+        return paths;
+      }
+    } catch (error) {
+      // If parsing fails, use default paths
+    }
+  }
+
+  // Default configuration paths
+  return [
+    path.join(process.cwd(), '.kompleterc.json'),
+    path.join(process.cwd(), '.kompleterc'),
+    path.join(process.env.HOME ?? '', '.kompleterc.json'),
+    path.join(process.env.HOME ?? '', '.kompleterc'),
+    path.join(process.env.HOME ?? '', '.config', 'komplete-kontrol', 'config.json'),
+  ];
+}
+
+/**
+ * Default configuration paths (computed)
+ */
+const DEFAULT_CONFIG_PATHS = getDefaultConfigPaths();
 
 /**
  * Configuration schema for validation

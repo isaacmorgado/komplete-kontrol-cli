@@ -49,8 +49,8 @@
       "cachedAt": "2026-01-12T18:43:58Z"
     },
     "/Users/imorgado/.claude/model-proxy-server.js": {
-      "hash": "6477892d6def06aca029f2f81f691b0221ee8a1e1106567f1eb4b1ade2baaa6b",
-      "cachedAt": "2026-01-13T02:06:09Z"
+      "hash": "9fb05357c8124c7503e5bf33057e9b37b2f43ed899bc4709f0d38af2fcc64f6a",
+      "cachedAt": "2026-01-13T03:35:27Z"
     },
     "/tmp/apply-fixed-tweakcc.sh": {
       "hash": "1f45d96dcf3b04e4e0577fba60b3a1cc798cd87b91046fe2aba3dfdb839da17e",
@@ -117,16 +117,16 @@
       "cachedAt": "2026-01-12T19:13:07Z"
     },
     "/Users/imorgado/.claude/commands/llama8b.md": {
-      "hash": "39242410f1cc6125e9b2f8fa9b08f9ae88739bfbd5f87ef7114fb93382df3ea5",
-      "cachedAt": "2026-01-12T19:13:07Z"
+      "hash": "bf52db29da73d2d41b10b91cfbc730965ab9edf52febfb63ee418e8f31431de9",
+      "cachedAt": "2026-01-13T02:40:32Z"
     },
     "/Users/imorgado/.claude/commands/llama70b.md": {
-      "hash": "24c0e4a19b46fe300c5f974abe0a291ae2bad22d4e36042a2ed82851b56d515c",
-      "cachedAt": "2026-01-12T19:13:08Z"
+      "hash": "25bda46e78f9adec31d054940f295e7fe3847ddc62d82a2b8a7f42cec492e11a",
+      "cachedAt": "2026-01-13T02:40:32Z"
     },
     "/Users/imorgado/.claude/commands/models.md": {
-      "hash": "e492f1d5e020e23de2e2a5c2feea92a139aa8dc46d780b84c4a845166b0a2c4e",
-      "cachedAt": "2026-01-12T19:39:18Z"
+      "hash": "75140917e214dede9ba7d78859bdb8665854c8ad2517337af326096a29c2d394",
+      "cachedAt": "2026-01-13T02:40:47Z"
     },
     "/tmp/complete-fix.sh": {
       "hash": "3cd11f4eaf1d4c6cc0afe00c9745069e7b0c50abf2c529d22c0321b132b00760",
@@ -149,20 +149,20 @@
       "cachedAt": "2026-01-12T19:30:27Z"
     },
     "/Users/imorgado/.claude/commands/whiterabbit.md": {
-      "hash": "f3484211d4338e3fb108ba0e98c277612db71bdcd456837e81440837372246c2",
-      "cachedAt": "2026-01-12T19:38:33Z"
+      "hash": "f35811987d899effdc5d8b30f8752c45a52ed40c7633a66573dfa30f6337561d",
+      "cachedAt": "2026-01-13T02:40:32Z"
     },
     "/Users/imorgado/.claude/commands/dolphin.md": {
-      "hash": "10f23c53ecd6f66263d8e98aaaeb7351d76ec8a973dbe8ecadf3d253bb5af918",
-      "cachedAt": "2026-01-12T19:38:37Z"
+      "hash": "b9eb38ddc9184e834dbfea66eef5dfd0323a58e0ab2fa40b0d4df677417ff198",
+      "cachedAt": "2026-01-13T02:40:23Z"
     },
     "/Users/imorgado/.claude/commands/opus.md": {
       "hash": "68078f148916c21492d2bb5846fa5d8d3ec1bf7c05522015b21bcad031b7a733",
       "cachedAt": "2026-01-12T19:38:42Z"
     },
     "/Users/imorgado/.claude/commands/gemini-pro.md": {
-      "hash": "91a9e41460f79ea3bb34dc36ef632e62df739aaa41a4e54d7618a112ade40d1d",
-      "cachedAt": "2026-01-12T19:38:46Z"
+      "hash": "c8e071c214c7ccf67fa71124cc93aee1a989f38e93a163d23a518e2afd8ed0e5",
+      "cachedAt": "2026-01-13T02:40:33Z"
     },
     "/Users/imorgado/.claude/commands/glm47.md": {
       "hash": "856a2f0df256e53315e6037ab3b2f5a85fa699a0a153df15d6aff99b7c10f769",
@@ -325,8 +325,8 @@
       "cachedAt": "2026-01-13T00:01:22Z"
     },
     "/Users/imorgado/.claude/multi-model-mcp-server.js": {
-      "hash": "5d10beb90e4634a901b80979d6e24edc9f934743c8dab5d0402e481912c86e44",
-      "cachedAt": "2026-01-13T00:03:12Z"
+      "hash": "b2e1a256a73d21599a578a73181a0192ce00011b5e678ba6ede4d2e90b836a4b",
+      "cachedAt": "2026-01-13T02:28:34Z"
     },
     "/Users/imorgado/.claude/glm-proxy-server.js": {
       "hash": "97b004d065a854e69b6cff6d3173baa3f46b1c4f8bc330f96ded849f8d8a053c",
@@ -393,16 +393,16 @@
       "cachedAt": "2026-01-13T01:44:04Z"
     },
     "/Users/imorgado/.claude/hooks/post-edit-quality.sh": {
-      "hash": "e376b582c523d4c955a84410482d4b2bcda6746ef4314550242f529561d40195",
-      "cachedAt": "2026-01-13T01:49:08Z"
+      "hash": "7e3d5fe0108e19460fee634ad40f088b8402ebe0a24d758d60c0188915573800",
+      "cachedAt": "2026-01-13T02:22:06Z"
     },
     "/Users/imorgado/.claude/hooks/coordinator.sh": {
-      "hash": "13488dc8cce0d99a4af6245adeeddaed31a564533bae47c53d8abee7aecbf9de",
-      "cachedAt": "2026-01-13T01:50:39Z"
+      "hash": "bbc0ae989380b5b49093d0549a17de29753ca67dab3606950656468b6c014fc8",
+      "cachedAt": "2026-01-13T03:09:25Z"
     },
     "/Users/imorgado/.claude/hooks/parallel-execution-planner.sh": {
-      "hash": "eed0972a3154a45784ab7c49c46e0c97b2ebc76ed6d1601f1af9c381c7c9c054",
-      "cachedAt": "2026-01-13T01:52:03Z"
+      "hash": "99c22a5c9a46204502f974831f1bbb1f371a491f81fedf011758f00299ff0c8e",
+      "cachedAt": "2026-01-13T02:23:51Z"
     },
     "/Users/imorgado/.claude/scripts/clauded.sh": {
       "hash": "152883bbb887563fd88469a892fbda95e67e736df1c89a7b8c4db51fc99d3316",
@@ -435,6 +435,314 @@
     "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/3-LAYER-DEFENSE-VERIFICATION.md": {
       "hash": "14ed2e8f251b839fe9652745c6237d5d3559ea00e6277fc13b2046a414d0d706",
       "cachedAt": "2026-01-13T02:08:17Z"
+    },
+    "/Users/imorgado/.claude/hooks/swarm-orchestrator.sh": {
+      "hash": "b91d608c1d9cec387f7bfb5d9745ae56689c8c2281250fe6d40b70431d91630e",
+      "cachedAt": "2026-01-13T03:38:37Z"
+    },
+    "/Users/imorgado/.claude/hooks/memory-manager.sh": {
+      "hash": "de0ee50887745072c16248325143a7d689085b5eb80aba3e763800c6e23c78c1",
+      "cachedAt": "2026-01-13T03:06:53Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MODEL-DISCOVERY-ANALYSIS.md": {
+      "hash": "936a4a6c3358c881a003cba126734030f08855bfe351f1816960297d98bd0ae7",
+      "cachedAt": "2026-01-13T02:19:44Z"
+    },
+    "/Users/imorgado/.claude/hooks/agent-loop.sh": {
+      "hash": "fcbab5b5ede7c4c1bec502e61de78e6013c7254d4d0a60bbf4de26a2d233e144",
+      "cachedAt": "2026-01-13T02:26:39Z"
+    },
+    "/Users/imorgado/.claude/hooks/debug-orchestrator.sh": {
+      "hash": "59ae9cc8a0fd6badc2008757e500584baeddf0d9b56961f3a286972583b79a67",
+      "cachedAt": "2026-01-13T02:22:16Z"
+    },
+    "/Users/imorgado/.claude/hooks/ui-test-framework.sh": {
+      "hash": "4a99eb867ee094a50284a27685f0d26fbd5005d16447b33dba1545068b517695",
+      "cachedAt": "2026-01-13T02:31:18Z"
+    },
+    "/Users/imorgado/.claude/hooks/constitutional-ai.sh": {
+      "hash": "d84ba60bc9f1a5231fe4c6e94e03e3ee180dfe87520dd35c2dae44582f84d3db",
+      "cachedAt": "2026-01-13T02:24:38Z"
+    },
+    "/Users/imorgado/.claude/hooks/auto-continue.sh": {
+      "hash": "3aa9cf7a2398afee3d31c1e7947f3060bce000b7bddd6d8a1c62d4d0cbb84473",
+      "cachedAt": "2026-01-13T02:24:29Z"
+    },
+    "/Users/imorgado/.claude/hooks/tree-of-thoughts.sh": {
+      "hash": "8f3ee0597dcf645e6563d237defc991221e596e0751918a21cf0e510cfb82261",
+      "cachedAt": "2026-01-13T02:32:46Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-agent-loop-fixes.sh": {
+      "hash": "5ee2e87f8b11e3eb43d3860352f020e39efdb15f0436baa95aec7f3549bef50b",
+      "cachedAt": "2026-01-13T02:24:01Z"
+    },
+    "/Users/imorgado/.claude/scripts/claude-with-proxy-fixed.sh": {
+      "hash": "02de5d993f8b751a1f281621e99dcd32103c3ea40277668e5e5da832761f8fec",
+      "cachedAt": "2026-01-13T03:35:41Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-coordinator-fixes.sh": {
+      "hash": "75a305c5a0adbffedfc62faed361b3b9daa95d53612470cb231afc76cd85a0a0",
+      "cachedAt": "2026-01-13T02:22:22Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-swarm-fixes.sh": {
+      "hash": "f2bf5525226ebd84106218a6b0ad4dd9e102ecdad77c16c6f3a4e1f188031015",
+      "cachedAt": "2026-01-13T02:22:40Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-auto-execute-flow.sh": {
+      "hash": "d5bc06ead94bec181753f4bf56f31f3e6e1b86190c27395071ba5020fcc98767",
+      "cachedAt": "2026-01-13T02:22:29Z"
+    },
+    "/Users/imorgado/.claude/hooks/github-research-executor.sh": {
+      "hash": "c58766dbc1bf9e30ff5e027e6c6951ecf7412f100b11ded9c32915e5ae316851",
+      "cachedAt": "2026-01-13T02:22:11Z"
+    },
+    "/Users/imorgado/.claude/tests/test-tot-pipeline.sh": {
+      "hash": "29511037dfb49b00dcb26d0a119d9bcf9fe80bfa2f2340d7ce53da7e7a61c8ef",
+      "cachedAt": "2026-01-13T02:26:07Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-constitutional-ai-fix.sh": {
+      "hash": "8d31808cbed0d729cf734e87d4cc430e0f4494b2fee2c0b48fb1b3bd0954aaba",
+      "cachedAt": "2026-01-13T02:22:24Z"
+    },
+    "/Users/imorgado/.claude/tests/test-regression-detection.sh": {
+      "hash": "19a41f0a40d85c1fe9ceaeb75b2b21772852d49a7033c4b9acff8240c6c54383",
+      "cachedAt": "2026-01-13T02:26:17Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/COORDINATOR-FIXES-DOCUMENTATION.md": {
+      "hash": "136c2500b1c8268bb6e180520656a6240e49ef87c1b448fcf051cf030b826d60",
+      "cachedAt": "2026-01-13T02:23:16Z"
+    },
+    "/Users/imorgado/.claude/test-auto-research-integration.sh": {
+      "hash": "d05b92f64df4841c375cdcca2d0f8ae4695f6d756f6126f535439b8e8491c3e5",
+      "cachedAt": "2026-01-13T02:23:18Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-swarm-integration.sh": {
+      "hash": "5c111d5b94dc9dbe1863d8f67904508deb6d80afd417301abfe27b69f477711b",
+      "cachedAt": "2026-01-13T02:25:12Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-ui-feedback-loop.sh": {
+      "hash": "c8af1b9dc9125e381d02999185bb51ec352c46053357ee5d64c685bc53151f98",
+      "cachedAt": "2026-01-13T02:33:25Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-auto-execute-simple.sh": {
+      "hash": "2268c45911166304eaa77bae8c5bcb8e7dc9bc630dea70f1a7dc4314bd272588",
+      "cachedAt": "2026-01-13T02:24:52Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/COORDINATOR-FIXES-COMPARISON.md": {
+      "hash": "2bb1fd8f044829cea84bfe49c1b0bb6a30442afc2135cc117806afc9a359d2b1",
+      "cachedAt": "2026-01-13T02:24:12Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/verify-constitutional-ai-fix.sh": {
+      "hash": "5b43d33f5f9e0ad7e02b87953a4c911b2c24f0560d410dd38279e62abe0e4f54",
+      "cachedAt": "2026-01-13T02:24:25Z"
+    },
+    "/Users/imorgado/.claude/hooks/autonomous-orchestrator-v2.sh": {
+      "hash": "bf6fb527e145b0ca7787d1366a90626d2643f9c648c6e98b1d92dd511c3a0383",
+      "cachedAt": "2026-01-13T02:25:52Z"
+    },
+    "/Users/imorgado/.claude/hooks/AGENT-LOOP-FIXES-SUMMARY.md": {
+      "hash": "a3ae69fb534af20fe143097669a49f1eb6ecdc267f30e1737631deb508116f39",
+      "cachedAt": "2026-01-13T02:24:44Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/COORDINATOR-FIXES-QUICK-REFERENCE.md": {
+      "hash": "1dd9e93555e6d970f79f4a5ffac61fca315ade992e7c2254ca7bf192dfd7e3cb",
+      "cachedAt": "2026-01-13T02:24:55Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CONSTITUTIONAL-AI-FIX-REPORT.md": {
+      "hash": "a69ddcf058af7a9cfcdc7fb98ed4e5c37570434048eade382e53efd369a343f2",
+      "cachedAt": "2026-01-13T02:25:21Z"
+    },
+    "/Users/imorgado/.claude/hooks/BEFORE-AFTER-COMPARISON.md": {
+      "hash": "9ed4e238493cbc2d78e7aa78a31f9c29b10fd3651cc95dfa7bbf846876d0135b",
+      "cachedAt": "2026-01-13T02:25:31Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-parallel-dependency.sh": {
+      "hash": "831dd450fe88e10ae3367a40ff34aa83126ebf8e94828d400d197039384fbd9c",
+      "cachedAt": "2026-01-13T02:25:35Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/test-coordinator-integration.sh": {
+      "hash": "13c6819b84020423f745d5afcfdcbce9c0c5eb9ec08a7661f7693f57b54fc07e",
+      "cachedAt": "2026-01-13T02:25:49Z"
+    },
+    "/Users/imorgado/.claude/hooks/QUICK-REFERENCE.md": {
+      "hash": "9a1b026cea947ce368a849118a263f05989f9e41fd28fd2caca999553cd3a12b",
+      "cachedAt": "2026-01-13T02:25:57Z"
+    },
+    "/Users/imorgado/.claude/docs/ISSUE-1-FIX-AUTONOMOUS-EXECUTION.md": {
+      "hash": "be66d4068646f9b002a49c979dbda5bc2a0e87d0f84c1717df6d0402d8986364",
+      "cachedAt": "2026-01-13T02:26:02Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/COORDINATOR-FIXES-CODE-DIFF.md": {
+      "hash": "8c18c251350beed7bb2648bbb2465d6aaa2c71339ee20b4e446054ed1b8f3817",
+      "cachedAt": "2026-01-13T02:26:03Z"
+    },
+    "/Users/imorgado/.claude/hooks/SWARM-ORCHESTRATOR-FIXES.md": {
+      "hash": "cbbddfab9aa43104f8c909c9a96d0453af7d6696cd3bde9ac050f938f071a172",
+      "cachedAt": "2026-01-13T02:26:09Z"
+    },
+    "/Users/imorgado/.claude/CLAUDE.md": {
+      "hash": "43cfd73b8fe693292292159512b99d133fd971d0bc077564f951047bde0656d6",
+      "cachedAt": "2026-01-13T02:26:24Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-dependency-ordering.sh": {
+      "hash": "724febe540d797c22330e0faa53008bc4ad81ad1daf71fe93718172814f26fda",
+      "cachedAt": "2026-01-13T02:26:29Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-coordinator-integration.sh": {
+      "hash": "d5fcb8c02c5d4d681475e02e78fb8da3f07165f1731ab6d5ac3ca0b6ff980ddd",
+      "cachedAt": "2026-01-13T02:27:39Z"
+    },
+    "/Users/imorgado/.claude/AUTO-RESEARCH-INTEGRATION-COMPLETE.md": {
+      "hash": "ecc7380313bef5923ca78f4f3b3e888b4b1b061585cb223440b57c981747bec3",
+      "cachedAt": "2026-01-13T02:28:14Z"
+    },
+    "/Users/imorgado/.claude/hooks/PARALLEL-DEPENDENCY-IMPLEMENTATION.md": {
+      "hash": "f22c6946ba2e60a12e79aed9dab2447a2de434d04ec775b6139c9781175091d5",
+      "cachedAt": "2026-01-13T02:28:51Z"
+    },
+    "/Users/imorgado/.claude/docs/REGRESSION-FIX-SUMMARY.md": {
+      "hash": "ff083cf42f4c516418110391cdfb04982115bf0a0583dfd2db0677486f7bf40c",
+      "cachedAt": "2026-01-13T02:29:02Z"
+    },
+    "/tmp/jq-filter.jq": {
+      "hash": "fe64d4003ea865822afdd1aa72d13eab870f2f6e5305b89bced463bc2aad3044",
+      "cachedAt": "2026-01-13T02:29:46Z"
+    },
+    "/tmp/test-tot-minimal.sh": {
+      "hash": "fcec6d70bef1d29ab597635db983948cc6f4f4e0e9d50bbd376e99247ac2c0ec",
+      "cachedAt": "2026-01-13T02:31:38Z"
+    },
+    "/tmp/claude/-Users-imorgado-Desktop-Projects-komplete-kontrol-cli/657c0510-29dc-4dc2-82f2-91a3b2bac147/scratchpad/test-kimi-k2-capabilities.sh": {
+      "hash": "ca657a63b2141998097b2d77cba6995ccc255da53588b0c03dcc8dd6dfd6446c",
+      "cachedAt": "2026-01-13T02:32:49Z"
+    },
+    "/Users/imorgado/.claude/docs/KIMI-K2-CAPABILITIES.md": {
+      "hash": "26ff9682e71140189c26211b1dba3c048cade496c8c9b3f377da3c6a20f0f093",
+      "cachedAt": "2026-01-13T02:33:38Z"
+    },
+    "/Users/imorgado/.claude/TOT-PIPELINE-FIX-SUMMARY.md": {
+      "hash": "503b741e732023043e6359fa0a6053a04ed0a612ae588ad79d7a2ea0ae3e1a69",
+      "cachedAt": "2026-01-13T02:33:40Z"
+    },
+    "/Users/imorgado/.claude/hooks/ISSUE-15-FIX-SUMMARY.md": {
+      "hash": "43c2a2f8a222c5bdc067dc8975b5876648536994eb4d81576f69876a67d5448f",
+      "cachedAt": "2026-01-13T02:34:20Z"
+    },
+    "/tmp/claude/-Users-imorgado/e90c5db8-53b8-4227-bf13-7aca00aa1dd5/scratchpad/COMPLETE-SYSTEM-RESTORATION-REPORT.md": {
+      "hash": "469f5b5d864b3d81ad76e88c8a7c549c2288b91e128e550d97673bc5845de0e2",
+      "cachedAt": "2026-01-13T02:37:08Z"
+    },
+    "/Users/imorgado/.claude/commands/kimi.md": {
+      "hash": "ad1c6e162373f1fe96298cb623ce94085130ffe6855ab716f924965c99e59f70",
+      "cachedAt": "2026-01-13T02:40:23Z"
+    },
+    "/Users/imorgado/.claude/commands/qwen.md": {
+      "hash": "7d2d1d4b3efd8a1d5ecc6c42445ca2cfb71ea20da201a5c8956a3d4360bc6a5c",
+      "cachedAt": "2026-01-13T02:40:32Z"
+    },
+    "/Users/imorgado/.claude/commands/glm.md": {
+      "hash": "2d355b8b870671be37faf7e956fe162b62b666fd369077df37db4b56394bd738",
+      "cachedAt": "2026-01-13T02:40:32Z"
+    },
+    "/Users/imorgado/.claude/commands/gemini.md": {
+      "hash": "3075d074b9e5d66584f2f7f02b947abdb10b4e8a92d7c56b7d686f4e955da9ec",
+      "cachedAt": "2026-01-13T02:40:33Z"
+    },
+    "/Users/imorgado/.claude/QUICK-MODEL-REFERENCE.md": {
+      "hash": "895f0c36e8c917c13e6072746c39b6887eae922439cb9662026cc88a3440d8be",
+      "cachedAt": "2026-01-13T02:41:12Z"
+    },
+    "/tmp/claude/-Users-imorgado/e90c5db8-53b8-4227-bf13-7aca00aa1dd5/scratchpad/SYSTEM-VERIFICATION-RESULTS.md": {
+      "hash": "cb9c982e9e98305c6119c40f67e53d4e5285af78b804959c139c83f0cf2a0255",
+      "cachedAt": "2026-01-13T02:46:13Z"
+    },
+    "/tmp/test.txt": {
+      "hash": "f2ca1bb6c7e907d06dafe4687e579fce76b37e4e93b7605022da52e6ccc26fd2",
+      "cachedAt": "2026-01-13T02:52:55Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MAX-TOKENS-FIX-REPORT.md": {
+      "hash": "d9d034f0eff9099564bad01260db18d30c4563433dfbf4410c2bbfd2564cb751",
+      "cachedAt": "2026-01-13T02:54:21Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/QUICK-FIX-SUMMARY.md": {
+      "hash": "8a693d1b6808dbcc549caa03031f5367f6a3a1085cfd7763250e4dbc8af22a30",
+      "cachedAt": "2026-01-13T02:55:45Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE-CODE-SOLUTIONS-GUIDE.md": {
+      "hash": "59ed959347ea4f98db807fdf6283bce842f6c080cae1eec8e4f3fdbac4edc391",
+      "cachedAt": "2026-01-13T03:04:06Z"
+    },
+    "/Users/imorgado/.claude/skills/re.sh": {
+      "hash": "a4c42f62af1321fcdb031ff66f40fa60f24cd598cfba755f130ab4f6a2b3239d",
+      "cachedAt": "2026-01-13T03:06:47Z"
+    },
+    "/Users/imorgado/.claude/hooks/re-automation.sh": {
+      "hash": "fabfd6f6351fa3e2b0651a77dd326bd1aaa02161b675c596e87280c4960a1f5d",
+      "cachedAt": "2026-01-13T03:07:42Z"
+    },
+    "/Users/imorgado/.claude/hooks/test-vector-integration.sh": {
+      "hash": "a0f71eb14492e5767ab16411121f20e561aa7b6ca02bcdd4ccd13ffc7a674073",
+      "cachedAt": "2026-01-13T03:12:05Z"
+    },
+    "/Users/imorgado/.claude/hooks/vector-embedder.sh": {
+      "hash": "ecbcd1b7d8826a21b1af828df18a1a428d73227cf1bfd60cf3295569014e05d9",
+      "cachedAt": "2026-01-13T03:08:17Z"
+    },
+    "/Users/imorgado/.claude/commands/re.md": {
+      "hash": "876e5e1f23e4c88f7eb1d8f8bb37d3c5050a679c3ce0df526f5c7c0acbb5d289",
+      "cachedAt": "2026-01-13T03:08:37Z"
+    },
+    "/Users/imorgado/.claude/tests/test-re-skill.sh": {
+      "hash": "13b192f7e19b76957372a4be6454a8a792b37ad506880fa7962d281c604bd916",
+      "cachedAt": "2026-01-13T03:10:22Z"
+    },
+    "/Users/imorgado/.claude/RE-SKILL-COMPLETE.md": {
+      "hash": "3b39c270c72cba001622059665ece4ee1f6f717f8b55cb8fd0725db90be13a53",
+      "cachedAt": "2026-01-13T03:11:42Z"
+    },
+    "/Users/imorgado/.bashrc": {
+      "hash": "56bfc31cafd57567869dcb86611791379f0e7e3af5ea559f1d0123e867b4016c",
+      "cachedAt": "2026-01-13T03:13:19Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/IMPLEMENTATION_SESSION_SUMMARY.md": {
+      "hash": "d1ff9e895b24857264e9e27499bc3161ac131b921149ff1516c8d0581d8b8a5d",
+      "cachedAt": "2026-01-13T03:16:27Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/MODEL_INTEGRATION_COMPLETE.md": {
+      "hash": "225cf0bf174ba4d89c70ec30f9c086ba9a9d2d6fd700725ab5ae8f6c34a4355a",
+      "cachedAt": "2026-01-13T03:22:49Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/FINAL_MODEL_TEST_RESULTS.md": {
+      "hash": "681134b2bdc63455d30c85070649bd540a728520f1834e171a6d961bc946c76d",
+      "cachedAt": "2026-01-13T03:35:09Z"
+    },
+    "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/.gitignore": {
+      "hash": "db77a570905d3ba5a679efd30cef5c35bf17041dc5ad283b21c0fbc7e6045ae3",
+      "cachedAt": "2026-01-13T03:42:12Z"
+    },
+    "/Users/imorgado/clauded/README.md": {
+      "hash": "ab28f4f832a20d9e230d28ad3d115ef151197b705414ba65a72ee13b52e5b7b4",
+      "cachedAt": "2026-01-13T03:52:14Z"
+    },
+    "/Users/imorgado/clauded/.gitignore": {
+      "hash": "b2b261a12bcd24d4ee09da0b28653e04f7dbbd0814efded4aa0c257fb9ead64d",
+      "cachedAt": "2026-01-13T03:47:26Z"
+    },
+    "/Users/imorgado/clauded/model-proxy-server.js": {
+      "hash": "a24d13dd22db0a6ef1a92bb66061ed75c87d8ecceb8536aec42840a3f4648292",
+      "cachedAt": "2026-01-13T03:50:46Z"
+    },
+    "/Users/imorgado/clauded/claude-with-proxy-fixed.sh": {
+      "hash": "febd99ca7a21732e8e9792684d802654632b9a6b0e4f414609f40bd7667d4257",
+      "cachedAt": "2026-01-13T03:50:46Z"
+    },
+    "/Users/imorgado/clauded/WHITERABBITNEO-V3-UPGRADE.md": {
+      "hash": "8438d46213eab4c4eb0a662da61f36c2651ba9592a2d690f6b1660821a196430",
+      "cachedAt": "2026-01-13T03:51:33Z"
+    },
+    "/Users/imorgado/clauded/verify-whiterabbitneo-v3.sh": {
+      "hash": "0760c3a3cb57488014db1adcecff0b17ef36850fda0b752600d271c2588c5d6c",
+      "cachedAt": "2026-01-13T03:52:53Z"
     }
   }
 }
