@@ -224,6 +224,19 @@ export class TaskPlanner {
       }
     }
 
+    // Fix parent references for nested subtasks
+    for (const subtask of subtasks) {
+      const parts = subtask.subtaskId.split('.');
+      if (parts.length > 2) {
+        // This is a nested subtask, find its direct parent
+        const parentSubtaskId = parts.slice(0, -1).join('.');
+        const parentSubtask = subtasks.find(st => st.subtaskId === parentSubtaskId);
+        if (parentSubtask) {
+          subtask.parentId = parentSubtask.id;
+        }
+      }
+    }
+
     return subtasks;
   }
 

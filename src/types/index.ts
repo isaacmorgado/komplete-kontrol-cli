@@ -1,8 +1,53 @@
 /**
  * Core type definitions for KOMPLETE-KONTROL CLI
- * 
+ *
  * This file contains all shared type definitions used across the application.
  */
+
+/**
+ * Task complexity levels
+ */
+export type TaskComplexity = 'simple' | 'medium' | 'complex' | 'critical';
+
+/**
+ * Task priority levels
+ */
+export type TaskPriority = 'low' | 'medium' | 'high' | 'critical';
+
+/**
+ * Task status
+ */
+export type TaskStatus = 'pending' | 'in_progress' | 'completed' | 'failed' | 'cancelled';
+
+/**
+ * Task definition
+ */
+export interface Task {
+  /**
+   * Task ID
+   */
+  id: string;
+  /**
+   * Task description
+   */
+  description: string;
+  /**
+   * Task complexity
+   */
+  complexity: TaskComplexity;
+  /**
+   * Task priority
+   */
+  priority: TaskPriority;
+  /**
+   * Task status
+   */
+  status: TaskStatus;
+  /**
+   * Estimated duration in milliseconds
+   */
+  estimatedDuration?: number;
+}
 
 /**
  * Message role types for AI interactions

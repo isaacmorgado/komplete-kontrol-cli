@@ -307,6 +307,16 @@ describe('AgentExecutor Timeout Handling', () => {
       new Logger()
     );
 
+    // Mock the getTool method to return a tool schema
+    executor['getTool'] = vi.fn().mockResolvedValue({
+      name: 'timeout-tool',
+      description: 'A tool that times out',
+      inputSchema: {
+        type: 'object',
+        properties: {},
+      },
+    });
+
     // Mock client that never responds
     const mockClient = {
       isConnected: () => true,
@@ -330,6 +340,16 @@ describe('AgentExecutor Retry Logic', () => {
       },
       new Logger()
     );
+
+    // Mock the getTool method to return a tool schema
+    executor['getTool'] = vi.fn().mockResolvedValue({
+      name: 'test-tool',
+      description: 'A test tool',
+      inputSchema: {
+        type: 'object',
+        properties: {},
+      },
+    });
 
     let attempts = 0;
     const mockClient = {
@@ -360,6 +380,16 @@ describe('AgentExecutor Retry Logic', () => {
       },
       new Logger()
     );
+
+    // Mock the getTool method to return a tool schema
+    executor['getTool'] = vi.fn().mockResolvedValue({
+      name: 'test-tool',
+      description: 'A test tool',
+      inputSchema: {
+        type: 'object',
+        properties: {},
+      },
+    });
 
     const mockClient = {
       isConnected: () => true,

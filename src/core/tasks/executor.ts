@@ -222,9 +222,14 @@ export class TaskExecutor {
 
         // Check if dependencies are satisfied
         const deps = plan.dependencies.filter(d => d.taskId === subtaskId);
-        const depsSatisfied = deps.every(dep =>
-          subtaskResults.has(dep.dependsOn[0])
-        );
+        const depsSatisfied = deps.every(dep => {
+          // If dependency is the original task, it's implicitly satisfied
+          if (dep.dependsOn[0] === plan.task.id) {
+            return true;
+          }
+          // Otherwise check if dependency has been executed
+          return subtaskResults.has(dep.dependsOn[0]);
+        });
 
         if (!depsSatisfied) {
           this.logger.warn(`Dependencies not satisfied for: ${subtaskId}`);
@@ -415,13 +420,13 @@ export class TaskExecutor {
   private getSimulatedDuration(task: Task): number {
     switch (task.complexity) {
       case 'simple':
-        return 500;
+        return 100;
       case 'medium':
-        return 1500;
+        return 200;
       case 'complex':
-        return 3000;
+        return 400;
       case 'critical':
-        return 5000;
+        return 600;
       default:
         return 1000;
     }

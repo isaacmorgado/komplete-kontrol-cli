@@ -14,6 +14,8 @@ import {
   initSelfHealingLoop,
   getSelfHealingLoop,
   LoopOptionsSchema,
+  ErrorCategory,
+  ErrorSeverity,
 } from '../src/core/healing';
 
 describe('Self-Healing Loop', () => {
@@ -230,7 +232,7 @@ describe('Self-Healing Loop', () => {
     it('should filter by category', () => {
       const errorText = 'Error: Cannot find name "undefinedVariable"';
       const options = {
-        includeCategories: ['reference' as const],
+        includeCategories: [ErrorCategory.REFERENCE],
       };
 
       const matches = patternMatching.matchPatterns(errorText, options);
@@ -241,7 +243,7 @@ describe('Self-Healing Loop', () => {
     it('should filter by severity', () => {
       const errorText = 'Error: Cannot find name "undefinedVariable"';
       const options = {
-        includeSeverities: ['critical' as const],
+        includeSeverities: [ErrorSeverity.CRITICAL],
       };
 
       const matches = patternMatching.matchPatterns(errorText, options);

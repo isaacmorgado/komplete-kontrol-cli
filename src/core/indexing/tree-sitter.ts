@@ -916,7 +916,12 @@ export class TreeSitterIntegration {
    */
   private parseJavaScript(code: string, options: ParseOptions): ParseResult {
     // JavaScript is similar to TypeScript
-    return this.parseTypeScript(code, options);
+    const result = this.parseTypeScript(code, options);
+    // Override the language to JavaScript since we're parsing JavaScript
+    return {
+      ...result,
+      language: Language.JAVASCRIPT,
+    };
   }
 
   /**

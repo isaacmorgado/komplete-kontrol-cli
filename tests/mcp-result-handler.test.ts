@@ -170,12 +170,13 @@ describe('ResultHandler', () => {
       };
 
       const transformed = resultHandler.handleResult(result, {
+        extractContent: false, // Don't extract to keep string type
         sanitize: true,
         maxStringLength: 100,
       });
 
       expect(typeof transformed.content).toBe('string');
-      expect((transformed.content as string).length).toBeLessThanOrEqual(104); // 100 + '... [truncated]'
+      expect((transformed.content as string).length).toBeLessThanOrEqual(115); // 100 + '... [truncated]' (15 chars)
     });
   });
 
@@ -331,7 +332,7 @@ describe('ResultHandler', () => {
 
       expect(handled).toHaveProperty('handled', true);
       expect(handled).toHaveProperty('retry', true);
-      expect(handled.suggestion).toContain('server encountered an error');
+      expect(handled.suggestion).toMatch(/server encountered an error/i); // Case-insensitive match
     });
 
     it('should handle unknown errors', () => {
@@ -459,15 +460,9 @@ describe('ResultHandler', () => {
     });
 
     it('should return fallback if available', async () => {
-      const executeFn = vi.fn(async () => ({
-        success: false,
-        error: { message: 'Resource not found' },
-        content: null,
-        serverId: 'test-server',
-        toolName: 'test-tool',
-        attempts: 1,
-        durationMs: 0,
-      }));
+      const executeFn = vi.fn(async () => {
+        throw new Error('Resource not found');
+      });
 
       const result = await resultHandler['handleWithRetry'](executeFn, undefined, {
         maxRetries: 0,

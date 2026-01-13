@@ -598,7 +598,7 @@ export class ErrorPatternMatching {
       {
         id: 'syntax_missing_semicolon',
         name: 'Missing Semicolon',
-        pattern: 'Missing semicolon|Expected ";"|(\\s*\\)\\s*[\\w]',
+        pattern: 'Missing semicolon|Expected ";"|(\\s*\\)\\s*[\\w])',
         category: ErrorCategory.SYNTAX,
         severity: ErrorSeverity.HIGH,
         suggestedFixes: [
@@ -610,7 +610,7 @@ export class ErrorPatternMatching {
       {
         id: 'syntax_missing_bracket',
         name: 'Missing Bracket',
-        pattern: 'Missing (closing )?bracket|Expected "}"|(\\s*$|{\\s*$',
+        pattern: 'Missing (?:closing)?bracket|Expected "}"|\\s+$|\\{\\s+$',
         category: ErrorCategory.SYNTAX,
         severity: ErrorSeverity.HIGH,
         suggestedFixes: [
@@ -636,7 +636,7 @@ export class ErrorPatternMatching {
       {
         id: 'type_undefined',
         name: 'Undefined Type',
-        pattern: "is not defined|Cannot find name|'(\\w+)' is not defined",
+        pattern: 'is not defined|Cannot find name|"(\\w+)" is not defined',
         category: ErrorCategory.TYPE,
         severity: ErrorSeverity.HIGH,
         suggestedFixes: [

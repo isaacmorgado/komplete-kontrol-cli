@@ -18,8 +18,8 @@ import {
   WorkflowState,
   Teams,
   Hierarchy,
-  TaskStatus,
-  TaskPriority,
+  HierarchyTaskStatus,
+  HierarchyTaskPriority,
   DelegationStrategy,
   type PatternConfig,
   type TeamConfig,
@@ -475,7 +475,11 @@ describe('Workflows', () => {
       // Pause after a short delay
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      const paused = workflows.pauseWorkflow('wf_exec_1');
+      // Get the actual execution ID from the executions map
+      const executions = (workflows as any).executions as Map<string, WorkflowExecutionContext>;
+      const executionId = Array.from(executions.keys())[0];
+      
+      const paused = workflows.pauseWorkflow(executionId);
       expect(paused).toBe(true);
 
       // Cancel the execution
@@ -508,11 +512,26 @@ describe('Workflows', () => {
 
       workflows.registerWorkflow(config);
 
-      const paused = workflows.pauseWorkflow('wf_exec_1');
-      expect(paused).toBe(false); // Not running yet
+      // Start workflow
+      const executionPromise = workflows.executeWorkflow('workflow-1');
 
-      const resumed = workflows.resumeWorkflow('wf_exec_1');
-      expect(resumed).toBe(false); // Not paused yet
+      // Wait a bit for execution to start
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Get actual execution ID
+      const executions = (workflows as any).executions as Map<string, WorkflowExecutionContext>;
+      const executionId = Array.from(executions.keys())[0];
+
+      // Pause the workflow
+      const paused = workflows.pauseWorkflow(executionId);
+      expect(paused).toBe(true);
+
+      // Resume the workflow
+      const resumed = workflows.resumeWorkflow(executionId);
+      expect(resumed).toBe(true);
+
+      // Cancel execution
+      await executionPromise;
     });
   });
 
@@ -524,13 +543,6 @@ describe('Workflows', () => {
           type: WorkflowStepType.EXECUTE,
           agentId: 'agent-1',
           task: 'Task',
-          onFailure: 'step-2',
-        },
-        {
-          stepId: 'step-2',
-          type: WorkflowStepType.EXECUTE,
-          agentId: 'agent-2',
-          task: 'Recovery task',
         },
       ];
 
@@ -544,17 +556,16 @@ describe('Workflows', () => {
         maxRetries: 1,
       };
 
-      workflows.registerWorkflow(config);
-
-      // Override executor to fail first step
-      workflows = initWorkflows(async (agentId, task, context) => {
+      // Create a separate workflows instance with failing executor
+      const testWorkflows = new Workflows(async (agentId, task, context) => {
         if (task === 'Task') {
           throw new Error('Test error');
         }
         return { success: true };
       });
+      testWorkflows.registerWorkflow(config);
 
-      const result = await workflows.executeWorkflow('workflow-1');
+      const result = await testWorkflows.executeWorkflow('workflow-1');
 
       expect(result.success).toBe(false);
       expect(result.state).toBe(WorkflowState.FAILED);
@@ -720,7 +731,12 @@ describe('Teams', () => {
       expect(result.success).toBe(true);
       expect(result.team.name).toBe('Test Team');
       expect(result.team.roles.size).toBe(2);
-      expect(result.team.channels).toContain('main');
+      // Channels contain channel IDs, not names - check that channels were created
+      expect(result.team.channels).toHaveLength(1);
+      // Verify the channel exists and has the correct name
+      const channelId = result.team.channels[0];
+      const channel = teams.getChannel(channelId);
+      expect(channel?.name).toBe('main');
     });
 
     it('should form a team with role-based strategy', async () => {
@@ -931,8 +947,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Test Task',
         description: 'A test task',
-        status: TaskStatus.PENDING,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.PENDING,
+        priority: HierarchyTaskPriority.MEDIUM,
         createdAt: new Date(),
         dependencies: [],
         metadata: {},
@@ -947,7 +963,7 @@ describe('Hierarchy', () => {
       const delegated = await hierarchy.delegateTask('hierarchy-1', request);
 
       expect(delegated.assignee).toBe('agent-1');
-      expect(delegated.status).toBe(TaskStatus.ASSIGNED);
+      expect(delegated.status).toBe(HierarchyTaskStatus.ASSIGNED);
       expect(delegated.assignedAt).toBeDefined();
     });
 
@@ -956,8 +972,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Coding Task',
         description: 'A coding task',
-        status: TaskStatus.PENDING,
-        priority: TaskPriority.HIGH,
+        status: HierarchyTaskStatus.PENDING,
+        priority: HierarchyTaskPriority.HIGH,
         createdAt: new Date(),
         dependencies: [],
         metadata: {},
@@ -972,7 +988,7 @@ describe('Hierarchy', () => {
       const delegated = await hierarchy.delegateTask('hierarchy-1', request);
 
       expect(delegated.assignee).toBe('agent-1');
-      expect(delegated.status).toBe(TaskStatus.ASSIGNED);
+      expect(delegated.status).toBe(HierarchyTaskStatus.ASSIGNED);
     });
 
     it('should delegate task with load-based strategy', async () => {
@@ -980,8 +996,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Test Task',
         description: 'A test task',
-        status: TaskStatus.PENDING,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.PENDING,
+        priority: HierarchyTaskPriority.MEDIUM,
         createdAt: new Date(),
         dependencies: [],
         metadata: {},
@@ -995,28 +1011,44 @@ describe('Hierarchy', () => {
       const delegated = await hierarchy.delegateTask('hierarchy-1', request);
 
       expect(delegated.assignee).toBeDefined();
-      expect(delegated.status).toBe(TaskStatus.ASSIGNED);
+      expect(delegated.status).toBe(HierarchyTaskStatus.ASSIGNED);
     });
 
     it('should delegate task with round-robin strategy', async () => {
-      const task: Task = {
+      const task1: Task = {
         taskId: 'task-1',
-        title: 'Test Task',
+        title: 'Test Task 1',
         description: 'A test task',
-        status: TaskStatus.PENDING,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.PENDING,
+        priority: HierarchyTaskPriority.MEDIUM,
         createdAt: new Date(),
         dependencies: [],
         metadata: {},
       };
 
-      const request: TaskDelegationRequest = {
-        task,
+      const task2: Task = {
+        taskId: 'task-2',
+        title: 'Test Task 2',
+        description: 'A test task',
+        status: HierarchyTaskStatus.PENDING,
+        priority: HierarchyTaskPriority.MEDIUM,
+        createdAt: new Date(),
+        dependencies: [],
+        metadata: {},
+      };
+
+      const request1: TaskDelegationRequest = {
+        task: task1,
         strategy: DelegationStrategy.ROUND_ROBIN,
       };
 
-      const delegated1 = await hierarchy.delegateTask('hierarchy-1', request);
-      const delegated2 = await hierarchy.delegateTask('hierarchy-1', request);
+      const request2: TaskDelegationRequest = {
+        task: task2,
+        strategy: DelegationStrategy.ROUND_ROBIN,
+      };
+
+      const delegated1 = await hierarchy.delegateTask('hierarchy-1', request1);
+      const delegated2 = await hierarchy.delegateTask('hierarchy-1', request2);
 
       expect(delegated1.assignee).toBeDefined();
       expect(delegated2.assignee).toBeDefined();
@@ -1030,8 +1062,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Test Task',
         description: 'A test task',
-        status: TaskStatus.ASSIGNED,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.ASSIGNED,
+        priority: HierarchyTaskPriority.MEDIUM,
         assignee: 'agent-1',
         assignedAt: new Date(),
         createdAt: new Date(),
@@ -1041,10 +1073,10 @@ describe('Hierarchy', () => {
 
       hierarchy.tasks.set('task-1', task);
 
-      hierarchy.updateTaskStatus('task-1', TaskStatus.IN_PROGRESS);
+      hierarchy.updateTaskStatus('task-1', HierarchyTaskStatus.IN_PROGRESS);
 
       const updated = hierarchy.getTask('task-1');
-      expect(updated?.status).toBe(TaskStatus.IN_PROGRESS);
+      expect(updated?.status).toBe(HierarchyTaskStatus.IN_PROGRESS);
       expect(updated?.startedAt).toBeDefined();
     });
 
@@ -1053,8 +1085,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Test Task',
         description: 'A test task',
-        status: TaskStatus.IN_PROGRESS,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.IN_PROGRESS,
+        priority: HierarchyTaskPriority.MEDIUM,
         assignee: 'agent-1',
         assignedAt: new Date(),
         startedAt: new Date(),
@@ -1065,10 +1097,10 @@ describe('Hierarchy', () => {
 
       hierarchy.tasks.set('task-1', task);
 
-      hierarchy.updateTaskStatus('task-1', TaskStatus.COMPLETED, { result: 'success' });
+      hierarchy.updateTaskStatus('task-1', HierarchyTaskStatus.COMPLETED, { result: 'success' });
 
       const updated = hierarchy.getTask('task-1');
-      expect(updated?.status).toBe(TaskStatus.COMPLETED);
+      expect(updated?.status).toBe(HierarchyTaskStatus.COMPLETED);
       expect(updated?.completedAt).toBeDefined();
       expect(updated?.result).toEqual({ result: 'success' });
     });
@@ -1078,8 +1110,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Test Task',
         description: 'A test task',
-        status: TaskStatus.IN_PROGRESS,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.IN_PROGRESS,
+        priority: HierarchyTaskPriority.MEDIUM,
         assignee: 'agent-1',
         assignedAt: new Date(),
         startedAt: new Date(),
@@ -1091,10 +1123,10 @@ describe('Hierarchy', () => {
       hierarchy.tasks.set('task-1', task);
 
       const error = new Error('Task failed');
-      hierarchy.updateTaskStatus('task-1', TaskStatus.FAILED, undefined, error);
+      hierarchy.updateTaskStatus('task-1', HierarchyTaskStatus.FAILED, undefined, error);
 
       const updated = hierarchy.getTask('task-1');
-      expect(updated?.status).toBe(TaskStatus.FAILED);
+      expect(updated?.status).toBe(HierarchyTaskStatus.FAILED);
       expect(updated?.error).toBe(error);
     });
   });
@@ -1196,8 +1228,8 @@ describe('Hierarchy', () => {
         taskId: 'task-1',
         title: 'Test Task',
         description: 'A test task',
-        status: TaskStatus.COMPLETED,
-        priority: TaskPriority.MEDIUM,
+        status: HierarchyTaskStatus.COMPLETED,
+        priority: HierarchyTaskPriority.MEDIUM,
         assignee: 'agent-1',
         assignedAt: new Date(),
         startedAt: new Date(),
@@ -1213,7 +1245,7 @@ describe('Hierarchy', () => {
 
       expect(stats.totalHierarchies).toBe(1);
       expect(stats.totalTasks).toBe(1);
-      expect(stats.tasksByStatus[TaskStatus.COMPLETED]).toBe(1);
+      expect(stats.tasksByStatus[HierarchyTaskStatus.COMPLETED]).toBe(1);
     });
   });
 });

@@ -246,7 +246,7 @@ export class ResultHandler {
 
     // Sanitize content
     if (mergedOptions.sanitize) {
-      content = this.sanitizeContent(content);
+      content = this.sanitizeContent(content, mergedOptions.maxStringLength);
     }
 
     // Format as string if needed
@@ -314,29 +314,32 @@ export class ResultHandler {
    * Sanitize content
    *
    * @param content - Content to sanitize
+   * @param maxLength - Maximum string length (optional, uses config default if not provided)
    * @returns Sanitized content
    */
-  private sanitizeContent(content: unknown): unknown {
+  private sanitizeContent(content: unknown, maxLength?: number): unknown {
     if (content === null || content === undefined) {
       return content;
     }
 
+    const maxLen = maxLength ?? this.config.maxStringLength;
+
     if (typeof content === 'string') {
       // Truncate if too long
-      if (content.length > this.config.maxStringLength) {
-        return content.slice(0, this.config.maxStringLength) + '... [truncated]';
+      if (content.length > maxLen) {
+        return content.slice(0, maxLen) + '... [truncated]';
       }
       return content;
     }
 
     if (Array.isArray(content)) {
-      return content.map((item) => this.sanitizeContent(item));
+      return content.map((item) => this.sanitizeContent(item, maxLength));
     }
 
     if (typeof content === 'object') {
       const sanitized: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(content)) {
-        sanitized[key] = this.sanitizeContent(value);
+        sanitized[key] = this.sanitizeContent(value, maxLength);
       }
       return sanitized;
     }

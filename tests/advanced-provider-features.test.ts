@@ -752,7 +752,7 @@ describe('ResponseCache', () => {
       usage: { promptTokens: 10, completionTokens: 20, totalTokens: 30 },
     };
 
-    cache.set(provider.name, 'model', messages, result, 100); // 100ms TTL
+    cache.set(provider.name, 'model', messages, result, undefined, 100); // 100ms TTL
 
     // Should be cached immediately
     expect(cache.get(provider.name, 'model', messages)).toBeDefined();

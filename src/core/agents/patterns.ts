@@ -281,7 +281,7 @@ export class CoordinationPatterns {
    * @param config - Pattern configuration
    */
   registerPattern(config: PatternConfig): void {
-    const patternId = this.generatePatternId(config);
+    const patternId = this.getPatternIdFromConfig(config);
     this.patterns.set(patternId, config);
 
     this.logger.info(
@@ -613,6 +613,27 @@ export class CoordinationPatterns {
         return config.pipeline?.stages.length || 0;
       default:
         return 0;
+    }
+  }
+
+  /**
+   * Get pattern ID from configuration
+   *
+   * @param config - Pattern configuration
+   * @returns Pattern ID
+   */
+  private getPatternIdFromConfig(config: PatternConfig): string {
+    switch (config.pattern) {
+      case CoordinationPattern.TEAM:
+        return config.team?.teamId || this.generatePatternId(config);
+      case CoordinationPattern.SWARM:
+        return config.swarm?.swarmId || this.generatePatternId(config);
+      case CoordinationPattern.HIERARCHICAL:
+        return config.hierarchy?.hierarchyId || this.generatePatternId(config);
+      case CoordinationPattern.PIPELINE:
+        return config.pipeline?.pipelineId || this.generatePatternId(config);
+      default:
+        return this.generatePatternId(config);
     }
   }
 

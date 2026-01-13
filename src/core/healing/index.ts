@@ -32,11 +32,11 @@ export {
   initErrorPatternMatching,
   getErrorPatternMatching,
   PatternMatchingOptionsSchema,
+  ErrorCategory,
+  ErrorSeverity,
 } from './patterns';
 
 export type {
-  ErrorCategory,
-  ErrorSeverity,
   ErrorPattern,
   PatternMatch,
   PatternDatabaseEntry,

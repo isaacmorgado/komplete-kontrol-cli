@@ -75,9 +75,21 @@ describe('ToolDiscovery', () => {
     });
 
     it('should get tool by server and name', () => {
+      // First register a tool
+      const mockTool: DiscoveredTool = {
+        name: 'test-tool',
+        description: 'A test tool',
+        inputSchema: { type: 'object', properties: {} },
+        serverId: 'test-server',
+        serverName: 'Test Server',
+        capabilities: [],
+        discoveredAt: new Date(),
+      };
+      toolDiscovery['discoveredTools'].set('test-server:test-tool', mockTool);
+
       const tool = toolDiscovery.getTool('test-server', 'test-tool');
-      // May be undefined if no tools are registered
       expect(tool).toBeDefined();
+      expect(tool?.name).toBe('test-tool');
     });
 
     it('should filter tools by server', () => {

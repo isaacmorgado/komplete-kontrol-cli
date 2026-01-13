@@ -38,6 +38,46 @@ export interface ToolCapabilityMatch {
 }
 
 /**
+ * Tool match result
+ */
+export interface ToolMatchResult {
+  /**
+   * The matched tool
+   */
+  tool: MCPTool;
+
+  /**
+   * Match score (0-1)
+   */
+  score: number;
+
+  /**
+   * Server ID providing the tool
+   */
+  serverId: string;
+}
+
+/**
+ * Tool match options
+ */
+export interface ToolMatchOptions {
+  /**
+   * Minimum score threshold
+   */
+  minScore?: number;
+
+  /**
+   * Maximum number of results
+   */
+  maxResults?: number;
+
+  /**
+   * Include metadata in results
+   */
+  includeMetadata?: boolean;
+}
+
+/**
  * Agent-MCP integration configuration
  */
 export interface AgentMCPIntegrationConfig {
@@ -65,6 +105,11 @@ export interface AgentMCPIntegrationConfig {
    * Cache TTL in milliseconds
    */
   cacheTtlMs?: number;
+
+  /**
+   * Cache TTL in milliseconds (alias for cacheTtlMs)
+   */
+  cacheTTL?: number;
 }
 
 /**
@@ -87,6 +132,10 @@ export class AgentMCPIntegration {
   private logger: Logger;
   private toolCache: Map<string, CachedTool> = new Map();
   private clients: Map<string, MCPClient> = new Map();
+  private cacheHits: number = 0;
+  private cacheMisses: number = 0;
+  private totalMatches: number = 0;
+  private matchScores: number[] = [];
 
   constructor(config: AgentMCPIntegrationConfig = {}, logger?: Logger) {
     this.config = {
@@ -94,7 +143,7 @@ export class AgentMCPIntegration {
       minMatchScore: config.minMatchScore ?? 0.3,
       maxToolsPerCapability: config.maxToolsPerCapability ?? 5,
       enableCache: config.enableCache ?? true,
-      cacheTtlMs: config.cacheTtlMs ?? 300000, // 5 minutes
+      cacheTtlMs: config.cacheTtlMs ?? config.cacheTTL ?? 300000, // 5 minutes
     };
     this.logger = logger || new Logger();
     this.logger.info('AgentMCPIntegration initialized', 'AgentMCPIntegration', this.config);
@@ -198,7 +247,7 @@ export class AgentMCPIntegration {
    * @param context - Optional context
    * @returns Match score (0-1)
    */
-  private calculateMatchScore(
+  calculateMatchScore(
     capability: string,
     tool: MCPTool,
     context?: string
@@ -209,17 +258,21 @@ export class AgentMCPIntegration {
 
     let score = 0;
 
-    // Exact name match
+    // Exact name match (highest priority, return early)
     if (toolNameLower === capabilityLower) {
-      score += 1.0;
+      score = 1.0;
+      // Track statistics and return early
+      this.totalMatches++;
+      this.matchScores.push(score);
+      return score;
     }
-    // Partial name match
+    // Partial name match (tool name contains capability)
     else if (toolNameLower.includes(capabilityLower)) {
-      score += 0.8;
+      score += 0.7;
     }
-    // Capability in tool name
+    // Capability in tool name (capability contains tool name)
     else if (capabilityLower.includes(toolNameLower)) {
-      score += 0.6;
+      score += 0.5;
     }
 
     // Description match
@@ -244,8 +297,14 @@ export class AgentMCPIntegration {
       }
     }
 
-    // Normalize to 0-1 range
-    return Math.min(score, 1.0);
+    // Normalize to 0-1 range, but cap partial matches at 0.95 to ensure exact matches are always higher
+    const normalizedScore = Math.min(score, 0.95);
+
+    // Track statistics (already done for exact match)
+    this.totalMatches++;
+    this.matchScores.push(normalizedScore);
+
+    return normalizedScore;
   }
 
   /**
@@ -394,10 +453,55 @@ export class AgentMCPIntegration {
   }
 
   /**
+   * Cache a tool
+   *
+   * @param serverId - Server ID
+   * @param tool - Tool to cache
+   */
+  cacheTool(serverId: string, tool: MCPTool): void {
+    const cacheKey = `${serverId}:${tool.name}`;
+    this.toolCache.set(cacheKey, {
+      tool,
+      serverId,
+      expiresAt: Date.now() + this.config.cacheTtlMs,
+    });
+    this.logger.debug(`Cached tool: ${tool.name} from server: ${serverId}`, 'AgentMCPIntegration');
+  }
+
+  /**
+   * Get cached tool
+   *
+   * @param serverId - Server ID
+   * @param toolName - Tool name
+   * @returns Cached tool entry or undefined
+   */
+  getCachedTool(serverId: string, toolName: string): CachedTool | undefined {
+    const cacheKey = `${serverId}:${toolName}`;
+    const cached = this.toolCache.get(cacheKey);
+
+    if (!cached) {
+      this.cacheMisses++;
+      return undefined;
+    }
+
+    // Check if expired
+    if (Date.now() > cached.expiresAt) {
+      this.toolCache.delete(cacheKey);
+      this.cacheMisses++;
+      return undefined;
+    }
+
+    this.cacheHits++;
+    return cached;
+  }
+
+  /**
    * Clear tool cache
    */
   clearCache(): void {
     this.toolCache.clear();
+    this.cacheHits = 0;
+    this.cacheMisses = 0;
     this.logger.debug('Tool cache cleared', 'AgentMCPIntegration');
   }
 
@@ -420,23 +524,32 @@ export class AgentMCPIntegration {
    *
    * @returns Statistics about the integration
    */
-  async getStatistics(): Promise<{
+  getStatistics(): {
     cachedTools: number;
+    cacheHitRate: number;
+    totalMatches: number;
+    avgMatchScore: number;
     activeClients: number;
     totalServers: number;
     totalTools: number;
-  }> {
+  } {
     const registry = getMCPRegistry();
     const servers = registry.listByStatus('running');
-    const totalTools = Array.from(
-      (await this.discoverTools()).values()
-    ).flat().length;
+
+    const totalCacheLookups = this.cacheHits + this.cacheMisses;
+    const cacheHitRate = totalCacheLookups > 0 ? this.cacheHits / totalCacheLookups : 0;
+    const avgMatchScore = this.matchScores.length > 0
+      ? this.matchScores.reduce((a, b) => a + b, 0) / this.matchScores.length
+      : 0;
 
     return {
       cachedTools: this.toolCache.size,
+      cacheHitRate,
+      totalMatches: this.totalMatches,
+      avgMatchScore,
       activeClients: this.clients.size,
       totalServers: servers.length,
-      totalTools,
+      totalTools: this.toolCache.size,
     };
   }
 }

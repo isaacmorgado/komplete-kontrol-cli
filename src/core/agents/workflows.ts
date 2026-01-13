@@ -513,6 +513,7 @@ export class Workflows {
       const step = config.steps.find((s) => s.stepId === currentStepId);
 
       if (!step) {
+        context.state = WorkflowState.FAILED;
         return {
           success: false,
           error: new Error(`Step not found: ${currentStepId}`),
@@ -530,6 +531,7 @@ export class Workflows {
           continue;
         }
 
+        context.state = WorkflowState.FAILED;
         return {
           success: false,
           error: stepResult.error,
@@ -624,6 +626,9 @@ export class Workflows {
           currentStepId = step.nextStep;
       }
     }
+
+    // Mark workflow as completed
+    context.state = WorkflowState.COMPLETED;
 
     return {
       success: true,

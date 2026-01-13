@@ -238,7 +238,7 @@ export class ToolDiscovery {
       { regex: /\b(analyze|parse|process)\b/gi, capability: 'analyze' },
       { regex: /\b(transform|convert|format)\b/gi, capability: 'transform' },
       { regex: /\b(validate|check|verify)\b/gi, capability: 'validate' },
-      { regex: /\b(file|filesystem|fs)\b/gi, capability: 'filesystem' },
+      { regex: /\b(files?|filesystem|fs)\b/gi, capability: 'filesystem' },
       { regex: /\b(http|web|api|request)\b/gi, capability: 'http' },
       { regex: /\b(database|db|sql)\b/gi, capability: 'database' },
       { regex: /\b(git|version|control)\b/gi, capability: 'git' },
