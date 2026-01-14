@@ -259,7 +259,7 @@ async function testCheckpointCommand() {
   const startTime = startTest('Checkpoint Command');
 
   try {
-    const CheckpointCommandModule = await import('../src/cli/commands/CheckpointCommand');
+    const CheckpointCommandModule = await import('../src/cli/commands/index');
     const CheckpointCommand = CheckpointCommandModule.CheckpointCommand;
 
     const checkpointCmd = new CheckpointCommand();
@@ -289,7 +289,7 @@ async function testCommitCommand() {
   const startTime = startTest('Commit Command');
 
   try {
-    const CommitCommandModule = await import('../src/cli/commands/CommitCommand');
+    const CommitCommandModule = await import('../src/cli/commands/index');
     const CommitCommand = CommitCommandModule.CommitCommand;
 
     const commitCmd = new CommitCommand();
@@ -320,7 +320,7 @@ async function testCompactCommand() {
   const startTime = startTest('Compact Command');
 
   try {
-    const CompactCommandModule = await import('../src/cli/commands/CompactCommand');
+    const CompactCommandModule = await import('../src/cli/commands/index');
     const CompactCommand = CompactCommandModule.CompactCommand;
 
     const compactCmd = new CompactCommand();
