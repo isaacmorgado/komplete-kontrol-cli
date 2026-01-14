@@ -49,3 +49,7 @@ State awareness complete - Ready for testing integration
 - `src/core/llm/providers/MCPProvider.ts` - Default model glm-4.7 (line 119)
 - `src/core/llm/providers/AnthropicProvider.ts` - Graceful degradation (lines 38-91)
 - `GLM-INTEGRATION-COMPLETE.md` - Complete integration guide
+
+
+## Milestones
+- 2026-01-14: Milestone: Update test.ts to add a farewell function - iteration 20 (882c94e)
