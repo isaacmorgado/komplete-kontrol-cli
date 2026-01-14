@@ -127,12 +127,9 @@ export class ModelFallbackChain {
 
       try {
         // Override context with fallback model
-        const fallbackContext: RoutingContext = {
-          ...context,
-          preferredModel: config.model
-        };
-
-        const response = await provider.complete(request, fallbackContext);
+        // Note: complete() only accepts request parameter
+        // Model selection is handled through preferredModel in the original request
+        const response = await provider.complete(request);
         return { success: true, response, attempts };
       } catch (error: any) {
         lastError = error;

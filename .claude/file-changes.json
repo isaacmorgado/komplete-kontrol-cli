@@ -1,23 +1,38 @@
 {
   "session_start": "2026-01-12T21:18:13Z",
-  "last_checkpoint": "2026-01-14T03:30:52Z",
+  "last_checkpoint": "2026-01-14T03:55:23Z",
   "files_changed": [
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/README.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T03:31:15Z"
+      "timestamp": "2026-01-14T03:55:58Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/docs/DOCUMENTATION-CLEANUP-SUMMARY-2026-01-14.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/InitCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T03:32:27Z"
+      "timestamp": "2026-01-14T03:56:44Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/InitCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T03:33:22Z"
+      "timestamp": "2026-01-14T03:56:58Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/InitCommand.ts",
+      "type": "modified",
+      "timestamp": "2026-01-14T03:57:05Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/InitCommand.ts",
+      "type": "modified",
+      "timestamp": "2026-01-14T03:57:30Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/llm/ModelFallbackChain.ts",
+      "type": "modified",
+      "timestamp": "2026-01-14T03:57:58Z"
     }
   ],
-  "change_count": 3,
-  "checkpoint_count": 33
+  "change_count": 6,
+  "checkpoint_count": 35
 }

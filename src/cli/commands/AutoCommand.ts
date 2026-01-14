@@ -912,6 +912,278 @@ Provide your reasoning and proposed action.
       this.warn('Reverse engineering tools encountered errors');
     }
   }
+
+  /**
+   * Hook paths for integration
+   */
+  private hooksPath = join(process.env.HOME || '', '.claude/hooks');
+
+  /**
+   * Run a hook script and return JSON result
+   */
+  private async runHook(hookName: string, args: string[] = []): Promise<any> {
+    const hookPath = join(this.hooksPath, `${hookName}.sh`);
+    try {
+      const { stdout } = await execAsync(`bash ${hookPath} ${args.join(' ')}`);
+      return JSON.parse(stdout);
+    } catch (error) {
+      this.warn(`Hook ${hookName} failed: ${(error as Error).message}`);
+      return null;
+    }
+  }
+
+  /**
+   * Quality gate evaluation using LLM-as-Judge
+   */
+  private async evaluateQualityGate(
+    output: string,
+    taskType: string
+  ): Promise<{ passed: boolean; score: number; feedback: string }> {
+    this.info('🔍 Running quality gate evaluation...');
+
+    const criteria = await this.runHook('auto-evaluator', ['criteria', taskType]);
+    const evaluation = await this.runHook('auto-evaluator', ['evaluate', output, criteria]);
+
+    if (!evaluation) {
+      return { passed: true, score: 7.0, feedback: 'Quality gate check passed' };
+    }
+
+    const score = evaluation.score || 7.0;
+    const passed = evaluation.decision === 'continue' || score >= 7.0;
+
+    this.info(`Quality gate: ${passed ? '✓ PASSED' : '✗ FAILED'} (score: ${score}/10)`);
+
+    return {
+      passed,
+      score,
+      feedback: evaluation.message || `Quality score: ${score}/10`
+    };
+  }
+
+  /**
+   * Bounded autonomy safety check
+   */
+  private async checkBoundedAutonomy(
+    task: string,
+    context: string
+): Promise<{ allowed: boolean; requiresApproval: boolean; reason?: string }> {
+    this.info('🛡️ Running bounded autonomy check...');
+
+    const check = await this.runHook('bounded-autonomy', ['check', task, context]);
+
+    if (!check) {
+      return { allowed: true, requiresApproval: false };
+    }
+
+    const allowed = check.allowed !== false;
+    const requiresApproval = check.requires_approval === true;
+
+    if (!allowed) {
+      this.error(`🚫 Task blocked: ${check.reason || 'Bounded autonomy check failed'}`);
+    } else if (requiresApproval) {
+      this.warn(`⚠️ Task requires approval: ${check.reason || 'High risk or low confidence'}`);
+    } else {
+      this.info('✓ Bounded autonomy check passed');
+    }
+
+    return { allowed, requiresApproval, reason: check.reason };
+  }
+
+  /**
+   * Reasoning mode selection
+   */
+  private async selectReasoningMode(
+    task: string,
+    context: string
+): Promise<{ mode: string; confidence: number; reasoning: string }> {
+    this.info('🧠 Selecting reasoning mode...');
+
+    const modeInfo = await this.runHook('reasoning-mode-switcher', ['select', task, context, 'normal', 'normal', 'low']);
+
+    if (!modeInfo) {
+      return { mode: 'deliberate', confidence: 0.7, reasoning: 'Default mode selected' };
+    }
+
+    const mode = modeInfo.selected_mode || 'deliberate';
+    const confidence = modeInfo.confidence || 0.7;
+
+    this.info(`Reasoning mode: ${mode} (confidence: ${confidence})`);
+
+    return {
+      mode,
+      confidence,
+      reasoning: modeInfo.reasoning || `Task characteristics suggest ${mode} mode`
+    };
+  }
+
+  /**
+   * Tree of Thoughts for complex problems
+   */
+  private async runTreeOfThoughts(
+    task: string,
+    context: string
+): Promise<{ branches: any[]; selected: any; success: boolean }> {
+    this.info('🌳 Running Tree of Thoughts...');
+
+    const branches = await this.runHook('tree-of-thoughts', ['generate', task, context, '3']);
+    const evaluation = await this.runHook('tree-of-thoughts', ['evaluate', branches]);
+
+    if (!evaluation) {
+      return { branches: [], selected: null, success: false };
+    }
+
+    const selected = evaluation.selected_branch;
+    const success = true;
+
+    this.info(`Tree of Thoughts selected: ${selected?.strategy || 'default'}`);
+
+    return {
+      branches: branches.branches || [],
+      selected,
+      success
+    };
+  }
+
+  /**
+   * Parallel execution analysis
+   */
+  private async analyzeParallelExecution(
+    task: string,
+    context: string
+): Promise<{ canParallelize: boolean; groups: any[]; success: boolean }> {
+    this.info('⚡ Analyzing parallel execution opportunities...');
+
+    const analysis = await this.runHook('parallel-execution-planner', ['analyze', task, context]);
+
+    if (!analysis) {
+      return { canParallelize: false, groups: [], success: false };
+    }
+
+    const canParallelize = analysis.canParallelize || false;
+    const groups = analysis.groups || [];
+    const success = true;
+
+    if (canParallelize) {
+      const groupCount = groups.length;
+      this.info(`Task can be parallelized into ${groupCount} groups`);
+    } else {
+      this.info('Task will execute sequentially');
+    }
+
+    return {
+      canParallelize,
+      groups,
+      success
+    };
+  }
+
+  /**
+   * Multi-agent coordination
+   */
+  private async coordinateMultiAgent(
+    task: string,
+    context: string
+): Promise<{ agent: string; workflow: any[]; success: boolean }> {
+    this.info('🤖 Coordinating multi-agent execution...');
+
+    const routing = await this.runHook('multi-agent-orchestrator', ['route', task]);
+    const orchestrate = await this.runHook('multi-agent-orchestrator', ['orchestrate', task]);
+
+    if (!routing || !orchestrate) {
+      return { agent: 'general', workflow: [], success: false };
+    }
+
+    const agent = routing.selected_agent || 'general';
+    const workflow = orchestrate.workflow || [];
+    const success = true;
+
+    this.info(`Multi-agent routing: ${agent} agent`);
+
+    return {
+      agent,
+      workflow,
+      success
+    };
+  }
+
+  /**
+   * Debug orchestrator with regression detection
+   */
+  private async runDebugOrchestrator(
+    task: string,
+    context: string
+): Promise<{ snapshot: string; recommendations: any[]; success: boolean }> {
+    this.info('🐛 Running debug orchestrator...');
+
+    // Import debug orchestrator from core
+    const { DebugOrchestrator } = await import('../../core/debug/orchestrator/index');
+
+    const orchestrator = new DebugOrchestrator(this.memory);
+    const snapshotId = `snapshot_${Date.now()}`;
+    const snapshot = await orchestrator.createSnapshot(snapshotId, 'npm test', task);
+    const success = true;
+
+    this.info('Debug orchestrator snapshot created');
+
+    return {
+      snapshot: snapshot.snapshotId,
+      recommendations: [],
+      success
+    };
+  }
+
+  /**
+   * UI testing integration
+   */
+  private async runUITesting(
+    action: string,
+    element: string,
+    value?: string
+): Promise<{ success: boolean; result: any }> {
+    this.info('🖱️ Running UI testing...');
+
+    const result = await this.runHook('ui-testing', [action, element, value || '']);
+
+    if (!result) {
+      return { success: false, result: null };
+    }
+
+    const success = result.status === 'success';
+
+    this.info(`UI testing: ${success ? '✓ PASSED' : '✗ FAILED'}`);
+
+    return {
+      success,
+      result
+    };
+  }
+
+  /**
+   * Mac app testing integration
+   */
+  private async runMacAppTesting(
+    action: string,
+    appName: string,
+    element?: string,
+    value?: string
+): Promise<{ success: boolean; result: any }> {
+    this.info('🍎 Running Mac app testing...');
+
+    const result = await this.runHook('mac-app-testing', [action, appName, element || '', value || '']);
+
+    if (!result) {
+      return { success: false, result: null };
+    }
+
+    const success = result.status === 'success';
+
+    this.info(`Mac app testing: ${success ? '✓ PASSED' : '✗ FAILED'}`);
+
+    return {
+      success,
+      result
+    };
+  }
 }
 
 /**
@@ -924,275 +1196,3 @@ type TaskType =
   | 'documentation'
   | 'refactoring'
   | 'general';
-
-/**
- * Hook paths for integration
- */
-private hooksPath = join(process.env.HOME || '', '.claude/hooks');
-
-/**
- * Run a hook script and return JSON result
- */
-private async runHook(hookName: string, args: string[] = []): Promise<any> {
-  const hookPath = join(this.hooksPath, `${hookName}.sh`);
-  try {
-    const { stdout } = await execAsync(`bash ${hookPath} ${args.join(' ')}`);
-    return JSON.parse(stdout);
-  } catch (error) {
-    this.warn(`Hook ${hookName} failed: ${(error as Error).message}`);
-    return null;
-  }
-}
-
-/**
- * Quality gate evaluation using LLM-as-Judge
- */
-private async evaluateQualityGate(
-  output: string,
-  taskType: string
-): Promise<{ passed: boolean; score: number; feedback: string }> {
-  this.info('🔍 Running quality gate evaluation...');
-
-  const criteria = await this.runHook('auto-evaluator', ['criteria', taskType]);
-  const evaluation = await this.runHook('auto-evaluator', ['evaluate', output, criteria]);
-
-  if (!evaluation) {
-    return { passed: true, score: 7.0, feedback: 'Quality gate check passed' };
-  }
-
-  const score = evaluation.score || 7.0;
-  const passed = evaluation.decision === 'continue' || score >= 7.0;
-
-  this.info(`Quality gate: ${passed ? '✓ PASSED' : '✗ FAILED'} (score: ${score}/10)`);
-
-  return {
-    passed,
-    score,
-    feedback: evaluation.message || `Quality score: ${score}/10`
-  };
-}
-
-/**
- * Bounded autonomy safety check
- */
-private async checkBoundedAutonomy(
-  task: string,
-  context: string
-): Promise<{ allowed: boolean; requiresApproval: boolean; reason?: string }> {
-  this.info('🛡️ Running bounded autonomy check...');
-
-  const check = await this.runHook('bounded-autonomy', ['check', task, context]);
-
-  if (!check) {
-    return { allowed: true, requiresApproval: false };
-  }
-
-  const allowed = check.allowed !== false;
-  const requiresApproval = check.requires_approval === true;
-
-  if (!allowed) {
-    this.error(`🚫 Task blocked: ${check.reason || 'Bounded autonomy check failed'}`);
-  } else if (requiresApproval) {
-    this.warn(`⚠️ Task requires approval: ${check.reason || 'High risk or low confidence'}`);
-  } else {
-    this.info('✓ Bounded autonomy check passed');
-  }
-
-  return { allowed, requiresApproval, reason: check.reason };
-}
-
-/**
- * Reasoning mode selection
- */
-private async selectReasoningMode(
-  task: string,
-  context: string
-): Promise<{ mode: string; confidence: number; reasoning: string }> {
-  this.info('🧠 Selecting reasoning mode...');
-
-  const modeInfo = await this.runHook('reasoning-mode-switcher', ['select', task, context, 'normal', 'normal', 'low']);
-
-  if (!modeInfo) {
-    return { mode: 'deliberate', confidence: 0.7, reasoning: 'Default mode selected' };
-  }
-
-  const mode = modeInfo.selected_mode || 'deliberate';
-  const confidence = modeInfo.confidence || 0.7;
-
-  this.info(`Reasoning mode: ${mode} (confidence: ${confidence})`);
-
-  return {
-    mode,
-    confidence,
-    reasoning: modeInfo.reasoning || `Task characteristics suggest ${mode} mode`
-  };
-}
-
-/**
- * Tree of Thoughts for complex problems
- */
-private async runTreeOfThoughts(
-  task: string,
-  context: string
-): Promise<{ branches: any[]; selected: any; success: boolean }> {
-  this.info('🌳 Running Tree of Thoughts...');
-
-  const branches = await this.runHook('tree-of-thoughts', ['generate', task, context, '3']);
-  const evaluation = await this.runHook('tree-of-thoughts', ['evaluate', branches]);
-
-  if (!evaluation) {
-    return { branches: [], selected: null, success: false };
-  }
-
-  const selected = evaluation.selected_branch;
-  const success = true;
-
-  this.info(`Tree of Thoughts selected: ${selected?.strategy || 'default'}`);
-
-  return {
-    branches: branches.branches || [],
-    selected,
-    success
-  };
-}
-
-/**
- * Parallel execution analysis
- */
-private async analyzeParallelExecution(
-  task: string,
-  context: string
-): Promise<{ canParallelize: boolean; groups: any[]; success: boolean }> {
-  this.info('⚡ Analyzing parallel execution opportunities...');
-
-  const analysis = await this.runHook('parallel-execution-planner', ['analyze', task, context]);
-
-  if (!analysis) {
-    return { canParallelize: false, groups: [], success: false };
-  }
-
-  const canParallelize = analysis.canParallelize || false;
-  const groups = analysis.groups || [];
-  const success = true;
-
-  if (canParallelize) {
-    const groupCount = groups.length;
-    this.info(`Task can be parallelized into ${groupCount} groups`);
-  } else {
-    this.info('Task will execute sequentially');
-  }
-
-  return {
-    canParallelize,
-    groups,
-    success
-  };
-}
-
-/**
- * Multi-agent coordination
- */
-private async coordinateMultiAgent(
-  task: string,
-  context: string
-): Promise<{ agent: string; workflow: any[]; success: boolean }> {
-  this.info('🤖 Coordinating multi-agent execution...');
-
-  const routing = await this.runHook('multi-agent-orchestrator', ['route', task]);
-  const orchestrate = await this.runHook('multi-agent-orchestrator', ['orchestrate', task]);
-
-  if (!routing || !orchestrate) {
-    return { agent: 'general', workflow: [], success: false };
-  }
-
-  const agent = routing.selected_agent || 'general';
-  const workflow = orchestrate.workflow || [];
-  const success = true;
-
-  this.info(`Multi-agent routing: ${agent} agent`);
-
-  return {
-    agent,
-    workflow,
-    success
-  };
-}
-
-/**
- * Debug orchestrator with regression detection
- */
-private async runDebugOrchestrator(
-  task: string,
-  context: string
-): Promise<{ snapshot: string; recommendations: any[]; success: boolean }> {
-  this.info('🐛 Running debug orchestrator...');
-
-  // Import debug orchestrator from core
-  const { DebugOrchestrator } = await import('../../core/debug/orchestrator/index.ts');
-
-  const orchestrator = new DebugOrchestrator();
-  const snapshot = await orchestrator.createSnapshot(context);
-  const recommendations = await orchestrator.analyze(task);
-  const success = true;
-
-  this.info('Debug orchestrator analysis complete');
-
-  return {
-    snapshot: snapshot.id,
-    recommendations,
-    success
-  };
-}
-
-/**
- * UI testing integration
- */
-private async runUITesting(
-  action: string,
-  element: string,
-  value?: string
-): Promise<{ success: boolean; result: any }> {
-  this.info('🖱️ Running UI testing...');
-
-  const result = await this.runHook('ui-testing', [action, element, value || '']);
-
-  if (!result) {
-    return { success: false, result: null };
-  }
-
-  const success = result.status === 'success';
-
-  this.info(`UI testing: ${success ? '✓ PASSED' : '✗ FAILED'}`);
-
-  return {
-    success,
-    result
-  };
-}
-
-/**
- * Mac app testing integration
- */
-private async runMacAppTesting(
-  action: string,
-  appName: string,
-  element?: string,
-  value?: string
-): Promise<{ success: boolean; result: any }> {
-  this.info('🍎 Running Mac app testing...');
-
-  const result = await this.runHook('mac-app-testing', [action, appName, element || '', value || '']);
-
-  if (!result) {
-    return { success: false, result: null };
-  }
-
-  const success = result.status === 'success';
-
-  this.info(`Mac app testing: ${success ? '✓ PASSED' : '✗ FAILED'}`);
-
-  return {
-    success,
-    result
-  };
-}

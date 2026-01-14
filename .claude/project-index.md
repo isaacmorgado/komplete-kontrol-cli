@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-13 22:30:52
+**Generated**: 2026-01-13 22:55:23
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -108,6 +108,7 @@
 │   │   ├── 📄 TEST-RESULTS.md
 │   │   └── 📄 TESTING-GUIDE.md
 ├── 📄 AUTO-COMMAND-SKILL-INTEGRATION.md
+├── 📄 DOCUMENTATION-CLEANUP-SUMMARY-2026-01-14.md
 ├── 📁 features/
 │   ├── 📄 AUTO-COMMAND-BLOCKING-ANALYSIS.md
 │   ├── 📄 AUTO-COMMAND-ENHANCEMENT-COMPLETE.md
@@ -304,6 +305,8 @@
 │   ├── 📄 reflexion-edge-cases.test.ts
 │   ├── 📄 reflexion-improvements.test.ts
 │   └── 📄 reflexion-production-test.test.ts
+├── 📄 auto-command-integration-test.ts
+├── 📄 comprehensive-auto-hooks-test.ts
 ├── 📄 comprehensive-auto-test-simple.ts
 ├── 📄 comprehensive-auto-test.ts
 ├── 📁 core/
@@ -345,6 +348,7 @@
 • ./.claude/auto-continue.local.md
 • ./.claude/project-index.md
 • ./docs/GITHUB-PUSH-AND-NAVIGATION-COMPLETE.md
+• ./docs/DOCUMENTATION-CLEANUP-SUMMARY-2026-01-14.md
 • ./docs/REFLEXION-AGENT-IMPROVEMENTS.md
 • ./docs/40-PERCENT-FLOW-VERIFIED.md
 • ./docs/PROJECT-NAVIGATOR-GUIDE.md
@@ -795,10 +799,10 @@
 ## 📊 Project Statistics
 
 **Languages:**
-• JavaScript/TypeScript: 41159 files
+• JavaScript/TypeScript: 41161 files
 • Python: 1 files
 
-**Estimated LOC:** 583255
+**Estimated LOC:** 584826
 
 
 ---

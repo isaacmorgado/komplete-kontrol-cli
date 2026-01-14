@@ -1,7 +1,7 @@
 ---
 description: Toggle fully autonomous mode on/off
 argument-hint: "[start|stop|status]"
-allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Task", "TodoWrite"]
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Task", "TodoWrite", "QualityGate", "ReasoningMode", "TreeOfThoughts", "BoundedAutonomy", "ParallelExecution", "MultiAgent", "DebugOrchestrator", "UITesting", "MacAppTesting"]
 ---
 
 # Autonomous Mode Command

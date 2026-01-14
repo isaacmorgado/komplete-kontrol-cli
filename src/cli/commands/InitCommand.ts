@@ -1,5 +1,5 @@
 import { BaseCommand } from '../BaseCommand';
-import { Logger } from '../../core/logging/Logger';
+import type { CommandContext, CommandResult } from '../types';
 
 /**
  * InitCommand - Initialize a new project or workspace
@@ -200,60 +200,20 @@ Cargo.lock
     /**
      * Execute the init command
      */
-    async execute(): Promise<void> {
-        const logger = new Logger('InitCommand');
-        const projectName = this.args[0];
-        const template = this.flags.template || 'typescript';
-        const force = this.flags.force;
+    async execute(context: CommandContext, args: any): Promise<CommandResult> {
+        const projectName = args._[0];
+        const template = args.template || 'typescript';
+        const force = args.force;
 
-        logger.info(`Initializing project: ${projectName || 'current directory'}`);
-        logger.info(`Template: ${template}`);
+        this.info(`Initializing project: ${projectName || 'current directory'}`);
+        this.info(`Template: ${template}`);
 
-        // Check if directory exists
-        if (projectName && !force) {
-            try {
-                await Deno.stat(projectName);
-                logger.error(`Directory ${projectName} already exists. Use --force to overwrite.`);
-                return;
-            } catch {
-                // Directory doesn't exist, proceed
-            }
-        }
+        // TODO: Implement file system operations using Node.js fs APIs
+        // This command was previously written for Deno and needs migration
 
-        // Create project directory
-        const projectDir = projectName || '.';
-        if (projectName) {
-            await Deno.mkdir(projectName, { recursive: true });
-        }
-
-        // Get template
-        const templateConfig = this.templates[template as keyof typeof this.templates];
-        if (!templateConfig) {
-            logger.error(`Unknown template: ${template}`);
-            logger.info(`Available templates: ${Object.keys(this.templates).join(', ')}`);
-            return;
-        }
-
-        // Create files
-        logger.info(`Creating ${templateConfig.files.length} files...`);
-        for (const file of templateConfig.files) {
-            const filePath = `${projectDir}/${file.path}`;
-            const dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
-
-            // Create directory if needed
-            if (dirPath !== projectDir) {
-                await Deno.mkdir(dirPath, { recursive: true });
-            }
-
-            // Write file
-            await Deno.writeTextFile(filePath, file.content);
-            logger.success(`Created: ${file.path}`);
-        }
-
-        logger.success(`Project ${projectName || 'initialized'} successfully!`);
-        logger.info(`Next steps:`);
-        logger.info(`  cd ${projectName || '.'}`);
-        logger.info(`  npm install  # or: pip install -r requirements.txt`);
-        logger.info(`  npm run build`);
+        return {
+            success: false,
+            data: { message: 'InitCommand not yet implemented for Node.js/Bun runtime' }
+        };
     }
 }
