@@ -81,9 +81,7 @@ export class DebugOrchestrator {
   async smartDebug(input: SmartDebugInput): Promise<SmartDebugContext> {
     const {
       bugDescription,
-      bugType = 'general',
-      testCommand = 'echo "No tests configured"',
-      context = ''
+      testCommand = 'echo "No tests configured"'
     } = input;
 
     // Step 1: Create BEFORE snapshot

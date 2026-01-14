@@ -1,6 +1,5 @@
 import type { CommandContext, CommandResult } from '../types';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
+import { existsSync, readFileSync } from 'fs';
 import chalk from 'chalk';
 
 export interface ReOptions {

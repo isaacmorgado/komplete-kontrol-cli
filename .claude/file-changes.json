@@ -1,48 +1,28 @@
 {
   "session_start": "2026-01-12T21:18:13Z",
-  "last_checkpoint": "2026-01-14T04:08:21Z",
+  "last_checkpoint": "2026-01-14T04:43:20Z",
   "files_changed": [
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/CollabCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:08:31Z"
+      "timestamp": "2026-01-14T04:43:31Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/CollabCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:08:50Z"
+      "timestamp": "2026-01-14T04:43:32Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/CompactCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:08:51Z"
+      "timestamp": "2026-01-14T04:43:33Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/CompactCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/docs/integration/AUTO-COMMAND-REFACTORING-COMPLETE.md",
       "type": "modified",
-      "timestamp": "2026-01-14T04:09:08Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ResearchApiCommand.ts",
-      "type": "modified",
-      "timestamp": "2026-01-14T04:09:21Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ResearchApiCommand.ts",
-      "type": "modified",
-      "timestamp": "2026-01-14T04:09:22Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/VoiceCommand.ts",
-      "type": "modified",
-      "timestamp": "2026-01-14T04:09:23Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/VoiceCommand.ts",
-      "type": "modified",
-      "timestamp": "2026-01-14T04:09:25Z"
+      "timestamp": "2026-01-14T04:45:39Z"
     }
   ],
-  "change_count": 8,
-  "checkpoint_count": 37
+  "change_count": 4,
+  "checkpoint_count": 46
 }

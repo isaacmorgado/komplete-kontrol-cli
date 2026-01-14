@@ -538,7 +538,7 @@ What should I do next? Provide specific, actionable reasoning.`;
    */
   private detectStagnation(): boolean {
     const STAGNATION_THRESHOLD = 5;
-    const { metrics, history } = this.context;
+    const { history } = this.context;
 
     // Check if we have enough history
     if (history.length < STAGNATION_THRESHOLD) {
@@ -547,13 +547,6 @@ What should I do next? Provide specific, actionable reasoning.`;
 
     // Get recent history
     const recentHistory = history.slice(-STAGNATION_THRESHOLD);
-
-    // Check if metrics haven't changed in recent iterations
-    const startMetrics = {
-      filesCreated: metrics.filesCreated,
-      filesModified: metrics.filesModified,
-      linesChanged: metrics.linesChanged
-    };
 
     // If no file changes in last N iterations, we're stagnant
     const noProgress = recentHistory.every(cycle => {
@@ -566,7 +559,7 @@ What should I do next? Provide specific, actionable reasoning.`;
   /**
    * Detect if agent is repeating the same actions
    */
-  private detectRepetition(input: string): boolean {
+  private detectRepetition(_input: string): boolean {
     const REPETITION_THRESHOLD = 3;
     const { history } = this.context;
 

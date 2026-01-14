@@ -5,7 +5,7 @@
  * Based on clauded project's context compaction engine
  */
 
-import type { Message, LLMRequest, LLMResponse } from './types';
+import type { Message } from './types';
 import type { LLMRouter } from './Router';
 
 export interface CompactionStrategy {

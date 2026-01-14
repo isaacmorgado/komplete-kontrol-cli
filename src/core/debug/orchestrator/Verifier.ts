@@ -99,7 +99,7 @@ export class Verifier {
   async verifyFix(
     beforeSnapshot: TestSnapshot,
     afterSnapshot: TestSnapshot,
-    fixDescription: string
+    _fixDescription: string
   ): Promise<VerificationResult> {
     // Detect regression
     const regression = await this.detectRegression(beforeSnapshot, afterSnapshot);
@@ -163,21 +163,14 @@ export class Verifier {
   /**
    * Record regression to log
    */
-  private async recordRegression(regression: RegressionResult): Promise<void> {
+  private async recordRegression(_regression: RegressionResult): Promise<void> {
     // Placeholder - LLM integration will append to regression log
-    const record = {
-      timestamp: new Date().toISOString(),
-      regressionType: regression.regressionType,
-      details: regression.details,
-      beforeSnapshot: regression.beforeSnapshot,
-      afterSnapshot: regression.afterSnapshot
-    };
   }
 
   /**
    * Get recent regressions
    */
-  async getRecentRegressions(limit: number = 10): Promise<RegressionResult[]> {
+  async getRecentRegressions(_limit: number = 10): Promise<RegressionResult[]> {
     // Placeholder - LLM integration will read regression log
     return [];
   }
@@ -185,7 +178,7 @@ export class Verifier {
   /**
    * Check if similar regression occurred before
    */
-  async checkSimilarRegressions(details: string): Promise<RegressionResult[]> {
+  async checkSimilarRegressions(_details: string): Promise<RegressionResult[]> {
     // Placeholder - LLM integration will search regression log
     return [];
   }

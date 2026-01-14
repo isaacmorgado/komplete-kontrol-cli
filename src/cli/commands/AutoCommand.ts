@@ -29,11 +29,15 @@ import type { Message } from '../../core/llm/types';
 import { CheckpointCommand } from './CheckpointCommand';
 import { CommitCommand } from './CommitCommand';
 import { CompactCommand } from './CompactCommand';
-import { ReCommand, type ReOptions } from './ReCommand';
+import { ReCommand } from './ReCommand';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
+import { DebugOrchestrator, createDebugOrchestrator, type SmartDebugInput, type VerifyFixInput } from '../../core/debug/orchestrator';
+import { AutonomousExecutor } from './auto/AutonomousExecutor';
+import { HookIntegration } from './auto/HookIntegration';
+import { SkillInvoker } from './auto/SkillInvoker';
+import { TestingIntegration } from './auto/TestingIntegration';
 
 const execAsync = promisify(exec);
 
@@ -46,13 +50,14 @@ export class AutoCommand extends BaseCommand {
   private errorHandler: ErrorHandler;
   private contextManager?: ContextManager;
   private conversationHistory: Message[] = [];
-  
-  // Skill commands for autonomous invocation
-  private checkpointCommand: CheckpointCommand;
-  private commitCommand: CommitCommand;
-  private compactCommand: CompactCommand;
+
+  // Module integrations
+  private hookIntegration: HookIntegration;
+  private skillInvoker: SkillInvoker;
+  private testingIntegration: TestingIntegration;
   private reCommand: ReCommand;
-  
+  private debugOrchestrator: DebugOrchestrator;
+
   // Track skill invocation state
   private lastCheckpointIteration = 0;
   private lastCommitIteration = 0;
@@ -60,18 +65,38 @@ export class AutoCommand extends BaseCommand {
   private lastReIteration = 0;
   private consecutiveSuccesses = 0;
   private consecutiveFailures = 0;
-  
+
   // Task type detection
   private currentTaskType: TaskType = 'general';
+
+  // Sliding autocompaction state
+  private taskInProgress = false;
+  private pendingCompaction = false;
+  private contextExceededThreshold = false;
 
   constructor() {
     super();
     this.memory = new MemoryManagerBridge();
     this.errorHandler = new ErrorHandler();
-    this.checkpointCommand = new CheckpointCommand();
-    this.commitCommand = new CommitCommand();
-    this.compactCommand = new CompactCommand();
+    this.hookIntegration = new HookIntegration();
+    this.testingIntegration = new TestingIntegration();
+    this.skillInvoker = new SkillInvoker(
+      {
+        iterations: 0,
+        lastCheckpointIteration: 0,
+        lastCommitIteration: 0,
+        lastCompactIteration: 0,
+        consecutiveSuccesses: 0,
+        consecutiveFailures: 0
+      },
+      {
+        onInfo: (msg) => this.info(msg),
+        onWarn: (msg) => this.warn(msg),
+        onSuccess: (msg) => this.success(msg)
+      }
+    );
     this.reCommand = new ReCommand();
+    this.debugOrchestrator = createDebugOrchestrator();
   }
 
   async execute(context: CommandContext, config: AutoConfig): Promise<CommandResult> {
@@ -100,12 +125,12 @@ export class AutoCommand extends BaseCommand {
         await this.executeReverseEngineeringTools(context, config.goal);
       }
 
-      // Initialize ContextManager with 80% compaction threshold
+      // Initialize ContextManager with 40% compaction threshold (sliding autocompaction)
       this.contextManager = new ContextManager(
         {
           maxTokens: 128000,  // Claude Sonnet 4.5 context window
-          warningThreshold: 70,
-          compactionThreshold: 80,
+          warningThreshold: 30,  // Warning at 30%
+          compactionThreshold: 40,  // Compaction at 40% (sliding threshold)
           strategy: COMPACTION_STRATEGIES.balanced
         },
         context.llmRouter
@@ -161,135 +186,114 @@ export class AutoCommand extends BaseCommand {
     context: CommandContext,
     config: AutoConfig
   ): Promise<CommandResult> {
-    const maxIterations = config.maxIterations || 50;
-    let goalAchieved = false;
-
     this.startSpinner('Starting autonomous loop...');
 
     // Phase 0: Initial analysis and planning
     this.info('📊 Phase 0: Initial analysis and planning');
 
     // Select reasoning mode
-    const reasoningMode = await this.selectReasoningMode(config.goal, '');
+    const reasoningMode = await this.hookIntegration.selectReasoningMode(config.goal, '');
     this.info(`Reasoning mode: ${reasoningMode.mode} (confidence: ${reasoningMode.confidence})`);
 
     // Check bounded autonomy
-    const autonomyCheck = await this.checkBoundedAutonomy(config.goal, '');
+    const autonomyCheck = await this.hookIntegration.checkBoundedAutonomy(config.goal, '');
     if (!autonomyCheck.allowed) {
       return this.createFailure(`Task blocked: ${autonomyCheck.reason || 'Bounded autonomy check failed'}`);
     }
     if (autonomyCheck.requiresApproval) {
       this.warn(`⚠️ Task requires approval: ${autonomyCheck.reason || 'High risk or low confidence'}`);
-      // In production, would wait for approval here
-      // For now, continue with warning
     }
 
     // Phase 1: Pre-execution intelligence
     this.info('🧠 Phase 1: Pre-execution intelligence');
 
     // Run Tree of Thoughts for complex problems
-    const totResult = await this.runTreeOfThoughts(config.goal, '');
+    const totResult = await this.hookIntegration.runTreeOfThoughts(config.goal, '');
     if (totResult.branches.length > 0) {
       this.info(`Tree of Thoughts: ${totResult.branches.length} branches, selected: ${totResult.selected?.strategy || 'default'}`);
     }
 
     // Analyze parallel execution opportunities
-    const parallelAnalysis = await this.analyzeParallelExecution(config.goal, '');
+    const parallelAnalysis = await this.hookIntegration.analyzeParallelExecution(config.goal, '');
     if (parallelAnalysis.canParallelize) {
       this.info(`Parallel execution: ${parallelAnalysis.groups.length} groups detected`);
     }
 
     // Coordinate multi-agent routing
-    const multiAgentResult = await this.coordinateMultiAgent(config.goal, '');
+    const multiAgentResult = await this.hookIntegration.coordinateMultiAgent(config.goal, '');
     this.info(`Multi-agent routing: ${multiAgentResult.agent} agent`);
 
     // Phase 2: Execution with monitoring
     this.info('⚡ Phase 2: Execution with monitoring');
 
-    while (this.iterations < maxIterations && !goalAchieved) {
-      this.iterations++;
+    // Create executor with dependencies and callbacks
+    const executor = new AutonomousExecutor(
+      {
+        memory: this.memory,
+        contextManager: this.contextManager,
+        conversationHistory: this.conversationHistory,
+        taskType: this.currentTaskType
+      },
+      {
+        onInfo: (msg) => this.info(msg),
+        onWarn: (msg) => this.warn(msg),
+        onSuccess: (msg) => this.success(msg),
+        onSpinnerUpdate: (msg) => this.updateSpinner(msg),
+        onCycleDisplay: (cycle, verbose) => this.displayCycle(cycle, verbose),
+        onSkillInvocation: async (ctx, cfg, cycle, isGoalAchieved) => {
+          // Update skill invoker state
+          this.skillInvoker['state'].iterations = this.iterations;
+          this.skillInvoker['state'].consecutiveSuccesses = this.consecutiveSuccesses;
+          this.skillInvoker['state'].consecutiveFailures = this.consecutiveFailures;
 
-      this.updateSpinner(`Iteration ${this.iterations}/${maxIterations}`);
+          await this.skillInvoker.invoke(ctx, cfg, cycle, isGoalAchieved, this.contextManager, this.conversationHistory);
 
-      try {
-        // Step 1: Check context health and auto-compact if needed
-        await this.handleContextCompaction(config);
+          // Update quality gate evaluation
+          const qualityGate = await this.hookIntegration.evaluateQualityGate(cycle.observation || '', this.currentTaskType);
+          if (!qualityGate.passed) {
+            this.warn(`Quality gate failed: ${qualityGate.feedback}`);
+          }
 
-        // Step 2: Execute one ReAct + Reflexion cycle
-        const cycle = await this.executeReflexionCycle(agent, context, config);
-
-        // Display cycle results
-        this.displayCycle(cycle, config.verbose || false);
-
-        // Track consecutive successes/failures for skill invocation
-        if (cycle.success) {
-          this.consecutiveSuccesses++;
-          this.consecutiveFailures = 0;
-        } else {
-          this.consecutiveFailures++;
-          this.consecutiveSuccesses = 0;
-        }
-
-        // Step 3: Check if goal is achieved
-        goalAchieved = await this.checkGoalAchievement(
-          agent,
-          context,
-          config.goal
-        );
-
-        // Step 4: Quality gate evaluation
-        const qualityGate = await this.evaluateQualityGate(cycle.observation || '', this.currentTaskType);
-        if (!qualityGate.passed) {
-          this.warn(`Quality gate failed: ${qualityGate.feedback}`);
-          // In production, would trigger revision here
-        }
-
-        // Step 5: Invoke skills based on Claude agent skills logic
-        await this.invokeSkills(context, config, cycle, goalAchieved);
-
-        // Brief pause between iterations
-        await this.sleep(500);
-
-      } catch (error) {
-        const err = error as Error;
-        this.warn(`Iteration ${this.iterations} failed: ${err.message}`);
-
-        // Record failure and continue
-        await this.memory.recordEpisode(
-          'error_encountered',
-          `Iteration ${this.iterations} error`,
-          'failed',
-          err.message
-        );
-
-        // Don't stop - autonomous mode should be resilient
-        continue;
+          // Sync state back
+          this.lastCheckpointIteration = this.skillInvoker['state'].lastCheckpointIteration;
+          this.lastCommitIteration = this.skillInvoker['state'].lastCommitIteration;
+          this.lastCompactIteration = this.skillInvoker['state'].lastCompactIteration;
+        },
+        onContextCompaction: async (cfg) => await this.handleContextCompaction(cfg)
       }
-    }
+    );
+
+    // Run the autonomous loop
+    const result = await executor.runLoop(agent, context, config);
+
+    // Update iterations from executor state
+    this.iterations = executor.getState().iterations;
+    this.consecutiveSuccesses = executor.getState().consecutiveSuccesses;
+    this.consecutiveFailures = executor.getState().consecutiveFailures;
 
     this.succeedSpinner(`Autonomous loop completed`);
 
-    // Final checkpoint before completion
-    if (goalAchieved) {
-      await this.performFinalCheckpoint(context, config.goal);
+    // Final checkpoint if goal achieved
+    if (result.success) {
+      // Update skill invoker state before final checkpoint
+      this.skillInvoker['state'].iterations = this.iterations;
+      await this.skillInvoker.performFinalCheckpoint(context, config.goal);
     }
 
-    if (!goalAchieved && this.iterations >= maxIterations) {
-      return this.createFailure(
-        `Max iterations (${maxIterations}) reached without achieving goal`
-      );
-    }
-
-    return this.createSuccess('Goal achieved', {
-      iterations: this.iterations,
-      history: agent.getHistory()
-    });
+    return result.success
+      ? this.createSuccess(result.message, result.data)
+      : this.createFailure(result.message || 'Autonomous loop failed');
   }
 
   /**
    * Handle context compaction based on Claude agent skills:
    * - Compact when context window is getting full
    * - Proactively compact at checkpoints or natural breakpoints
+   * 
+   * SLIDING AUTOCOMPACTION (40% threshold with task completion priority):
+   * - When context exceeds 40%, mark pending compaction
+   * - Allow current task to complete before triggering compaction
+   * - Trigger /compact command only after task completes
    */
   private async handleContextCompaction(config: AutoConfig): Promise<void> {
     if (!this.contextManager || this.conversationHistory.length === 0) {
@@ -302,215 +306,60 @@ export class AutoCommand extends BaseCommand {
       this.warn(`Context at ${health.percentage.toFixed(1)}% - approaching limit`);
     }
 
-    if (health.shouldCompact) {
-      this.info(`🔄 Context at ${health.percentage.toFixed(1)}% - compacting...`);
-      const { messages, result } = await this.contextManager.compactMessages(
-        this.conversationHistory,
-        `Goal: ${config.goal}`
-      );
-
-      this.conversationHistory = messages;
-      this.success(
-        `Compacted ${result.originalMessageCount} → ${result.compactedMessageCount} messages ` +
-        `(${(result.compressionRatio * 100).toFixed(0)}% of original)`
-      );
-
-      // Record compaction to memory
-      await this.memory.addContext(
-        `Context compacted: ${result.compressionRatio.toFixed(2)}x compression`,
-        6
-      );
-
-      this.lastCompactIteration = this.iterations;
+    // Sliding threshold logic:
+    // - If context >= 40% and no task is in progress, compact immediately
+    // - If context >= 40% and task is in progress, mark as pending
+    // - If pending compaction exists and task just completed, compact now
+    if (health.shouldCompact && !this.taskInProgress) {
+      // Task not in progress - compact immediately
+      await this.performCompaction(config);
+      this.pendingCompaction = false;
+      this.contextExceededThreshold = false;
+    } else if (health.shouldCompact && this.taskInProgress) {
+      // Task in progress - mark as pending, don't interrupt
+      if (!this.contextExceededThreshold) {
+        this.info(`⏳ Context at ${health.percentage.toFixed(1)}% - pending compaction after task completes`);
+        this.contextExceededThreshold = true;
+        this.pendingCompaction = true;
+      }
+    } else if (this.pendingCompaction && !this.taskInProgress) {
+      // Task just completed and compaction was pending - do it now
+      this.info(`🔄 Task complete - executing pending compaction...`);
+      await this.performCompaction(config);
+      this.pendingCompaction = false;
+      this.contextExceededThreshold = false;
     }
   }
 
   /**
-   * Invoke skills based on Claude agent skills logic:
-   *
-   * /checkpoint: Before major edits, at natural breakpoints, or when trying experimental changes
-   * - Triggered: Every N iterations (configurable), before experimental changes, or after failures
-   *
-   * /commit: For permanent version history and collaboration, when work is stable and ready to share
-   * - Triggered: After consecutive successes, at milestones, or when goal is achieved
-   *
-   * /compact: When context window is getting full, proactively at checkpoints or natural breakpoints
-   * - Triggered: Handled by handleContextCompaction(), can also be invoked at checkpoints
-   *
-   * /debug-orchestrator: Run debug orchestrator for regression detection
-   * - Triggered: When debugging tasks or after failures
-   *
-   * /ui-testing: Run UI testing hooks for web/app testing
-   * - Triggered: When UI testing is needed
-   *
-   * /mac-app-testing: Run Mac app testing hooks
-   * - Triggered: When Mac app testing is needed
+   * Perform actual compaction operation
    */
-  private async invokeSkills(
-    context: CommandContext,
-    config: AutoConfig,
-    cycle: ReflexionCycle,
-    isGoalAchieved: boolean
-  ): Promise<void> {
-    const checkpointThreshold = config.checkpointThreshold || 10;
-    const commitThreshold = 20; // Commit less frequently than checkpoints
-
-    // /checkpoint: Trigger at threshold intervals, before experimental changes, or after failures
-    const shouldCheckpoint =
-      (this.iterations % checkpointThreshold === 0) || // Regular checkpoints
-      (this.consecutiveFailures >= 3) || // After failures for recovery
-      (this.iterations - this.lastCheckpointIteration >= checkpointThreshold && this.consecutiveSuccesses >= 5); // After progress
-
-    if (shouldCheckpoint) {
-      await this.performCheckpoint(context, config.goal);
-
-      // After checkpoint, also consider compacting (Claude best practice)
-      if (this.contextManager && this.conversationHistory.length > 0) {
-        const health = this.contextManager.checkContextHealth(this.conversationHistory);
-        if (health.status === 'warning' || health.status === 'critical') {
-          await this.performCompact(context, 'conservative');
-        }
-      }
+  private async performCompaction(config: AutoConfig): Promise<void> {
+    if (!this.contextManager) {
+      return;
     }
 
-    // /commit: Trigger for milestones when work is stable
-    const shouldCommit =
-      (this.iterations % commitThreshold === 0 && this.consecutiveSuccesses >= 10) || // Milestone after progress
-      (isGoalAchieved && this.iterations - this.lastCommitIteration >= 5); // Final milestone
+    this.info(`🔄 Context compacting...`);
+    const { messages, result } = await this.contextManager.compactMessages(
+      this.conversationHistory,
+      `Goal: ${config.goal}`
+    );
 
-    if (shouldCommit) {
-      await this.performCommit(context, config.goal);
-    }
+    this.conversationHistory = messages;
+    this.success(
+      `Compacted ${result.originalMessageCount} → ${result.compactedMessageCount} messages ` +
+      `(${(result.compressionRatio * 100).toFixed(0)}% of original)`
+    );
 
-    // /re: Trigger for reverse engineering tasks
-    const shouldInvokeRe =
-      this.currentTaskType === 'reverse-engineering' &&
-      (this.iterations % 15 === 0 || this.iterations - this.lastReIteration >= 15);
+    // Record compaction to memory
+    await this.memory.addContext(
+      `Context compacted: ${result.compressionRatio.toFixed(2)}x compression`,
+      6
+    );
 
-    if (shouldInvokeRe) {
-      await this.performReCommand(context, config.goal);
-    }
-
-    // /debug-orchestrator: Run debug orchestrator for debugging tasks
-    const shouldRunDebugOrchestrator =
-      this.currentTaskType === 'debugging' ||
-      (this.consecutiveFailures >= 3); // After failures for analysis
-
-    if (shouldRunDebugOrchestrator) {
-      await this.runDebugOrchestrator(config.goal, '');
-    }
-
-    // /ui-testing: Run UI testing for web/app testing
-    const shouldRunUITesting =
-      config.goal.toLowerCase().includes('ui') ||
-      config.goal.toLowerCase().includes('interface') ||
-      config.goal.toLowerCase().includes('web') ||
-      config.goal.toLowerCase().includes('app');
-
-    if (shouldRunUITesting) {
-      await this.runUITesting('detect', config.goal);
-    }
-
-    // /mac-app-testing: Run Mac app testing hooks
-    const shouldRunMacAppTesting =
-      config.goal.toLowerCase().includes('mac') ||
-      config.goal.toLowerCase().includes('desktop') ||
-      config.goal.toLowerCase().includes('native');
-
-    if (shouldRunMacAppTesting) {
-      await this.runMacAppTesting('launch', 'Safari');
-    }
+    this.lastCompactIteration = this.iterations;
   }
 
-  /**
-   * Perform checkpoint (session-level recovery)
-   * Use before major edits, at natural breakpoints, or when trying experimental changes
-   */
-  private async performCheckpoint(context: CommandContext, goal: string): Promise<void> {
-    this.info('📸 Auto-checkpoint triggered');
-
-    try {
-      const result = await this.checkpointCommand.execute(context, {
-        summary: `Auto checkpoint at iteration ${this.iterations}: ${goal}`
-      });
-      
-      if (result.success) {
-        this.success('Checkpoint saved - session can be resumed from this point');
-      } else {
-        this.warn('Checkpoint failed (continuing anyway)');
-      }
-      
-      this.lastCheckpointIteration = this.iterations;
-    } catch (error) {
-      this.warn('Checkpoint failed (continuing anyway)');
-    }
-  }
-
-  /**
-   * Perform commit (permanent version history)
-   * Use for milestones, when work is stable and ready to share
-   */
-  private async performCommit(context: CommandContext, goal: string): Promise<void> {
-    this.info('💾 Auto-commit triggered (milestone)');
-
-    try {
-      const result = await this.commitCommand.execute(context, {
-        message: `Milestone: ${goal} - iteration ${this.iterations}`,
-        push: false // Don't auto-push by default
-      });
-      
-      if (result.success) {
-        this.success('Commit created - milestone saved to version history');
-      } else {
-        this.warn('Commit failed (continuing anyway)');
-      }
-      
-      this.lastCommitIteration = this.iterations;
-    } catch (error) {
-      this.warn('Commit failed (continuing anyway)');
-    }
-  }
-
-  /**
-   * Perform compact (context optimization)
-   * Use when context window is getting full, proactively at checkpoints or natural breakpoints
-   */
-  private async performCompact(context: CommandContext, level: 'aggressive' | 'conservative' = 'conservative'): Promise<void> {
-    this.info('🔄 Auto-compact triggered');
-
-    try {
-      const result = await this.compactCommand.execute(context, { level });
-      
-      if (result.success) {
-        this.success('Memory compacted - context optimized');
-      } else {
-        this.warn('Compact failed (continuing anyway)');
-      }
-      
-      this.lastCompactIteration = this.iterations;
-    } catch (error) {
-      this.warn('Compact failed (continuing anyway)');
-    }
-  }
-
-  /**
-   * Perform final checkpoint before completion
-   */
-  private async performFinalCheckpoint(context: CommandContext, goal: string): Promise<void> {
-    this.info('📸 Final checkpoint before completion');
-
-    try {
-      const result = await this.checkpointCommand.execute(context, {
-        summary: `Goal achieved: ${goal} after ${this.iterations} iterations`
-      });
-      
-      if (result.success) {
-        this.success('Final checkpoint saved');
-      }
-    } catch (error) {
-      this.warn('Final checkpoint failed');
-    }
-  }
 
   /**
    * Perform /re command for reverse engineering tasks
@@ -522,7 +371,7 @@ export class AutoCommand extends BaseCommand {
       // Determine target from goal
       const targetMatch = goal.match(/(?:analyze|extract|deobfuscate|understand)\s+(.+?)(?:\s|$)/i);
       const target = targetMatch ? targetMatch[1] : '.';
-
+      
       const result = await this.reCommand.execute(context, {
         action: 'analyze',
         target: target
@@ -538,143 +387,6 @@ export class AutoCommand extends BaseCommand {
     } catch (error) {
       this.warn('Reverse engineering command failed (continuing anyway)');
     }
-  }
-
-  /**
-   * Execute one ReAct + Reflexion cycle
-   */
-  private async executeReflexionCycle(
-    agent: ReflexionAgent,
-    context: CommandContext,
-    config: AutoConfig
-  ): Promise<ReflexionCycle> {
-    // Get current context from memory
-    const memoryContext = await this.memory.getWorking();
-    const recentEpisodes = await this.memory.searchEpisodes(config.goal, 5);
-
-    // Build prompt with context
-    const prompt = this.buildCyclePrompt(config.goal, memoryContext, recentEpisodes);
-
-    // Add to conversation history
-    const userMessage: Message = { role: 'user', content: prompt };
-    this.conversationHistory.push(userMessage);
-
-    // Use LLM to generate thought
-    const llmResponse = await context.llmRouter.route(
-      {
-        messages: [{ role: 'user', content: prompt }],
-        system: 'You are an autonomous AI agent executing tasks. Think step by step.'
-      },
-      {
-        taskType: 'reasoning',
-        priority: 'quality',
-        preferredModel: config.model,  // Supports provider/model syntax
-        requiresUnrestricted: false
-      }
-    );
-
-    // Extract text from response (handle different content types)
-    const firstContent = llmResponse.content[0];
-    const thought = firstContent.type === 'text' ? firstContent.text : 'Unable to extract thought';
-
-    // Add assistant response to history
-    const assistantMessage: Message = {
-      role: 'assistant',
-      content: llmResponse.content
-    };
-    this.conversationHistory.push(assistantMessage);
-
-    // Execute the cycle with LLM-generated thought
-    const cycle = await agent.cycle(thought);
-
-    // Record to memory
-    await this.memory.addContext(
-      `Iteration ${this.iterations}: ${cycle.thought}`,
-      7
-    );
-
-    return cycle;
-  }
-
-  /**
-   * Build prompt for ReAct cycle
-   */
-  private buildCyclePrompt(
-    goal: string,
-    memoryContext: string,
-    recentEpisodes: string
-  ): string {
-    return `
-Goal: ${goal}
-
-Context:
-${memoryContext}
-
-Recent History:
-${recentEpisodes}
-
-What is the next step to achieve this goal? Think through:
-1. What has been done so far?
-2. What remains to be done?
-3. What is the best next action?
-
-Provide your reasoning and proposed action.
-`.trim();
-  }
-
-  /**
-   * Check if goal has been achieved
-   */
-  private async checkGoalAchievement(
-    agent: ReflexionAgent,
-    context: CommandContext,
-    goal: string
-  ): Promise<boolean> {
-    const history = agent.getHistory();
-
-    // Simple heuristic: Check last 3 cycles for success
-    const recentCycles = history.slice(-3);
-    const allSuccessful = recentCycles.every(c => c.success);
-
-    if (allSuccessful && recentCycles.length >= 3) {
-      try {
-        // Use LLM to verify goal achievement
-        const verificationPrompt = `
-Goal: ${goal}
-
-Recent actions and results:
-${recentCycles.map(c => `
-Thought: ${c.thought}
-Action: ${c.action}
-Result: ${c.observation}
-`).join('\n')}
-
-Has the goal been achieved? Answer with just "YES" or "NO" and brief explanation.
-`.trim();
-
-        const response = await context.llmRouter.route(
-          {
-            messages: [{ role: 'user', content: verificationPrompt }],
-            system: 'You are evaluating if a goal has been achieved. Be objective.'
-          },
-          {
-            taskType: 'reasoning',
-            priority: 'speed'
-          }
-        );
-
-        // Extract text from response
-        const firstContent = response.content[0];
-        const answer = firstContent.type === 'text' ? firstContent.text : 'NO';
-        return answer.toUpperCase().startsWith('YES');
-      } catch (error) {
-        // If LLM verification fails, use simple heuristic
-        this.warn('LLM verification unavailable, using heuristic');
-        return allSuccessful && recentCycles.length >= 3;
-      }
-    }
-
-    return false;
   }
 
   /**
@@ -694,13 +406,6 @@ Has the goal been achieved? Answer with just "YES" or "NO" and brief explanation
     const status = cycle.success ? chalk.green('✓ Success') : chalk.red('✗ Failed');
     console.log(status);
     console.log('');
-  }
-
-  /**
-   * Sleep helper
-   */
-  private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   /**
@@ -913,198 +618,6 @@ Provide your reasoning and proposed action.
     }
   }
 
-  /**
-   * Hook paths for integration
-   */
-  private hooksPath = join(process.env.HOME || '', '.claude/hooks');
-
-  /**
-   * Run a hook script and return JSON result
-   */
-  private async runHook(hookName: string, args: string[] = []): Promise<any> {
-    const hookPath = join(this.hooksPath, `${hookName}.sh`);
-    try {
-      const { stdout } = await execAsync(`bash ${hookPath} ${args.join(' ')}`);
-      return JSON.parse(stdout);
-    } catch (error) {
-      this.warn(`Hook ${hookName} failed: ${(error as Error).message}`);
-      return null;
-    }
-  }
-
-  /**
-   * Quality gate evaluation using LLM-as-Judge
-   */
-  private async evaluateQualityGate(
-    output: string,
-    taskType: string
-  ): Promise<{ passed: boolean; score: number; feedback: string }> {
-    this.info('🔍 Running quality gate evaluation...');
-
-    const criteria = await this.runHook('auto-evaluator', ['criteria', taskType]);
-    const evaluation = await this.runHook('auto-evaluator', ['evaluate', output, criteria]);
-
-    if (!evaluation) {
-      return { passed: true, score: 7.0, feedback: 'Quality gate check passed' };
-    }
-
-    const score = evaluation.score || 7.0;
-    const passed = evaluation.decision === 'continue' || score >= 7.0;
-
-    this.info(`Quality gate: ${passed ? '✓ PASSED' : '✗ FAILED'} (score: ${score}/10)`);
-
-    return {
-      passed,
-      score,
-      feedback: evaluation.message || `Quality score: ${score}/10`
-    };
-  }
-
-  /**
-   * Bounded autonomy safety check
-   */
-  private async checkBoundedAutonomy(
-    task: string,
-    context: string
-): Promise<{ allowed: boolean; requiresApproval: boolean; reason?: string }> {
-    this.info('🛡️ Running bounded autonomy check...');
-
-    const check = await this.runHook('bounded-autonomy', ['check', task, context]);
-
-    if (!check) {
-      return { allowed: true, requiresApproval: false };
-    }
-
-    const allowed = check.allowed !== false;
-    const requiresApproval = check.requires_approval === true;
-
-    if (!allowed) {
-      this.error(`🚫 Task blocked: ${check.reason || 'Bounded autonomy check failed'}`);
-    } else if (requiresApproval) {
-      this.warn(`⚠️ Task requires approval: ${check.reason || 'High risk or low confidence'}`);
-    } else {
-      this.info('✓ Bounded autonomy check passed');
-    }
-
-    return { allowed, requiresApproval, reason: check.reason };
-  }
-
-  /**
-   * Reasoning mode selection
-   */
-  private async selectReasoningMode(
-    task: string,
-    context: string
-): Promise<{ mode: string; confidence: number; reasoning: string }> {
-    this.info('🧠 Selecting reasoning mode...');
-
-    const modeInfo = await this.runHook('reasoning-mode-switcher', ['select', task, context, 'normal', 'normal', 'low']);
-
-    if (!modeInfo) {
-      return { mode: 'deliberate', confidence: 0.7, reasoning: 'Default mode selected' };
-    }
-
-    const mode = modeInfo.selected_mode || 'deliberate';
-    const confidence = modeInfo.confidence || 0.7;
-
-    this.info(`Reasoning mode: ${mode} (confidence: ${confidence})`);
-
-    return {
-      mode,
-      confidence,
-      reasoning: modeInfo.reasoning || `Task characteristics suggest ${mode} mode`
-    };
-  }
-
-  /**
-   * Tree of Thoughts for complex problems
-   */
-  private async runTreeOfThoughts(
-    task: string,
-    context: string
-): Promise<{ branches: any[]; selected: any; success: boolean }> {
-    this.info('🌳 Running Tree of Thoughts...');
-
-    const branches = await this.runHook('tree-of-thoughts', ['generate', task, context, '3']);
-    const evaluation = await this.runHook('tree-of-thoughts', ['evaluate', branches]);
-
-    if (!evaluation) {
-      return { branches: [], selected: null, success: false };
-    }
-
-    const selected = evaluation.selected_branch;
-    const success = true;
-
-    this.info(`Tree of Thoughts selected: ${selected?.strategy || 'default'}`);
-
-    return {
-      branches: branches.branches || [],
-      selected,
-      success
-    };
-  }
-
-  /**
-   * Parallel execution analysis
-   */
-  private async analyzeParallelExecution(
-    task: string,
-    context: string
-): Promise<{ canParallelize: boolean; groups: any[]; success: boolean }> {
-    this.info('⚡ Analyzing parallel execution opportunities...');
-
-    const analysis = await this.runHook('parallel-execution-planner', ['analyze', task, context]);
-
-    if (!analysis) {
-      return { canParallelize: false, groups: [], success: false };
-    }
-
-    const canParallelize = analysis.canParallelize || false;
-    const groups = analysis.groups || [];
-    const success = true;
-
-    if (canParallelize) {
-      const groupCount = groups.length;
-      this.info(`Task can be parallelized into ${groupCount} groups`);
-    } else {
-      this.info('Task will execute sequentially');
-    }
-
-    return {
-      canParallelize,
-      groups,
-      success
-    };
-  }
-
-  /**
-   * Multi-agent coordination
-   */
-  private async coordinateMultiAgent(
-    task: string,
-    context: string
-): Promise<{ agent: string; workflow: any[]; success: boolean }> {
-    this.info('🤖 Coordinating multi-agent execution...');
-
-    const routing = await this.runHook('multi-agent-orchestrator', ['route', task]);
-    const orchestrate = await this.runHook('multi-agent-orchestrator', ['orchestrate', task]);
-
-    if (!routing || !orchestrate) {
-      return { agent: 'general', workflow: [], success: false };
-    }
-
-    const agent = routing.selected_agent || 'general';
-    const workflow = orchestrate.workflow || [];
-    const success = true;
-
-    this.info(`Multi-agent routing: ${agent} agent`);
-
-    return {
-      agent,
-      workflow,
-      success
-    };
-  }
 
   /**
    * Debug orchestrator with regression detection
@@ -1112,72 +625,96 @@ Provide your reasoning and proposed action.
   private async runDebugOrchestrator(
     task: string,
     context: string
-): Promise<{ snapshot: string; recommendations: any[]; success: boolean }> {
+  ): Promise<{ snapshot: string; recommendations: any[]; success: boolean }> {
     this.info('🐛 Running debug orchestrator...');
 
-    // Debug orchestrator integration - stub implementation
-    // TODO: Properly configure DebugOrchestrator with DebugConfig
-    this.info('Debug orchestrator stub - not yet configured');
+    try {
+      // Step 1: Create before snapshot and search for similar bugs
+      const smartDebugInput: SmartDebugInput = {
+        bugDescription: task,
+        bugType: this.currentTaskType,
+        testCommand: 'echo "No tests configured"',
+        context: context
+      };
 
-    return {
-      snapshot: `snapshot_${Date.now()}`,
-      recommendations: [],
-      success: false
-    };
+      const debugContext = await this.debugOrchestrator.smartDebug(smartDebugInput);
+
+      this.info(`📸 Debug context created with snapshot: ${debugContext.beforeSnapshot}`);
+      this.info(`🔍 Found ${debugContext.similarFixesCount} similar bug fixes in memory`);
+
+      // Step 2: Display next steps
+      if (debugContext.nextSteps.length > 0) {
+        this.info('💡 Next steps:');
+        debugContext.nextSteps.forEach((step, i) => {
+          console.log(chalk.gray(`  ${i + 1}. ${step}`));
+        });
+      }
+
+      return {
+        snapshot: debugContext.beforeSnapshot,
+        recommendations: debugContext.nextSteps,
+        success: true
+      };
+    } catch (error) {
+      const err = error as Error;
+      this.warn(`Debug orchestrator failed: ${err.message}`);
+
+      return {
+        snapshot: `error_${Date.now()}`,
+        recommendations: [],
+        success: false
+      };
+    }
   }
 
   /**
-   * UI testing integration
+   * Verify fix using debug orchestrator (after applying fix)
    */
-  private async runUITesting(
-    action: string,
-    element: string,
-    value?: string
-): Promise<{ success: boolean; result: any }> {
-    this.info('🖱️ Running UI testing...');
+  private async verifyFixWithDebugOrchestrator(
+    beforeSnapshotId: string,
+    fixDescription: string
+  ): Promise<{ success: boolean; regressionsDetected: boolean; message: string }> {
+    this.info('🐛 Verifying fix with debug orchestrator...');
 
-    const result = await this.runHook('ui-testing', [action, element, value || '']);
+    try {
+      const verifyInput: VerifyFixInput = {
+        beforeSnapshotId,
+        testCommand: 'echo "No tests configured"',
+        fixDescription
+      };
 
-    if (!result) {
-      return { success: false, result: null };
+      const result = await this.debugOrchestrator.verifyFix(verifyInput);
+
+      if (result.regressionsDetected) {
+        this.warn('⚠️ Regressions detected - fix may have broken other functionality');
+      } else {
+        this.success('✓ Fix verified - no regressions detected');
+      }
+
+      if (result.actions.length > 0) {
+        this.info('💡 Verification recommendations:');
+        result.actions.forEach((action, i) => {
+          console.log(chalk.gray(`  ${i + 1}. ${action}`));
+        });
+      }
+
+      return {
+        success: result.status === 'success',
+        regressionsDetected: result.regressionsDetected,
+        message: result.message || 'Fix verification complete'
+      };
+    } catch (error) {
+      const err = error as Error;
+      this.warn(`Fix verification failed: ${err.message}`);
+
+      return {
+        success: false,
+        regressionsDetected: false,
+        message: err.message
+      };
     }
-
-    const success = result.status === 'success';
-
-    this.info(`UI testing: ${success ? '✓ PASSED' : '✗ FAILED'}`);
-
-    return {
-      success,
-      result
-    };
   }
 
-  /**
-   * Mac app testing integration
-   */
-  private async runMacAppTesting(
-    action: string,
-    appName: string,
-    element?: string,
-    value?: string
-): Promise<{ success: boolean; result: any }> {
-    this.info('🍎 Running Mac app testing...');
-
-    const result = await this.runHook('mac-app-testing', [action, appName, element || '', value || '']);
-
-    if (!result) {
-      return { success: false, result: null };
-    }
-
-    const success = result.status === 'success';
-
-    this.info(`Mac app testing: ${success ? '✓ PASSED' : '✗ FAILED'}`);
-
-    return {
-      success,
-      result
-    };
-  }
 }
 
 /**

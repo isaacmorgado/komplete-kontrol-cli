@@ -1,5 +1,5 @@
 import type { CommandContext, CommandResult } from '../types';
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import chalk from 'chalk';
 
@@ -29,7 +29,6 @@ export class CompactCommand {
       // Step 2: Generate Compacted Context
       const now = new Date();
       const time = now.toISOString().split('T')[0];
-      const timeStr = now.toLocaleTimeString();
 
       const compactedContext = `## Compacted Context
 

@@ -75,7 +75,7 @@ export class Snapshotter {
    * Run test command and capture output
    * Note: LLM integration layer will execute actual command
    */
-  private async runTest(testCommand: string): Promise<{ output: string; exitCode: number }> {
+  private async runTest(_testCommand: string): Promise<{ output: string; exitCode: number }> {
     // Placeholder - LLM integration will execute via Bash tool
     return {
       output: '// TEST OUTPUT PLACEHOLDER - Use Bash tool to execute',
@@ -135,7 +135,7 @@ export class Snapshotter {
    * Load existing snapshot
    * Note: LLM integration will use Read tool
    */
-  async loadSnapshot(snapshotId: string): Promise<TestSnapshot | null> {
+  async loadSnapshot(_snapshotId: string): Promise<TestSnapshot | null> {
     // Placeholder - LLM integration will read via Read tool
     return null;
   }

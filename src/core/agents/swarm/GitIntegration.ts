@@ -131,7 +131,7 @@ export class GitIntegration {
       }
 
       // Attempt to merge the branch
-      const mergeResult = await this.execGit(['merge', branch, '--no-commit', '--no-ff'], workDir);
+      await this.execGit(['merge', branch, '--no-commit', '--no-ff'], workDir);
 
       // Check for conflicts
       const conflictedFiles = await this.detectConflicts(workDir);

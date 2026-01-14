@@ -19,10 +19,8 @@ export class CommitCommand {
       console.log(chalk.bold('\n=== Git Commit (Milestone) ==='));
 
       // Step 1: Check if we're in a git repository
-      let isGitRepo = false;
       try {
         execSync('git rev-parse --git-dir', { cwd: context.workDir, stdio: 'pipe' });
-        isGitRepo = true;
       } catch (e) {
         return {
           success: false,
@@ -100,8 +98,8 @@ export class CommitCommand {
    */
   private async generateCommitMessage(context: CommandContext): Promise<string> {
     try {
-      // Get git diff
-      const diff = execSync('git diff --cached --stat', { cwd: context.workDir, encoding: 'utf-8' });
+      // Get git diff for context (currently unused, reserved for future AI analysis)
+      // const _diff = execSync('git diff --cached --stat', { cwd: context.workDir, encoding: 'utf-8' });
 
       // Check for CLAUDE.md context
       const claudeMdPath = join(context.workDir, 'CLAUDE.md');

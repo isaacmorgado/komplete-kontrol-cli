@@ -15,7 +15,6 @@ import type {
   ProviderConfig,
   ContentBlock,
   Message,
-  TokenUsage,
   StreamEvent
 } from '../types';
 

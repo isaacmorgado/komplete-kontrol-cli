@@ -447,6 +447,34 @@ program
   });
 
 /**
+ * /commit - Commit changes to version history
+ */
+program
+  .command('commit')
+  .description('Commit changes to version history')
+  .argument('[message]', 'Commit message')
+  .option('--push', 'Push to remote after commit', false)
+  .action(async (message: string | undefined, options: any) => {
+    try {
+      const context = await initializeContext();
+      const commitCommand = new CommitCommand();
+      const result = await commitCommand.execute(context, {
+        message,
+        push: options.push
+      });
+
+      if (!result.success) {
+        console.error(chalk.red('\nError:'), result.message);
+        process.exit(1);
+      }
+    } catch (error) {
+      const err = error as Error;
+      console.error(chalk.red('\nFatal error:'), err.message);
+      process.exit(1);
+    }
+  });
+
+/**
  * /multi-repo - Multi-repository orchestration
  */
 program

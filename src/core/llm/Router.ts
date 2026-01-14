@@ -8,9 +8,7 @@
 import type {
   RoutingContext,
   ModelSelection,
-  TaskType,
   RoutingPriority,
-  ILLMProvider,
   LLMRequest,
   LLMResponse
 } from './types';

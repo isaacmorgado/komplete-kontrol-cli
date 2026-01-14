@@ -14,11 +14,12 @@ _The self-governing Claude that never sleeps_
 Claude Sovereign is a **fully autonomous AI operation system** that makes Claude Code completely hands-off. Set it, forget it, come back to finished work.
 
 Inspired by **Roo Code** and enhanced beyond, Claude Sovereign:
-- ✅ Auto-compacts memory at 40% context
+- ✅ Auto-compacts memory at 40% context (sliding threshold with task completion priority)
 - ✅ Auto-executes /checkpoint at 40% context
 - ✅ Auto-checkpoints after 10 file changes
 - ✅ Auto-pushes all changes to GitHub
 - ✅ Continues working without stopping
+- ✅ Debug orchestrator fully functional (regression detection)
 - ✅ **Zero manual intervention required**
 
 ## The Problem
@@ -40,12 +41,13 @@ Activate /auto mode
 Walk away from computer
   ↓
 Claude works continuously:
-  • Compacts memory automatically
-  • Checkpoints progress automatically
-  • Pushes to GitHub automatically
-  • Uses all tools intelligently
-  • Applies Ken's prompting patterns
-  • Remembers everything perfectly
+   • Compacts memory automatically (sliding threshold: allows task completion before compacting)
+   • Checkpoints progress automatically
+   • Pushes to GitHub automatically
+   • Uses all tools intelligently
+   • Applies Ken's prompting patterns
+   • Remembers everything perfectly
+   • Uses debug orchestrator for regression detection
   ↓
 Return to completed work
 ```
@@ -94,6 +96,7 @@ Return to completed work
 - Reverse engineering toolkit (Chrome extensions, Electron, APIs)
 - Ken's exclusive prompting patterns
 - Multi-agent orchestration
+- Debug orchestrator (regression detection)
 
 ### 📚 Ken's Prompting Mastery
 
@@ -108,7 +111,7 @@ Return to completed work
 ### Quick Start
 
 ```bash
-# Clone the repo
+# Clone repo
 git clone https://github.com/isaacmorgado/claude-sovereign.git
 cd claude-sovereign
 
@@ -160,17 +163,26 @@ cp docs/* ~/.claude/docs/
 
 ### What Happens Automatically
 
-**At 40% Context** (80,000 / 200,000 tokens):
+**At 40% Context** (51,200 / 128,000 tokens) - Sliding Autocompaction:
 ```
 1. Memory compaction (prune old episodes)
-2. Internal checkpoint creation
-3. Router signals /checkpoint execution
-4. Continuation prompt with <command-name>/checkpoint</command-name>
-5. Claude executes /checkpoint immediately
-6. Updates CLAUDE.md + buildguide.md
-7. git add + commit + push
-8. Continues working
+2. If task is in progress: Mark compaction as pending
+3. If task completes: Execute pending compaction
+4. Internal checkpoint creation
+5. Router signals /checkpoint execution
+6. Continuation prompt with <command-name>/checkpoint</command-name>
+7. Claude executes /checkpoint immediately
+8. Updates CLAUDE.md + buildguide.md
+9. git add + commit + push
+10. Continues working
 ```
+
+**Sliding Threshold Behavior**:
+- Context >= 40%: Check if task is in progress
+- Task in progress: Mark compaction as pending, continue working
+- Task completes: Execute pending compaction immediately
+- Task not in progress: Compact immediately
+- This ensures tasks complete before context compaction interrupts
 
 **After 10 File Changes**:
 ```
@@ -225,12 +237,12 @@ claude-sovereign/
 │  • Makes intelligent decisions       │
 └──────────────┬──────────────────────┘
                ↓
-     ┌─────────┴─────────┐
-     ↓                   ↓
+      ┌─────────┴─────────┐
+      ↓                   ↓
 [Edit 10 files]    [Reach 40% context]
-     ↓                   ↓
-     └─────────┬─────────┘
-               ↓
+      ↓                   ↓
+      └─────────┬─────────┘
+                ↓
 ┌─────────────────────────────────────┐
 │  Auto-checkpoint triggered           │
 │  1. Compact memory (if 40%)          │
@@ -238,6 +250,13 @@ claude-sovereign/
 │  3. Update docs                      │
 │  4. Git commit + push                │
 │  5. Continue working                 │
+└──────────────┬──────────────────────┘
+               ↓
+┌─────────────────────────────────────┐
+│  Sliding Autocompaction (40% threshold)│
+│  - Task completion priority              │
+│  - No task interruption              │
+│  - Pending compaction executes after task │
 └──────────────┬──────────────────────┘
                ↓
 ┌─────────────────────────────────────┐
@@ -281,18 +300,19 @@ When Claude sees **any** of these patterns:
 | Feature | Manual | Roo Code | steipete MCP | **Claude Sovereign** |
 |---------|--------|----------|--------------|---------------------|
 | Auto-checkpoint | ❌ | ✅ | ✅ | ✅ **Advanced** |
-| Auto-compact | ❌ | ✅ | ❓ | ✅ **40% threshold** |
+| Auto-compact | ❌ | ✅ | ❓ | ✅ **40% sliding threshold** |
 | Git auto-push | ❌ | ❓ | ❌ | ✅ **Every checkpoint** |
 | Token optimization | ❌ | ❓ | ❌ | ✅ **50-70% savings** |
 | Perfect memory | ❌ | ❓ | ❌ | ✅ **3-factor scoring** |
-| RE toolkit | ❌ | ❌ | ❌ | ✅ **Complete** |
+| RE toolkit | ❌ | ❓ | ❌ | ✅ **Complete** |
 | MCP integration | ❌ | ❓ | ✅ | ✅ **Full suite** |
-| Ken's patterns | ❌ | ❌ | ❌ | ✅ **Exclusive** |
+| Ken's patterns | ❌ | ❓ | ❌ | ✅ **Exclusive** |
 | Zero intervention | ❌ | ✅ | ✅ | ✅ **Verified** |
+| Debug orchestrator | ❌ | ❌ | ❌ | ✅ **Fully functional** |
 
 ## Testing
 
-Run the comprehensive validation suite:
+Run comprehensive validation suite:
 
 ```bash
 ~/.claude/hooks/comprehensive-validation.sh
@@ -369,7 +389,7 @@ export CHECKPOINT_FILE_THRESHOLD=15  # After 15 files
 
 ✅ **Never Lose Progress**
 - Auto-checkpoint every 10 files
-- Auto-checkpoint at 40% context
+- Auto-checkpoint at 40% context (sliding threshold - no task interruption)
 - All changes backed up to GitHub
 - Can revert to any checkpoint
 
@@ -442,13 +462,13 @@ Claude will:
 
 ```bash
 /auto
-# Task: "Debug and fix the payment processing error"
+# Task: "Debug and fix payment processing error"
 
 Claude will:
-• Use debug orchestrator (regression detection)
+• Use debug orchestrator (fully functional - regression detection)
 • Search memory for similar fixes
 • Apply fix with pattern learned
-• Verify no regressions
+• Verify no regressions (before/after snapshots)
 • Auto-checkpoint fix
 • Push to GitHub
 ```

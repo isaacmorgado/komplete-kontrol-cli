@@ -291,7 +291,7 @@ export class ActionExecutor {
       const fileArgs = files && files.length > 0 ? files.join(' ') : '';
       const command = `bunx tsc --noEmit ${skipLibCheck} ${fileArgs}`;
 
-      const { stdout, stderr } = await exec(command, {
+      await exec(command, {
         cwd: this.workingDir,
         maxBuffer: 1024 * 1024 * 10
       });

@@ -59,17 +59,12 @@ export class CheckpointCommand {
       // Step 1: Update CLAUDE.md (KEEP IT LEAN)
       let claudeContent = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, 'utf-8') : '';
       const now = new Date().toISOString().split('T')[0];
-      const time = new Date().toLocaleTimeString();
 
       // Replace Last Session (don't nest)
       const lastSessionRegex = /## Last Session\s*\([\s\S]*?\)\s*([\s\S]*?)/;
       claudeContent = claudeContent.replace(lastSessionRegex, '');
 
-      // Add new Last Session
-      const lastSessionSection = `## Last Session (${now})
-- ${options.summary || 'Session checkpointed'}
-- Stopped at: ${time}
-`;
+      // Add new Last Session (currently unused - reserved for future use)
 
       // Remove completed Next Steps (don't use strikethrough)
       const nextStepsMatch = claudeContent.match(/## Next Steps\s*([\s\S]*?)(?=##|$)/s);
@@ -77,7 +72,7 @@ export class CheckpointCommand {
         const nextStepsContent = nextStepsMatch[1];
         const filteredNextSteps = nextStepsContent
           .split('\n')
-          .filter((line, index, lines) => {
+          .filter((line, index, _lines) => {
             if (line.trim().startsWith('- ')) {
               return index < 3; // Keep only first 3 items
             }

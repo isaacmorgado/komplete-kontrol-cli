@@ -214,7 +214,7 @@ export class ReflexionCommand {
    * Show status of ongoing execution
    * (Future: track execution state in persistent storage)
    */
-  async status(context: CommandContext, options: ReflexionOptions): Promise<CommandResult> {
+  async status(_context: CommandContext, _options: ReflexionOptions): Promise<CommandResult> {
     return {
       success: true,
       message: 'Status tracking not yet implemented.\nFuture: Will show ongoing executions and their progress.'
@@ -225,7 +225,7 @@ export class ReflexionCommand {
    * Show aggregated metrics from past executions
    * (Future: store metrics in memory system)
    */
-  async metrics(context: CommandContext, options: ReflexionOptions): Promise<CommandResult> {
+  async metrics(_context: CommandContext, _options: ReflexionOptions): Promise<CommandResult> {
     return {
       success: true,
       message: 'Metrics tracking not yet implemented.\nFuture: Will show aggregated performance stats from past runs.'

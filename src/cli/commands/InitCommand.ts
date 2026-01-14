@@ -205,7 +205,6 @@ Cargo.lock
     async execute(context: CommandContext, args: any): Promise<CommandResult> {
         const projectName = args._[0];
         const template = args.template || 'typescript';
-        const force = args.force;
 
         this.info(`Initializing project: ${projectName || 'current directory'}`);
         this.info(`Template: ${template}`);

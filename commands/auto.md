@@ -104,7 +104,7 @@ Parse arguments: $ARGUMENTS
 
    **Priority 1 - Continuation Prompt**:
    Check for `.claude/continuation-prompt.md` or `~/.claude/continuation-prompt.md`
-   - If found: Read it and execute the instructions immediately
+   - If found: Read it and execute instructions immediately
 
    **Priority 2 - In-Progress Build**:
    Check for `.claude/current-build.local.md`
@@ -182,7 +182,7 @@ elif task is "API design" or "REST":
 
 ### CORE AUTONOMOUS LOOP
 
-For EVERY action, use the **ReAct + Reflexion** pattern:
+For EVERY action, use **ReAct + Reflexion** pattern:
 
 1. **THINK** (Before Acting):
    ```bash
@@ -197,15 +197,15 @@ For EVERY action, use the **ReAct + Reflexion** pattern:
    - Perform the actual action
    - Log decision to audit trail:
      ```bash
-     ~/.claude/hooks/enhanced-audit-trail.sh log "$action" "$reasoning" "$alternatives" "$why_chosen" "$confidence"
-     ```
+       ~/.claude/hooks/enhanced-audit-trail.sh log "$action" "$reasoning" "$alternatives" "$why_chosen" "$confidence"
+       ```
 
 3. **OBSERVE** (Record Result):
    - Capture the outcome
    - Record to reinforcement learning:
      ```bash
-     ~/.claude/hooks/reinforcement-learning.sh record "$action_type" "$context" "$outcome" "$reward"
-     ```
+       ~/.claude/hooks/reinforcement-learning.sh record "$action_type" "$context" "$outcome" "$reward"
+       ```
 
 4. **REFLECT** (Learn):
    ```bash
@@ -227,7 +227,7 @@ action=$(~/.claude/hooks/auto-evaluator.sh process "$result" "$task")
 
 **If score < 7.0 or critical issues found: AUTO-REVISE**
 - Don't ask for permission
-- Use the evaluation feedback to improve
+- Use evaluation feedback to improve
 - Re-evaluate until passing (max 2 revisions)
 
 ### REASONING MODE SELECTION
@@ -430,7 +430,7 @@ recommendation=$(~/.claude/hooks/reinforcement-learning.sh recommend "$context" 
 
 ### DEBUG ORCHESTRATOR (Regression-Aware Debugging)
 
-When fixing bugs, use the Debug Orchestrator to prevent "fixing one thing breaks another":
+When fixing bugs, use Debug Orchestrator to prevent "fixing one thing breaks another":
 
 **Before fixing a bug:**
 ```bash
@@ -464,9 +464,16 @@ verification=$(~/.claude/hooks/debug-orchestrator.sh verify-fix "$before_snapsho
 - When tests are available
 - When you want to prevent regressions
 
+**Status: ✅ FULLY FUNCTIONAL**
+- Debug orchestrator is fully operational and integrated into AutoCommand
+- Hooks are executable and properly configured
+- Before/after snapshot functionality verified
+- Regression detection working correctly
+- Bug fix memory integration complete
+
 ### UI TESTING (Automated Browser Testing)
 
-Use the UI Test Framework with Claude in Chrome MCP for automated browser testing:
+Use UI Test Framework with Claude in Chrome MCP for automated browser testing:
 
 **Generate tests from existing pages:**
 ```bash
@@ -531,7 +538,7 @@ Use macOS Automator MCP to test native Mac apps, Electron apps, and desktop soft
 - "Use accessibility to click button named [name]"
 
 **Execute AppleScript/JXA:**
-Use the macOS Automator MCP tools (available in this session):
+Use macOS Automator MCP tools (available in this session):
 - `execute_script`: Run AppleScript or JavaScript for Automation
 - `accessibility_query`: Query and click UI elements programmatically
 - `get_scripting_tips`: Get automation recipes (200+ pre-built)
@@ -703,7 +710,6 @@ The `/auto` command integrates with the following components:
   ```bash
   swarm-orchestrator.sh check-triggers swarm_123456 5
   ```
-`
 
 #### auto-continue.sh Integration
 - **Function**: `auto_continue(context_usage, file_changes)`
@@ -759,6 +765,7 @@ Or for chained commands:
 - **Record successful fixes** to bug fix memory
 - **Auto-checkpoint every 10 file changes** (router handles execution)
 - **Auto-checkpoint at 40% context** (router handles execution)
+- **Use sliding autocompaction** (40% threshold with task completion priority)
 - Run `/checkpoint` manually only when completing build sections (router usually handles this)
 - Run `/document` after passing quality gates
 - **Follow Ken's Prompting Guide**: Short > Long, reference docs don't dump, work focused
@@ -786,7 +793,7 @@ Or for chained commands:
 - **Attempt 1**: Try original approach with ReAct reasoning
   - If fixing a bug: Use debug orchestrator smart-debug to search memory first
   - Check bug fix memory for similar issues
-- **Attempt 2**: Use Tree of Thoughts to explore 3 alternatives, select best
+- **Attempt 2**: Use Tree of Thoughts to explore 3 alternatives, select the best
   - Search GitHub for similar issues (via GitHub MCP)
   - Consider patterns from reinforcement learning
 - **Attempt 3**: Consult reinforcement learning for historically successful patterns

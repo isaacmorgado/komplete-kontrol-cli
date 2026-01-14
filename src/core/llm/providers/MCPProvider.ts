@@ -5,7 +5,6 @@
  * Provides access to Featherless and GLM models
  */
 
-import { spawn } from 'child_process';
 import type {
   ILLMProvider,
   LLMRequest,
@@ -193,7 +192,7 @@ export class MCPProvider implements ILLMProvider {
   /**
    * Streaming not supported yet
    */
-  async streamComplete(request: LLMRequest, handler: StreamHandler): Promise<LLMResponse> {
+  async streamComplete(_request: LLMRequest, _handler: StreamHandler): Promise<LLMResponse> {
     throw new Error('Streaming not supported by MCP provider yet');
   }
 
@@ -231,7 +230,7 @@ export class MCPProvider implements ILLMProvider {
  */
 export async function isMCPAvailable(proxyUrl: string = 'http://127.0.0.1:3000'): Promise<boolean> {
   try {
-    const response = await fetch(`${proxyUrl}/v1/messages`, {
+    await fetch(`${proxyUrl}/v1/messages`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

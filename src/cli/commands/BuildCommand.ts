@@ -40,23 +40,8 @@ export class BuildCommand {
         writeFileSync(debugLogPath, debugLogTemplate);
       }
 
-      // Step 1: Load Architecture Context
-      let architectureContent = '';
-      const architecturePaths = [
-        options.from,
-        'buildguide.md',
-        'ARCHITECTURE.md',
-        'docs/architecture.md',
-        '.claude/docs/architecture.md',
-        'CLAUDE.md'
-      ];
-
-      for (const path of architecturePaths) {
-        if (path && existsSync(join(context.workDir, path))) {
-          architectureContent = readFileSync(join(context.workDir, path), 'utf-8');
-          break;
-        }
-      }
+      // Step 1: Load Architecture Context (reserved for future use)
+      // TODO: Integrate architecture analysis into build process
 
       // Step 2: Determine Build Target
       let targetFeature = options.feature;

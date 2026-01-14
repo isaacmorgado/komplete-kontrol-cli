@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-13 23:08:21
+**Generated**: 2026-01-13 23:43:20
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -218,6 +218,7 @@
 ├── 📁 cli/
 │   ├── 📄 BaseCommand.ts
 │   ├── 📁 commands/
+│   │   ├── 📁 auto/
 │   │   ├── 📄 AutoCommand.ts
 │   │   ├── 📄 BuildCommand.ts
 │   │   ├── 📄 CheckpointCommand.ts
@@ -282,6 +283,7 @@
 │   └── 📄 re-prompt.sh
 ├── 📄 test-auto-command.sh
 ├── 📄 test-auto-features.test.ts
+├── 📄 test-cli-edge-cases.ts
 ├── 📄 test-cli-features.ts
 ├── 📄 test-llm-integration.ts
 ├── 📄 test-output.ts
@@ -323,7 +325,8 @@
 │   └── 📄 UNIT-TEST-RESULTS.md
 ├── 📁 tmp/
 └── 📄 typescript-validation-test.ts
-└── 📄 tsconfig.json
+├── 📄 tsconfig.json
+└── 📄 VERIFICATION-REPORT-MEMORY-RE-COMPACT-AUTO.md
 ```
 
 ---
@@ -376,6 +379,7 @@
 • ./commands/compact.md
 • ./COMPREHENSIVE-TEST-REPORT.md
 • ./CLAUDE.md
+• ./VERIFICATION-REPORT-MEMORY-RE-COMPACT-AUTO.md
 
 ### Entry Points
 • ./dist/index.js
@@ -802,10 +806,10 @@
 ## 📊 Project Statistics
 
 **Languages:**
-• JavaScript/TypeScript: 41162 files
+• JavaScript/TypeScript: 41170 files
 • Python: 1 files
 
-**Estimated LOC:** 585348
+**Estimated LOC:** 586324
 
 
 ---

@@ -108,7 +108,7 @@ export class ModelFallbackChain {
     provider: ILLMProvider,
     config: FallbackConfig,
     request: LLMRequest,
-    context: RoutingContext
+    _context: RoutingContext
   ): Promise<{
     success: boolean;
     response?: LLMResponse;

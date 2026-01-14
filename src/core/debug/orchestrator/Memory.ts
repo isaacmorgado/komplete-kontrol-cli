@@ -61,11 +61,9 @@ export class Memory {
   /**
    * Search for similar bug fixes
    */
-  async searchSimilarBugs(searchQuery: string, limit: number = 5): Promise<SearchResult> {
+  async searchSimilarBugs(_searchQuery: string, _limit: number = 5): Promise<SearchResult> {
     // Check if memory file exists (via Read tool)
     // Placeholder - LLM integration will read file
-
-    const keywords = this.extractKeywords(searchQuery);
 
     // Simple keyword matching
     // In bash: tail -n 100, filter successful fixes, rank by relevance
@@ -116,7 +114,7 @@ export class Memory {
   /**
    * Get recent bug fixes
    */
-  async getRecentFixes(count: number = 10): Promise<BugFixRecord[]> {
+  async getRecentFixes(_count: number = 10): Promise<BugFixRecord[]> {
     // Placeholder - LLM integration will read last N lines
     return [];
   }
@@ -124,7 +122,7 @@ export class Memory {
   /**
    * Get successful fixes only
    */
-  async getSuccessfulFixes(limit: number = 20): Promise<BugFixRecord[]> {
+  async getSuccessfulFixes(_limit: number = 20): Promise<BugFixRecord[]> {
     // Placeholder - LLM integration will filter by success=true
     return [];
   }
@@ -132,7 +130,7 @@ export class Memory {
   /**
    * Get fixes by bug type
    */
-  async getFixesByType(bugType: string, limit: number = 10): Promise<BugFixRecord[]> {
+  async getFixesByType(_bugType: string, _limit: number = 10): Promise<BugFixRecord[]> {
     // Placeholder - LLM integration will filter by bug_type
     return [];
   }

@@ -36,7 +36,7 @@ export class BoundaryChecker {
   /**
    * Check if an action is within autonomy boundaries
    */
-  check(action: string, context?: string): ActionCheckResult {
+  check(action: string, _context?: string): ActionCheckResult {
     // Check if prohibited
     if (isProhibited(action)) {
       return {

@@ -41,7 +41,7 @@ export class Searcher {
    * Search GitHub for similar issues
    * Integrates with GitHub MCP if available
    */
-  async searchGitHub(bugDescription: string, limit: number = 3): Promise<GitHubSearchResult> {
+  async searchGitHub(_bugDescription: string, _limit: number = 3): Promise<GitHubSearchResult> {
     if (this.githubMcpAvailable) {
       // GitHub MCP is available - signal to use mcp__grep__searchGitHub
       return {
@@ -111,7 +111,7 @@ export class Searcher {
    * Search codebase for similar error patterns
    * Uses Grep tool for fast search
    */
-  async searchCodebase(errorPattern: string, fileGlob?: string): Promise<string[]> {
+  async searchCodebase(_errorPattern: string, _fileGlob?: string): Promise<string[]> {
     // Placeholder - LLM integration will use Grep tool
     // Pattern: Search for similar error handling or patterns in code
     return [];

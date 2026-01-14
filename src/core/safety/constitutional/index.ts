@@ -146,7 +146,6 @@ export class ConstitutionalAI {
     output: string,
     principle: Principle
   ): Promise<PrincipleCheck> {
-    const rules = this.principles.get(principle) || [];
     const violations: string[] = [];
 
     // TODO: Implement actual checking logic using LLM or static analysis

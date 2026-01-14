@@ -6,7 +6,7 @@
  * Suggests revert when regressions detected
  */
 
-import type { RegressionResult, VerificationResult } from './Verifier';
+import type { VerificationResult } from './Verifier';
 import type { BugFixRecord, SearchResult } from './Memory';
 import type { SearchContext } from './Searcher';
 
@@ -39,7 +39,7 @@ export class Recommender {
    */
   generateVerificationRecommendation(
     verification: VerificationResult,
-    fixDescription: string
+    _fixDescription: string
   ): FixRecommendation {
     if (verification.regression.regressionDetected) {
       // Regression detected - recommend revert

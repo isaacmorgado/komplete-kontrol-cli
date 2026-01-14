@@ -5,8 +5,6 @@
  * Coordinates multiple agents executing tasks in parallel
  */
 
-import type { AgentConfig } from './Spawner';
-
 export interface SwarmState {
   swarmId: string;
   task: string;

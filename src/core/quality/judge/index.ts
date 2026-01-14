@@ -82,8 +82,8 @@ export class QualityJudge {
   }
 
   private async calculateScore(
-    output: string,
-    type: string
+    _output: string,
+    _type: string
   ): Promise<QualityScore> {
     // TODO: Implement actual scoring logic using LLM
     return {
@@ -140,7 +140,7 @@ export class QualityJudge {
 
   private async revise(
     output: string,
-    evaluation: QualityEvaluation
+    _evaluation: QualityEvaluation
   ): Promise<string> {
     // TODO: Implement actual revision logic using LLM
     // Use evaluation.issues and evaluation.recommendations to guide revision
