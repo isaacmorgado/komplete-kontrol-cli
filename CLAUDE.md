@@ -1,3 +1,26 @@
+# Komplete Kontrol CLI
+
+Agentic coding CLI tool with AI intelligence, reverse engineering, and multi-agent capabilities.
+
+## Current Focus
+Section: Dependency management and test infrastructure
+Files: package.json, src/core/providers/advanced/persistent-cache.ts
+
+## Last Session (2026-01-15)
+- Fixed dependency issues: replaced `better-sqlite3` with `bun:sqlite` for native Bun support
+- Removed `@types/better-sqlite3` and added missing `glob` dependency
+- Updated persistent-cache.ts to use Bun's built-in SQLite API
+- Ran test suite: 715 tests passing, 50 integration tests failing (expected - require API keys)
+- All core functionality tests passing successfully
+
+## Next Steps
+1. Configure API keys for integration tests (optional - for clauded model capabilities)
+2. Enable /auto mode for autonomous operation
+3. Continue feature development
+
+---
+
+## Bun Configuration
 
 Default to using Bun instead of Node.js.
 
