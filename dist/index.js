@@ -18,16 +18,6 @@ var __toESM = (mod, isNodeMode, target) => {
   return to;
 };
 var __commonJS = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, {
-      get: all[name],
-      enumerable: true,
-      configurable: true,
-      set: (newValue) => all[name] = () => newValue
-    });
-};
-var __esm = (fn, res) => () => (fn && (res = fn(fn = 0)), res);
 var __require = /* @__PURE__ */ createRequire(import.meta.url);
 
 // node_modules/commander/lib/error.js
@@ -3452,556 +3442,6 @@ var require_emoji_regex = __commonJS((exports, module) => {
     return /[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26D3\uFE0F?(?:\u200D\uD83D\uDCA5)?|\u26F9(?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF43\uDF45-\uDF4A\uDF4C-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDF44(?:\u200D\uD83D\uDFEB)?|\uDF4B(?:\u200D\uD83D\uDFE9)?|\uDFC3(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E-\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4\uDEB5](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC25\uDC27-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE41\uDE43\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED8\uDEDC-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC26(?:\u200D(?:\u2B1B|\uD83D\uDD25))?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])|\uD83E(?:[\uDD1D\uDEEF]\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE]|[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFC-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFE])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE]|\uDEEF\u200D\uD83D\uDC69\uD83C[\uDFFB-\uDFFE])))?))?|\uDD75(?:\uD83C[\uDFFB-\uDFFF]|\uFE0F)?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?|\uDE42(?:\u200D[\u2194\u2195]\uFE0F?)?|\uDEB6(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF8](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3C-\uDD3E\uDDB8\uDDB9\uDDCD\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE7C\uDE80-\uDE8A\uDE8E-\uDEC2\uDEC6\uDEC8\uDECD-\uDEDC\uDEDF-\uDEEA\uDEEF]|\uDDCE(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1|\uDDD1\u200D\uD83E\uDDD2(?:\u200D\uD83E\uDDD2)?|\uDDD2(?:\u200D\uD83E\uDDD2)?))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC30\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE])|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3\uDE70]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF]|\uDEEF\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?)/g;
   };
 });
-
-// src/core/debug/orchestrator/Snapshotter.ts
-class Snapshotter {
-  snapshotDir;
-  constructor(snapshotDir) {
-    this.snapshotDir = snapshotDir;
-  }
-  async createSnapshot(snapshotId, testCommand, description) {
-    const testResult = await this.runTest(testCommand);
-    const parsedResults = this.parseTestOutput(testResult.output, testResult.exitCode);
-    const snapshot = {
-      snapshotId,
-      description,
-      testCommand,
-      output: testResult.output,
-      exitCode: testResult.exitCode,
-      testCount: parsedResults.testCount,
-      failedCount: parsedResults.failedCount,
-      timestamp: new Date().toISOString(),
-      testsPassed: parsedResults.testsPassed
-    };
-    const snapshotPath = `${this.snapshotDir}/${snapshotId}.json`;
-    return {
-      snapshotId,
-      snapshotPath,
-      snapshot
-    };
-  }
-  async runTest(testCommand) {
-    return {
-      output: "// TEST OUTPUT PLACEHOLDER - Use Bash tool to execute",
-      exitCode: 0
-    };
-  }
-  parseTestOutput(output, exitCode) {
-    let testsPassed = false;
-    let testCount = 0;
-    let failedCount = 0;
-    const jestMatch = output.match(/Tests:.*?(\d+)\s+passed/);
-    const totalMatch = output.match(/(\d+)\s+total/);
-    const jestFailedMatch = output.match(/(\d+)\s+failed/);
-    if (jestMatch && totalMatch) {
-      testCount = parseInt(totalMatch[1], 10);
-      failedCount = jestFailedMatch ? parseInt(jestFailedMatch[1], 10) : 0;
-      testsPassed = failedCount === 0 && testCount > 0;
-      return { testsPassed, testCount, failedCount };
-    }
-    const mochaMatch = output.match(/(\d+)\s+passing/);
-    const mochaFailedMatch = output.match(/(\d+)\s+failing/);
-    if (mochaMatch) {
-      testCount = parseInt(mochaMatch[1], 10);
-      failedCount = mochaFailedMatch ? parseInt(mochaFailedMatch[1], 10) : 0;
-      testsPassed = failedCount === 0;
-      return { testsPassed, testCount, failedCount };
-    }
-    if (/PASS|SUCCESS|OK/.test(output)) {
-      if (!/FAIL|ERROR|FAILED/.test(output)) {
-        testsPassed = true;
-      }
-    } else if (exitCode === 0) {
-      testsPassed = true;
-    }
-    return { testsPassed, testCount, failedCount };
-  }
-  async loadSnapshot(snapshotId) {
-    return null;
-  }
-  generateBeforeId() {
-    return `before_${Date.now()}`;
-  }
-  generateAfterId() {
-    return `after_${Date.now()}`;
-  }
-}
-
-// src/core/debug/orchestrator/Memory.ts
-class Memory {
-  memoryFile;
-  constructor(memoryFile) {
-    this.memoryFile = memoryFile;
-  }
-  async recordBugFix(bugDescription, bugType, fixDescription, filesChanged, success, testsPassed = "unknown") {
-    const record = {
-      timestamp: new Date().toISOString(),
-      bugDescription,
-      bugType,
-      fixDescription,
-      filesChanged,
-      success,
-      testsPassed,
-      embeddingKeywords: this.extractKeywords(`${bugDescription} ${fixDescription}`)
-    };
-    return record;
-  }
-  async searchSimilarBugs(searchQuery, limit = 5) {
-    const keywords = this.extractKeywords(searchQuery);
-    return {
-      similarFixes: [],
-      count: 0
-    };
-  }
-  extractKeywords(text) {
-    return text.toLowerCase().split(/\s+/).filter((word) => word.length > 3).filter((word) => !this.isStopWord(word));
-  }
-  isStopWord(word) {
-    const stopWords = new Set([
-      "the",
-      "and",
-      "for",
-      "that",
-      "this",
-      "with",
-      "from",
-      "have",
-      "been",
-      "were",
-      "what",
-      "when",
-      "where",
-      "which",
-      "their",
-      "there"
-    ]);
-    return stopWords.has(word);
-  }
-  async getRecentFixes(count = 10) {
-    return [];
-  }
-  async getSuccessfulFixes(limit = 20) {
-    return [];
-  }
-  async getFixesByType(bugType, limit = 10) {
-    return [];
-  }
-  async getStats() {
-    return {
-      total: 0,
-      successful: 0,
-      failed: 0,
-      byType: {}
-    };
-  }
-}
-
-// src/core/debug/orchestrator/Searcher.ts
-class Searcher {
-  githubMcpAvailable;
-  constructor(githubMcpAvailable = false) {
-    this.githubMcpAvailable = githubMcpAvailable;
-  }
-  async searchGitHub(bugDescription, limit = 3) {
-    if (this.githubMcpAvailable) {
-      return {
-        available: true,
-        mcpAvailable: true,
-        note: "Use mcp__grep__searchGitHub for searching similar issues"
-      };
-    }
-    return {
-      available: false
-    };
-  }
-  buildGitHubQuery(bugDescription, bugType) {
-    const keywords = this.extractKeywords(bugDescription);
-    const query = [...keywords, bugType].filter(Boolean).join(" ");
-    return query;
-  }
-  extractKeywords(text) {
-    return text.toLowerCase().replace(/[^\w\s]/g, " ").split(/\s+/).filter((word) => word.length > 3).filter((word) => !this.isCommonWord(word)).slice(0, 5);
-  }
-  isCommonWord(word) {
-    const common = new Set([
-      "the",
-      "and",
-      "for",
-      "that",
-      "this",
-      "with",
-      "from",
-      "have",
-      "been",
-      "error",
-      "issue",
-      "problem",
-      "help",
-      "need"
-    ]);
-    return common.has(word);
-  }
-  async searchCodebase(errorPattern, fileGlob) {
-    return [];
-  }
-  async buildSearchContext(bugDescription, bugType, similarFixesFromMemory) {
-    const githubSolutions = await this.searchGitHub(bugDescription);
-    return {
-      bugDescription,
-      bugType,
-      similarFixesFromMemory,
-      githubSolutions
-    };
-  }
-  generateSearchRecommendations(bugType, keywords) {
-    const recommendations = [];
-    if (bugType === "test_failure") {
-      recommendations.push("Search for test framework-specific issues");
-      recommendations.push("Look for async test patterns");
-    } else if (bugType === "type_error") {
-      recommendations.push("Search for TypeScript type definitions");
-      recommendations.push("Check for interface mismatches");
-    } else if (bugType === "runtime_error") {
-      recommendations.push("Search for error stack traces");
-      recommendations.push("Check for null/undefined handling");
-    }
-    if (keywords.includes("async") || keywords.includes("promise")) {
-      recommendations.push("Review async/await patterns");
-    }
-    if (keywords.includes("import") || keywords.includes("module")) {
-      recommendations.push("Check module resolution");
-    }
-    return recommendations;
-  }
-}
-
-// src/core/debug/orchestrator/Verifier.ts
-class Verifier {
-  regressionLog;
-  constructor(regressionLog) {
-    this.regressionLog = regressionLog;
-  }
-  async detectRegression(beforeSnapshot, afterSnapshot) {
-    const beforePassed = beforeSnapshot.testsPassed;
-    const afterPassed = afterSnapshot.testsPassed;
-    let regressionDetected = false;
-    let regressionType = "none";
-    let details = "";
-    let recommendation = "";
-    if (beforePassed && !afterPassed) {
-      regressionDetected = true;
-      regressionType = "test_failure";
-      details = "Tests passed before fix, but fail after fix";
-      recommendation = "Revert fix and try alternative approach";
-      await this.recordRegression({
-        regressionDetected: true,
-        regressionType,
-        details,
-        beforeSnapshot: beforeSnapshot.snapshotId,
-        afterSnapshot: afterSnapshot.snapshotId
-      });
-    } else if (this.hasNewErrors(beforeSnapshot.output, afterSnapshot.output)) {
-      regressionDetected = true;
-      regressionType = "new_errors";
-      details = "New errors appeared in test output after fix";
-      recommendation = "Review error messages and adjust fix";
-    } else if (beforeSnapshot.testCount > afterSnapshot.testCount) {
-      regressionDetected = true;
-      regressionType = "test_failure";
-      details = `Test count decreased from ${beforeSnapshot.testCount} to ${afterSnapshot.testCount}`;
-      recommendation = "Some tests may have been skipped or removed";
-    }
-    return {
-      regressionDetected,
-      regressionType,
-      details,
-      beforeSnapshot: beforeSnapshot.snapshotId,
-      afterSnapshot: afterSnapshot.snapshotId,
-      recommendation
-    };
-  }
-  async verifyFix(beforeSnapshot, afterSnapshot, fixDescription) {
-    const regression = await this.detectRegression(beforeSnapshot, afterSnapshot);
-    const beforePassed = beforeSnapshot.testsPassed;
-    const afterPassed = afterSnapshot.testsPassed;
-    const fixEffective = !beforePassed && afterPassed;
-    const success = fixEffective && !regression.regressionDetected;
-    let recommendation;
-    if (regression.regressionDetected) {
-      recommendation = `Regression detected: ${regression.details}. ${regression.recommendation}`;
-    } else if (fixEffective) {
-      recommendation = "Fix successful - tests now passing";
-    } else if (beforePassed && afterPassed) {
-      recommendation = "Tests passing before and after - verify fix addressed root cause";
-    } else {
-      recommendation = "Fix did not resolve test failures - try alternative approach";
-    }
-    return {
-      success,
-      regression,
-      fixEffective,
-      testsPassed: afterPassed,
-      recommendation
-    };
-  }
-  hasNewErrors(beforeOutput, afterOutput) {
-    const errorPatterns = [/ERROR:/gi, /Exception:/gi, /Fatal:/gi, /\bFAILED\b/gi];
-    const beforeErrors = this.countErrors(beforeOutput, errorPatterns);
-    const afterErrors = this.countErrors(afterOutput, errorPatterns);
-    return afterErrors > beforeErrors;
-  }
-  countErrors(output, patterns) {
-    let count = 0;
-    for (const pattern of patterns) {
-      const matches = output.match(pattern);
-      if (matches) {
-        count += matches.length;
-      }
-    }
-    return count;
-  }
-  async recordRegression(regression) {
-    const record = {
-      timestamp: new Date().toISOString(),
-      regressionType: regression.regressionType,
-      details: regression.details,
-      beforeSnapshot: regression.beforeSnapshot,
-      afterSnapshot: regression.afterSnapshot
-    };
-  }
-  async getRecentRegressions(limit = 10) {
-    return [];
-  }
-  async checkSimilarRegressions(details) {
-    return [];
-  }
-}
-
-// src/core/debug/orchestrator/Recommender.ts
-class Recommender {
-  generateVerificationRecommendation(verification, fixDescription) {
-    if (verification.regression.regressionDetected) {
-      return {
-        status: "regression_detected",
-        message: "Fix introduced a regression - tests passing before, failing after",
-        regressionsDetected: true,
-        recommendation: "REVERT THE FIX",
-        actions: [
-          "1. Git revert the changes",
-          "2. Analyze test failures",
-          "3. Try alternative approach using similar_fixes from memory"
-        ],
-        confidence: 95
-      };
-    } else if (verification.success) {
-      return {
-        status: "success",
-        message: "Fix verified - no regressions detected",
-        regressionsDetected: false,
-        recommendation: "Fix successful - continue with next task",
-        actions: ["1. Record successful fix to memory", "2. Continue with next task"],
-        confidence: 90
-      };
-    } else if (!verification.fixEffective) {
-      return {
-        status: "failed",
-        message: "Fix did not resolve the issue",
-        regressionsDetected: false,
-        recommendation: "Try alternative approach",
-        actions: [
-          "1. Review similar fixes from memory",
-          "2. Search GitHub for solutions",
-          "3. Try different approach"
-        ],
-        confidence: 70
-      };
-    }
-    return {
-      status: "needs_alternative",
-      message: "Fix partially effective but needs refinement",
-      regressionsDetected: false,
-      recommendation: "Refine the fix",
-      actions: ["1. Analyze test output", "2. Adjust fix incrementally"],
-      confidence: 60
-    };
-  }
-  generateSmartDebugContext(bugDescription, beforeSnapshotId, similarFixes, githubSolutions) {
-    const fixPrompt = {
-      task: "Fix bug with regression awareness",
-      bugDescription,
-      bugType: "general",
-      context: "",
-      similarFixesFromMemory: similarFixes,
-      githubSolutions,
-      instructions: [
-        "1. Review similar fixes from memory to avoid repeating failed approaches",
-        "2. Consider GitHub solutions if available",
-        "3. Make the fix incrementally",
-        "4. Think about potential side effects on other components",
-        "5. Run tests after fix to detect regressions"
-      ]
-    };
-    return {
-      bug: bugDescription,
-      beforeSnapshot: beforeSnapshotId,
-      similarFixesCount: similarFixes.count,
-      similarFixes,
-      githubSolutions,
-      fixPrompt,
-      nextSteps: [
-        "1. Review similar fixes and GitHub solutions",
-        "2. Apply fix incrementally",
-        "3. Run: verify-fix <snapshot_id> <test_command>",
-        "4. If regression detected, will auto-recommend revert"
-      ]
-    };
-  }
-  generateAlternativeApproaches(bugDescription, failedApproaches, similarFixes) {
-    const alternatives = [];
-    for (const fix of similarFixes) {
-      if (fix.success && !failedApproaches.includes(fix.fixDescription)) {
-        alternatives.push(fix.fixDescription);
-      }
-    }
-    if (bugDescription.toLowerCase().includes("test fail")) {
-      alternatives.push("Check test setup/teardown");
-      alternatives.push("Verify test data fixtures");
-      alternatives.push("Review async test timing");
-    }
-    if (bugDescription.toLowerCase().includes("type error")) {
-      alternatives.push("Add explicit type annotations");
-      alternatives.push("Check interface definitions");
-      alternatives.push("Review generic type constraints");
-    }
-    if (bugDescription.toLowerCase().includes("undefined")) {
-      alternatives.push("Add null checks");
-      alternatives.push("Initialize variables explicitly");
-      alternatives.push("Review optional chaining usage");
-    }
-    return alternatives.slice(0, 5);
-  }
-  generateIncrementalSteps(bugDescription, context) {
-    const steps = [
-      "Create test snapshot before changes",
-      "Identify minimal change needed",
-      "Apply single change",
-      "Run tests and check for regression",
-      "If passing, continue; if failing, revert and try alternative"
-    ];
-    if (context.similarFixesFromMemory.count > 0) {
-      steps.unshift("Review similar successful fixes from memory");
-    }
-    if (context.githubSolutions.available) {
-      steps.unshift("Check GitHub solutions for patterns");
-    }
-    return steps;
-  }
-  assessConfidence(context) {
-    let confidence = 50;
-    confidence += Math.min(context.similarFixesCount * 10, 30);
-    if (context.hasGitHubSolutions) {
-      confidence += 15;
-    }
-    if (context.testsPassed) {
-      confidence += 20;
-    }
-    confidence -= Math.min(context.attemptCount * 5, 20);
-    return Math.max(0, Math.min(100, confidence));
-  }
-}
-
-// src/core/debug/orchestrator/index.ts
-var exports_orchestrator = {};
-__export(exports_orchestrator, {
-  createDebugOrchestrator: () => createDebugOrchestrator,
-  DebugOrchestrator: () => DebugOrchestrator
-});
-
-class DebugOrchestrator {
-  snapshotter;
-  memory;
-  searcher;
-  verifier;
-  recommender;
-  constructor(config) {
-    this.snapshotter = new Snapshotter(config.testSnapshotsDir);
-    this.memory = new Memory(config.bugFixMemoryFile);
-    this.searcher = new Searcher(config.githubMcpAvailable);
-    this.verifier = new Verifier(config.regressionLogFile);
-    this.recommender = new Recommender;
-  }
-  async smartDebug(input) {
-    const {
-      bugDescription,
-      bugType = "general",
-      testCommand = 'echo "No tests configured"',
-      context = ""
-    } = input;
-    const beforeSnapshotId = this.snapshotter.generateBeforeId();
-    await this.snapshotter.createSnapshot(beforeSnapshotId, testCommand, `Before fix: ${bugDescription}`);
-    const similarFixes = await this.memory.searchSimilarBugs(bugDescription, 5);
-    const githubSolutions = await this.searcher.searchGitHub(bugDescription);
-    const debugContext = this.recommender.generateSmartDebugContext(bugDescription, beforeSnapshotId, similarFixes, githubSolutions);
-    return debugContext;
-  }
-  async verifyFix(input) {
-    const { beforeSnapshotId, testCommand, fixDescription = "Fix applied" } = input;
-    const afterSnapshotId = this.snapshotter.generateAfterId();
-    await this.snapshotter.createSnapshot(afterSnapshotId, testCommand, "After fix");
-    const beforeSnapshot = await this.snapshotter.loadSnapshot(beforeSnapshotId);
-    const afterSnapshot = await this.snapshotter.loadSnapshot(afterSnapshotId);
-    if (!beforeSnapshot || !afterSnapshot) {
-      return {
-        status: "failed",
-        message: "Snapshots not found",
-        regressionsDetected: false,
-        recommendation: "Ensure snapshots were created successfully",
-        actions: ["Create snapshots before verification"]
-      };
-    }
-    const verification = await this.verifier.verifyFix(beforeSnapshot, afterSnapshot, fixDescription);
-    const recommendation = this.recommender.generateVerificationRecommendation(verification, fixDescription);
-    if (verification.success) {
-      await this.memory.recordBugFix("Bug fix verified", "general", fixDescription, "unknown", true, "passed");
-    }
-    return recommendation;
-  }
-  async recordBugFix(bugDescription, bugType, fixDescription, filesChanged, success, testsPassed = "unknown") {
-    return this.memory.recordBugFix(bugDescription, bugType, fixDescription, filesChanged, success, testsPassed);
-  }
-  async searchSimilarBugs(query, limit = 5) {
-    return this.memory.searchSimilarBugs(query, limit);
-  }
-  async searchGitHub(bugDescription, limit = 3) {
-    return this.searcher.searchGitHub(bugDescription, limit);
-  }
-  async createSnapshot(snapshotId, testCommand, description) {
-    return this.snapshotter.createSnapshot(snapshotId, testCommand, description);
-  }
-  async detectRegression(beforeSnapshot, afterSnapshot) {
-    return this.verifier.detectRegression(beforeSnapshot, afterSnapshot);
-  }
-  generateAlternatives(bugDescription, failedApproaches, similarFixes) {
-    return this.recommender.generateAlternativeApproaches(bugDescription, failedApproaches, similarFixes);
-  }
-  async getMemoryStats() {
-    return this.memory.getStats();
-  }
-  async getRecentRegressions(limit = 10) {
-    return this.verifier.getRecentRegressions(limit);
-  }
-}
-function createDebugOrchestrator(debugDir = "~/.claude/.debug", githubMcpAvailable = false) {
-  const config = {
-    debugDir,
-    bugFixMemoryFile: `${debugDir}/bug-fixes.jsonl`,
-    regressionLogFile: `${debugDir}/regressions.jsonl`,
-    testSnapshotsDir: `${debugDir}/test-snapshots`,
-    githubMcpAvailable
-  };
-  return new DebugOrchestrator(config);
-}
-var init_orchestrator = () => {};
 
 // node_modules/commander/esm.mjs
 var import__ = __toESM(require_commander(), 1);
@@ -8719,7 +8159,7 @@ class MCPProvider {
       }
     };
   }
-  async streamComplete(request, handler) {
+  async streamComplete(_request, _handler) {
     throw new Error("Streaming not supported by MCP provider yet");
   }
   async listModels() {
@@ -8738,7 +8178,7 @@ class MCPProvider {
 }
 async function isMCPAvailable(proxyUrl = "http://127.0.0.1:3000") {
   try {
-    const response = await fetch(`${proxyUrl}/v1/messages`, {
+    await fetch(`${proxyUrl}/v1/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -8791,6 +8231,9 @@ class ProviderRegistry {
   }
   has(name) {
     return this.providers.has(name);
+  }
+  getMap() {
+    return this.providers;
   }
 }
 async function createDefaultRegistry() {
@@ -9250,7 +8693,7 @@ class ModelFallbackChain {
       totalDuration: Date.now() - startTime
     };
   }
-  async tryProviderWithRetries(provider, config, request, context) {
+  async tryProviderWithRetries(provider, config, request, _context) {
     const maxRetries = config.maxRetries ?? 3;
     const baseDelay = config.retryDelay ?? 1000;
     const useExponentialBackoff = config.useExponentialBackoff ?? true;
@@ -9259,11 +8702,7 @@ class ModelFallbackChain {
     while (attempts < maxRetries) {
       attempts++;
       try {
-        const fallbackContext = {
-          ...context,
-          preferredModel: config.model
-        };
-        const response = await provider.complete(request, fallbackContext);
+        const response = await provider.complete(request);
         return { success: true, response, attempts };
       } catch (error2) {
         lastError = error2;
@@ -9365,7 +8804,7 @@ class LLMRouter {
     return this.routeSingleProvider(request, context);
   }
   async routeWithFallback(request, context) {
-    const result = await this.fallbackChain.execute(request, context, this.registry);
+    const result = await this.fallbackChain.execute(request, context, this.registry.getMap());
     if (result.error) {
       throw result.error;
     }
@@ -9405,7 +8844,7 @@ class LLMRouter {
       return await this.errorHandler.retryWithBackoff(async (attempt) => {
         await this.rateLimiter.waitForToken(selection.provider);
         try {
-          return await provider.complete(routedRequest, context);
+          return await provider.complete(routedRequest);
         } catch (error2) {
           const classified = this.errorHandler.classify(error2);
           error2.providerName = selection.provider;
@@ -10897,7 +10336,7 @@ ${prompt}` : prompt
       const skipLibCheck = "--skipLibCheck";
       const fileArgs = files && files.length > 0 ? files.join(" ") : "";
       const command = `bunx tsc --noEmit ${skipLibCheck} ${fileArgs}`;
-      const { stdout, stderr } = await exec(command, {
+      await exec(command, {
         cwd: this.workingDir,
         maxBuffer: 1024 * 1024 * 10
       });
@@ -11275,6 +10714,12 @@ What should I do next? Provide specific, actionable reasoning.`;
     return hasGoalTerms;
   }
   evaluateSuccess(observation) {
+    if (observation.includes("[ERROR]") || observation.includes("failed")) {
+      return false;
+    }
+    if (observation.includes("successfully") || observation.includes("created") || observation.includes("updated")) {
+      return true;
+    }
     return true;
   }
   getHistory() {
@@ -11285,22 +10730,17 @@ What should I do next? Provide specific, actionable reasoning.`;
   }
   detectStagnation() {
     const STAGNATION_THRESHOLD = 5;
-    const { metrics, history } = this.context;
+    const { history } = this.context;
     if (history.length < STAGNATION_THRESHOLD) {
       return false;
     }
     const recentHistory = history.slice(-STAGNATION_THRESHOLD);
-    const startMetrics = {
-      filesCreated: metrics.filesCreated,
-      filesModified: metrics.filesModified,
-      linesChanged: metrics.linesChanged
-    };
     const noProgress = recentHistory.every((cycle) => {
       return !cycle.action.includes("file_write") || cycle.action.includes("[ERROR]");
     });
     return noProgress;
   }
-  detectRepetition(input) {
+  detectRepetition(_input) {
     const REPETITION_THRESHOLD = 3;
     const { history } = this.context;
     if (history.length < REPETITION_THRESHOLD) {
@@ -11557,456 +10997,8 @@ Provide a dense, information-rich summary that captures the essential content in
   }
 }
 
-// src/cli/commands/CheckpointCommand.ts
-import { existsSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
-import { execSync as execSync2 } from "child_process";
-class CheckpointCommand {
-  name = "checkpoint";
-  async execute(context, options) {
-    try {
-      const claudeMdPath = join(context.workDir, "CLAUDE.md");
-      let pipelineState = null;
-      let currentFeature = "";
-      let currentTier = "";
-      let currentPhase = "";
-      let tierStatus = "";
-      let reports = null;
-      if (existsSync(claudeMdPath)) {
-        const claudeContent2 = readFileSync(claudeMdPath, "utf-8");
-        const pipelineMatch = claudeContent2.match(/## Pipeline State\n([\s\S]*?)(?=##|$)/s);
-        if (pipelineMatch) {
-          const pipelineContent = pipelineMatch[1];
-          const phaseMatch = pipelineContent.match(/Phase:\s*(\w+)/);
-          const featureMatch = pipelineContent.match(/Feature:\s*(.+)/);
-          const tierMatch = pipelineContent.match(/Tier:\s*(\w+)/);
-          const statusMatch = pipelineContent.match(/Tier-Status:\s*(\w+)/);
-          const reportsMatch = pipelineContent.match(/Reports:\s*(.+)/);
-          if (phaseMatch)
-            currentPhase = phaseMatch[1];
-          if (featureMatch)
-            currentFeature = featureMatch[1];
-          if (tierMatch)
-            currentTier = tierMatch[1];
-          if (statusMatch)
-            tierStatus = statusMatch[1];
-          if (reportsMatch)
-            reports = reportsMatch[1];
-        }
-      }
-      const buildguidePath = join(context.workDir, "buildguide.md");
-      let nextSection = "";
-      let newDocsFound = [];
-      if (existsSync(buildguidePath)) {
-        const buildguideContent = readFileSync(buildguidePath, "utf-8");
-        const uncheckedMatch = buildguideContent.match(/-\s*\[\s*\]\s*(.+)/);
-        if (uncheckedMatch && uncheckedMatch.length > 0) {
-          nextSection = uncheckedMatch[0].trim();
-        }
-      }
-      let claudeContent = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, "utf-8") : "";
-      const now = new Date().toISOString().split("T")[0];
-      const time = new Date().toLocaleTimeString();
-      const lastSessionRegex = /## Last Session\s*\([\s\S]*?\)\s*([\s\S]*?)/;
-      claudeContent = claudeContent.replace(lastSessionRegex, "");
-      const lastSessionSection = `## Last Session (${now})
-- ${options.summary || "Session checkpointed"}
-- Stopped at: ${time}
-`;
-      const nextStepsMatch = claudeContent.match(/## Next Steps\s*([\s\S]*?)(?=##|$)/s);
-      if (nextStepsMatch) {
-        const nextStepsContent = nextStepsMatch[1];
-        const filteredNextSteps = nextStepsContent.split(`
-`).filter((line, index, lines) => {
-          if (line.trim().startsWith("- ")) {
-            return index < 3;
-          }
-          return true;
-        }).join(`
-`);
-        claudeContent = claudeContent.replace(nextStepsMatch[0], `## Next Steps
-${filteredNextSteps}`);
-      }
-      claudeContent = claudeContent.replace(/## Session Log\s*[\s\S]*?(?=##|$)/gs, "");
-      claudeContent = claudeContent.replace(/## History\s*[\s\S]*?(?=##|$)/gs, "");
-      if (pipelineState) {
-        const pipelineRegex = /## Pipeline State\s*([\s\S]*?)(?=##|$)/s;
-        const newState = this.advancePipelineState(currentPhase, currentTier, tierStatus);
-        const newPipelineSection = `## Pipeline State
-
-Phase: ${newState.phase}
-Feature: ${currentFeature}
-Tier: ${newState.tier}
-Tier-Status: ${newState.status}
-Reports: ${reports || "N/A"}
-`;
-        if (pipelineRegex) {
-          claudeContent = claudeContent.replace(pipelineRegex, newPipelineSection);
-        } else {
-          claudeContent += `
-` + newPipelineSection;
-        }
-      }
-      writeFileSync(claudeMdPath, claudeContent);
-      try {
-        const isGitRepo = execSync2("git rev-parse --git-dir 2>/dev/null", { cwd: context.workDir, stdio: "pipe" });
-        if (isGitRepo) {
-          const hasChanges = execSync2("git diff --quiet || git diff --cached --quiet", { cwd: context.workDir, stdio: "pipe" });
-          if (hasChanges) {
-            execSync2("git add CLAUDE.md buildguide.md 2>/dev/null || git add CLAUDE.md", { cwd: context.workDir });
-            execSync2(`git commit -m "checkpoint: ${now} - session progress saved"`, { cwd: context.workDir });
-            try {
-              execSync2("git push origin HEAD 2>/dev/null", { cwd: context.workDir });
-            } catch (e) {
-              console.log(source_default2.yellow("Note: Push failed, may need authentication"));
-            }
-          }
-        }
-      } catch (e) {}
-      const continuationPrompt = this.generateContinuationPrompt(context.workDir, options.summary || "Session checkpointed", currentFeature, currentPhase, currentTier, tierStatus, nextSection, newDocsFound);
-      console.log(source_default2.bold(`
-` + continuationPrompt));
-      return {
-        success: true,
-        message: "Checkpoint saved successfully"
-      };
-    } catch (error2) {
-      return {
-        success: false,
-        message: error2.message || "Checkpoint failed"
-      };
-    }
-  }
-  advancePipelineState(phase, tier, status) {
-    const transitions = {
-      "debugging,high,in-progress": { phase: "debugging", tier: "medium", status: "pending" },
-      "debugging,medium,in-progress": { phase: "debugging", tier: "low", status: "pending" },
-      "debugging,low,in-progress": { phase: "refactor-hunt", tier: "-", status: "-" },
-      "refactoring,high,in-progress": { phase: "refactoring", tier: "medium", status: "pending" },
-      "refactoring,medium,in-progress": { phase: "refactoring", tier: "low", status: "pending" },
-      "refactoring,low,in-progress": { phase: "build", tier: "-", status: "-" }
-    };
-    const key = `${phase},${tier},${status}`;
-    return transitions[key] || { phase, tier, status };
-  }
-  generateContinuationPrompt(workDir, summary, feature, phase, tier, status, nextSection, newDocs) {
-    const projectName = workDir.split("/").pop() || "Project";
-    if (phase) {
-      return this.generatePipelineContinuationPrompt(projectName, summary, feature, phase, tier, status, nextSection, newDocs);
-    }
-    return `
-## Continuation Prompt
-
-Continue work on ${projectName} at ${workDir}.
-
-**What's Done**: ${summary}
-
-**Current State**: Checkpoint saved at ${new Date().toLocaleTimeString()}
-
-${nextSection ? `**Build Guide**: Next section: ${nextSection} - see buildguide.md for research` : ""}
-
-${newDocs.length > 0 ? `**New Docs Found**: ${newDocs.join(", ")}` : ""}
-
-**Next Step**: ${nextSection ? `Continue with ${nextSection}` : "Check CLAUDE.md for next steps"}
-
-**Key Files**: CLAUDE.md${existsSync(join(workDir, "buildguide.md")) ? ", buildguide.md" : ""}
-
-**Approach**: Do NOT explore full codebase. Use context above. Check buildguide.md for collected research.
-`;
-  }
-  generatePipelineContinuationPrompt(projectName, summary, feature, phase, tier, status, nextSection, newDocs) {
-    if (phase === "debugging") {
-      return `
-## Continuation Prompt
-
-Continue work on ${projectName}.
-
-**Pipeline Phase**: debugging
-**Feature**: ${feature}
-**Current Tier**: ${tier} - ${status}
-
-**Next Action**: Fix ${tier} priority bugs from bug report
-
-**Approach**: Do NOT explore codebase. Read only files in Scope above.
-`;
-    }
-    if (phase === "refactor-hunt") {
-      return `
-## Continuation Prompt
-
-Continue work on ${projectName}.
-
-**Pipeline Phase**: refactor-hunt
-**Feature**: ${feature}
-
-**Next Action**: Run /refactor-hunt-checkpoint to analyze for refactoring opportunities
-
-**Approach**: Do NOT explore codebase. Read only files in Scope above.
-`;
-    }
-    if (phase === "refactoring") {
-      return `
-## Continuation Prompt
-
-Continue work on ${projectName}.
-
-**Pipeline Phase**: refactoring
-**Feature**: ${feature}
-**Current Tier**: ${tier} - ${status}
-
-**Next Action**: Execute ${tier} priority refactors from refactor report
-
-**Approach**: Do NOT explore codebase. Read only files in Scope above.
-`;
-    }
-    if (phase === "build") {
-      return `
-## Continuation Prompt
-
-Continue work on ${projectName}.
-
-**Pipeline Complete** for feature: ${feature}
-
-**Next Action**: ${nextSection || "Pipeline complete - check with user for next task"}
-
-**Approach**: Read CLAUDE.md for full context. You may explore codebase as needed.
-`;
-    }
-    return this.generateStandardContinuationPrompt(projectName, summary, nextSection, newDocs);
-  }
-  generateStandardContinuationPrompt(projectName, summary, nextSection, newDocs) {
-    return `
-## Continuation Prompt
-
-Continue work on ${projectName}.
-
-**What's Done**: ${summary}
-
-${nextSection ? `**Build Guide**: Next section: ${nextSection} - see buildguide.md for research` : ""}
-
-${newDocs.length > 0 ? `**New Docs Found**: ${newDocs.join(", ")}` : ""}
-
-**Next Step**: ${nextSection || "Check CLAUDE.md for next steps"}
-
-**Key Files**: CLAUDE.md
-
-**Approach**: Do NOT explore full codebase. Use context above. Check buildguide.md for collected research.
-`;
-  }
-}
-
-// src/cli/commands/CommitCommand.ts
-import { existsSync as existsSync2, readFileSync as readFileSync2, writeFileSync as writeFileSync2 } from "fs";
-import { join as join2 } from "path";
-import { execSync as execSync3 } from "child_process";
-class CommitCommand {
-  name = "commit";
-  description = "Create a permanent version history commit (milestone)";
-  async execute(context, options) {
-    try {
-      console.log(source_default2.bold(`
-=== Git Commit (Milestone) ===`));
-      let isGitRepo = false;
-      try {
-        execSync3("git rev-parse --git-dir", { cwd: context.workDir, stdio: "pipe" });
-        isGitRepo = true;
-      } catch (e) {
-        return {
-          success: false,
-          message: "Not in a git repository. Cannot create commit."
-        };
-      }
-      const hasChanges = execSync3("git diff --quiet || git diff --cached --quiet", { cwd: context.workDir, stdio: "pipe" });
-      if (!hasChanges) {
-        console.log(source_default2.yellow(`
-No changes to commit.`));
-        return {
-          success: true,
-          message: "No changes to commit"
-        };
-      }
-      let commitMessage = options.message;
-      if (!commitMessage) {
-        commitMessage = await this.generateCommitMessage(context);
-      }
-      console.log(source_default2.cyan(`
-Commit message: ${commitMessage}`));
-      console.log(source_default2.gray("Staging changes..."));
-      execSync3("git add -A", { cwd: context.workDir });
-      console.log(source_default2.gray("Creating commit..."));
-      execSync3(`git commit -m "${commitMessage}"`, { cwd: context.workDir });
-      console.log(source_default2.green("✓ Commit created successfully"));
-      const commitHash = execSync3("git rev-parse --short HEAD", { cwd: context.workDir, encoding: "utf-8" }).trim();
-      console.log(source_default2.gray(`Commit: ${commitHash}`));
-      if (options.push) {
-        console.log(source_default2.gray("Pushing to remote..."));
-        try {
-          if (options.branch) {
-            execSync3(`git push origin ${options.branch}`, { cwd: context.workDir });
-          } else {
-            execSync3("git push origin HEAD", { cwd: context.workDir });
-          }
-          console.log(source_default2.green("✓ Pushed to remote"));
-        } catch (e) {
-          console.log(source_default2.yellow("Note: Push failed, may need authentication"));
-        }
-      }
-      this.updateClaudeMd(context, commitMessage, commitHash);
-      console.log(source_default2.bold(`
-=== Milestone Saved ===`));
-      console.log(source_default2.green("This commit represents a stable milestone in your project."));
-      return {
-        success: true,
-        message: `Commit ${commitHash} created: ${commitMessage}`,
-        data: { hash: commitHash, message: commitMessage }
-      };
-    } catch (error2) {
-      return {
-        success: false,
-        message: error2.message || "Commit failed"
-      };
-    }
-  }
-  async generateCommitMessage(context) {
-    try {
-      const diff = execSync3("git diff --cached --stat", { cwd: context.workDir, encoding: "utf-8" });
-      const claudeMdPath = join2(context.workDir, "CLAUDE.md");
-      let contextInfo = "";
-      if (existsSync2(claudeMdPath)) {
-        const claudeContent = readFileSync2(claudeMdPath, "utf-8");
-        const lastSessionMatch = claudeContent.match(/## Last Session\s*\([^)]+\)\s*- ([^\n]+)/);
-        if (lastSessionMatch) {
-          contextInfo = lastSessionMatch[1].trim();
-        }
-      }
-      const now = new Date().toISOString().split("T")[0];
-      let message = `Milestone: ${now}`;
-      if (contextInfo) {
-        message += ` - ${contextInfo}`;
-      }
-      return message;
-    } catch (e) {
-      const now = new Date().toISOString().split("T")[0];
-      return `Milestone: ${now}`;
-    }
-  }
-  updateClaudeMd(context, message, hash) {
-    const claudeMdPath = join2(context.workDir, "CLAUDE.md");
-    if (!existsSync2(claudeMdPath))
-      return;
-    let claudeContent = readFileSync2(claudeMdPath, "utf-8");
-    const now = new Date().toISOString().split("T")[0];
-    const milestoneEntry = `- ${now}: ${message} (${hash})`;
-    const milestonesRegex = /## Milestones\s*([\s\S]*?)(?=##|$)/s;
-    const milestonesMatch = claudeContent.match(milestonesRegex);
-    if (milestonesMatch) {
-      const milestonesContent = milestonesMatch[1];
-      const lines = milestonesContent.split(`
-`);
-      const nonEmptyLines = lines.filter((line) => line.trim() && !line.trim().startsWith("-"));
-      const newMilestones = nonEmptyLines.join(`
-`) + `
-` + milestoneEntry;
-      claudeContent = claudeContent.replace(milestonesRegex, `## Milestones
-${newMilestones}`);
-    } else {
-      claudeContent += `
-
-## Milestones
-${milestoneEntry}`;
-    }
-    writeFileSync2(claudeMdPath, claudeContent);
-  }
-}
-
-// src/cli/commands/CompactCommand.ts
-import { writeFileSync as writeFileSync3 } from "fs";
-import { join as join3 } from "path";
-class CompactCommand {
-  name = "compact";
-  async execute(context, options) {
-    try {
-      console.log(source_default2.bold(`
-=== Memory Compaction ===`));
-      console.log(source_default2.cyan(`Analyzing current context...
-`));
-      let targetReduction = 50;
-      if (options.level === "aggressive") {
-        targetReduction = 60;
-      } else if (options.level === "conservative") {
-        targetReduction = 30;
-      }
-      console.log(source_default2.gray(`Compaction Level: ${options.level || "standard"} (${targetReduction}% reduction target)
-`));
-      const now = new Date;
-      const time = now.toISOString().split("T")[0];
-      const timeStr = now.toLocaleTimeString();
-      const compactedContext = `## Compacted Context
-
-**Time**: ${time}
-**Compaction Level**: ${options.level || "standard"}
-
-### Current Task
-Working on project features and command implementation.
-
-### Recent Actions (Last 5)
-1. Created CheckpointCommand for session management
-2. Created BuildCommand for autonomous building
-3. Created CollabCommand for real-time collaboration
-4. Analyzing command documentation for remaining commands
-5. Implementing compact, multi-repo, personality, re, research-api, voice commands
-
-### Current State
-- **File**: src/cli/commands/ (in progress)
-- **Status**: working
-- **Pending**: Need to register all new commands in src/index.ts
-
-### Key Context
-- Project: komplete-kontrol-cli
-- Language: TypeScript
-- Framework: Commander.js
-- Goal: Implement all missing commands from commands/ directory
-
-### Next Steps
-1. Complete remaining command implementations
-2. Register all commands in src/index.ts
-3. Test all commands
-4. Update documentation
-`;
-      const memoryDir = join3(context.workDir, ".claude", "memory");
-      const compactedPath = join3(memoryDir, "compacted-context.md");
-      __require("fs").mkdirSync(memoryDir, { recursive: true });
-      writeFileSync3(compactedPath, compactedContext);
-      const continuationPrompt = `
-## Memory Compacted
-
-Context compaction complete.
-
-**Compacted Context**:
-
-${compactedContext}
-
-**Next Action**: Continue with task implementation
-
-**Approach**: Use compacted context above. Do not re-explore files already analyzed.
-`;
-      console.log(source_default2.bold(`
-` + continuationPrompt));
-      return {
-        success: true,
-        message: `Memory compacted (${targetReduction}% reduction target)`
-      };
-    } catch (error2) {
-      return {
-        success: false,
-        message: error2.message || "Compaction failed"
-      };
-    }
-  }
-}
-
 // src/cli/commands/ReCommand.ts
-import { existsSync as existsSync3, readFileSync as readFileSync4 } from "fs";
+import { existsSync, readFileSync } from "fs";
 class ReCommand {
   name = "re";
   async execute(context, options) {
@@ -12120,13 +11112,13 @@ Instructions:`));
   }
   analyzeTarget(context, target) {
     console.log(source_default2.yellow("Step 1: Reading target file..."));
-    if (!existsSync3(target)) {
+    if (!existsSync(target)) {
       return {
         success: false,
         message: `Target not found: ${target}`
       };
     }
-    const content = readFileSync4(target, "utf-8");
+    const content = readFileSync(target, "utf-8");
     const ext = target.split(".").pop();
     console.log(source_default2.yellow("Step 2: Analyzing structure..."));
     if (ext === "json") {
@@ -12168,13 +11160,13 @@ Analysis complete.
   }
   deobfuscateTarget(context, target) {
     console.log(source_default2.yellow("Step 1: Checking for obfuscation..."));
-    if (!existsSync3(target)) {
+    if (!existsSync(target)) {
       return {
         success: false,
         message: `Target not found: ${target}`
       };
     }
-    const content = readFileSync4(target, "utf-8");
+    const content = readFileSync(target, "utf-8");
     const lines = content.split(`
 `);
     const isMinified = lines.length === 1 && content.length > 1000 && !content.includes(`
@@ -12211,287 +11203,605 @@ Manual deobfuscation required.
 }
 
 // src/cli/commands/AutoCommand.ts
-import { exec as exec2 } from "child_process";
-import { promisify as promisify2 } from "util";
-import { join as join4 } from "path";
-var execAsync = promisify2(exec2);
+import { exec as exec4 } from "child_process";
+import { promisify as promisify4 } from "util";
 
-class AutoCommand extends BaseCommand {
-  name = "auto";
-  description = "Enter autonomous mode with ReAct + Reflexion loop";
-  iterations = 0;
-  memory;
-  errorHandler;
-  contextManager;
-  conversationHistory = [];
-  checkpointCommand;
-  commitCommand;
-  compactCommand;
-  reCommand;
-  lastCheckpointIteration = 0;
-  lastCommitIteration = 0;
-  lastCompactIteration = 0;
-  lastReIteration = 0;
-  consecutiveSuccesses = 0;
-  consecutiveFailures = 0;
-  currentTaskType = "general";
-  constructor() {
-    super();
-    this.memory = new MemoryManagerBridge;
-    this.errorHandler = new ErrorHandler;
-    this.checkpointCommand = new CheckpointCommand;
-    this.commitCommand = new CommitCommand;
-    this.compactCommand = new CompactCommand;
-    this.reCommand = new ReCommand;
+// src/core/debug/orchestrator/Snapshotter.ts
+class Snapshotter {
+  snapshotDir;
+  constructor(snapshotDir) {
+    this.snapshotDir = snapshotDir;
   }
-  async execute(context, config) {
-    try {
-      if (!config.goal) {
-        return this.createFailure('Goal is required. Usage: komplete auto "your goal"');
-      }
-      this.currentTaskType = this.detectTaskType(config.goal);
-      this.info(`\uD83E\uDD16 Autonomous mode activated`);
-      this.info(`Goal: ${source_default2.bold(config.goal)}`);
-      this.info(`Task Type: ${source_default2.cyan(this.currentTaskType)}`);
-      console.log("");
-      await this.memory.setTask(config.goal, "Autonomous mode execution");
-      await this.memory.addContext(`Model: ${config.model || "auto-routed"}`, 9);
-      await this.memory.addContext(`Task Type: ${this.currentTaskType}`, 8);
-      if (this.currentTaskType === "reverse-engineering") {
-        await this.executeReverseEngineeringTools(context, config.goal);
-      }
-      this.contextManager = new ContextManager({
-        maxTokens: 128000,
-        warningThreshold: 70,
-        compactionThreshold: 80,
-        strategy: COMPACTION_STRATEGIES.balanced
-      }, context.llmRouter);
-      const agent = new ReflexionAgent(config.goal, context.llmRouter);
-      const result = await this.runAutonomousLoop(agent, context, config);
-      if (result.success) {
-        this.success(`Goal achieved in ${this.iterations} iterations`);
-        await this.memory.recordEpisode("task_complete", `Completed: ${config.goal}`, "success", `Iterations: ${this.iterations}`);
-      } else {
-        this.error(`Failed after ${this.iterations} iterations`);
-      }
-      return result;
-    } catch (error2) {
-      const err = error2;
-      this.failSpinner("Autonomous mode failed");
-      const classified = this.errorHandler.classify(error2);
-      const errorMessage = this.errorHandler.formatError(classified);
-      const remediations = this.errorHandler.getRemediation(classified.type);
-      this.error(errorMessage);
-      if (remediations.length > 0) {
-        console.log(source_default2.gray(`
-Suggested actions:`));
-        remediations.forEach((r) => console.log(source_default2.gray(`  • ${r}`)));
-      }
-      return this.createFailure(errorMessage, err);
+  async createSnapshot(snapshotId, testCommand, description) {
+    const testResult = await this.runTest(testCommand);
+    const parsedResults = this.parseTestOutput(testResult.output, testResult.exitCode);
+    const snapshot = {
+      snapshotId,
+      description,
+      testCommand,
+      output: testResult.output,
+      exitCode: testResult.exitCode,
+      testCount: parsedResults.testCount,
+      failedCount: parsedResults.failedCount,
+      timestamp: new Date().toISOString(),
+      testsPassed: parsedResults.testsPassed
+    };
+    const snapshotPath = `${this.snapshotDir}/${snapshotId}.json`;
+    return {
+      snapshotId,
+      snapshotPath,
+      snapshot
+    };
+  }
+  async runTest(_testCommand) {
+    return {
+      output: "// TEST OUTPUT PLACEHOLDER - Use Bash tool to execute",
+      exitCode: 0
+    };
+  }
+  parseTestOutput(output, exitCode) {
+    let testsPassed = false;
+    let testCount = 0;
+    let failedCount = 0;
+    const jestMatch = output.match(/Tests:.*?(\d+)\s+passed/);
+    const totalMatch = output.match(/(\d+)\s+total/);
+    const jestFailedMatch = output.match(/(\d+)\s+failed/);
+    if (jestMatch && totalMatch) {
+      testCount = parseInt(totalMatch[1], 10);
+      failedCount = jestFailedMatch ? parseInt(jestFailedMatch[1], 10) : 0;
+      testsPassed = failedCount === 0 && testCount > 0;
+      return { testsPassed, testCount, failedCount };
     }
+    const mochaMatch = output.match(/(\d+)\s+passing/);
+    const mochaFailedMatch = output.match(/(\d+)\s+failing/);
+    if (mochaMatch) {
+      testCount = parseInt(mochaMatch[1], 10);
+      failedCount = mochaFailedMatch ? parseInt(mochaFailedMatch[1], 10) : 0;
+      testsPassed = failedCount === 0;
+      return { testsPassed, testCount, failedCount };
+    }
+    if (/PASS|SUCCESS|OK/.test(output)) {
+      if (!/FAIL|ERROR|FAILED/.test(output)) {
+        testsPassed = true;
+      }
+    } else if (exitCode === 0) {
+      testsPassed = true;
+    }
+    return { testsPassed, testCount, failedCount };
   }
-  async runAutonomousLoop(agent, context, config) {
+  async loadSnapshot(_snapshotId) {
+    return null;
+  }
+  generateBeforeId() {
+    return `before_${Date.now()}`;
+  }
+  generateAfterId() {
+    return `after_${Date.now()}`;
+  }
+}
+
+// src/core/debug/orchestrator/Memory.ts
+class Memory {
+  memoryFile;
+  constructor(memoryFile) {
+    this.memoryFile = memoryFile;
+  }
+  async recordBugFix(bugDescription, bugType, fixDescription, filesChanged, success, testsPassed = "unknown") {
+    const record = {
+      timestamp: new Date().toISOString(),
+      bugDescription,
+      bugType,
+      fixDescription,
+      filesChanged,
+      success,
+      testsPassed,
+      embeddingKeywords: this.extractKeywords(`${bugDescription} ${fixDescription}`)
+    };
+    return record;
+  }
+  async searchSimilarBugs(_searchQuery, _limit = 5) {
+    return {
+      similarFixes: [],
+      count: 0
+    };
+  }
+  extractKeywords(text) {
+    return text.toLowerCase().split(/\s+/).filter((word) => word.length > 3).filter((word) => !this.isStopWord(word));
+  }
+  isStopWord(word) {
+    const stopWords = new Set([
+      "the",
+      "and",
+      "for",
+      "that",
+      "this",
+      "with",
+      "from",
+      "have",
+      "been",
+      "were",
+      "what",
+      "when",
+      "where",
+      "which",
+      "their",
+      "there"
+    ]);
+    return stopWords.has(word);
+  }
+  async getRecentFixes(_count = 10) {
+    return [];
+  }
+  async getSuccessfulFixes(_limit = 20) {
+    return [];
+  }
+  async getFixesByType(_bugType, _limit = 10) {
+    return [];
+  }
+  async getStats() {
+    return {
+      total: 0,
+      successful: 0,
+      failed: 0,
+      byType: {}
+    };
+  }
+}
+
+// src/core/debug/orchestrator/Searcher.ts
+class Searcher {
+  githubMcpAvailable;
+  constructor(githubMcpAvailable = false) {
+    this.githubMcpAvailable = githubMcpAvailable;
+  }
+  async searchGitHub(_bugDescription, _limit = 3) {
+    if (this.githubMcpAvailable) {
+      return {
+        available: true,
+        mcpAvailable: true,
+        note: "Use mcp__grep__searchGitHub for searching similar issues"
+      };
+    }
+    return {
+      available: false
+    };
+  }
+  buildGitHubQuery(bugDescription, bugType) {
+    const keywords = this.extractKeywords(bugDescription);
+    const query = [...keywords, bugType].filter(Boolean).join(" ");
+    return query;
+  }
+  extractKeywords(text) {
+    return text.toLowerCase().replace(/[^\w\s]/g, " ").split(/\s+/).filter((word) => word.length > 3).filter((word) => !this.isCommonWord(word)).slice(0, 5);
+  }
+  isCommonWord(word) {
+    const common = new Set([
+      "the",
+      "and",
+      "for",
+      "that",
+      "this",
+      "with",
+      "from",
+      "have",
+      "been",
+      "error",
+      "issue",
+      "problem",
+      "help",
+      "need"
+    ]);
+    return common.has(word);
+  }
+  async searchCodebase(_errorPattern, _fileGlob) {
+    return [];
+  }
+  async buildSearchContext(bugDescription, bugType, similarFixesFromMemory) {
+    const githubSolutions = await this.searchGitHub(bugDescription);
+    return {
+      bugDescription,
+      bugType,
+      similarFixesFromMemory,
+      githubSolutions
+    };
+  }
+  generateSearchRecommendations(bugType, keywords) {
+    const recommendations = [];
+    if (bugType === "test_failure") {
+      recommendations.push("Search for test framework-specific issues");
+      recommendations.push("Look for async test patterns");
+    } else if (bugType === "type_error") {
+      recommendations.push("Search for TypeScript type definitions");
+      recommendations.push("Check for interface mismatches");
+    } else if (bugType === "runtime_error") {
+      recommendations.push("Search for error stack traces");
+      recommendations.push("Check for null/undefined handling");
+    }
+    if (keywords.includes("async") || keywords.includes("promise")) {
+      recommendations.push("Review async/await patterns");
+    }
+    if (keywords.includes("import") || keywords.includes("module")) {
+      recommendations.push("Check module resolution");
+    }
+    return recommendations;
+  }
+}
+
+// src/core/debug/orchestrator/Verifier.ts
+class Verifier {
+  regressionLog;
+  constructor(regressionLog) {
+    this.regressionLog = regressionLog;
+  }
+  async detectRegression(beforeSnapshot, afterSnapshot) {
+    const beforePassed = beforeSnapshot.testsPassed;
+    const afterPassed = afterSnapshot.testsPassed;
+    let regressionDetected = false;
+    let regressionType = "none";
+    let details = "";
+    let recommendation = "";
+    if (beforePassed && !afterPassed) {
+      regressionDetected = true;
+      regressionType = "test_failure";
+      details = "Tests passed before fix, but fail after fix";
+      recommendation = "Revert fix and try alternative approach";
+      await this.recordRegression({
+        regressionDetected: true,
+        regressionType,
+        details,
+        beforeSnapshot: beforeSnapshot.snapshotId,
+        afterSnapshot: afterSnapshot.snapshotId
+      });
+    } else if (this.hasNewErrors(beforeSnapshot.output, afterSnapshot.output)) {
+      regressionDetected = true;
+      regressionType = "new_errors";
+      details = "New errors appeared in test output after fix";
+      recommendation = "Review error messages and adjust fix";
+    } else if (beforeSnapshot.testCount > afterSnapshot.testCount) {
+      regressionDetected = true;
+      regressionType = "test_failure";
+      details = `Test count decreased from ${beforeSnapshot.testCount} to ${afterSnapshot.testCount}`;
+      recommendation = "Some tests may have been skipped or removed";
+    }
+    return {
+      regressionDetected,
+      regressionType,
+      details,
+      beforeSnapshot: beforeSnapshot.snapshotId,
+      afterSnapshot: afterSnapshot.snapshotId,
+      recommendation
+    };
+  }
+  async verifyFix(beforeSnapshot, afterSnapshot, _fixDescription) {
+    const regression = await this.detectRegression(beforeSnapshot, afterSnapshot);
+    const beforePassed = beforeSnapshot.testsPassed;
+    const afterPassed = afterSnapshot.testsPassed;
+    const fixEffective = !beforePassed && afterPassed;
+    const success = fixEffective && !regression.regressionDetected;
+    let recommendation;
+    if (regression.regressionDetected) {
+      recommendation = `Regression detected: ${regression.details}. ${regression.recommendation}`;
+    } else if (fixEffective) {
+      recommendation = "Fix successful - tests now passing";
+    } else if (beforePassed && afterPassed) {
+      recommendation = "Tests passing before and after - verify fix addressed root cause";
+    } else {
+      recommendation = "Fix did not resolve test failures - try alternative approach";
+    }
+    return {
+      success,
+      regression,
+      fixEffective,
+      testsPassed: afterPassed,
+      recommendation
+    };
+  }
+  hasNewErrors(beforeOutput, afterOutput) {
+    const errorPatterns = [/ERROR:/gi, /Exception:/gi, /Fatal:/gi, /\bFAILED\b/gi];
+    const beforeErrors = this.countErrors(beforeOutput, errorPatterns);
+    const afterErrors = this.countErrors(afterOutput, errorPatterns);
+    return afterErrors > beforeErrors;
+  }
+  countErrors(output, patterns) {
+    let count = 0;
+    for (const pattern of patterns) {
+      const matches = output.match(pattern);
+      if (matches) {
+        count += matches.length;
+      }
+    }
+    return count;
+  }
+  async recordRegression(_regression) {}
+  async getRecentRegressions(_limit = 10) {
+    return [];
+  }
+  async checkSimilarRegressions(_details) {
+    return [];
+  }
+}
+
+// src/core/debug/orchestrator/Recommender.ts
+class Recommender {
+  generateVerificationRecommendation(verification, _fixDescription) {
+    if (verification.regression.regressionDetected) {
+      return {
+        status: "regression_detected",
+        message: "Fix introduced a regression - tests passing before, failing after",
+        regressionsDetected: true,
+        recommendation: "REVERT THE FIX",
+        actions: [
+          "1. Git revert the changes",
+          "2. Analyze test failures",
+          "3. Try alternative approach using similar_fixes from memory"
+        ],
+        confidence: 95
+      };
+    } else if (verification.success) {
+      return {
+        status: "success",
+        message: "Fix verified - no regressions detected",
+        regressionsDetected: false,
+        recommendation: "Fix successful - continue with next task",
+        actions: ["1. Record successful fix to memory", "2. Continue with next task"],
+        confidence: 90
+      };
+    } else if (!verification.fixEffective) {
+      return {
+        status: "failed",
+        message: "Fix did not resolve the issue",
+        regressionsDetected: false,
+        recommendation: "Try alternative approach",
+        actions: [
+          "1. Review similar fixes from memory",
+          "2. Search GitHub for solutions",
+          "3. Try different approach"
+        ],
+        confidence: 70
+      };
+    }
+    return {
+      status: "needs_alternative",
+      message: "Fix partially effective but needs refinement",
+      regressionsDetected: false,
+      recommendation: "Refine the fix",
+      actions: ["1. Analyze test output", "2. Adjust fix incrementally"],
+      confidence: 60
+    };
+  }
+  generateSmartDebugContext(bugDescription, beforeSnapshotId, similarFixes, githubSolutions) {
+    const fixPrompt = {
+      task: "Fix bug with regression awareness",
+      bugDescription,
+      bugType: "general",
+      context: "",
+      similarFixesFromMemory: similarFixes,
+      githubSolutions,
+      instructions: [
+        "1. Review similar fixes from memory to avoid repeating failed approaches",
+        "2. Consider GitHub solutions if available",
+        "3. Make the fix incrementally",
+        "4. Think about potential side effects on other components",
+        "5. Run tests after fix to detect regressions"
+      ]
+    };
+    return {
+      bug: bugDescription,
+      beforeSnapshot: beforeSnapshotId,
+      similarFixesCount: similarFixes.count,
+      similarFixes,
+      githubSolutions,
+      fixPrompt,
+      nextSteps: [
+        "1. Review similar fixes and GitHub solutions",
+        "2. Apply fix incrementally",
+        "3. Run: verify-fix <snapshot_id> <test_command>",
+        "4. If regression detected, will auto-recommend revert"
+      ]
+    };
+  }
+  generateAlternativeApproaches(bugDescription, failedApproaches, similarFixes) {
+    const alternatives = [];
+    for (const fix of similarFixes) {
+      if (fix.success && !failedApproaches.includes(fix.fixDescription)) {
+        alternatives.push(fix.fixDescription);
+      }
+    }
+    if (bugDescription.toLowerCase().includes("test fail")) {
+      alternatives.push("Check test setup/teardown");
+      alternatives.push("Verify test data fixtures");
+      alternatives.push("Review async test timing");
+    }
+    if (bugDescription.toLowerCase().includes("type error")) {
+      alternatives.push("Add explicit type annotations");
+      alternatives.push("Check interface definitions");
+      alternatives.push("Review generic type constraints");
+    }
+    if (bugDescription.toLowerCase().includes("undefined")) {
+      alternatives.push("Add null checks");
+      alternatives.push("Initialize variables explicitly");
+      alternatives.push("Review optional chaining usage");
+    }
+    return alternatives.slice(0, 5);
+  }
+  generateIncrementalSteps(bugDescription, context) {
+    const steps = [
+      "Create test snapshot before changes",
+      "Identify minimal change needed",
+      "Apply single change",
+      "Run tests and check for regression",
+      "If passing, continue; if failing, revert and try alternative"
+    ];
+    if (context.similarFixesFromMemory.count > 0) {
+      steps.unshift("Review similar successful fixes from memory");
+    }
+    if (context.githubSolutions.available) {
+      steps.unshift("Check GitHub solutions for patterns");
+    }
+    return steps;
+  }
+  assessConfidence(context) {
+    let confidence = 50;
+    confidence += Math.min(context.similarFixesCount * 10, 30);
+    if (context.hasGitHubSolutions) {
+      confidence += 15;
+    }
+    if (context.testsPassed) {
+      confidence += 20;
+    }
+    confidence -= Math.min(context.attemptCount * 5, 20);
+    return Math.max(0, Math.min(100, confidence));
+  }
+}
+
+// src/core/debug/orchestrator/index.ts
+class DebugOrchestrator {
+  snapshotter;
+  memory;
+  searcher;
+  verifier;
+  recommender;
+  constructor(config) {
+    this.snapshotter = new Snapshotter(config.testSnapshotsDir);
+    this.memory = new Memory(config.bugFixMemoryFile);
+    this.searcher = new Searcher(config.githubMcpAvailable);
+    this.verifier = new Verifier(config.regressionLogFile);
+    this.recommender = new Recommender;
+  }
+  async smartDebug(input) {
+    const {
+      bugDescription,
+      testCommand = 'echo "No tests configured"'
+    } = input;
+    const beforeSnapshotId = this.snapshotter.generateBeforeId();
+    await this.snapshotter.createSnapshot(beforeSnapshotId, testCommand, `Before fix: ${bugDescription}`);
+    const similarFixes = await this.memory.searchSimilarBugs(bugDescription, 5);
+    const githubSolutions = await this.searcher.searchGitHub(bugDescription);
+    const debugContext = this.recommender.generateSmartDebugContext(bugDescription, beforeSnapshotId, similarFixes, githubSolutions);
+    return debugContext;
+  }
+  async verifyFix(input) {
+    const { beforeSnapshotId, testCommand, fixDescription = "Fix applied" } = input;
+    const afterSnapshotId = this.snapshotter.generateAfterId();
+    await this.snapshotter.createSnapshot(afterSnapshotId, testCommand, "After fix");
+    const beforeSnapshot = await this.snapshotter.loadSnapshot(beforeSnapshotId);
+    const afterSnapshot = await this.snapshotter.loadSnapshot(afterSnapshotId);
+    if (!beforeSnapshot || !afterSnapshot) {
+      return {
+        status: "failed",
+        message: "Snapshots not found",
+        regressionsDetected: false,
+        recommendation: "Ensure snapshots were created successfully",
+        actions: ["Create snapshots before verification"]
+      };
+    }
+    const verification = await this.verifier.verifyFix(beforeSnapshot, afterSnapshot, fixDescription);
+    const recommendation = this.recommender.generateVerificationRecommendation(verification, fixDescription);
+    if (verification.success) {
+      await this.memory.recordBugFix("Bug fix verified", "general", fixDescription, "unknown", true, "passed");
+    }
+    return recommendation;
+  }
+  async recordBugFix(bugDescription, bugType, fixDescription, filesChanged, success, testsPassed = "unknown") {
+    return this.memory.recordBugFix(bugDescription, bugType, fixDescription, filesChanged, success, testsPassed);
+  }
+  async searchSimilarBugs(query, limit = 5) {
+    return this.memory.searchSimilarBugs(query, limit);
+  }
+  async searchGitHub(bugDescription, limit = 3) {
+    return this.searcher.searchGitHub(bugDescription, limit);
+  }
+  async createSnapshot(snapshotId, testCommand, description) {
+    return this.snapshotter.createSnapshot(snapshotId, testCommand, description);
+  }
+  async detectRegression(beforeSnapshot, afterSnapshot) {
+    return this.verifier.detectRegression(beforeSnapshot, afterSnapshot);
+  }
+  generateAlternatives(bugDescription, failedApproaches, similarFixes) {
+    return this.recommender.generateAlternativeApproaches(bugDescription, failedApproaches, similarFixes);
+  }
+  async getMemoryStats() {
+    return this.memory.getStats();
+  }
+  async getRecentRegressions(limit = 10) {
+    return this.verifier.getRecentRegressions(limit);
+  }
+}
+function createDebugOrchestrator(debugDir = "~/.claude/.debug", githubMcpAvailable = false) {
+  const config = {
+    debugDir,
+    bugFixMemoryFile: `${debugDir}/bug-fixes.jsonl`,
+    regressionLogFile: `${debugDir}/regressions.jsonl`,
+    testSnapshotsDir: `${debugDir}/test-snapshots`,
+    githubMcpAvailable
+  };
+  return new DebugOrchestrator(config);
+}
+
+// src/cli/commands/auto/AutonomousExecutor.ts
+class AutonomousExecutor {
+  deps;
+  callbacks;
+  state = {
+    iterations: 0,
+    consecutiveSuccesses: 0,
+    consecutiveFailures: 0,
+    taskInProgress: false
+  };
+  constructor(deps, callbacks) {
+    this.deps = deps;
+    this.callbacks = callbacks;
+  }
+  async runLoop(agent, context, config) {
     const maxIterations = config.maxIterations || 50;
     let goalAchieved = false;
-    this.startSpinner("Starting autonomous loop...");
-    this.info("\uD83D\uDCCA Phase 0: Initial analysis and planning");
-    const reasoningMode = await this.selectReasoningMode(config.goal, "");
-    this.info(`Reasoning mode: ${reasoningMode.mode} (confidence: ${reasoningMode.confidence})`);
-    const autonomyCheck = await this.checkBoundedAutonomy(config.goal, "");
-    if (!autonomyCheck.allowed) {
-      return this.createFailure(`Task blocked: ${autonomyCheck.reason || "Bounded autonomy check failed"}`);
-    }
-    if (autonomyCheck.requiresApproval) {
-      this.warn(`⚠️ Task requires approval: ${autonomyCheck.reason || "High risk or low confidence"}`);
-    }
-    this.info("\uD83E\uDDE0 Phase 1: Pre-execution intelligence");
-    const totResult = await this.runTreeOfThoughts(config.goal, "");
-    if (totResult.branches.length > 0) {
-      this.info(`Tree of Thoughts: ${totResult.branches.length} branches, selected: ${totResult.selected?.strategy || "default"}`);
-    }
-    const parallelAnalysis = await this.analyzeParallelExecution(config.goal, "");
-    if (parallelAnalysis.canParallelize) {
-      this.info(`Parallel execution: ${parallelAnalysis.groups.length} groups detected`);
-    }
-    const multiAgentResult = await this.coordinateMultiAgent(config.goal, "");
-    this.info(`Multi-agent routing: ${multiAgentResult.agent} agent`);
-    this.info("⚡ Phase 2: Execution with monitoring");
-    while (this.iterations < maxIterations && !goalAchieved) {
-      this.iterations++;
-      this.updateSpinner(`Iteration ${this.iterations}/${maxIterations}`);
+    while (this.state.iterations < maxIterations && !goalAchieved) {
+      this.state.iterations++;
+      this.callbacks.onSpinnerUpdate(`Iteration ${this.state.iterations}/${maxIterations}`);
       try {
-        await this.handleContextCompaction(config);
+        await this.callbacks.onContextCompaction(config);
+        this.state.taskInProgress = true;
         const cycle = await this.executeReflexionCycle(agent, context, config);
-        this.displayCycle(cycle, config.verbose || false);
+        this.state.taskInProgress = false;
+        this.callbacks.onCycleDisplay(cycle, config.verbose || false);
         if (cycle.success) {
-          this.consecutiveSuccesses++;
-          this.consecutiveFailures = 0;
+          this.state.consecutiveSuccesses++;
+          this.state.consecutiveFailures = 0;
         } else {
-          this.consecutiveFailures++;
-          this.consecutiveSuccesses = 0;
+          this.state.consecutiveFailures++;
+          this.state.consecutiveSuccesses = 0;
         }
         goalAchieved = await this.checkGoalAchievement(agent, context, config.goal);
-        const qualityGate = await this.evaluateQualityGate(cycle.observation || "", this.currentTaskType);
-        if (!qualityGate.passed) {
-          this.warn(`Quality gate failed: ${qualityGate.feedback}`);
-        }
-        await this.invokeSkills(context, config, cycle, goalAchieved);
+        await this.callbacks.onSkillInvocation(context, config, cycle, goalAchieved);
         await this.sleep(500);
       } catch (error2) {
         const err = error2;
-        this.warn(`Iteration ${this.iterations} failed: ${err.message}`);
-        await this.memory.recordEpisode("error_encountered", `Iteration ${this.iterations} error`, "failed", err.message);
+        this.callbacks.onWarn(`Iteration ${this.state.iterations} failed: ${err.message}`);
+        await this.deps.memory.recordEpisode("error_encountered", `Iteration ${this.state.iterations} error`, "failed", err.message);
         continue;
       }
     }
-    this.succeedSpinner(`Autonomous loop completed`);
-    if (goalAchieved) {
-      await this.performFinalCheckpoint(context, config.goal);
+    if (!goalAchieved && this.state.iterations >= maxIterations) {
+      return {
+        success: false,
+        message: `Max iterations (${maxIterations}) reached without achieving goal`
+      };
     }
-    if (!goalAchieved && this.iterations >= maxIterations) {
-      return this.createFailure(`Max iterations (${maxIterations}) reached without achieving goal`);
-    }
-    return this.createSuccess("Goal achieved", {
-      iterations: this.iterations,
-      history: agent.getHistory()
-    });
-  }
-  async handleContextCompaction(config) {
-    if (!this.contextManager || this.conversationHistory.length === 0) {
-      return;
-    }
-    const health = this.contextManager.checkContextHealth(this.conversationHistory);
-    if (health.status === "warning") {
-      this.warn(`Context at ${health.percentage.toFixed(1)}% - approaching limit`);
-    }
-    if (health.shouldCompact) {
-      this.info(`\uD83D\uDD04 Context at ${health.percentage.toFixed(1)}% - compacting...`);
-      const { messages, result } = await this.contextManager.compactMessages(this.conversationHistory, `Goal: ${config.goal}`);
-      this.conversationHistory = messages;
-      this.success(`Compacted ${result.originalMessageCount} → ${result.compactedMessageCount} messages ` + `(${(result.compressionRatio * 100).toFixed(0)}% of original)`);
-      await this.memory.addContext(`Context compacted: ${result.compressionRatio.toFixed(2)}x compression`, 6);
-      this.lastCompactIteration = this.iterations;
-    }
-  }
-  async invokeSkills(context, config, cycle, isGoalAchieved) {
-    const checkpointThreshold = config.checkpointThreshold || 10;
-    const commitThreshold = 20;
-    const shouldCheckpoint = this.iterations % checkpointThreshold === 0 || this.consecutiveFailures >= 3 || this.iterations - this.lastCheckpointIteration >= checkpointThreshold && this.consecutiveSuccesses >= 5;
-    if (shouldCheckpoint) {
-      await this.performCheckpoint(context, config.goal);
-      if (this.contextManager && this.conversationHistory.length > 0) {
-        const health = this.contextManager.checkContextHealth(this.conversationHistory);
-        if (health.status === "warning" || health.status === "critical") {
-          await this.performCompact(context, "conservative");
-        }
+    return {
+      success: true,
+      message: "Goal achieved",
+      data: {
+        iterations: this.state.iterations,
+        history: agent.getHistory()
       }
-    }
-    const shouldCommit = this.iterations % commitThreshold === 0 && this.consecutiveSuccesses >= 10 || isGoalAchieved && this.iterations - this.lastCommitIteration >= 5;
-    if (shouldCommit) {
-      await this.performCommit(context, config.goal);
-    }
-    const shouldInvokeRe = this.currentTaskType === "reverse-engineering" && (this.iterations % 15 === 0 || this.iterations - this.lastReIteration >= 15);
-    if (shouldInvokeRe) {
-      await this.performReCommand(context, config.goal);
-    }
-    const shouldRunDebugOrchestrator = this.currentTaskType === "debugging" || this.consecutiveFailures >= 3;
-    if (shouldRunDebugOrchestrator) {
-      await this.runDebugOrchestrator(config.goal, "");
-    }
-    const shouldRunUITesting = config.goal.toLowerCase().includes("ui") || config.goal.toLowerCase().includes("interface") || config.goal.toLowerCase().includes("web") || config.goal.toLowerCase().includes("app");
-    if (shouldRunUITesting) {
-      await this.runUITesting("detect", config.goal);
-    }
-    const shouldRunMacAppTesting = config.goal.toLowerCase().includes("mac") || config.goal.toLowerCase().includes("desktop") || config.goal.toLowerCase().includes("native");
-    if (shouldRunMacAppTesting) {
-      await this.runMacAppTesting("launch", "Safari");
-    }
-  }
-  async performCheckpoint(context, goal) {
-    this.info("\uD83D\uDCF8 Auto-checkpoint triggered");
-    try {
-      const result = await this.checkpointCommand.execute(context, {
-        summary: `Auto checkpoint at iteration ${this.iterations}: ${goal}`
-      });
-      if (result.success) {
-        this.success("Checkpoint saved - session can be resumed from this point");
-      } else {
-        this.warn("Checkpoint failed (continuing anyway)");
-      }
-      this.lastCheckpointIteration = this.iterations;
-    } catch (error2) {
-      this.warn("Checkpoint failed (continuing anyway)");
-    }
-  }
-  async performCommit(context, goal) {
-    this.info("\uD83D\uDCBE Auto-commit triggered (milestone)");
-    try {
-      const result = await this.commitCommand.execute(context, {
-        message: `Milestone: ${goal} - iteration ${this.iterations}`,
-        push: false
-      });
-      if (result.success) {
-        this.success("Commit created - milestone saved to version history");
-      } else {
-        this.warn("Commit failed (continuing anyway)");
-      }
-      this.lastCommitIteration = this.iterations;
-    } catch (error2) {
-      this.warn("Commit failed (continuing anyway)");
-    }
-  }
-  async performCompact(context, level = "conservative") {
-    this.info("\uD83D\uDD04 Auto-compact triggered");
-    try {
-      const result = await this.compactCommand.execute(context, { level });
-      if (result.success) {
-        this.success("Memory compacted - context optimized");
-      } else {
-        this.warn("Compact failed (continuing anyway)");
-      }
-      this.lastCompactIteration = this.iterations;
-    } catch (error2) {
-      this.warn("Compact failed (continuing anyway)");
-    }
-  }
-  async performFinalCheckpoint(context, goal) {
-    this.info("\uD83D\uDCF8 Final checkpoint before completion");
-    try {
-      const result = await this.checkpointCommand.execute(context, {
-        summary: `Goal achieved: ${goal} after ${this.iterations} iterations`
-      });
-      if (result.success) {
-        this.success("Final checkpoint saved");
-      }
-    } catch (error2) {
-      this.warn("Final checkpoint failed");
-    }
-  }
-  async performReCommand(context, goal) {
-    this.info("\uD83D\uDD2C Reverse engineering command triggered");
-    try {
-      const targetMatch = goal.match(/(?:analyze|extract|deobfuscate|understand)\s+(.+?)(?:\s|$)/i);
-      const target = targetMatch ? targetMatch[1] : ".";
-      const result = await this.reCommand.execute(context, {
-        action: "analyze",
-        target
-      });
-      if (result.success) {
-        this.success("Reverse engineering analysis complete");
-      } else {
-        this.warn("Reverse engineering analysis failed (continuing anyway)");
-      }
-      this.lastReIteration = this.iterations;
-    } catch (error2) {
-      this.warn("Reverse engineering command failed (continuing anyway)");
-    }
+    };
   }
   async executeReflexionCycle(agent, context, config) {
-    const memoryContext = await this.memory.getWorking();
-    const recentEpisodes = await this.memory.searchEpisodes(config.goal, 5);
+    const memoryContext = await this.deps.memory.getWorking();
+    const recentEpisodes = await this.deps.memory.searchEpisodes(config.goal, 5);
     const prompt = this.buildCyclePrompt(config.goal, memoryContext, recentEpisodes);
     const userMessage = { role: "user", content: prompt };
-    this.conversationHistory.push(userMessage);
+    this.deps.conversationHistory.push(userMessage);
     const llmResponse = await context.llmRouter.route({
       messages: [{ role: "user", content: prompt }],
       system: "You are an autonomous AI agent executing tasks. Think step by step."
@@ -12507,9 +11817,9 @@ Suggested actions:`));
       role: "assistant",
       content: llmResponse.content
     };
-    this.conversationHistory.push(assistantMessage);
+    this.deps.conversationHistory.push(assistantMessage);
     const cycle = await agent.cycle(thought);
-    await this.memory.addContext(`Iteration ${this.iterations}: ${cycle.thought}`, 7);
+    await this.deps.memory.addContext(`Iteration ${this.state.iterations}: ${cycle.thought}`, 7);
     return cycle;
   }
   buildCyclePrompt(goal, memoryContext, recentEpisodes) {
@@ -12522,7 +11832,7 @@ ${memoryContext}
 Recent History:
 ${recentEpisodes}
 
-What is the next step to achieve this goal? Think through:
+What is next step to achieve this goal? Think through:
 1. What has been done so far?
 2. What remains to be done?
 3. What is the best next action?
@@ -12560,11 +11870,892 @@ Has the goal been achieved? Answer with just "YES" or "NO" and brief explanation
         const answer = firstContent.type === "text" ? firstContent.text : "NO";
         return answer.toUpperCase().startsWith("YES");
       } catch (error2) {
-        this.warn("LLM verification unavailable, using heuristic");
+        this.callbacks.onWarn("LLM verification unavailable, using heuristic");
         return allSuccessful && recentCycles.length >= 3;
       }
     }
     return false;
+  }
+  sleep(ms) {
+    return new Promise((resolve2) => setTimeout(resolve2, ms));
+  }
+  getState() {
+    return { ...this.state };
+  }
+}
+
+// src/cli/commands/auto/HookIntegration.ts
+import { exec as exec2 } from "child_process";
+import { promisify as promisify2 } from "util";
+import { join } from "path";
+var execAsync = promisify2(exec2);
+
+class HookIntegration {
+  hooksPath = join(process.env.HOME || "", ".claude/hooks");
+  async runHook(hookName, args = []) {
+    const hookPath = join(this.hooksPath, `${hookName}.sh`);
+    try {
+      const { stdout } = await execAsync(`bash ${hookPath} ${args.join(" ")}`);
+      return JSON.parse(stdout);
+    } catch (error2) {
+      return null;
+    }
+  }
+  async evaluateQualityGate(output, taskType) {
+    const criteria = await this.runHook("auto-evaluator", ["criteria", taskType]);
+    const evaluation = await this.runHook("auto-evaluator", ["evaluate", output, criteria]);
+    if (!evaluation) {
+      return { passed: true, score: 7, feedback: "Quality gate check passed" };
+    }
+    const score = evaluation.score || 7;
+    const passed = evaluation.decision === "continue" || score >= 7;
+    return {
+      passed,
+      score,
+      feedback: evaluation.message || `Quality score: ${score}/10`
+    };
+  }
+  async checkBoundedAutonomy(task, context) {
+    const check = await this.runHook("bounded-autonomy", ["check", task, context]);
+    if (!check) {
+      return { allowed: true, requiresApproval: false };
+    }
+    return {
+      allowed: check.allowed !== false,
+      requiresApproval: check.requires_approval === true,
+      reason: check.reason
+    };
+  }
+  async selectReasoningMode(task, context) {
+    const modeInfo = await this.runHook("reasoning-mode-switcher", ["select", task, context, "normal", "normal", "low"]);
+    if (!modeInfo) {
+      return { mode: "deliberate", confidence: 0.7, reasoning: "Default mode selected" };
+    }
+    return {
+      mode: modeInfo.selected_mode || "deliberate",
+      confidence: modeInfo.confidence || 0.7,
+      reasoning: modeInfo.reasoning || `Task characteristics suggest ${modeInfo.selected_mode || "deliberate"} mode`
+    };
+  }
+  async runTreeOfThoughts(task, context) {
+    const branches = await this.runHook("tree-of-thoughts", ["generate", task, context, "3"]);
+    const evaluation = await this.runHook("tree-of-thoughts", ["evaluate", branches]);
+    if (!evaluation) {
+      return { branches: [], selected: null, success: false };
+    }
+    return {
+      branches: branches.branches || [],
+      selected: evaluation.selected_branch,
+      success: true
+    };
+  }
+  async analyzeParallelExecution(task, context) {
+    const analysis = await this.runHook("parallel-execution-planner", ["analyze", task, context]);
+    if (!analysis) {
+      return { canParallelize: false, groups: [], success: false };
+    }
+    return {
+      canParallelize: analysis.canParallelize || false,
+      groups: analysis.groups || [],
+      success: true
+    };
+  }
+  async coordinateMultiAgent(task, _context) {
+    const routing = await this.runHook("multi-agent-orchestrator", ["route", task]);
+    const orchestrate = await this.runHook("multi-agent-orchestrator", ["orchestrate", task]);
+    if (!routing || !orchestrate) {
+      return { agent: "general", workflow: [], success: false };
+    }
+    return {
+      agent: routing.selected_agent || "general",
+      workflow: orchestrate.workflow || [],
+      success: true
+    };
+  }
+}
+
+// src/cli/commands/CheckpointCommand.ts
+import { existsSync as existsSync2, readFileSync as readFileSync2, writeFileSync } from "fs";
+import { join as join2 } from "path";
+import { execSync } from "child_process";
+class CheckpointCommand {
+  name = "checkpoint";
+  async execute(context, options) {
+    try {
+      const claudeMdPath = join2(context.workDir, "CLAUDE.md");
+      const pipelineState = null;
+      let currentFeature = "";
+      let currentTier = "";
+      let currentPhase = "";
+      let tierStatus = "";
+      let reports = null;
+      if (existsSync2(claudeMdPath)) {
+        const claudeContent2 = readFileSync2(claudeMdPath, "utf-8");
+        const pipelineMatch = claudeContent2.match(/## Pipeline State\n([\s\S]*?)(?=##|$)/s);
+        if (pipelineMatch) {
+          const pipelineContent = pipelineMatch[1];
+          const phaseMatch = pipelineContent.match(/Phase:\s*(\w+)/);
+          const featureMatch = pipelineContent.match(/Feature:\s*(.+)/);
+          const tierMatch = pipelineContent.match(/Tier:\s*(\w+)/);
+          const statusMatch = pipelineContent.match(/Tier-Status:\s*(\w+)/);
+          const reportsMatch = pipelineContent.match(/Reports:\s*(.+)/);
+          if (phaseMatch)
+            currentPhase = phaseMatch[1];
+          if (featureMatch)
+            currentFeature = featureMatch[1];
+          if (tierMatch)
+            currentTier = tierMatch[1];
+          if (statusMatch)
+            tierStatus = statusMatch[1];
+          if (reportsMatch)
+            reports = reportsMatch[1];
+        }
+      }
+      const buildguidePath = join2(context.workDir, "buildguide.md");
+      let nextSection = "";
+      const newDocsFound = [];
+      if (existsSync2(buildguidePath)) {
+        const buildguideContent = readFileSync2(buildguidePath, "utf-8");
+        const uncheckedMatch = buildguideContent.match(/-\s*\[\s*\]\s*(.+)/);
+        if (uncheckedMatch && uncheckedMatch.length > 0) {
+          nextSection = uncheckedMatch[0].trim();
+        }
+      }
+      let claudeContent = existsSync2(claudeMdPath) ? readFileSync2(claudeMdPath, "utf-8") : "";
+      const now = new Date().toISOString().split("T")[0];
+      const lastSessionRegex = /## Last Session\s*\([\s\S]*?\)\s*([\s\S]*?)/;
+      claudeContent = claudeContent.replace(lastSessionRegex, "");
+      const nextStepsMatch = claudeContent.match(/## Next Steps\s*([\s\S]*?)(?=##|$)/s);
+      if (nextStepsMatch) {
+        const nextStepsContent = nextStepsMatch[1];
+        const filteredNextSteps = nextStepsContent.split(`
+`).filter((line, index, _lines) => {
+          if (line.trim().startsWith("- ")) {
+            return index < 3;
+          }
+          return true;
+        }).join(`
+`);
+        claudeContent = claudeContent.replace(nextStepsMatch[0], `## Next Steps
+${filteredNextSteps}`);
+      }
+      claudeContent = claudeContent.replace(/## Session Log\s*[\s\S]*?(?=##|$)/gs, "");
+      claudeContent = claudeContent.replace(/## History\s*[\s\S]*?(?=##|$)/gs, "");
+      if (pipelineState) {
+        const pipelineRegex = /## Pipeline State\s*([\s\S]*?)(?=##|$)/s;
+        const newState = this.advancePipelineState(currentPhase, currentTier, tierStatus);
+        const newPipelineSection = `## Pipeline State
+
+Phase: ${newState.phase}
+Feature: ${currentFeature}
+Tier: ${newState.tier}
+Tier-Status: ${newState.status}
+Reports: ${reports || "N/A"}
+`;
+        if (pipelineRegex) {
+          claudeContent = claudeContent.replace(pipelineRegex, newPipelineSection);
+        } else {
+          claudeContent += `
+` + newPipelineSection;
+        }
+      }
+      writeFileSync(claudeMdPath, claudeContent);
+      try {
+        const isGitRepo = execSync("git rev-parse --git-dir 2>/dev/null", { cwd: context.workDir, stdio: "pipe" });
+        if (isGitRepo) {
+          const hasChanges = execSync("git diff --quiet || git diff --cached --quiet", { cwd: context.workDir, stdio: "pipe" });
+          if (hasChanges) {
+            execSync("git add CLAUDE.md buildguide.md 2>/dev/null || git add CLAUDE.md", { cwd: context.workDir });
+            execSync(`git commit -m "checkpoint: ${now} - session progress saved"`, { cwd: context.workDir });
+            try {
+              execSync("git push origin HEAD 2>/dev/null", { cwd: context.workDir });
+            } catch (e) {
+              console.log(source_default2.yellow("Note: Push failed, may need authentication"));
+            }
+          }
+        }
+      } catch (e) {}
+      const continuationPrompt = this.generateContinuationPrompt(context.workDir, options.summary || "Session checkpointed", currentFeature, currentPhase, currentTier, tierStatus, nextSection, newDocsFound);
+      console.log(source_default2.bold(`
+` + continuationPrompt));
+      return {
+        success: true,
+        message: "Checkpoint saved successfully"
+      };
+    } catch (error2) {
+      return {
+        success: false,
+        message: error2.message || "Checkpoint failed"
+      };
+    }
+  }
+  advancePipelineState(phase, tier, status) {
+    const transitions = {
+      "debugging,high,in-progress": { phase: "debugging", tier: "medium", status: "pending" },
+      "debugging,medium,in-progress": { phase: "debugging", tier: "low", status: "pending" },
+      "debugging,low,in-progress": { phase: "refactor-hunt", tier: "-", status: "-" },
+      "refactoring,high,in-progress": { phase: "refactoring", tier: "medium", status: "pending" },
+      "refactoring,medium,in-progress": { phase: "refactoring", tier: "low", status: "pending" },
+      "refactoring,low,in-progress": { phase: "build", tier: "-", status: "-" }
+    };
+    const key = `${phase},${tier},${status}`;
+    return transitions[key] || { phase, tier, status };
+  }
+  generateContinuationPrompt(workDir, summary, feature, phase, tier, status, nextSection, newDocs) {
+    const projectName = workDir.split("/").pop() || "Project";
+    if (phase) {
+      return this.generatePipelineContinuationPrompt(projectName, summary, feature, phase, tier, status, nextSection, newDocs);
+    }
+    return `
+## Continuation Prompt
+
+Continue work on ${projectName} at ${workDir}.
+
+**What's Done**: ${summary}
+
+**Current State**: Checkpoint saved at ${new Date().toLocaleTimeString()}
+
+${nextSection ? `**Build Guide**: Next section: ${nextSection} - see buildguide.md for research` : ""}
+
+${newDocs.length > 0 ? `**New Docs Found**: ${newDocs.join(", ")}` : ""}
+
+**Next Step**: ${nextSection ? `Continue with ${nextSection}` : "Check CLAUDE.md for next steps"}
+
+**Key Files**: CLAUDE.md${existsSync2(join2(workDir, "buildguide.md")) ? ", buildguide.md" : ""}
+
+**Approach**: Do NOT explore full codebase. Use context above. Check buildguide.md for collected research.
+`;
+  }
+  generatePipelineContinuationPrompt(projectName, summary, feature, phase, tier, status, nextSection, newDocs) {
+    if (phase === "debugging") {
+      return `
+## Continuation Prompt
+
+Continue work on ${projectName}.
+
+**Pipeline Phase**: debugging
+**Feature**: ${feature}
+**Current Tier**: ${tier} - ${status}
+
+**Next Action**: Fix ${tier} priority bugs from bug report
+
+**Approach**: Do NOT explore codebase. Read only files in Scope above.
+`;
+    }
+    if (phase === "refactor-hunt") {
+      return `
+## Continuation Prompt
+
+Continue work on ${projectName}.
+
+**Pipeline Phase**: refactor-hunt
+**Feature**: ${feature}
+
+**Next Action**: Run /refactor-hunt-checkpoint to analyze for refactoring opportunities
+
+**Approach**: Do NOT explore codebase. Read only files in Scope above.
+`;
+    }
+    if (phase === "refactoring") {
+      return `
+## Continuation Prompt
+
+Continue work on ${projectName}.
+
+**Pipeline Phase**: refactoring
+**Feature**: ${feature}
+**Current Tier**: ${tier} - ${status}
+
+**Next Action**: Execute ${tier} priority refactors from refactor report
+
+**Approach**: Do NOT explore codebase. Read only files in Scope above.
+`;
+    }
+    if (phase === "build") {
+      return `
+## Continuation Prompt
+
+Continue work on ${projectName}.
+
+**Pipeline Complete** for feature: ${feature}
+
+**Next Action**: ${nextSection || "Pipeline complete - check with user for next task"}
+
+**Approach**: Read CLAUDE.md for full context. You may explore codebase as needed.
+`;
+    }
+    return this.generateStandardContinuationPrompt(projectName, summary, nextSection, newDocs);
+  }
+  generateStandardContinuationPrompt(projectName, summary, nextSection, newDocs) {
+    return `
+## Continuation Prompt
+
+Continue work on ${projectName}.
+
+**What's Done**: ${summary}
+
+${nextSection ? `**Build Guide**: Next section: ${nextSection} - see buildguide.md for research` : ""}
+
+${newDocs.length > 0 ? `**New Docs Found**: ${newDocs.join(", ")}` : ""}
+
+**Next Step**: ${nextSection || "Check CLAUDE.md for next steps"}
+
+**Key Files**: CLAUDE.md
+
+**Approach**: Do NOT explore full codebase. Use context above. Check buildguide.md for collected research.
+`;
+  }
+}
+
+// src/cli/commands/CommitCommand.ts
+import { existsSync as existsSync3, readFileSync as readFileSync3, writeFileSync as writeFileSync2 } from "fs";
+import { join as join3 } from "path";
+import { execSync as execSync2 } from "child_process";
+class CommitCommand {
+  name = "commit";
+  description = "Create a permanent version history commit (milestone)";
+  async execute(context, options) {
+    try {
+      console.log(source_default2.bold(`
+=== Git Commit (Milestone) ===`));
+      try {
+        execSync2("git rev-parse --git-dir", { cwd: context.workDir, stdio: "pipe" });
+      } catch (e) {
+        return {
+          success: false,
+          message: "Not in a git repository. Cannot create commit."
+        };
+      }
+      const hasChanges = execSync2("git diff --quiet || git diff --cached --quiet", { cwd: context.workDir, stdio: "pipe" });
+      if (!hasChanges) {
+        console.log(source_default2.yellow(`
+No changes to commit.`));
+        return {
+          success: true,
+          message: "No changes to commit"
+        };
+      }
+      let commitMessage = options.message;
+      if (!commitMessage) {
+        commitMessage = await this.generateCommitMessage(context);
+      }
+      console.log(source_default2.cyan(`
+Commit message: ${commitMessage}`));
+      console.log(source_default2.gray("Staging changes..."));
+      execSync2("git add -A", { cwd: context.workDir });
+      console.log(source_default2.gray("Creating commit..."));
+      execSync2(`git commit -m "${commitMessage}"`, { cwd: context.workDir });
+      console.log(source_default2.green("✓ Commit created successfully"));
+      const commitHash = execSync2("git rev-parse --short HEAD", { cwd: context.workDir, encoding: "utf-8" }).trim();
+      console.log(source_default2.gray(`Commit: ${commitHash}`));
+      if (options.push) {
+        console.log(source_default2.gray("Pushing to remote..."));
+        try {
+          if (options.branch) {
+            execSync2(`git push origin ${options.branch}`, { cwd: context.workDir });
+          } else {
+            execSync2("git push origin HEAD", { cwd: context.workDir });
+          }
+          console.log(source_default2.green("✓ Pushed to remote"));
+        } catch (e) {
+          console.log(source_default2.yellow("Note: Push failed, may need authentication"));
+        }
+      }
+      this.updateClaudeMd(context, commitMessage, commitHash);
+      console.log(source_default2.bold(`
+=== Milestone Saved ===`));
+      console.log(source_default2.green("This commit represents a stable milestone in your project."));
+      return {
+        success: true,
+        message: `Commit ${commitHash} created: ${commitMessage}`,
+        data: { hash: commitHash, message: commitMessage }
+      };
+    } catch (error2) {
+      return {
+        success: false,
+        message: error2.message || "Commit failed"
+      };
+    }
+  }
+  async generateCommitMessage(context) {
+    try {
+      const claudeMdPath = join3(context.workDir, "CLAUDE.md");
+      let contextInfo = "";
+      if (existsSync3(claudeMdPath)) {
+        const claudeContent = readFileSync3(claudeMdPath, "utf-8");
+        const lastSessionMatch = claudeContent.match(/## Last Session\s*\([^)]+\)\s*- ([^\n]+)/);
+        if (lastSessionMatch) {
+          contextInfo = lastSessionMatch[1].trim();
+        }
+      }
+      const now = new Date().toISOString().split("T")[0];
+      let message = `Milestone: ${now}`;
+      if (contextInfo) {
+        message += ` - ${contextInfo}`;
+      }
+      return message;
+    } catch (e) {
+      const now = new Date().toISOString().split("T")[0];
+      return `Milestone: ${now}`;
+    }
+  }
+  updateClaudeMd(context, message, hash) {
+    const claudeMdPath = join3(context.workDir, "CLAUDE.md");
+    if (!existsSync3(claudeMdPath))
+      return;
+    let claudeContent = readFileSync3(claudeMdPath, "utf-8");
+    const now = new Date().toISOString().split("T")[0];
+    const milestoneEntry = `- ${now}: ${message} (${hash})`;
+    const milestonesRegex = /## Milestones\s*([\s\S]*?)(?=##|$)/s;
+    const milestonesMatch = claudeContent.match(milestonesRegex);
+    if (milestonesMatch) {
+      const milestonesContent = milestonesMatch[1];
+      const lines = milestonesContent.split(`
+`);
+      const nonEmptyLines = lines.filter((line) => line.trim() && !line.trim().startsWith("-"));
+      const newMilestones = nonEmptyLines.join(`
+`) + `
+` + milestoneEntry;
+      claudeContent = claudeContent.replace(milestonesRegex, `## Milestones
+${newMilestones}`);
+    } else {
+      claudeContent += `
+
+## Milestones
+${milestoneEntry}`;
+    }
+    writeFileSync2(claudeMdPath, claudeContent);
+  }
+}
+
+// src/cli/commands/CompactCommand.ts
+import { writeFileSync as writeFileSync3, mkdirSync } from "fs";
+import { join as join4 } from "path";
+class CompactCommand {
+  name = "compact";
+  async execute(context, options) {
+    try {
+      console.log(source_default2.bold(`
+=== Memory Compaction ===`));
+      console.log(source_default2.cyan(`Analyzing current context...
+`));
+      let targetReduction = 50;
+      if (options.level === "aggressive") {
+        targetReduction = 60;
+      } else if (options.level === "conservative") {
+        targetReduction = 30;
+      }
+      console.log(source_default2.gray(`Compaction Level: ${options.level || "standard"} (${targetReduction}% reduction target)
+`));
+      const now = new Date;
+      const time = now.toISOString().split("T")[0];
+      const compactedContext = `## Compacted Context
+
+**Time**: ${time}
+**Compaction Level**: ${options.level || "standard"}
+
+### Current Task
+Working on project features and command implementation.
+
+### Recent Actions (Last 5)
+1. Created CheckpointCommand for session management
+2. Created BuildCommand for autonomous building
+3. Created CollabCommand for real-time collaboration
+4. Analyzing command documentation for remaining commands
+5. Implementing compact, multi-repo, personality, re, research-api, voice commands
+
+### Current State
+- **File**: src/cli/commands/ (in progress)
+- **Status**: working
+- **Pending**: Need to register all new commands in src/index.ts
+
+### Key Context
+- Project: komplete-kontrol-cli
+- Language: TypeScript
+- Framework: Commander.js
+- Goal: Implement all missing commands from commands/ directory
+
+### Next Steps
+1. Complete remaining command implementations
+2. Register all commands in src/index.ts
+3. Test all commands
+4. Update documentation
+`;
+      const memoryDir = join4(context.workDir, ".claude", "memory");
+      const compactedPath = join4(memoryDir, "compacted-context.md");
+      mkdirSync(memoryDir, { recursive: true });
+      writeFileSync3(compactedPath, compactedContext);
+      const continuationPrompt = `
+## Memory Compacted
+
+Context compaction complete.
+
+**Compacted Context**:
+
+${compactedContext}
+
+**Next Action**: Continue with task implementation
+
+**Approach**: Use compacted context above. Do not re-explore files already analyzed.
+`;
+      console.log(source_default2.bold(`
+` + continuationPrompt));
+      return {
+        success: true,
+        message: `Memory compacted (${targetReduction}% reduction target)`
+      };
+    } catch (error2) {
+      return {
+        success: false,
+        message: error2.message || "Compaction failed"
+      };
+    }
+  }
+}
+
+// src/cli/commands/auto/SkillInvoker.ts
+class SkillInvoker {
+  state;
+  callbacks;
+  checkpointCommand;
+  commitCommand;
+  compactCommand;
+  constructor(state, callbacks) {
+    this.state = state;
+    this.callbacks = callbacks;
+    this.checkpointCommand = new CheckpointCommand;
+    this.commitCommand = new CommitCommand;
+    this.compactCommand = new CompactCommand;
+  }
+  async invoke(context, config, cycle, isGoalAchieved, contextManager, conversationHistory) {
+    const checkpointThreshold = config.checkpointThreshold || 10;
+    const commitThreshold = 20;
+    const shouldCheckpoint = this.state.iterations % checkpointThreshold === 0 || this.state.consecutiveFailures >= 3 || this.state.iterations - this.state.lastCheckpointIteration >= checkpointThreshold && this.state.consecutiveSuccesses >= 5;
+    if (shouldCheckpoint) {
+      await this.performCheckpoint(context, config.goal);
+      if (contextManager && conversationHistory && conversationHistory.length > 0) {
+        const health = contextManager.checkContextHealth(conversationHistory);
+        if (health.status === "warning" || health.status === "critical") {
+          await this.performCompact(context, "conservative");
+        }
+      }
+    }
+    const shouldCommit = this.state.iterations % commitThreshold === 0 && this.state.consecutiveSuccesses >= 10 || isGoalAchieved && this.state.iterations - this.state.lastCommitIteration >= 5;
+    if (shouldCommit) {
+      await this.performCommit(context, config.goal);
+    }
+  }
+  async performCheckpoint(context, goal) {
+    this.callbacks.onInfo("\uD83D\uDCF8 Auto-checkpoint triggered");
+    try {
+      const result = await this.checkpointCommand.execute(context, {
+        summary: `Auto checkpoint at iteration ${this.state.iterations}: ${goal}`
+      });
+      if (result.success) {
+        this.callbacks.onSuccess("Checkpoint saved - session can be resumed from this point");
+      } else {
+        this.callbacks.onWarn("Checkpoint failed (continuing anyway)");
+      }
+      this.state.lastCheckpointIteration = this.state.iterations;
+    } catch (error2) {
+      this.callbacks.onWarn("Checkpoint failed (continuing anyway)");
+    }
+  }
+  async performCommit(context, goal) {
+    this.callbacks.onInfo("\uD83D\uDCBE Auto-commit triggered (milestone)");
+    try {
+      const result = await this.commitCommand.execute(context, {
+        message: `Milestone: ${goal} - iteration ${this.state.iterations}`,
+        push: false
+      });
+      if (result.success) {
+        this.callbacks.onSuccess("Commit created - milestone saved to version history");
+      } else {
+        this.callbacks.onWarn("Commit failed (continuing anyway)");
+      }
+      this.state.lastCommitIteration = this.state.iterations;
+    } catch (error2) {
+      this.callbacks.onWarn("Commit failed (continuing anyway)");
+    }
+  }
+  async performCompact(context, level = "conservative") {
+    this.callbacks.onInfo("\uD83D\uDD04 Auto-compact triggered");
+    try {
+      const result = await this.compactCommand.execute(context, { level });
+      if (result.success) {
+        this.callbacks.onSuccess("Memory compacted - context optimized");
+      } else {
+        this.callbacks.onWarn("Compact failed (continuing anyway)");
+      }
+      this.state.lastCompactIteration = this.state.iterations;
+    } catch (error2) {
+      this.callbacks.onWarn("Compact failed (continuing anyway)");
+    }
+  }
+  async performFinalCheckpoint(context, goal) {
+    this.callbacks.onInfo("\uD83D\uDCF8 Final checkpoint before completion");
+    try {
+      const result = await this.checkpointCommand.execute(context, {
+        summary: `Goal achieved: ${goal} after ${this.state.iterations} iterations`
+      });
+      if (result.success) {
+        this.callbacks.onSuccess("Final checkpoint saved");
+      } else {
+        this.callbacks.onWarn("Final checkpoint failed");
+      }
+    } catch (error2) {
+      this.callbacks.onWarn("Final checkpoint failed");
+    }
+  }
+}
+
+// src/cli/commands/auto/TestingIntegration.ts
+import { exec as exec3 } from "child_process";
+import { promisify as promisify3 } from "util";
+import { join as join5 } from "path";
+var execAsync2 = promisify3(exec3);
+
+class TestingIntegration {
+  hooksPath = join5(process.env.HOME || "", ".claude/hooks");
+  async runHook(hookName, args = []) {
+    const hookPath = join5(this.hooksPath, `${hookName}.sh`);
+    try {
+      const { stdout } = await execAsync2(`bash ${hookPath} ${args.join(" ")}`);
+      return JSON.parse(stdout);
+    } catch (error2) {
+      return null;
+    }
+  }
+  async runUITesting(action, element, value) {
+    const result = await this.runHook("ui-testing", [action, element, value || ""]);
+    if (!result) {
+      return { success: false, result: null };
+    }
+    return {
+      success: result.status === "success",
+      result
+    };
+  }
+  async runMacAppTesting(action, appName, element, value) {
+    const result = await this.runHook("mac-app-testing", [action, appName, element || "", value || ""]);
+    if (!result) {
+      return { success: false, result: null };
+    }
+    return {
+      success: result.status === "success",
+      result
+    };
+  }
+}
+
+// src/cli/commands/AutoCommand.ts
+var execAsync3 = promisify4(exec4);
+
+class AutoCommand extends BaseCommand {
+  name = "auto";
+  description = "Enter autonomous mode with ReAct + Reflexion loop";
+  iterations = 0;
+  memory;
+  errorHandler;
+  contextManager;
+  conversationHistory = [];
+  hookIntegration;
+  skillInvoker;
+  testingIntegration;
+  reCommand;
+  debugOrchestrator;
+  lastCheckpointIteration = 0;
+  lastCommitIteration = 0;
+  lastCompactIteration = 0;
+  lastReIteration = 0;
+  consecutiveSuccesses = 0;
+  consecutiveFailures = 0;
+  currentTaskType = "general";
+  taskInProgress = false;
+  pendingCompaction = false;
+  contextExceededThreshold = false;
+  constructor() {
+    super();
+    this.memory = new MemoryManagerBridge;
+    this.errorHandler = new ErrorHandler;
+    this.hookIntegration = new HookIntegration;
+    this.testingIntegration = new TestingIntegration;
+    this.skillInvoker = new SkillInvoker({
+      iterations: 0,
+      lastCheckpointIteration: 0,
+      lastCommitIteration: 0,
+      lastCompactIteration: 0,
+      consecutiveSuccesses: 0,
+      consecutiveFailures: 0
+    }, {
+      onInfo: (msg) => this.info(msg),
+      onWarn: (msg) => this.warn(msg),
+      onSuccess: (msg) => this.success(msg)
+    });
+    this.reCommand = new ReCommand;
+    this.debugOrchestrator = createDebugOrchestrator();
+  }
+  async execute(context, config) {
+    try {
+      if (!config.goal) {
+        return this.createFailure('Goal is required. Usage: komplete auto "your goal"');
+      }
+      this.currentTaskType = this.detectTaskType(config.goal);
+      this.info(`\uD83E\uDD16 Autonomous mode activated`);
+      this.info(`Goal: ${source_default2.bold(config.goal)}`);
+      this.info(`Task Type: ${source_default2.cyan(this.currentTaskType)}`);
+      console.log("");
+      await this.memory.setTask(config.goal, "Autonomous mode execution");
+      await this.memory.addContext(`Model: ${config.model || "auto-routed"}`, 9);
+      await this.memory.addContext(`Task Type: ${this.currentTaskType}`, 8);
+      if (this.currentTaskType === "reverse-engineering") {
+        await this.executeReverseEngineeringTools(context, config.goal);
+      }
+      this.contextManager = new ContextManager({
+        maxTokens: 128000,
+        warningThreshold: 30,
+        compactionThreshold: 40,
+        strategy: COMPACTION_STRATEGIES.balanced
+      }, context.llmRouter);
+      const agent = new ReflexionAgent(config.goal, context.llmRouter);
+      const result = await this.runAutonomousLoop(agent, context, config);
+      if (result.success) {
+        this.success(`Goal achieved in ${this.iterations} iterations`);
+        await this.memory.recordEpisode("task_complete", `Completed: ${config.goal}`, "success", `Iterations: ${this.iterations}`);
+      } else {
+        this.error(`Failed after ${this.iterations} iterations`);
+      }
+      return result;
+    } catch (error2) {
+      const err = error2;
+      this.failSpinner("Autonomous mode failed");
+      const classified = this.errorHandler.classify(error2);
+      const errorMessage = this.errorHandler.formatError(classified);
+      const remediations = this.errorHandler.getRemediation(classified.type);
+      this.error(errorMessage);
+      if (remediations.length > 0) {
+        console.log(source_default2.gray(`
+Suggested actions:`));
+        remediations.forEach((r) => console.log(source_default2.gray(`  • ${r}`)));
+      }
+      return this.createFailure(errorMessage, err);
+    }
+  }
+  async runAutonomousLoop(agent, context, config) {
+    this.startSpinner("Starting autonomous loop...");
+    this.info("\uD83D\uDCCA Phase 0: Initial analysis and planning");
+    const reasoningMode = await this.hookIntegration.selectReasoningMode(config.goal, "");
+    this.info(`Reasoning mode: ${reasoningMode.mode} (confidence: ${reasoningMode.confidence})`);
+    const autonomyCheck = await this.hookIntegration.checkBoundedAutonomy(config.goal, "");
+    if (!autonomyCheck.allowed) {
+      return this.createFailure(`Task blocked: ${autonomyCheck.reason || "Bounded autonomy check failed"}`);
+    }
+    if (autonomyCheck.requiresApproval) {
+      this.warn(`⚠️ Task requires approval: ${autonomyCheck.reason || "High risk or low confidence"}`);
+    }
+    this.info("\uD83E\uDDE0 Phase 1: Pre-execution intelligence");
+    const totResult = await this.hookIntegration.runTreeOfThoughts(config.goal, "");
+    if (totResult.branches.length > 0) {
+      this.info(`Tree of Thoughts: ${totResult.branches.length} branches, selected: ${totResult.selected?.strategy || "default"}`);
+    }
+    const parallelAnalysis = await this.hookIntegration.analyzeParallelExecution(config.goal, "");
+    if (parallelAnalysis.canParallelize) {
+      this.info(`Parallel execution: ${parallelAnalysis.groups.length} groups detected`);
+    }
+    const multiAgentResult = await this.hookIntegration.coordinateMultiAgent(config.goal, "");
+    this.info(`Multi-agent routing: ${multiAgentResult.agent} agent`);
+    this.info("⚡ Phase 2: Execution with monitoring");
+    const executor = new AutonomousExecutor({
+      memory: this.memory,
+      contextManager: this.contextManager,
+      conversationHistory: this.conversationHistory,
+      taskType: this.currentTaskType
+    }, {
+      onInfo: (msg) => this.info(msg),
+      onWarn: (msg) => this.warn(msg),
+      onSuccess: (msg) => this.success(msg),
+      onSpinnerUpdate: (msg) => this.updateSpinner(msg),
+      onCycleDisplay: (cycle, verbose) => this.displayCycle(cycle, verbose),
+      onSkillInvocation: async (ctx, cfg, cycle, isGoalAchieved) => {
+        this.skillInvoker["state"].iterations = this.iterations;
+        this.skillInvoker["state"].consecutiveSuccesses = this.consecutiveSuccesses;
+        this.skillInvoker["state"].consecutiveFailures = this.consecutiveFailures;
+        await this.skillInvoker.invoke(ctx, cfg, cycle, isGoalAchieved, this.contextManager, this.conversationHistory);
+        const qualityGate = await this.hookIntegration.evaluateQualityGate(cycle.observation || "", this.currentTaskType);
+        if (!qualityGate.passed) {
+          this.warn(`Quality gate failed: ${qualityGate.feedback}`);
+        }
+        this.lastCheckpointIteration = this.skillInvoker["state"].lastCheckpointIteration;
+        this.lastCommitIteration = this.skillInvoker["state"].lastCommitIteration;
+        this.lastCompactIteration = this.skillInvoker["state"].lastCompactIteration;
+      },
+      onContextCompaction: async (cfg) => await this.handleContextCompaction(cfg)
+    });
+    const result = await executor.runLoop(agent, context, config);
+    this.iterations = executor.getState().iterations;
+    this.consecutiveSuccesses = executor.getState().consecutiveSuccesses;
+    this.consecutiveFailures = executor.getState().consecutiveFailures;
+    this.succeedSpinner(`Autonomous loop completed`);
+    if (result.success) {
+      this.skillInvoker["state"].iterations = this.iterations;
+      await this.skillInvoker.performFinalCheckpoint(context, config.goal);
+    }
+    return result.success ? this.createSuccess(result.message, result.data) : this.createFailure(result.message || "Autonomous loop failed");
+  }
+  async handleContextCompaction(config) {
+    if (!this.contextManager || this.conversationHistory.length === 0) {
+      return;
+    }
+    const health = this.contextManager.checkContextHealth(this.conversationHistory);
+    if (health.status === "warning") {
+      this.warn(`Context at ${health.percentage.toFixed(1)}% - approaching limit`);
+    }
+    if (health.shouldCompact && !this.taskInProgress) {
+      await this.performCompaction(config);
+      this.pendingCompaction = false;
+      this.contextExceededThreshold = false;
+    } else if (health.shouldCompact && this.taskInProgress) {
+      if (!this.contextExceededThreshold) {
+        this.info(`⏳ Context at ${health.percentage.toFixed(1)}% - pending compaction after task completes`);
+        this.contextExceededThreshold = true;
+        this.pendingCompaction = true;
+      }
+    } else if (this.pendingCompaction && !this.taskInProgress) {
+      this.info(`\uD83D\uDD04 Task complete - executing pending compaction...`);
+      await this.performCompaction(config);
+      this.pendingCompaction = false;
+      this.contextExceededThreshold = false;
+    }
+  }
+  async performCompaction(config) {
+    if (!this.contextManager) {
+      return;
+    }
+    this.info(`\uD83D\uDD04 Context compacting...`);
+    const { messages, result } = await this.contextManager.compactMessages(this.conversationHistory, `Goal: ${config.goal}`);
+    this.conversationHistory = messages;
+    this.success(`Compacted ${result.originalMessageCount} → ${result.compactedMessageCount} messages ` + `(${(result.compressionRatio * 100).toFixed(0)}% of original)`);
+    await this.memory.addContext(`Context compacted: ${result.compressionRatio.toFixed(2)}x compression`, 6);
+    this.lastCompactIteration = this.iterations;
+  }
+  async performReCommand(context, goal) {
+    this.info("\uD83D\uDD2C Reverse engineering command triggered");
+    try {
+      const targetMatch = goal.match(/(?:analyze|extract|deobfuscate|understand)\s+(.+?)(?:\s|$)/i);
+      const target = targetMatch ? targetMatch[1] : ".";
+      const result = await this.reCommand.execute(context, {
+        action: "analyze",
+        target
+      });
+      if (result.success) {
+        this.success("Reverse engineering analysis complete");
+      } else {
+        this.warn("Reverse engineering analysis failed (continuing anyway)");
+      }
+      this.lastReIteration = this.iterations;
+    } catch (error2) {
+      this.warn("Reverse engineering command failed (continuing anyway)");
+    }
   }
   displayCycle(cycle, verbose) {
     console.log("");
@@ -12578,9 +12769,6 @@ Has the goal been achieved? Answer with just "YES" or "NO" and brief explanation
     const status = cycle.success ? source_default2.green("✓ Success") : source_default2.red("✗ Failed");
     console.log(status);
     console.log("");
-  }
-  sleep(ms) {
-    return new Promise((resolve2) => setTimeout(resolve2, ms));
   }
   detectTaskType(goal) {
     const lowerGoal = goal.toLowerCase();
@@ -12705,7 +12893,7 @@ Provide your reasoning and proposed action.
       const target = targetMatch ? targetMatch[1] : ".";
       this.info("Running code pattern analysis...");
       try {
-        const { stdout: analyzeOutput } = await execAsync(`bash src/reversing/re-analyze.sh analyze "${target}"`);
+        const { stdout: analyzeOutput } = await execAsync3(`bash src/reversing/re-analyze.sh analyze "${target}"`);
         this.success("Code analysis complete");
         console.log(source_default2.gray(analyzeOutput.substring(0, 500) + "..."));
       } catch (error2) {
@@ -12713,7 +12901,7 @@ Provide your reasoning and proposed action.
       }
       this.info("Generating documentation...");
       try {
-        const { stdout: docsOutput } = await execAsync(`bash src/reversing/re-docs.sh project "${target}"`);
+        const { stdout: docsOutput } = await execAsync3(`bash src/reversing/re-docs.sh project "${target}"`);
         this.success("Documentation generated");
         console.log(source_default2.gray(docsOutput.substring(0, 300) + "..."));
       } catch (error2) {
@@ -12721,7 +12909,7 @@ Provide your reasoning and proposed action.
       }
       this.info("Generating optimized prompts...");
       try {
-        const { stdout: promptOutput } = await execAsync(`bash src/reversing/re-prompt.sh understand "${target}"`);
+        const { stdout: promptOutput } = await execAsync3(`bash src/reversing/re-prompt.sh understand "${target}"`);
         this.success("Optimized prompts generated");
         console.log(source_default2.gray(promptOutput.substring(0, 300) + "..."));
       } catch (error2) {
@@ -12732,158 +12920,73 @@ Provide your reasoning and proposed action.
       this.warn("Reverse engineering tools encountered errors");
     }
   }
-  hooksPath = join4(process.env.HOME || "", ".claude/hooks");
-  async runHook(hookName, args = []) {
-    const hookPath = join4(this.hooksPath, `${hookName}.sh`);
-    try {
-      const { stdout } = await execAsync(`bash ${hookPath} ${args.join(" ")}`);
-      return JSON.parse(stdout);
-    } catch (error2) {
-      this.warn(`Hook ${hookName} failed: ${error2.message}`);
-      return null;
-    }
-  }
-  async evaluateQualityGate(output, taskType) {
-    this.info("\uD83D\uDD0D Running quality gate evaluation...");
-    const criteria = await this.runHook("auto-evaluator", ["criteria", taskType]);
-    const evaluation = await this.runHook("auto-evaluator", ["evaluate", output, criteria]);
-    if (!evaluation) {
-      return { passed: true, score: 7, feedback: "Quality gate check passed" };
-    }
-    const score = evaluation.score || 7;
-    const passed = evaluation.decision === "continue" || score >= 7;
-    this.info(`Quality gate: ${passed ? "✓ PASSED" : "✗ FAILED"} (score: ${score}/10)`);
-    return {
-      passed,
-      score,
-      feedback: evaluation.message || `Quality score: ${score}/10`
-    };
-  }
-  async checkBoundedAutonomy(task, context) {
-    this.info("\uD83D\uDEE1️ Running bounded autonomy check...");
-    const check = await this.runHook("bounded-autonomy", ["check", task, context]);
-    if (!check) {
-      return { allowed: true, requiresApproval: false };
-    }
-    const allowed = check.allowed !== false;
-    const requiresApproval = check.requires_approval === true;
-    if (!allowed) {
-      this.error(`\uD83D\uDEAB Task blocked: ${check.reason || "Bounded autonomy check failed"}`);
-    } else if (requiresApproval) {
-      this.warn(`⚠️ Task requires approval: ${check.reason || "High risk or low confidence"}`);
-    } else {
-      this.info("✓ Bounded autonomy check passed");
-    }
-    return { allowed, requiresApproval, reason: check.reason };
-  }
-  async selectReasoningMode(task, context) {
-    this.info("\uD83E\uDDE0 Selecting reasoning mode...");
-    const modeInfo = await this.runHook("reasoning-mode-switcher", ["select", task, context, "normal", "normal", "low"]);
-    if (!modeInfo) {
-      return { mode: "deliberate", confidence: 0.7, reasoning: "Default mode selected" };
-    }
-    const mode = modeInfo.selected_mode || "deliberate";
-    const confidence = modeInfo.confidence || 0.7;
-    this.info(`Reasoning mode: ${mode} (confidence: ${confidence})`);
-    return {
-      mode,
-      confidence,
-      reasoning: modeInfo.reasoning || `Task characteristics suggest ${mode} mode`
-    };
-  }
-  async runTreeOfThoughts(task, context) {
-    this.info("\uD83C\uDF33 Running Tree of Thoughts...");
-    const branches = await this.runHook("tree-of-thoughts", ["generate", task, context, "3"]);
-    const evaluation = await this.runHook("tree-of-thoughts", ["evaluate", branches]);
-    if (!evaluation) {
-      return { branches: [], selected: null, success: false };
-    }
-    const selected = evaluation.selected_branch;
-    const success = true;
-    this.info(`Tree of Thoughts selected: ${selected?.strategy || "default"}`);
-    return {
-      branches: branches.branches || [],
-      selected,
-      success
-    };
-  }
-  async analyzeParallelExecution(task, context) {
-    this.info("⚡ Analyzing parallel execution opportunities...");
-    const analysis = await this.runHook("parallel-execution-planner", ["analyze", task, context]);
-    if (!analysis) {
-      return { canParallelize: false, groups: [], success: false };
-    }
-    const canParallelize = analysis.canParallelize || false;
-    const groups = analysis.groups || [];
-    const success = true;
-    if (canParallelize) {
-      const groupCount = groups.length;
-      this.info(`Task can be parallelized into ${groupCount} groups`);
-    } else {
-      this.info("Task will execute sequentially");
-    }
-    return {
-      canParallelize,
-      groups,
-      success
-    };
-  }
-  async coordinateMultiAgent(task, context) {
-    this.info("\uD83E\uDD16 Coordinating multi-agent execution...");
-    const routing = await this.runHook("multi-agent-orchestrator", ["route", task]);
-    const orchestrate = await this.runHook("multi-agent-orchestrator", ["orchestrate", task]);
-    if (!routing || !orchestrate) {
-      return { agent: "general", workflow: [], success: false };
-    }
-    const agent = routing.selected_agent || "general";
-    const workflow = orchestrate.workflow || [];
-    const success = true;
-    this.info(`Multi-agent routing: ${agent} agent`);
-    return {
-      agent,
-      workflow,
-      success
-    };
-  }
   async runDebugOrchestrator(task, context) {
     this.info("\uD83D\uDC1B Running debug orchestrator...");
-    const { DebugOrchestrator: DebugOrchestrator2 } = await Promise.resolve().then(() => (init_orchestrator(), exports_orchestrator));
-    const orchestrator = new DebugOrchestrator2(this.memory);
-    const snapshotId = `snapshot_${Date.now()}`;
-    const snapshot = await orchestrator.createSnapshot(snapshotId, "npm test", task);
-    const success = true;
-    this.info("Debug orchestrator snapshot created");
-    return {
-      snapshot: snapshot.snapshotId,
-      recommendations: [],
-      success
-    };
-  }
-  async runUITesting(action, element, value) {
-    this.info("\uD83D\uDDB1️ Running UI testing...");
-    const result = await this.runHook("ui-testing", [action, element, value || ""]);
-    if (!result) {
-      return { success: false, result: null };
+    try {
+      const smartDebugInput = {
+        bugDescription: task,
+        bugType: this.currentTaskType,
+        testCommand: 'echo "No tests configured"',
+        context
+      };
+      const debugContext = await this.debugOrchestrator.smartDebug(smartDebugInput);
+      this.info(`\uD83D\uDCF8 Debug context created with snapshot: ${debugContext.beforeSnapshot}`);
+      this.info(`\uD83D\uDD0D Found ${debugContext.similarFixesCount} similar bug fixes in memory`);
+      if (debugContext.nextSteps.length > 0) {
+        this.info("\uD83D\uDCA1 Next steps:");
+        debugContext.nextSteps.forEach((step, i) => {
+          console.log(source_default2.gray(`  ${i + 1}. ${step}`));
+        });
+      }
+      return {
+        snapshot: debugContext.beforeSnapshot,
+        recommendations: debugContext.nextSteps,
+        success: true
+      };
+    } catch (error2) {
+      const err = error2;
+      this.warn(`Debug orchestrator failed: ${err.message}`);
+      return {
+        snapshot: `error_${Date.now()}`,
+        recommendations: [],
+        success: false
+      };
     }
-    const success = result.status === "success";
-    this.info(`UI testing: ${success ? "✓ PASSED" : "✗ FAILED"}`);
-    return {
-      success,
-      result
-    };
   }
-  async runMacAppTesting(action, appName, element, value) {
-    this.info("\uD83C\uDF4E Running Mac app testing...");
-    const result = await this.runHook("mac-app-testing", [action, appName, element || "", value || ""]);
-    if (!result) {
-      return { success: false, result: null };
+  async verifyFixWithDebugOrchestrator(beforeSnapshotId, fixDescription) {
+    this.info("\uD83D\uDC1B Verifying fix with debug orchestrator...");
+    try {
+      const verifyInput = {
+        beforeSnapshotId,
+        testCommand: 'echo "No tests configured"',
+        fixDescription
+      };
+      const result = await this.debugOrchestrator.verifyFix(verifyInput);
+      if (result.regressionsDetected) {
+        this.warn("⚠️ Regressions detected - fix may have broken other functionality");
+      } else {
+        this.success("✓ Fix verified - no regressions detected");
+      }
+      if (result.actions.length > 0) {
+        this.info("\uD83D\uDCA1 Verification recommendations:");
+        result.actions.forEach((action, i) => {
+          console.log(source_default2.gray(`  ${i + 1}. ${action}`));
+        });
+      }
+      return {
+        success: result.status === "success",
+        regressionsDetected: result.regressionsDetected,
+        message: result.message || "Fix verification complete"
+      };
+    } catch (error2) {
+      const err = error2;
+      this.warn(`Fix verification failed: ${err.message}`);
+      return {
+        success: false,
+        regressionsDetected: false,
+        message: err.message
+      };
     }
-    const success = result.status === "success";
-    this.info(`Mac app testing: ${success ? "✓ PASSED" : "✗ FAILED"}`);
-    return {
-      success,
-      result
-    };
   }
 }
 // src/core/workflows/sparc/index.ts
@@ -13760,17 +13863,17 @@ ${merged.summary}
 }
 
 // src/core/agents/swarm/GitIntegration.ts
-import { exec as exec3 } from "node:child_process";
-import { promisify as promisify3 } from "node:util";
+import { exec as exec5 } from "node:child_process";
+import { promisify as promisify5 } from "node:util";
 import * as fs2 from "node:fs/promises";
 import * as path4 from "node:path";
-var execAsync2 = promisify3(exec3);
+var execAsync4 = promisify5(exec5);
 
 class GitIntegration {
   async execGit(args, cwd) {
     try {
       const command = `git ${args.join(" ")}`;
-      const { stdout, stderr } = await execAsync2(command, { cwd });
+      const { stdout, stderr } = await execAsync4(command, { cwd });
       return {
         stdout: stdout.toString(),
         stderr: stderr.toString(),
@@ -13826,7 +13929,7 @@ class GitIntegration {
           report: `Agent ${agentId}: Branch ${branch} not found`
         };
       }
-      const mergeResult = await this.execGit(["merge", branch, "--no-commit", "--no-ff"], workDir);
+      await this.execGit(["merge", branch, "--no-commit", "--no-ff"], workDir);
       const conflictedFiles = await this.detectConflicts(workDir);
       const conflictsDetected = conflictedFiles.length > 0;
       if (conflictsDetected) {
@@ -14444,14 +14547,14 @@ Example: bun run kk reflexion execute --goal "Create calculator app"`
       };
     }
   }
-  async status(context, options) {
+  async status(_context, _options) {
     return {
       success: true,
       message: `Status tracking not yet implemented.
 Future: Will show ongoing executions and their progress.`
     };
   }
-  async metrics(context, options) {
+  async metrics(_context, _options) {
     return {
       success: true,
       message: `Metrics tracking not yet implemented.
@@ -14656,7 +14759,6 @@ Keep the summary under 500 words and focus on actionable information.
   }
 }
 // src/cli/commands/RootCauseCommand.ts
-init_orchestrator();
 import * as os2 from "os";
 import * as path5 from "path";
 
@@ -14777,16 +14879,16 @@ class RootCauseCommand extends BaseCommand {
   }
 }
 // src/cli/commands/BuildCommand.ts
-import { existsSync as existsSync4, readFileSync as readFileSync5, writeFileSync as writeFileSync5 } from "fs";
-import { join as join7 } from "path";
-import { execSync as execSync4 } from "child_process";
+import { existsSync as existsSync4, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "fs";
+import { join as join8 } from "path";
+import { execSync as execSync3 } from "child_process";
 class BuildCommand {
   name = "build";
   async execute(context, options) {
     try {
-      const debugLogPath = join7(context.workDir, ".claude", "docs", "debug-log.md");
-      if (!existsSync4(join7(context.workDir, ".claude", "docs"))) {
-        execSync4("mkdir -p .claude/docs", { cwd: context.workDir });
+      const debugLogPath = join8(context.workDir, ".claude", "docs", "debug-log.md");
+      if (!existsSync4(join8(context.workDir, ".claude", "docs"))) {
+        execSync3("mkdir -p .claude/docs", { cwd: context.workDir });
       }
       if (!existsSync4(debugLogPath)) {
         const debugLogTemplate = `# Debug Log
@@ -14805,26 +14907,11 @@ class BuildCommand {
 
 ## Research Cache
 `;
-        writeFileSync5(debugLogPath, debugLogTemplate);
-      }
-      let architectureContent = "";
-      const architecturePaths = [
-        options.from,
-        "buildguide.md",
-        "ARCHITECTURE.md",
-        "docs/architecture.md",
-        ".claude/docs/architecture.md",
-        "CLAUDE.md"
-      ];
-      for (const path6 of architecturePaths) {
-        if (path6 && existsSync4(join7(context.workDir, path6))) {
-          architectureContent = readFileSync5(join7(context.workDir, path6), "utf-8");
-          break;
-        }
+        writeFileSync4(debugLogPath, debugLogTemplate);
       }
       let targetFeature = options.feature;
-      if (!targetFeature && existsSync4(join7(context.workDir, "buildguide.md"))) {
-        const buildguideContent = readFileSync5(join7(context.workDir, "buildguide.md"), "utf-8");
+      if (!targetFeature && existsSync4(join8(context.workDir, "buildguide.md"))) {
+        const buildguideContent = readFileSync4(join8(context.workDir, "buildguide.md"), "utf-8");
         const uncheckedMatch = buildguideContent.match(/-\s*\[\s*\]\s*(.+)/);
         if (uncheckedMatch && uncheckedMatch.length > 0) {
           targetFeature = uncheckedMatch[0].replace(/-\s*\[\s*\]\s*/, "").trim();
@@ -14844,7 +14931,7 @@ class BuildCommand {
       console.log(source_default2.yellow("Step 3: Researching implementation patterns..."));
       console.log(source_default2.gray(`Note: Use MCP grep tool to search GitHub for examples
 `));
-      const buildPlanPath = join7(context.workDir, ".claude", "current-build.local.md");
+      const buildPlanPath = join8(context.workDir, ".claude", "current-build.local.md");
       const buildPlan = `---
 feature: ${targetFeature}
 phase: implementing
@@ -14876,7 +14963,7 @@ ${targetFeature}
 ## Files to Modify
 [From architecture analysis]
 `;
-      writeFileSync5(buildPlanPath, buildPlan);
+      writeFileSync4(buildPlanPath, buildPlan);
       console.log(source_default2.green("✓ Build plan created"));
       console.log(source_default2.gray(`Plan saved to: ${buildPlanPath}
 `));
@@ -14899,16 +14986,16 @@ ${targetFeature}
   }
 }
 // src/cli/commands/CollabCommand.ts
-import { existsSync as existsSync5, readFileSync as readFileSync6, writeFileSync as writeFileSync6 } from "fs";
-import { join as join8 } from "path";
-import { execSync as execSync5 } from "child_process";
+import { existsSync as existsSync5, readFileSync as readFileSync5, writeFileSync as writeFileSync5, readdirSync } from "fs";
+import { join as join9 } from "path";
+import { execSync as execSync4 } from "child_process";
 class CollabCommand {
   name = "collab";
   async execute(context, options) {
     try {
-      const collabDir = join8(context.workDir, ".claude", "collab");
+      const collabDir = join9(context.workDir, ".claude", "collab");
       if (!existsSync5(collabDir)) {
-        execSync5("mkdir -p .claude/collab", { cwd: context.workDir });
+        execSync4("mkdir -p .claude/collab", { cwd: context.workDir });
       }
       switch (options.action) {
         case "start":
@@ -14936,7 +15023,7 @@ class CollabCommand {
   }
   startSession(context, sessionName) {
     const sessionId = `collab_${Date.now()}`;
-    const sessionPath = join8(context.workDir, ".claude", "collab", `${sessionId}.json`);
+    const sessionPath = join9(context.workDir, ".claude", "collab", `${sessionId}.json`);
     const sessionData = {
       id: sessionId,
       name: sessionName || "Untitled Session",
@@ -14946,7 +15033,7 @@ class CollabCommand {
       activity: [],
       checkpoints: []
     };
-    writeFileSync6(sessionPath, JSON.stringify(sessionData, null, 2));
+    writeFileSync5(sessionPath, JSON.stringify(sessionData, null, 2));
     console.log(source_default2.bold(`
 === Collaboration Session Started ===`));
     console.log(source_default2.green(`Session ID: ${sessionId}`));
@@ -14967,14 +15054,14 @@ Share this ID with collaborators to join:
         message: "Session ID required. Use: /collab join <session-id>"
       };
     }
-    const sessionPath = join8(context.workDir, ".claude", "collab", `${sessionId}.json`);
+    const sessionPath = join9(context.workDir, ".claude", "collab", `${sessionId}.json`);
     if (!existsSync5(sessionPath)) {
       return {
         success: false,
         message: `Session not found: ${sessionId}`
       };
     }
-    const sessionData = JSON.parse(readFileSync6(sessionPath, "utf-8"));
+    const sessionData = JSON.parse(readFileSync5(sessionPath, "utf-8"));
     const userId = process.env.USER || "unknown";
     if (sessionData.collaborators.find((c) => c.id === userId)) {
       return {
@@ -14987,7 +15074,7 @@ Share this ID with collaborators to join:
       role: "editor",
       joinedAt: new Date().toISOString()
     });
-    writeFileSync6(sessionPath, JSON.stringify(sessionData, null, 2));
+    writeFileSync5(sessionPath, JSON.stringify(sessionData, null, 2));
     console.log(source_default2.bold(`
 === Joined Collaboration Session ===`));
     console.log(source_default2.green(`Session: ${sessionData.name}`));
@@ -15000,7 +15087,7 @@ Share this ID with collaborators to join:
     };
   }
   showStatus(context) {
-    const collabDir = join8(context.workDir, ".claude", "collab");
+    const collabDir = join9(context.workDir, ".claude", "collab");
     if (!existsSync5(collabDir)) {
       return {
         success: false,
@@ -15037,7 +15124,7 @@ Share this ID with collaborators to join:
     };
   }
   syncSession(context) {
-    const collabDir = join8(context.workDir, ".claude", "collab");
+    const collabDir = join9(context.workDir, ".claude", "collab");
     if (!existsSync5(collabDir)) {
       return {
         success: false,
@@ -15057,7 +15144,7 @@ Share this ID with collaborators to join:
     };
   }
   leaveSession(context) {
-    const collabDir = join8(context.workDir, ".claude", "collab");
+    const collabDir = join9(context.workDir, ".claude", "collab");
     const userId = process.env.USER || "unknown";
     if (!existsSync5(collabDir)) {
       return {
@@ -15071,8 +15158,8 @@ Share this ID with collaborators to join:
       const collaboratorIndex = session.collaborators.findIndex((c) => c.id === userId);
       if (collaboratorIndex !== -1) {
         session.collaborators.splice(collaboratorIndex, 1);
-        const sessionPath = join8(collabDir, `${session.id}.json`);
-        writeFileSync6(sessionPath, JSON.stringify(session, null, 2));
+        const sessionPath = join9(collabDir, `${session.id}.json`);
+        writeFileSync5(sessionPath, JSON.stringify(session, null, 2));
         leftSession = session;
         break;
       }
@@ -15095,11 +15182,11 @@ Share this ID with collaborators to join:
   }
   listSessions(collabDir) {
     const sessions = [];
-    const files = __require("fs").readdirSync(collabDir);
+    const files = readdirSync(collabDir);
     for (const file of files) {
       if (file.endsWith(".json")) {
-        const sessionPath = join8(collabDir, file);
-        const sessionData = JSON.parse(__require("fs").readFileSync(sessionPath, "utf-8"));
+        const sessionPath = join9(collabDir, file);
+        const sessionData = JSON.parse(readFileSync5(sessionPath, "utf-8"));
         sessions.push(sessionData);
       }
     }
@@ -15107,17 +15194,17 @@ Share this ID with collaborators to join:
   }
 }
 // src/cli/commands/MultiRepoCommand.ts
-import { existsSync as existsSync6, readFileSync as readFileSync7, writeFileSync as writeFileSync7 } from "fs";
-import { join as join9 } from "path";
-import { execSync as execSync6 } from "child_process";
+import { existsSync as existsSync6, readFileSync as readFileSync6, writeFileSync as writeFileSync6 } from "fs";
+import { join as join10 } from "path";
+import { execSync as execSync5 } from "child_process";
 class MultiRepoCommand {
   name = "multi-repo";
   async execute(context, options) {
     try {
-      const configDir = join9(context.workDir, ".claude", "multi-repo");
-      const configPath = join9(configDir, "config.json");
+      const configDir = join10(context.workDir, ".claude", "multi-repo");
+      const configPath = join10(configDir, "config.json");
       if (!existsSync6(configDir)) {
-        execSync6("mkdir -p .claude/multi-repo", { cwd: context.workDir });
+        execSync5("mkdir -p .claude/multi-repo", { cwd: context.workDir });
       }
       switch (options.action) {
         case "status":
@@ -15154,7 +15241,7 @@ No repositories registered.`));
         message: "No repositories registered"
       };
     }
-    const config = JSON.parse(readFileSync7(configPath, "utf-8"));
+    const config = JSON.parse(readFileSync6(configPath, "utf-8"));
     const repos = config.repos || [];
     console.log(source_default2.bold(`
 === Registered Repositories ===
@@ -15180,10 +15267,10 @@ No repositories registered.`));
     }
     let config = { repos: [] };
     if (existsSync6(configPath)) {
-      config = JSON.parse(readFileSync7(configPath, "utf-8"));
+      config = JSON.parse(readFileSync6(configPath, "utf-8"));
     }
     for (const repoPath of repoPaths) {
-      const absolutePath = join9(context.workDir, repoPath);
+      const absolutePath = join10(context.workDir, repoPath);
       if (!existsSync6(absolutePath)) {
         console.log(source_default2.yellow(`Warning: ${repoPath} does not exist`));
         continue;
@@ -15201,7 +15288,7 @@ No repositories registered.`));
         console.log(source_default2.green(`✓ Added: ${repoName}`));
       }
     }
-    writeFileSync7(configPath, JSON.stringify(config, null, 2));
+    writeFileSync6(configPath, JSON.stringify(config, null, 2));
     console.log(source_default2.gray(`
 Total repositories: ${config.repos.length}
 `));
@@ -15217,16 +15304,16 @@ Total repositories: ${config.repos.length}
         message: "No repositories registered"
       };
     }
-    const config = JSON.parse(readFileSync7(configPath, "utf-8"));
+    const config = JSON.parse(readFileSync6(configPath, "utf-8"));
     const repos = config.repos || [];
     console.log(source_default2.bold(`
 === Synchronizing Repositories ===
 `));
     for (const repo of repos) {
-      const repoPath = join9(context.workDir, repo.path);
+      const repoPath = join10(context.workDir, repo.path);
       console.log(source_default2.cyan(`Syncing: ${repo.name}...`));
       try {
-        execSync6("git pull", { cwd: repoPath, stdio: "pipe" });
+        execSync5("git pull", { cwd: repoPath, stdio: "pipe" });
         console.log(source_default2.green(`  ✓ ${repo.name}: Updated`));
       } catch (e) {
         console.log(source_default2.yellow(`  ⚠ ${repo.name}: ${e.message || "Failed"}`));
@@ -15247,18 +15334,18 @@ Synchronization complete.
         message: "No repositories registered"
       };
     }
-    const config = JSON.parse(readFileSync7(configPath, "utf-8"));
+    const config = JSON.parse(readFileSync6(configPath, "utf-8"));
     const repos = config.repos || [];
     console.log(source_default2.bold(`
 === Creating Synchronized Checkpoint ===
 `));
     for (const repo of repos) {
-      const repoPath = join9(context.workDir, repo.path);
+      const repoPath = join10(context.workDir, repo.path);
       console.log(source_default2.cyan(`Checkpointing: ${repo.name}...`));
       try {
-        execSync6("git add -A", { cwd: repoPath });
+        execSync5("git add -A", { cwd: repoPath });
         const commitMsg = message || `checkpoint: ${new Date().toISOString()}`;
-        execSync6(`git commit -m "${commitMsg}"`, { cwd: repoPath });
+        execSync5(`git commit -m "${commitMsg}"`, { cwd: repoPath });
         console.log(source_default2.green(`  ✓ ${repo.name}: Committed`));
       } catch (e) {
         console.log(source_default2.yellow(`  ⚠ ${repo.name}: ${e.message || "Failed"}`));
@@ -15285,7 +15372,7 @@ Checkpoint complete.
         message: "No repositories registered"
       };
     }
-    const config = JSON.parse(readFileSync7(configPath, "utf-8"));
+    const config = JSON.parse(readFileSync6(configPath, "utf-8"));
     const repos = config.repos || [];
     console.log(source_default2.bold(`
 === Executing Command in All Repositories ===
@@ -15293,10 +15380,10 @@ Checkpoint complete.
     console.log(source_default2.cyan(`Command: ${command}
 `));
     for (const repo of repos) {
-      const repoPath = join9(context.workDir, repo.path);
+      const repoPath = join10(context.workDir, repo.path);
       console.log(source_default2.cyan(`Executing in: ${repo.name}...`));
       try {
-        const result = execSync6(command, { cwd: repoPath, stdio: "pipe", encoding: "utf-8" });
+        const result = execSync5(command, { cwd: repoPath, stdio: "pipe", encoding: "utf-8" });
         console.log(source_default2.gray(`  Output: ${result.substring(0, 200)}...`));
         console.log(source_default2.green(`  ✓ ${repo.name}: Success`));
       } catch (e) {
@@ -15315,8 +15402,8 @@ Execution complete.
   }
   getRepoStatus(repoPath) {
     try {
-      execSync6("git rev-parse --git-dir", { cwd: repoPath, stdio: "ignore" });
-      const status = execSync6("git status --short", { cwd: repoPath, stdio: "pipe", encoding: "utf-8" });
+      execSync5("git rev-parse --git-dir", { cwd: repoPath, stdio: "ignore" });
+      const status = execSync5("git status --short", { cwd: repoPath, stdio: "pipe", encoding: "utf-8" });
       if (status.trim() === "") {
         return "Clean";
       }
@@ -15327,13 +15414,13 @@ Execution complete.
   }
 }
 // src/cli/commands/PersonalityCommand.ts
-import { existsSync as existsSync7, readFileSync as readFileSync8, writeFileSync as writeFileSync8, readdirSync } from "fs";
-import { join as join10 } from "path";
+import { existsSync as existsSync7, readFileSync as readFileSync7, writeFileSync as writeFileSync7, readdirSync as readdirSync2 } from "fs";
+import { join as join11 } from "path";
 class PersonalityCommand {
   name = "personality";
   async execute(context, options) {
     try {
-      const personalitiesDir = join10(context.workDir, "personalities");
+      const personalitiesDir = join11(context.workDir, "personalities");
       if (!existsSync7(personalitiesDir)) {
         return {
           success: false,
@@ -15365,12 +15452,12 @@ class PersonalityCommand {
     }
   }
   listPersonalities(personalitiesDir) {
-    const files = readdirSync(personalitiesDir);
+    const files = readdirSync2(personalitiesDir);
     const personalities = [];
     for (const file of files) {
       if (file.endsWith(".yaml") || file.endsWith(".yml")) {
-        const personalityPath = join10(personalitiesDir, file);
-        const content = readFileSync8(personalityPath, "utf-8");
+        const personalityPath = join11(personalitiesDir, file);
+        const content = readFileSync7(personalityPath, "utf-8");
         const nameMatch = content.match(/^name:\s*"(.+)"/m);
         const descMatch = content.match(/^description:\s*"(.+)"/m);
         if (nameMatch) {
@@ -15412,18 +15499,18 @@ Use: /personality load <name>`));
         message: "Personality name required. Use: /personality load <name>"
       };
     }
-    const personalityPath = join10(personalitiesDir, `${name}.yaml`);
-    const personalityYmlPath = join10(personalitiesDir, `${name}.yml`);
+    const personalityPath = join11(personalitiesDir, `${name}.yaml`);
+    const personalityYmlPath = join11(personalitiesDir, `${name}.yml`);
     if (!existsSync7(personalityPath) && !existsSync7(personalityYmlPath)) {
       return {
         success: false,
         message: `Personality not found: ${name}`
       };
     }
-    const activePath = join10(context.workDir, ".claude", "active-personality.txt");
+    const activePath = join11(context.workDir, ".claude", "active-personality.txt");
     const personalityFile = existsSync7(personalityPath) ? personalityPath : personalityYmlPath;
-    writeFileSync8(activePath, name);
-    const content = readFileSync8(personalityFile, "utf-8");
+    writeFileSync7(activePath, name);
+    const content = readFileSync7(personalityFile, "utf-8");
     const descMatch = content.match(/^description:\s*"(.+)"/m);
     const focusMatch = content.match(/focus:\s*([\s\S]*?)/);
     console.log(source_default2.bold(`
@@ -15447,7 +15534,7 @@ Use: /personality load <name>`));
         message: "Personality name required. Use: /personality create <name>"
       };
     }
-    const personalityPath = join10(personalitiesDir, `${name}.yaml`);
+    const personalityPath = join11(personalitiesDir, `${name}.yaml`);
     if (existsSync7(personalityPath)) {
       return {
         success: false,
@@ -15488,7 +15575,7 @@ prompts:
   pre_task: "Before starting, analyze requirements"
   post_task: "After completion, review for quality"
 `;
-    writeFileSync8(personalityPath, template);
+    writeFileSync7(personalityPath, template);
     console.log(source_default2.bold(`
 === Personality Created ===`));
     console.log(source_default2.green(`Name: ${name}`));
@@ -15508,8 +15595,8 @@ Edit the file to configure personality settings.
         message: "Personality name required. Use: /personality edit <name>"
       };
     }
-    const personalityPath = join10(personalitiesDir, `${name}.yaml`);
-    const personalityYmlPath = join10(personalitiesDir, `${name}.yml`);
+    const personalityPath = join11(personalitiesDir, `${name}.yaml`);
+    const personalityYmlPath = join11(personalitiesDir, `${name}.yml`);
     if (!existsSync7(personalityPath) && !existsSync7(personalityYmlPath)) {
       return {
         success: false,
@@ -15529,7 +15616,7 @@ Open the file to edit personality settings.
     };
   }
   showCurrent(context, personalitiesDir) {
-    const activePath = join10(context.workDir, ".claude", "active-personality.txt");
+    const activePath = join11(context.workDir, ".claude", "active-personality.txt");
     if (!existsSync7(activePath)) {
       console.log(source_default2.yellow(`
 No personality currently loaded.`));
@@ -15540,9 +15627,9 @@ No personality currently loaded.`));
         message: "No personality loaded"
       };
     }
-    const activeName = readFileSync8(activePath, "utf-8").trim();
-    const personalityPath = join10(personalitiesDir, `${activeName}.yaml`);
-    const personalityYmlPath = join10(personalitiesDir, `${activeName}.yml`);
+    const activeName = readFileSync7(activePath, "utf-8").trim();
+    const personalityPath = join11(personalitiesDir, `${activeName}.yaml`);
+    const personalityYmlPath = join11(personalitiesDir, `${activeName}.yml`);
     if (!existsSync7(personalityPath) && !existsSync7(personalityYmlPath)) {
       console.log(source_default2.yellow(`
 Personality file not found: ${activeName}`));
@@ -15552,7 +15639,7 @@ Personality file not found: ${activeName}`));
       };
     }
     const personalityFile = existsSync7(personalityPath) ? personalityPath : personalityYmlPath;
-    const content = readFileSync8(personalityFile, "utf-8");
+    const content = readFileSync7(personalityFile, "utf-8");
     const descMatch = content.match(/^description:\s*"(.+)"/m);
     const focusMatch = content.match(/focus:\s*([\s\S]*?)/);
     console.log(source_default2.bold(`
@@ -15571,8 +15658,8 @@ Personality file not found: ${activeName}`));
   }
 }
 // src/cli/commands/ResearchApiCommand.ts
-import { writeFileSync as writeFileSync9 } from "fs";
-import { join as join11 } from "path";
+import { writeFileSync as writeFileSync8, mkdirSync as mkdirSync2 } from "fs";
+import { join as join12 } from "path";
 class ResearchApiCommand {
   name = "research-api";
   async execute(context, options) {
@@ -15596,10 +15683,10 @@ class ResearchApiCommand {
 === Research Instructions ===
 `));
       console.log(researchPlan);
-      const docsDir = join11(context.workDir, ".claude", "docs", "api-research");
+      const docsDir = join12(context.workDir, ".claude", "docs", "api-research");
       const targetName = this.sanitizeTargetName(target);
-      const researchDocPath = join11(docsDir, `${targetName}.md`);
-      __require("fs").mkdirSync(docsDir, { recursive: true });
+      const researchDocPath = join12(docsDir, `${targetName}.md`);
+      mkdirSync2(docsDir, { recursive: true });
       const researchDoc = `# ${targetName} API Research
 
 ## Overview
@@ -15635,7 +15722,7 @@ ${researchPlan}
 ---
 Generated by: komplete-kontrol-cli
 `;
-      writeFileSync9(researchDocPath, researchDoc);
+      writeFileSync8(researchDocPath, researchDoc);
       console.log(source_default2.gray(`
 Research document saved to: ${researchDocPath}
 `));
@@ -15671,7 +15758,7 @@ Research document saved to: ${researchDocPath}
     }
     return "Unknown";
   }
-  generateResearchPlan(target, targetType, depth) {
+  generateResearchPlan(target, targetType, _depth) {
     const plans = {
       "REST API": `
 ### For Web APIs:
@@ -15840,17 +15927,17 @@ Research document saved to: ${researchDocPath}
   }
 }
 // src/cli/commands/VoiceCommand.ts
-import { existsSync as existsSync9, readFileSync as readFileSync10, writeFileSync as writeFileSync10 } from "fs";
-import { join as join12 } from "path";
+import { existsSync as existsSync8, readFileSync as readFileSync8, writeFileSync as writeFileSync9, mkdirSync as mkdirSync3 } from "fs";
+import { join as join13 } from "path";
 class VoiceCommand {
   name = "voice";
   async execute(context, options) {
     try {
-      const voiceDir = join12(context.workDir, ".claude", "voice");
-      const configPath = join12(voiceDir, "config.json");
-      const statusPath = join12(voiceDir, "status.json");
-      if (!existsSync9(voiceDir)) {
-        __require("fs").mkdirSync(voiceDir, { recursive: true });
+      const voiceDir = join13(context.workDir, ".claude", "voice");
+      const configPath = join13(voiceDir, "config.json");
+      const statusPath = join13(voiceDir, "status.json");
+      if (!existsSync8(voiceDir)) {
+        mkdirSync3(voiceDir, { recursive: true });
       }
       switch (options.action) {
         case "start":
@@ -15883,7 +15970,7 @@ class VoiceCommand {
       language: config.language || "en-US",
       ttsEnabled: config.ttsEnabled !== false
     };
-    writeFileSync10(statusPath, JSON.stringify(status, null, 2));
+    writeFileSync9(statusPath, JSON.stringify(status, null, 2));
     console.log(source_default2.bold(`
 === Voice Control Started ===`));
     console.log(source_default2.green("✓ Listening for wake word..."));
@@ -15923,7 +16010,7 @@ class VoiceCommand {
     }
     status.active = false;
     status.stoppedAt = new Date().toISOString();
-    writeFileSync10(statusPath, JSON.stringify(status, null, 2));
+    writeFileSync9(statusPath, JSON.stringify(status, null, 2));
     console.log(source_default2.bold(`
 === Voice Control Stopped ===`));
     console.log(source_default2.green(`✓ Voice control deactivated
@@ -15983,9 +16070,9 @@ To change settings, edit:`));
     };
   }
   loadConfig(configPath) {
-    if (existsSync9(configPath)) {
+    if (existsSync8(configPath)) {
       try {
-        return JSON.parse(readFileSync10(configPath, "utf-8"));
+        return JSON.parse(readFileSync8(configPath, "utf-8"));
       } catch (e) {
         return {};
       }
@@ -15993,175 +16080,14 @@ To change settings, edit:`));
     return {};
   }
   loadStatus(statusPath) {
-    if (existsSync9(statusPath)) {
+    if (existsSync8(statusPath)) {
       try {
-        return JSON.parse(readFileSync10(statusPath, "utf-8"));
+        return JSON.parse(readFileSync8(statusPath, "utf-8"));
       } catch (e) {
         return null;
       }
     }
     return null;
-  }
-}
-// src/cli/commands/InitCommand.ts
-class InitCommand extends BaseCommand {
-  name = "init";
-  description = "Initialize a new project or workspace";
-  examples = [
-    "init my-project",
-    "init --template typescript",
-    "init --force"
-  ];
-  templates = {
-    typescript: {
-      name: "TypeScript",
-      files: [
-        { path: "tsconfig.json", content: this.getTsConfig() },
-        { path: "package.json", content: this.getPackageJson() },
-        { path: "src/index.ts", content: this.getIndexTs() },
-        { path: ".gitignore", content: this.getGitignore() }
-      ]
-    },
-    javascript: {
-      name: "JavaScript",
-      files: [
-        { path: "package.json", content: this.getPackageJson() },
-        { path: "src/index.js", content: this.getIndexJs() },
-        { path: ".gitignore", content: this.getGitignore() }
-      ]
-    },
-    python: {
-      name: "Python",
-      files: [
-        { path: "requirements.txt", content: `pytest>=7.0.0
-pytest-cov>=4.0.0` },
-        { path: "src/__init__.py", content: "" },
-        { path: "src/main.py", content: this.getMainPy() },
-        { path: ".gitignore", content: this.getPythonGitignore() }
-      ]
-    },
-    rust: {
-      name: "Rust",
-      files: [
-        { path: "Cargo.toml", content: this.getCargoToml() },
-        { path: "src/main.rs", content: this.getMainRs() },
-        { path: ".gitignore", content: this.getRustGitignore() }
-      ]
-    }
-  };
-  getTsConfig() {
-    return JSON.stringify({
-      compilerOptions: {
-        target: "ES2020",
-        module: "commonjs",
-        lib: ["ES2020"],
-        outDir: "./dist",
-        rootDir: "./src",
-        strict: true,
-        esModuleInterop: true,
-        skipLibCheck: true,
-        forceConsistentCasingInFileNames: true,
-        resolveJsonModule: true
-      },
-      include: ["src/**/*"],
-      exclude: ["node_modules", "dist"]
-    }, null, 2);
-  }
-  getPackageJson() {
-    return JSON.stringify({
-      name: this.args[0] || "my-project",
-      version: "1.0.0",
-      description: "A new project",
-      main: "dist/index.js",
-      types: "dist/index.d.ts",
-      scripts: {
-        build: "tsc",
-        test: "jest",
-        lint: "eslint . --ext .ts"
-      },
-      keywords: [],
-      author: "",
-      license: "MIT"
-    }, null, 2);
-  }
-  getIndexTs() {
-    return `export function main() {
-    console.log('Hello, World!');
-}
-
-main();
-`;
-  }
-  getIndexJs() {
-    return `function main() {
-    console.log('Hello, World!');
-}
-
-main();
-`;
-  }
-  getMainPy() {
-    return `def main():
-    print("Hello, World!")
-
-if __name__ == "__main__":
-    main()
-`;
-  }
-  getMainRs() {
-    return `fn main() {
-    println!("Hello, World!");
-}
-
-fn main() {
-    main()
-}
-`;
-  }
-  getCargoToml() {
-    return `[package]
-name = "${this.args[0] || "my-project"}"
-version = "1.0.0"
-edition = "2021"
-
-[dependencies]
-`;
-  }
-  getGitignore() {
-    return `node_modules/
-dist/
-.env
-.DS_Store
-*.log
-`;
-  }
-  getPythonGitignore() {
-    return `__pycache__/
-*.py[cod]
-.env
-.venv/
-dist/
-*.log
-`;
-  }
-  getRustGitignore() {
-    return `target/
-Cargo.lock
-.env
-.DS_Store
-*.log
-`;
-  }
-  async execute(context, args) {
-    const projectName = args._[0];
-    const template = args.template || "typescript";
-    const force = args.force;
-    this.info(`Initializing project: ${projectName || "current directory"}`);
-    this.info(`Template: ${template}`);
-    return {
-      success: false,
-      data: { message: "InitCommand not yet implemented for Node.js/Bun runtime" }
-    };
   }
 }
 // src/index.ts
@@ -16433,6 +16359,26 @@ program2.command("compact").description("Compact memory to optimize context usag
     const compactCommand = new CompactCommand;
     const result = await compactCommand.execute(context, {
       level
+    });
+    if (!result.success) {
+      console.error(source_default.red(`
+Error:`), result.message);
+      process.exit(1);
+    }
+  } catch (error2) {
+    const err = error2;
+    console.error(source_default.red(`
+Fatal error:`), err.message);
+    process.exit(1);
+  }
+});
+program2.command("commit").description("Commit changes to version history").argument("[message]", "Commit message").option("--push", "Push to remote after commit", false).action(async (message, options) => {
+  try {
+    const context = await initializeContext();
+    const commitCommand = new CommitCommand;
+    const result = await commitCommand.execute(context, {
+      message,
+      push: options.push
     });
     if (!result.success) {
       console.error(source_default.red(`

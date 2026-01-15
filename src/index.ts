@@ -20,6 +20,7 @@ import {
   CheckpointCommand,
   BuildCommand,
   CollabCommand,
+  CommitCommand,
   CompactCommand,
   MultiRepoCommand,
   PersonalityCommand,

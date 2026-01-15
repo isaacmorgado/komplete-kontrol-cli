@@ -36,8 +36,18 @@
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
       "type": "modified",
       "timestamp": "2026-01-14T15:32:12Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/index.ts",
+      "type": "modified",
+      "timestamp": "2026-01-15T08:29:16Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
+      "type": "modified",
+      "timestamp": "2026-01-15T08:29:45Z"
     }
   ],
-  "change_count": 7,
+  "change_count": 9,
   "checkpoint_count": 46
 }
