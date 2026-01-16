@@ -115,7 +115,7 @@ export class AgentOrchestrationBridge {
     this.boundedAutonomy = new BoundedAutonomy();
 
     if (options.enableVision) {
-      this.visionCapture = new ZeroDriftCapture(options.visionOptions);
+      this.visionCapture = new ZeroDriftCapture();
     }
   }
 
@@ -281,7 +281,7 @@ export class AgentOrchestrationBridge {
 
       // Step 2: Safety check (bounded autonomy)
       if (options.enableSafety !== false) {
-        const safetyCheck = await this.boundedAutonomy.check(task, options.context || '');
+        const safetyCheck = await this.boundedAutonomy.checkAction(task, options.context || '');
         if (!safetyCheck.allowed) {
           return {
             success: false,
