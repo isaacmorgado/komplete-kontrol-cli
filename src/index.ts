@@ -28,6 +28,7 @@ import {
   ResearchApiCommand,
   VoiceCommand
 } from './cli/commands';
+import createScreenshotToCodeCommand from './cli/commands/ScreenshotToCodeCommand';
 
 const program = new Command();
 
@@ -616,5 +617,10 @@ program
       process.exit(1);
     }
   });
+
+/**
+ * /screenshot-to-code - Convert UI screenshots to code
+ */
+program.addCommand(createScreenshotToCodeCommand());
 
 program.parse();

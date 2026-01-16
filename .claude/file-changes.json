@@ -1,43 +1,48 @@
 {
   "session_start": "2026-01-12T21:18:13Z",
-  "last_checkpoint": "2026-01-16T17:45:35Z",
+  "last_checkpoint": "2026-01-16T17:49:12Z",
   "files_changed": [
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/index.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:45:44Z"
+      "timestamp": "2026-01-16T17:49:28Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/index.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:45:50Z"
+      "timestamp": "2026-01-16T17:49:38Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ScreenshotToCodeCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:45:55Z"
+      "timestamp": "2026-01-16T17:50:07Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ScreenshotToCodeCommand.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:46:03Z"
+      "timestamp": "2026-01-16T17:50:13Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/AgentOrchestrationBridge.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:46:38Z"
+      "timestamp": "2026-01-16T17:50:41Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/AgentOrchestrationBridge.ts",
+      "type": "modified",
+      "timestamp": "2026-01-16T17:50:49Z"
     },
     {
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
       "type": "modified",
-      "timestamp": "2026-01-16T17:46:57Z"
+      "timestamp": "2026-01-16T17:51:11Z"
     },
     {
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
       "type": "modified",
-      "timestamp": "2026-01-16T17:47:03Z"
+      "timestamp": "2026-01-16T17:51:17Z"
     }
   ],
-  "change_count": 7,
-  "checkpoint_count": 55
+  "change_count": 8,
+  "checkpoint_count": 56
 }

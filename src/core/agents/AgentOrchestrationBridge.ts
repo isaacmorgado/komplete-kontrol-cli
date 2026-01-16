@@ -128,7 +128,8 @@ export class AgentOrchestrationBridge {
 
     // Detect task type
     let taskType = 'general';
-    if (/implement|build|create|add/.test(taskLower)) taskType = 'implementation';
+    if (/screenshot.*code|ui.*code|design.*code|convert.*screenshot/.test(taskLower)) taskType = 'screenshot-to-code';
+    else if (/implement|build|create|add/.test(taskLower)) taskType = 'implementation';
     else if (/test|validate|check/.test(taskLower)) taskType = 'testing';
     else if (/refactor|reorganize|restructure/.test(taskLower)) taskType = 'refactoring';
     else if (/fix|debug|bug|error/.test(taskLower)) taskType = 'debugging';
@@ -155,6 +156,7 @@ export class AgentOrchestrationBridge {
 
     // Suggest agents based on task type
     const agentMap: Record<string, SpecialistAgent[]> = {
+      'screenshot-to-code': ['code_writer'], // ScreenshotToCodeOrchestrator handles internally
       implementation: ['code_writer'],
       testing: ['test_engineer'],
       refactoring: ['code_writer', 'performance_optimizer'],

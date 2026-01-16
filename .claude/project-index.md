@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-16 12:45:35
+**Generated**: 2026-01-16 12:49:12
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -266,6 +266,7 @@
 │   │   ├── 📄 ResearchApiCommand.ts
 │   │   ├── 📄 ResearchCommand.ts
 │   │   ├── 📄 RootCauseCommand.ts
+│   │   ├── 📄 ScreenshotToCodeCommand.ts
 │   │   ├── 📄 SPARCCommand.ts
 │   │   ├── 📄 SwarmCommand.ts
 │   │   └── 📄 VoiceCommand.ts
@@ -613,10 +614,10 @@
 ## 📊 Project Statistics
 
 **Languages:**
-• JavaScript/TypeScript: 3794 files
+• JavaScript/TypeScript: 3795 files
 • Python: 1 files
 
-**Estimated LOC:** 1043503
+**Estimated LOC:** 1043723
 
 
 ---
