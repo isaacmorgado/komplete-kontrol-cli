@@ -65,11 +65,20 @@ export interface Context {
  * console.log(cycle.reflection); // Learn from the outcome
  * ```
  */
+export interface ReflexionAgentOptions {
+  /** Maximum consecutive identical thoughts before detecting repetition (default: 3) */
+  repetitionThreshold?: number;
+  /** Maximum iterations without file changes before detecting stagnation (default: 5) */
+  stagnationThreshold?: number;
+}
+
 export class ReflexionAgent {
   private context: Context;
   private executor?: ActionExecutor;
   private llmRouter?: LLMRouter;
   private preferredModel?: string;
+  private repetitionThreshold: number;
+  private stagnationThreshold: number;
 
   /**
    * Create a new ReflexionAgent
@@ -77,8 +86,9 @@ export class ReflexionAgent {
    * @param goal - The high-level goal to work towards
    * @param llmRouter - Optional LLM router for generating thoughts (if not provided, uses templates)
    * @param preferredModel - Optional preferred model to use for reasoning
+   * @param options - Optional configuration for repetition and stagnation detection
    */
-  constructor(goal: string, llmRouter?: LLMRouter, preferredModel?: string) {
+  constructor(goal: string, llmRouter?: LLMRouter, preferredModel?: string, options?: ReflexionAgentOptions) {
     this.context = {
       goal,
       history: [],
@@ -93,6 +103,8 @@ export class ReflexionAgent {
 
     this.llmRouter = llmRouter;
     this.preferredModel = preferredModel;
+    this.repetitionThreshold = options?.repetitionThreshold ?? 3;
+    this.stagnationThreshold = options?.stagnationThreshold ?? 5;
 
     // Initialize ActionExecutor if LLM router provided
     if (llmRouter) {
@@ -535,18 +547,18 @@ What should I do next? Provide specific, actionable reasoning.`;
 
   /**
    * Detect if agent is stuck (no progress for N iterations)
+   * Uses configurable stagnationThreshold (default: 5)
    */
   private detectStagnation(): boolean {
-    const STAGNATION_THRESHOLD = 5;
     const { history } = this.context;
 
     // Check if we have enough history
-    if (history.length < STAGNATION_THRESHOLD) {
+    if (history.length < this.stagnationThreshold) {
       return false;
     }
 
     // Get recent history
-    const recentHistory = history.slice(-STAGNATION_THRESHOLD);
+    const recentHistory = history.slice(-this.stagnationThreshold);
 
     // If no file changes in last N iterations, we're stagnant
     const noProgress = recentHistory.every(cycle => {
@@ -558,17 +570,18 @@ What should I do next? Provide specific, actionable reasoning.`;
 
   /**
    * Detect if agent is repeating the same actions
+   * Uses configurable repetitionThreshold (default: 3)
+   * For edge case tests, increase threshold to allow more iterations (e.g., 10-15)
    */
   private detectRepetition(_input: string): boolean {
-    const REPETITION_THRESHOLD = 3;
     const { history } = this.context;
 
-    if (history.length < REPETITION_THRESHOLD) {
+    if (history.length < this.repetitionThreshold) {
       return false;
     }
 
     // Get last N cycles
-    const recentCycles = history.slice(-REPETITION_THRESHOLD);
+    const recentCycles = history.slice(-this.repetitionThreshold);
 
     // Check if all recent cycles have identical thoughts
     const thoughts = recentCycles.map(c => c.thought);

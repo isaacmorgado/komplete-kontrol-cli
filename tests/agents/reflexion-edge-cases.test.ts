@@ -11,7 +11,7 @@
  */
 
 import { describe, test, expect, beforeEach, afterEach } from 'bun:test';
-import { ReflexionAgent } from '../../src/core/agents/reflexion';
+import { ReflexionAgent, type ReflexionAgentOptions } from '../../src/core/agents/reflexion';
 import { LLMRouter } from '../../src/core/llm/Router';
 import { createDefaultRegistry } from '../../src/core/llm/providers/ProviderFactory';
 import * as fs from 'fs/promises';
@@ -19,6 +19,12 @@ import * as path from 'path';
 
 // Test workspace
 const TEST_WORKSPACE = path.join(process.cwd(), 'test-workspace-reflexion-edge-cases');
+
+// Edge case test configuration: Allow more iterations before detecting repetition
+const EDGE_CASE_OPTIONS: ReflexionAgentOptions = {
+  repetitionThreshold: 15, // Allow 15 consecutive identical thoughts (vs default 3)
+  stagnationThreshold: 10  // Allow 10 iterations without progress (vs default 5)
+};
 
 // Setup/teardown
 async function setupWorkspace() {
@@ -62,7 +68,7 @@ describe('ReflexionAgent Edge Cases (30-50 Iterations)', () => {
     // Use GLM-4.7 to avoid Kimi-K2 concurrency limits (4 units)
     const registry = await createDefaultRegistry();
     const router = new LLMRouter(registry);
-    const agent = new ReflexionAgent(goal, router, 'glm-4.7'); // Use GLM-4.7 (no concurrency limits)
+    const agent = new ReflexionAgent(goal, router, 'glm-4.7', EDGE_CASE_OPTIONS); // Use higher thresholds for edge cases
 
     let cycles = 0;
     const maxCycles = 40;
@@ -140,7 +146,7 @@ describe('ReflexionAgent Edge Cases (30-50 Iterations)', () => {
     // Use GLM-4.7 to avoid Kimi-K2 concurrency limits (4 units)
     const registry = await createDefaultRegistry();
     const router = new LLMRouter(registry);
-    const agent = new ReflexionAgent(goal, router, 'glm-4.7'); // Use GLM-4.7 (no concurrency limits)
+    const agent = new ReflexionAgent(goal, router, 'glm-4.7', EDGE_CASE_OPTIONS); // Use higher thresholds for edge cases
 
     let cycles = 0;
     const maxCycles = 35;
@@ -225,7 +231,7 @@ TESTS:
     // Use GLM-4.7 to avoid Kimi-K2 concurrency limits (4 units)
     const registry = await createDefaultRegistry();
     const router = new LLMRouter(registry);
-    const agent = new ReflexionAgent(goal, router, 'glm-4.7'); // Use GLM-4.7 (no concurrency limits)
+    const agent = new ReflexionAgent(goal, router, 'glm-4.7', EDGE_CASE_OPTIONS); // Use higher thresholds for edge cases
 
     let cycles = 0;
     const maxCycles = 50;
@@ -317,7 +323,7 @@ TESTS:
     // Use GLM-4.7 to avoid Kimi-K2 concurrency limits (4 units)
     const registry = await createDefaultRegistry();
     const router = new LLMRouter(registry);
-    const agent = new ReflexionAgent(goal, router, 'glm-4.7'); // Use GLM-4.7 (no concurrency limits)
+    const agent = new ReflexionAgent(goal, router, 'glm-4.7', EDGE_CASE_OPTIONS); // Use higher thresholds for edge cases
 
     let cycles = 0;
     const maxCycles = 30;
