@@ -51,4 +51,5 @@ export interface AutoConfig {
   checkpointThreshold?: number;
   model?: string;
   verbose?: boolean;
+  context?: string;
 }

@@ -1,53 +1,43 @@
 {
   "session_start": "2026-01-12T21:18:13Z",
-  "last_checkpoint": "2026-01-14T04:43:20Z",
+  "last_checkpoint": "2026-01-16T17:45:35Z",
   "files_changed": [
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:43:31Z"
+      "timestamp": "2026-01-16T17:45:44Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:43:32Z"
+      "timestamp": "2026-01-16T17:45:50Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:43:33Z"
+      "timestamp": "2026-01-16T17:45:55Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/docs/integration/AUTO-COMMAND-REFACTORING-COMPLETE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T04:45:39Z"
+      "timestamp": "2026-01-16T17:46:03Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/ScreenshotToCodeOrchestrator.ts",
       "type": "modified",
-      "timestamp": "2026-01-14T15:31:59Z"
+      "timestamp": "2026-01-16T17:46:38Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
       "type": "modified",
-      "timestamp": "2026-01-14T15:32:08Z"
+      "timestamp": "2026-01-16T17:46:57Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/CLAUDE.md",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
       "type": "modified",
-      "timestamp": "2026-01-14T15:32:12Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/index.ts",
-      "type": "modified",
-      "timestamp": "2026-01-15T08:29:16Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/AutoCommand.ts",
-      "type": "modified",
-      "timestamp": "2026-01-15T08:29:45Z"
+      "timestamp": "2026-01-16T17:47:03Z"
     }
   ],
-  "change_count": 9,
-  "checkpoint_count": 46
+  "change_count": 7,
+  "checkpoint_count": 55
 }
