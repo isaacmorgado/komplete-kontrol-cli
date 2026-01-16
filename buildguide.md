@@ -6,7 +6,8 @@ This build guide manages the autonomous development of komplete-kontrol-cli.
 - TypeScript compilation: ✅ Fixed
 - Dead code: ✅ Removed
 - Dependencies: ✅ Cleaned (722 → 158 packages)
-- Last commit: a4d652a (typescript-integration branch)
+- Phase 3 Integration: ✅ Complete (17/17 tests passing)
+- Last commit: 9c1abadf (typescript-integration branch)
 
 ## Build Sections
 
@@ -54,11 +55,55 @@ This build guide manages the autonomous development of komplete-kontrol-cli.
   - Test production build
   - Validate all quality gates
 
-### Phase 4: Production Readiness
+### Phase 4: Screenshot-to-Code Pipeline
+
+- [ ] Vision Analysis Integration
+  - Create VisionCodeAnalyzer module
+  - Integrate Claude Sonnet 4.5 vision API
+  - Test Gemini 2.0 Flash MCP vision fallback
+  - Implement analysis prompt engineering
+  - Test UI structure extraction
+
+- [ ] Code Generation
+  - Create UICodeGenerator module
+  - Implement React + Tailwind template
+  - Add component detection logic
+  - Support Material-UI and Chakra UI
+  - Test code generation quality
+
+- [ ] Visual Regression Engine
+  - Create VisualRegressionEngine module
+  - Implement screenshot comparison
+  - Calculate similarity scoring (85% threshold)
+  - Generate diff reports
+  - Test with example UIs
+
+- [ ] Orchestration & Refinement
+  - Create ScreenshotToCodeOrchestrator
+  - Implement RefinementLoop (max 3 iterations)
+  - Integrate all Phase 4 components
+  - Add quality validation gates
+  - Test end-to-end workflow
+
+- [ ] AutoCommand Integration
+  - Add /screenshot-to-code command
+  - Integrate with AgentOrchestrationBridge
+  - Enable autonomous screenshot-to-code in /auto
+  - Add specialist routing
+
+- [ ] Testing & Documentation
+  - Write 15+ integration tests
+  - Create 5+ example screenshots
+  - Document complete workflow
+  - Add usage examples
+  - Update DOCUMENTATION-INDEX.md
+
+### Phase 5: Production Readiness
 
 - [ ] Documentation updates
   - Update README.md with latest features
   - Document AutoCommand modules
+  - Document Phase 4 screenshot-to-code
   - Add usage examples
   - Create API documentation
 
