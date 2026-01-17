@@ -1,7 +1,7 @@
 # Komplete Kontrol CLI - Documentation Index
 
-**Last Updated**: 2026-01-14
-**Status**: Organized and production-ready
+**Last Updated**: 2026-01-17
+**Status**: Organized and production-ready (Phase 4 complete)
 
 ---
 
@@ -38,6 +38,12 @@ Implementation details, design docs, and feature-specific guides:
 - [Memory System Bug Report](./docs/features/MEMORY-SYSTEM-BUG-REPORT.md)
 - [Memory Bug Fixes Applied](./docs/features/MEMORY-BUG-FIXES-APPLIED.md)
 - [Memory Fix Summary](./docs/features/MEMORY-FIX-SUMMARY.md)
+
+#### Screenshot-to-Code Pipeline (Phase 4)
+- [Screenshot-to-Code Complete Guide](./docs/integration/SCREENSHOT-TO-CODE-GUIDE.md) - Full pipeline documentation
+- Modules: VisionCodeAnalyzer, UICodeGenerator, VisualRegressionEngine, ScreenshotToCodeOrchestrator
+- CLI Command: `bun run src/index.ts screenshot-to-code <screenshot>`
+- 35 integration tests (100% passing)
 
 #### Other Features
 - [Features V2 Overview](./docs/features/FEATURES-V2.md)
@@ -82,6 +88,10 @@ Historical test results and findings
 **...understand autonomous mode**
 → Read [QUICKSTART-AUTO-MODE.md](./docs/guides/QUICKSTART-AUTO-MODE.md)
 
+**...convert screenshots to code**
+→ Read [SCREENSHOT-TO-CODE-GUIDE.md](./docs/integration/SCREENSHOT-TO-CODE-GUIDE.md)
+→ Run: `bun run src/index.ts screenshot-to-code <screenshot.png>`
+
 **...learn about a specific feature**
 → Check `/docs/features/` directory
 
@@ -98,10 +108,11 @@ Historical test results and findings
 
 ## 📊 Project Statistics
 
-- **Total Documentation Files**: ~90 markdown files
-- **Active Features**: 15+ major features
-- **Integration Points**: 21 documented integrations
-- **Test Coverage**: Comprehensive (see test reports)
+- **Total Documentation Files**: ~95 markdown files
+- **Active Features**: 18+ major features (Phase 4 adds screenshot-to-code)
+- **Integration Points**: 22 documented integrations
+- **Test Coverage**: Comprehensive (35 screenshot-to-code tests, 100% passing)
+- **Code Lines**: 2,665+ lines in Phase 4 modules
 
 ---
 

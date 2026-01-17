@@ -147,7 +147,7 @@ async function executeScreenshotToCode(
   // Display iteration history
   if (result.iterations.length > 1) {
     console.log('📈 Iteration History:');
-    result.iterations.forEach((iter, idx) => {
+    result.iterations.forEach((iter, _idx) => {
       const status = iter.visualDiff.passesThreshold ? '✅' : '⏳';
       console.log(`   ${status} Iteration ${iter.iteration}: ${iter.similarityScore.toFixed(1)}% similarity`);
     });

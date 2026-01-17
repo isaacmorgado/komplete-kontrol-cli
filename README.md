@@ -1,555 +1,340 @@
-# 🤖 Claude Sovereign
+# KOMPLETE-KONTROL-CLI
 
-**100% Autonomous AI Operation System**
-_The self-governing Claude that never sleeps_
+> Ultimate AI coding assistant integrating Roo Code, /auto, and advanced autonomous features
 
-[![Status](https://img.shields.io/badge/status-production-brightgreen)]()
-[![Autonomous](https://img.shields.io/badge/autonomous-100%25-blue)]()
-[![Tests](https://img.shields.io/badge/tests-passing-success)]()
+[![Go Version](https://img.shields.io/badge/Go-%3E1.23-blue.svg)](https://golang.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/komplete-kontrol/cli/releases)
 
----
+## Overview
 
-## What is Claude Sovereign?
+KOMPLETE-KONTROL-CLI is an AI-powered development assistant built with Go and the Bubbletea TUI framework. It provides flexible model management, tool integration via MCP, real-time streaming output, and verification/repair capabilities for autonomous development.
 
-Claude Sovereign is a **fully autonomous AI operation system** that makes Claude Code completely hands-off. Set it, forget it, come back to finished work.
+## Features
 
-Inspired by **Roo Code** and enhanced beyond, Claude Sovereign:
-- ✅ Auto-compacts memory at 40% context (sliding threshold with task completion priority)
-- ✅ Auto-executes /checkpoint at 40% context
-- ✅ Auto-checkpoints after 10 file changes
-- ✅ Auto-pushes all changes to GitHub
-- ✅ Continues working without stopping
-- ✅ Debug orchestrator fully functional (regression detection)
-- ✅ **Zero manual intervention required**
-
-## The Problem
-
-Traditional Claude Code requires constant babysitting:
-- ❌ Manual /checkpoint commands
-- ❌ Manual /compact when context fills
-- ❌ Manual git pushes
-- ❌ Work stops at 40% context
-- ❌ You can't step away
-
-## The Solution
-
-Claude Sovereign makes Claude **truly autonomous**:
-
-```
-Activate /auto mode
-  ↓
-Walk away from computer
-  ↓
-Claude works continuously:
-   • Compacts memory automatically (sliding threshold: allows task completion before compacting)
-   • Checkpoints progress automatically
-   • Pushes to GitHub automatically
-   • Uses all tools intelligently
-   • Applies Ken's prompting patterns
-   • Remembers everything perfectly
-   • Uses debug orchestrator for regression detection
-  ↓
-Return to completed work
-```
-
-## Key Features
-
-### 🎯 100% Hands-Off Operation
-
-**Set it and forget it** - Claude operates completely autonomously:
-- Detects context pressure → Compacts memory
-- Detects 10 file changes → Checkpoints → Pushes to GitHub
-- Hits 40% context → Compacts → Checkpoints → Pushes → Continues
-- **You can literally walk away**
-
-### 🧠 Perfect Memory System
-
-**Never forgets anything**:
-- Episodic memory (past experiences)
-- Semantic memory (facts & patterns)
-- Working memory (current context)
-- 3-factor retrieval scoring (BM25 + Vector + Reinforcement Learning)
-- Git-aware memory channels
-- Checkpoint/restore capabilities
-
-### 📁 Token-Efficient Navigation
-
-**50-70% token savings** on codebase exploration:
-- Auto-generates project structure indices
-- Tree visualization with important files
-- Reads `.claude/project-index.md` first
-- Targeted searches instead of blind exploration
-
-### 🤝 Intelligent Command Routing
-
-**Knows when to execute which /command**:
-- `checkpoint_context` → At 40% context
-- `checkpoint_files` → After 10 files
-- `build_section_complete` → After build sections
-- Triple recognition patterns (JSON, tags, instructions)
-
-### 🔧 Complete Tool Integration
-
-**Uses everything correctly**:
-- All Claude Code tools (Read, Write, Edit, Bash, etc.)
-- MCP tools (GitHub search, Chrome automation, macOS control)
-- Reverse engineering toolkit (Chrome extensions, Electron, APIs)
-- Ken's exclusive prompting patterns
-- Multi-agent orchestration
-- Debug orchestrator (regression detection)
-
-### 📚 Ken's Prompting Mastery
-
-**Trained on exclusive patterns**:
-- Short > Long (concise communication)
-- Reference > Dump (smart file handling)
-- Focused work (stay on task)
-- Project index first (token efficiency)
+- **Multi-Provider Model Management** - Support for Anthropic, OpenAI, Gemini, VS Code LLM API, and local models with automatic fallback chains
+- **MCP Tool Integration** - Standardized tool discovery and execution via Model Context Protocol
+- **Real-Time Streaming** - Token-by-token streaming with progress tracking and cost estimation
+- **Verification & Repair** - Automatic testing and regression detection for reliable autonomous operation
+- **TUI Interface** - Beautiful terminal UI built with Bubbletea
+- **VS Code Integration** - Shared communication protocol for CLI/VS Code extension alignment
+- **Tavily & Base44** - Built-in integrations for web search and no-code app building
 
 ## Installation
 
-### Quick Start
+### Prerequisites
+
+- Go 1.23 or later
+- Git (for cloning)
+
+### Build from Source
 
 ```bash
-# Clone repo
-git clone https://github.com/isaacmorgado/claude-sovereign.git
-cd claude-sovereign
+# Clone the repository
+git clone https://github.com/komplete-kontrol/cli.git
+cd cli
 
-# Run installer
-./install.sh
+# Build the Go binary
+go build -o komplete ./cmd/komplete
 
-# Activate autonomous mode
-/auto
+# Install globally (optional)
+sudo cp komplete /usr/local/bin/
 ```
 
-### Manual Installation
+### Using Go Modules
 
 ```bash
-# Copy hooks
-cp hooks/* ~/.claude/hooks/
-chmod +x ~/.claude/hooks/*.sh
+# Install the CLI
+go install github.com/komplete-kontrol/cli@latest
 
-# Copy commands
-cp commands/* ~/.claude/commands/
+# The binary will be installed to $GOPATH/bin/komplete
+```
 
-# Copy config
-cp config/CLAUDE.md ~/.claude/CLAUDE.md
+## Configuration
 
-# Copy docs
-cp docs/* ~/.claude/docs/
+Configuration is stored in `~/.komplete/config.yaml` by default.
+
+### Example Configuration
+
+```yaml
+version: "2.0"
+models:
+  default: "claude-sonnet-4.5"
+  fallback_chain:
+    - "claude-sonnet-4.5"
+    - "claude-3.5-haiku"
+    - "gpt-4o-mini"
+  providers:
+    anthropic:
+      api_key: "sk-ant-..."
+      base_url: "https://api.anthropic.com"
+    openai:
+      api_key: "sk-openai-..."
+      base_url: "https://api.openai.com/v1"
+    vscode:
+      enabled: true
+    local:
+      enabled: false
+      base_url: "http://localhost:11434"
+tools:
+  tavily:
+    enabled: true
+    api_key: "tvly-..."
+    max_results: 10
+    search_depth: "basic"
+  base44:
+    enabled: false
+    api_key: ""
+    workspace_id: ""
+  mcp_servers:
+    - id: "custom-server"
+      name: "Custom MCP Server"
+      url: "mcp://localhost:3000"
+ui:
+  theme: "dark"
+  streaming: true
+  show_cost: true
+  show_tokens: true
+verification:
+  auto_verify: true
+  auto_repair: true
+  max_retries: 3
+alignment:
+  enabled: false
+  port: 0
 ```
 
 ## Usage
 
-### Basic Usage
+### Basic Commands
 
 ```bash
-# Start autonomous mode
-/auto
+# Show help
+komplete --help
 
-# Claude will now:
-# 1. Load working memory
-# 2. Check for continuation prompts
-# 3. Resume in-progress builds
-# 4. Check buildguide.md for tasks
-# 5. Work completely autonomously
+# List available models
+komplete models list
 
-# Stop autonomous mode
-/auto stop
+# List available tools
+komplete tools list
 
-# Check status
-/auto status
+# Execute a prompt (with TUI)
+komplete --tui "Create a REST API with authentication"
+
+# Execute a prompt (without TUI)
+komplete --no-tui "Create a REST API with authentication"
 ```
 
-### What Happens Automatically
+### TUI (interactive)
 
-**At 40% Context** (51,200 / 128,000 tokens) - Sliding Autocompaction:
-```
-1. Memory compaction (prune old episodes)
-2. If task is in progress: Mark compaction as pending
-3. If task completes: Execute pending compaction
-4. Internal checkpoint creation
-5. Router signals /checkpoint execution
-6. Continuation prompt with <command-name>/checkpoint</command-name>
-7. Claude executes /checkpoint immediately
-8. Updates CLAUDE.md + buildguide.md
-9. git add + commit + push
-10. Continues working
+The interactive TUI is available as a dedicated command:
+
+```bash
+go build -o komplete ./cmd/komplete
+
+# Real provider (requires keys in config)
+./komplete tui
+
+# Deterministic smoke test (no keys required)
+KOMPLETE_USE_MOCK_PROVIDER=1 ./komplete tui --mock
+
+# Non-interactive smoke test for CI / environments without a TTY
+./komplete tui-smoke
 ```
 
-**Sliding Threshold Behavior**:
-- Context >= 40%: Check if task is in progress
-- Task in progress: Mark compaction as pending, continue working
-- Task completes: Execute pending compaction immediately
-- Task not in progress: Compact immediately
-- This ensures tasks complete before context compaction interrupts
+In the TUI:
 
-**After 10 File Changes**:
-```
-1. File change tracker hits threshold
-2. Router signals /checkpoint execution
-3. Project index regenerated
-4. /checkpoint executes
-5. git push to GitHub
-6. Continues working
-```
+- Type a prompt and press Enter to start a streaming completion.
+- Use `tab` / `shift+tab` to switch between Output/Tools/Files/Logs/Settings.
+- In Files tab, press Enter to open the selected file path.
+
+### Commands
+
+| Command | Description |
+|----------|-------------|
+| `auto` | Autonomous mode with verification and repair |
+| `build` | Build and verify project |
+| `checkpoint` | Create and restore project checkpoints |
+| `collab` | Collaborative development mode |
+| `compact` | Compact conversation context |
+| `init` | Initialize new project |
+| `multi-repo` | Work across multiple repositories |
+| `personality` | Configure AI personality |
+| `re` | Resume previous conversation |
+| `reflect` | Reflect on past interactions |
+| `research` | Research using web search |
+| `research-api` | Research using API |
+| `rootcause` | Analyze root causes |
+| `sparc` | SPARC debugging |
+| `swarm` | Multi-agent swarm mode |
+| `voice` | Voice input mode |
 
 ## Architecture
 
-### System Components
+The CLI is built with a modular architecture:
 
 ```
-claude-sovereign/
-├── hooks/                        # Core autonomous system
-│   ├── autonomous-command-router.sh    # Decision engine
-│   ├── auto-continue.sh               # 40% context handler
-│   ├── memory-manager.sh              # Persistent memory
-│   ├── project-navigator.sh           # Token efficiency
-│   ├── file-change-tracker.sh         # 10 file tracker
-│   ├── post-edit-quality.sh           # Quality checks
-│   └── comprehensive-validation.sh    # Test suite
-├── commands/                     # Skill commands
-│   ├── auto.md                   # Autonomous mode
-│   ├── checkpoint.md             # Save + Git push
-│   ├── build.md                  # Autonomous builder
-│   └── re.md                     # Reverse engineering
-├── docs/                         # Documentation
-│   ├── 40-PERCENT-FLOW-VERIFIED.md
-│   ├── 100-PERCENT-HANDS-OFF-OPERATION.md
-│   ├── PROJECT-NAVIGATOR-GUIDE.md
-│   └── GITHUB-PUSH-AND-NAVIGATION-COMPLETE.md
-└── config/                       # Configuration
-    └── CLAUDE.md                 # Global settings
+komplete-kontrol-cli/
+├── cmd/komplete/          # Main entry point
+├── internal/
+│   ├── app/               # Root command setup
+│   ├── tui/              # Bubbletea TUI framework
+│   │   ├── app.go         # TUI application
+│   │   ├── model.go       # Main TUI model
+│   │   └── theme.go      # Theme system
+│   ├── tui/components/     # Reusable UI components
+│   │   ├── statusbar.go   # Status bar component
+│   │   ├── outputpanel.go # Output panel component
+│   │   └── textinput.go   # Text input component
+│   ├── llm/               # LLM provider layer
+│   │   ├── model_manager.go    # Model management
+│   │   └── providers/        # Provider implementations
+│   │       ├── anthropic.go   # Anthropic provider
+│   │       └── openai.go      # OpenAI provider
+│   ├── tools/             # Tool management
+│   │   ├── tool_manager.go    # Tool manager
+│   │   ├── tavily.go         # Tavily integration
+│   │   ├── base44.go         # Base44 integration
+│   │   └── mcp_transport.go  # MCP transport
+│   ├── streaming/          # Streaming handler
+│   │   └── handler.go       # Stream handler
+│   ├── verification/       # Verification system
+│   │   └── manager.go       # Verification manager
+│   ├── alignment/          # CLI/VS Code alignment
+│   │   └── protocol.go      # Alignment protocol
+│   └── config/            # Configuration management
+│       └── config.go      # Config manager
+└── go.mod                # Go module definition
 ```
 
-### The Flow
+## Development
 
-```
-┌─────────────────────────────────────┐
-│  User activates /auto mode          │
-└──────────────┬──────────────────────┘
-               ↓
-┌─────────────────────────────────────┐
-│  Claude works autonomously           │
-│  • Uses all tools correctly          │
-│  • Applies Ken's patterns            │
-│  • Remembers everything              │
-│  • Makes intelligent decisions       │
-└──────────────┬──────────────────────┘
-               ↓
-      ┌─────────┴─────────┐
-      ↓                   ↓
-[Edit 10 files]    [Reach 40% context]
-      ↓                   ↓
-      └─────────┬─────────┘
-                ↓
-┌─────────────────────────────────────┐
-│  Auto-checkpoint triggered           │
-│  1. Compact memory (if 40%)          │
-│  2. Create checkpoint                │
-│  3. Update docs                      │
-│  4. Git commit + push                │
-│  5. Continue working                 │
-└──────────────┬──────────────────────┘
-               ↓
-┌─────────────────────────────────────┐
-│  Sliding Autocompaction (40% threshold)│
-│  - Task completion priority              │
-│  - No task interruption              │
-│  - Pending compaction executes after task │
-└──────────────┬──────────────────────┘
-               ↓
-┌─────────────────────────────────────┐
-│  Work continues (no stopping)        │
-└─────────────────────────────────────┘
-```
-
-## Recognition Patterns
-
-Claude recognizes **3 patterns** for autonomous execution:
-
-### Pattern 1: JSON Signal
-```json
-{
-  "execute_skill": "checkpoint",
-  "reason": "context_threshold",
-  "autonomous": true
-}
-```
-
-### Pattern 2: Command Tag
-```xml
-<command-name>/checkpoint</command-name>
-```
-
-### Pattern 3: Explicit Instruction
-```
-Execute checkpoint:
-/checkpoint
-(Autonomous mode - execute immediately without asking)
-```
-
-When Claude sees **any** of these patterns:
-1. **NO asking** for permission
-2. **NO explaining** what it's about to do
-3. **IMMEDIATE execution** using Skill tool
-4. **Continue working** after completion
-
-## Comparison
-
-| Feature | Manual | Roo Code | steipete MCP | **Claude Sovereign** |
-|---------|--------|----------|--------------|---------------------|
-| Auto-checkpoint | ❌ | ✅ | ✅ | ✅ **Advanced** |
-| Auto-compact | ❌ | ✅ | ❓ | ✅ **40% sliding threshold** |
-| Git auto-push | ❌ | ❓ | ❌ | ✅ **Every checkpoint** |
-| Token optimization | ❌ | ❓ | ❌ | ✅ **50-70% savings** |
-| Perfect memory | ❌ | ❓ | ❌ | ✅ **3-factor scoring** |
-| RE toolkit | ❌ | ❓ | ❌ | ✅ **Complete** |
-| MCP integration | ❌ | ❓ | ✅ | ✅ **Full suite** |
-| Ken's patterns | ❌ | ❓ | ❌ | ✅ **Exclusive** |
-| Zero intervention | ❌ | ✅ | ✅ | ✅ **Verified** |
-| Debug orchestrator | ❌ | ❌ | ❌ | ✅ **Fully functional** |
-
-## Testing
-
-Run comprehensive validation suite:
+### Running Tests
 
 ```bash
-~/.claude/hooks/comprehensive-validation.sh
+# Run all tests
+go test ./...
+
+# Run tests with coverage
+go test -cover ./...
 ```
 
-Tests 12 categories:
-1. ✅ Core system components (6 tests)
-2. ✅ Command router (5 tests)
-3. ✅ Memory system (10 tests)
-4. ✅ Project navigation (5 tests)
-5. ✅ Skill commands (9 tests)
-6. ✅ Autonomous execution (6 tests)
-7. ✅ RE toolkit (7 tests)
-8. ✅ Ken's patterns (5 tests)
-9. ✅ Documentation (6 tests)
-10. ✅ Git integration (5 tests)
-11. ✅ Edge cases (5 tests)
-12. ✅ MCP integrations (5 tests)
-
-**Total: 74 comprehensive tests**
-
-## Configuration
-
-### Context Threshold
+### Building
 
 ```bash
-# Default: 40%
-export CLAUDE_CONTEXT_THRESHOLD=50  # Trigger at 50%
+# Build for current platform
+go build -o komplete ./cmd/komplete
+
+# Build for multiple platforms
+GOOS=linux GOARCH=amd64 go build -o komplete-linux-amd64 ./cmd/komplete
+GOOS=darwin GOARCH=amd64 go build -o komplete-darwin-amd64 ./cmd/komplete
+GOOS=windows GOARCH=amd64 go build -o komplete-windows-amd64.exe ./cmd/komplete
 ```
 
-### File Change Threshold
+## Migration from v1.0
 
-```bash
-# Default: 10 files
-export CHECKPOINT_FILE_THRESHOLD=15  # After 15 files
-```
+The Go version (v2.0) is a complete rewrite of the TypeScript version. Key changes:
 
-### Disable Autonomous Mode
+- **Build System** - Changed from esbuild to Go build
+- **TUI Framework** - Changed from Ink to Bubbletea
+- **Model Management** - Enhanced with multi-provider support and fallback chains
+- **Tool Integration** - Changed to MCP-based tool discovery
+- **Streaming** - Improved real-time streaming with progress tracking
+- **Configuration** - YAML-based configuration instead of JSON
+- **Language** - Changed from TypeScript to Go
 
-```bash
-/auto stop
-# Or: rm ~/.claude/autonomous-mode.active
-```
-
-## Documentation
-
-📚 **[Complete Documentation Index](DOCUMENTATION-INDEX.md)** - Navigate all 90+ organized docs
-
-### Quick Links
-- **[Quickstart Guide](docs/guides/QUICKSTART.md)** - Get started in 5 minutes
-- **[Quickstart Auto Mode](docs/guides/QUICKSTART-AUTO-MODE.md)** - Autonomous operation
-- **[Setup Guide](docs/guides/SETUP-GUIDE.md)** - Detailed installation
-- **[Command Usage Guide](docs/guides/COMMAND-USAGE-GUIDE.md)** - All commands
-
-### Feature Documentation
-- **[Features V2 Overview](docs/features/FEATURES-V2.md)** - Latest capabilities
-- **[Reflexion Agent](docs/features/REFLEXION-COMMAND-INTEGRATION-COMPLETE.md)** - AI reasoning system
-- **[Autonomous Swarm](docs/features/AUTONOMOUS-SWARM-IMPLEMENTATION.md)** - Multi-agent orchestration
-- **[TypeScript Migration](docs/features/TYPESCRIPT-CLI-COMPLETE.md)** - Modern architecture
-
-### Archives
-- **[Session Summaries](docs/archive/sessions/)** - Development logs
-- **[Test Reports](docs/archive/test-reports/)** - Validation results
-
-## Benefits
-
-### For Users
-
-✅ **Zero Manual Work**
-- No more manual /checkpoint commands
-- No more manual /compact commands
-- No more manual git pushes
-- Walk away, come back to finished work
-
-✅ **Never Lose Progress**
-- Auto-checkpoint every 10 files
-- Auto-checkpoint at 40% context (sliding threshold - no task interruption)
-- All changes backed up to GitHub
-- Can revert to any checkpoint
-
-✅ **Maximum Efficiency**
-- 50-70% token savings on navigation
-- Perfect memory across sessions
-- Intelligent command routing
-- Ken's prompting mastery applied
-
-✅ **Production Ready**
-- 74 comprehensive tests
-- Edge case handling
-- Detailed documentation
-- Battle-tested patterns
-
-### For Claude
-
-✅ **Crystal Clear Instructions**
-- Triple recognition patterns
-- Explicit autonomous rules
-- No ambiguity about when to act
-- Complete tool documentation
-
-✅ **Perfect Memory**
-- 3-factor retrieval scoring
-- Git-aware memory channels
-- Episodic + semantic + working
-- Never forgets important context
-
-✅ **Intelligent Decisions**
-- Router decides which /command
-- Knows when to checkpoint
-- Knows when to compact
-- Applies patterns correctly
-
-## Use Cases
-
-### 1. Architecture Documents
-
-```bash
-/auto
-# Task: "Create complete architecture document for microservices system"
-
-Claude will:
-• Research patterns via GitHub MCP
-• Design architecture systematically
-• Document with Ken's patterns (short, focused)
-• Auto-checkpoint every 10 files
-• Auto-push to GitHub
-• Complete entire document autonomously
-```
-
-### 2. Feature Implementation
-
-```bash
-/auto
-# Task: "Implement user authentication with OAuth"
-
-Claude will:
-• Read project-index.md first (token efficiency)
-• Search GitHub for OAuth examples
-• Implement following best practices
-• Auto-checkpoint progress
-• Run tests automatically
-• Push to GitHub
-• Continue until complete
-```
-
-### 3. Bug Fixing
-
-```bash
-/auto
-# Task: "Debug and fix payment processing error"
-
-Claude will:
-• Use debug orchestrator (fully functional - regression detection)
-• Search memory for similar fixes
-• Apply fix with pattern learned
-• Verify no regressions (before/after snapshots)
-• Auto-checkpoint fix
-• Push to GitHub
-```
-
-### 4. Reverse Engineering
-
-```bash
-/auto
-# Task: "Reverse engineer this Chrome extension's API"
-
-Claude will:
-• Use RE toolkit patterns
-• Analyze manifest.json
-• Deobfuscate code
-• Document API endpoints
-• Auto-checkpoint findings
-• Continue until complete
-```
-
-## FAQ
-
-**Q: Does this work with vanilla Claude Code?**
-A: Yes! It's all hooks and commands - no modifications to Claude Code itself.
-
-**Q: Will it work in a new conversation?**
-A: Yes! Memory persists across sessions via the memory system.
-
-**Q: Can I use it with my existing projects?**
-A: Yes! Just activate `/auto` and it works with any project.
-
-**Q: What if I don't have a git repo?**
-A: Git features gracefully skip. Everything else still works.
-
-**Q: Is it safe?**
-A: Yes! Bounded autonomy rules prevent dangerous operations. All commits are logged.
-
-**Q: How do I stop it?**
-A: Say "stop" or run `/auto stop`. It stops immediately.
-
-**Q: Does it really work without any intervention?**
-A: Yes! Tested extensively. You can walk away and return to finished work.
-
-## Roadmap
-
-- [ ] Multi-repo orchestration
-- [ ] Distributed agent swarms
-- [ ] Real-time collaboration mode
-- [ ] Voice command interface
-- [ ] Mobile app for monitoring
-- [ ] Analytics dashboard
-- [ ] Custom agent personalities
-- [ ] Plugin marketplace
+See [`MIGRATION-GUIDE.md`](MIGRATION-GUIDE.md) for detailed migration instructions.
 
 ## Contributing
 
-Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Write tests
+5. Submit a pull request
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see [`LICENSE`](LICENSE) file for details.
 
-## Credits
+## Acknowledgments
 
-**Inspired by**:
-- Roo Code (autonomous operation patterns)
-- steipete/claude-code-mcp (permission bypass approach)
-- Ken's Prompting Course (exclusive patterns)
-- GitHub MCP (code search integration)
+- [Bubbletea](https://github.com/charmbracelet/bubbletea) - TUI framework
+- [Lipgloss](https://github.com/charmbracelet/lipgloss) - TUI styling
+- [Cobra](https://github.com/spf13/cobra) - CLI framework
+- [Viper](https://github.com/spf13/viper) - Configuration management
+- [Anthropic Go SDK](https://github.com/anthropics/anthropic-go) - Anthropic API
+- [Go OpenAI SDK](https://github.com/sashabaranov/go-openai) - OpenAI API
 
-**Created by**: @imorgado (with Claude's help)
+## TypeScript CLI (Experimental)
 
-**Powered by**: Claude Sonnet 4.5
+The project also includes a TypeScript CLI with advanced AI agent features:
 
----
+### Screenshot-to-Code Pipeline (Phase 4)
 
-<div align="center">
+Convert UI screenshots to production-ready React code with iterative refinement:
 
-**⚡ Claude Sovereign - The AI that governs itself ⚡**
+```bash
+# Basic usage
+bun run src/index.ts screenshot-to-code screenshot.png
 
-[Documentation](docs/) • [GitHub](https://github.com/isaacmorgado/claude-sovereign) • [Issues](https://github.com/isaacmorgado/claude-sovereign/issues)
+# With options
+bun run src/index.ts screenshot-to-code screenshot.png \
+  --output ./my-component \
+  --framework react \
+  --library tailwind \
+  --typescript \
+  --max-iterations 3 \
+  --threshold 85 \
+  --tests \
+  --report
+```
 
-Made with 🤖 by autonomous AI
+**Features**:
+- Vision LLM integration (Claude Sonnet 4.5 + Gemini 2.0 Flash MCP fallback)
+- Multiple frameworks: React, Vue, Svelte
+- Multiple component libraries: Tailwind, MUI, Chakra, Bootstrap
+- Visual regression testing with 85% similarity threshold
+- Iterative refinement (max 3 iterations)
+- 35 integration tests (100% passing)
 
-</div>
+See [Screenshot-to-Code Guide](./docs/integration/SCREENSHOT-TO-CODE-GUIDE.md) for complete documentation.
+
+### Other TypeScript Features
+
+- **Autonomous Mode** (`/auto`) - AI-powered autonomous development
+- **Reflexion Agent** - Self-correcting code generation
+- **Multi-Agent Orchestration** - Parallel task execution with swarms
+- **Quality Gates** - Constitutional AI validation
+
+### Running TypeScript CLI
+
+```bash
+# Install dependencies
+bun install
+
+# Run TypeScript CLI
+bun run src/index.ts --help
+
+# Run tests
+bun test
+```
+
+## Roadmap
+
+### v2.0 (Current)
+- [x] Go rewrite with Bubbletea TUI
+- [x] Multi-provider model management
+- [x] MCP tool integration
+- [x] Real-time streaming
+- [x] Verification and repair system
+- [x] Tavily and Base44 integrations
+- [x] CLI/VS Code alignment layer
+- [x] TypeScript CLI with screenshot-to-code (Phase 4)
+- [ ] MCP server mode for CLI
+- [ ] Full command implementations
+
+### Future Releases
+- v2.1 - Additional commands and features
+- v2.2 - Enhanced MCP server capabilities
+- v2.3 - Performance improvements and optimizations

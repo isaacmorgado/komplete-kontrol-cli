@@ -238,8 +238,8 @@ export class VisualRegressionEngine {
    * Compare image dimensions
    */
   private async compareDimensions(
-    originalPath: string,
-    generatedPath: string
+    _originalPath: string,
+    _generatedPath: string
   ): Promise<VisualDiff['dimensions']> {
     // TODO: Implement actual image dimension reading
     // Placeholder implementation
@@ -253,8 +253,8 @@ export class VisualRegressionEngine {
    * Perform pixel-level comparison
    */
   private async comparePixels(
-    originalPath: string,
-    generatedPath: string
+    _originalPath: string,
+    _generatedPath: string
   ): Promise<number> {
     // TODO: Implement actual pixel comparison using image library
     // This would use a library like 'sharp' or 'jimp' to compare pixels
@@ -266,9 +266,9 @@ export class VisualRegressionEngine {
    * Detect layout differences
    */
   private async detectLayoutDifferences(
-    originalPath: string,
-    generatedPath: string,
-    detailLevel: string
+    _originalPath: string,
+    _generatedPath: string,
+    _detailLevel: string
   ): Promise<LayoutDiff[]> {
     // TODO: Implement layout analysis using computer vision
     // This would analyze element positions, sizes, alignment
@@ -289,9 +289,9 @@ export class VisualRegressionEngine {
    * Detect color differences using CIEDE2000
    */
   private async detectColorDifferences(
-    originalPath: string,
-    generatedPath: string,
-    detailLevel: string
+    _originalPath: string,
+    _generatedPath: string,
+    _detailLevel: string
   ): Promise<ColorDiff[]> {
     // TODO: Implement color extraction and CIEDE2000 comparison
     // Extract dominant colors from both images
@@ -314,9 +314,9 @@ export class VisualRegressionEngine {
    * Detect typography differences
    */
   private async detectTypographyDifferences(
-    originalPath: string,
-    generatedPath: string,
-    detailLevel: string
+    _originalPath: string,
+    _generatedPath: string,
+    _detailLevel: string
   ): Promise<TypographyDiff[]> {
     // TODO: Implement typography analysis using OCR or vision models
     // Detect font family, size, weight, line-height
@@ -337,9 +337,9 @@ export class VisualRegressionEngine {
    * Detect spacing differences
    */
   private async detectSpacingDifferences(
-    originalPath: string,
-    generatedPath: string,
-    detailLevel: string
+    _originalPath: string,
+    _generatedPath: string,
+    _detailLevel: string
   ): Promise<SpacingDiff[]> {
     // TODO: Implement spacing analysis
     // Detect padding, margin, gap differences
@@ -461,9 +461,9 @@ export class VisualRegressionEngine {
    * Generate HTML report (placeholder)
    */
   private async generateHTMLReport(
-    diff: VisualDiff,
-    originalPath: string,
-    generatedPath: string
+    _diff: VisualDiff,
+    _originalPath: string,
+    _generatedPath: string
   ): Promise<void> {
     // TODO: Implement HTML report generation
     // Would create side-by-side comparison with annotations

@@ -76,7 +76,7 @@ export class UICodeGenerator {
       componentLibrary,
       generateTests = false,
       generateStorybook = false,
-      includePropTypes = false,
+      includePropTypes: _includePropTypes = false,
       useTailwindConfig = true
     } = options;
 
@@ -483,9 +483,9 @@ ${props.join('\n')}
    * Generate Vue component (placeholder)
    */
   private generateVueComponent(
-    analysis: UIAnalysis,
+    _analysis: UIAnalysis,
     typescript: boolean,
-    library: ComponentLibrary
+    _library: ComponentLibrary
   ): Record<string, string> {
     const ext = typescript ? 'vue' : 'vue';
     return {
@@ -514,9 +514,9 @@ export default {
    * Generate Svelte component (placeholder)
    */
   private generateSvelteComponent(
-    analysis: UIAnalysis,
+    _analysis: UIAnalysis,
     typescript: boolean,
-    library: ComponentLibrary
+    _library: ComponentLibrary
   ): Record<string, string> {
     const ext = typescript ? 'svelte' : 'svelte';
     return {
@@ -540,9 +540,9 @@ export default {
    * Generate vanilla JS component (placeholder)
    */
   private generateVanillaComponent(
-    analysis: UIAnalysis,
+    _analysis: UIAnalysis,
     typescript: boolean,
-    library: ComponentLibrary
+    _library: ComponentLibrary
   ): Record<string, string> {
     const ext = typescript ? 'ts' : 'js';
     return {
@@ -556,7 +556,7 @@ export function createComponent(container${typescript ? ': HTMLElement' : ''}) {
   /**
    * Generate types file
    */
-  private generateTypesFile(analysis: UIAnalysis): string {
+  private generateTypesFile(_analysis: UIAnalysis): string {
     return `// Component types
 export interface ComponentProps {
   className?: string;
@@ -571,7 +571,7 @@ export interface ComponentProps {
    * Generate Tailwind config
    */
   private generateTailwindConfig(analysis: UIAnalysis): string {
-    const { colors, typography, spacing } = analysis.styling;
+    const { colors, typography } = analysis.styling;
 
     return `/** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -597,9 +597,9 @@ module.exports = {
    * Generate tests (placeholder)
    */
   private generateTests(
-    analysis: UIAnalysis,
-    framework: Framework,
-    typescript: boolean
+    _analysis: UIAnalysis,
+    _framework: Framework,
+    _typescript: boolean
   ): string {
     return `// Test generation not yet implemented
 import { render, screen } from '@testing-library/react';
@@ -616,9 +616,9 @@ describe('Component', () => {
    * Generate Storybook stories (placeholder)
    */
   private generateStorybook(
-    analysis: UIAnalysis,
-    framework: Framework,
-    typescript: boolean
+    _analysis: UIAnalysis,
+    _framework: Framework,
+    _typescript: boolean
   ): string {
     return `// Storybook generation not yet implemented
 import type { Meta, StoryObj } from '@storybook/react';
