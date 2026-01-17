@@ -21583,7 +21583,7 @@ async function validateScreenshot(screenshotPath) {
 var ScreenshotToCodeCommand_default = createScreenshotToCodeCommand;
 
 // src/tui/App.tsx
-import { useEffect as useEffect3, useState as useState2, useCallback } from "react";
+import { useEffect as useEffect2, useState as useState2, useCallback } from "react";
 import { Box as Box4, Text as Text5, render } from "ink";
 
 // src/tui/components/StatusBar.tsx
@@ -21648,21 +21648,14 @@ var StatusBar = ({
 StatusBar.displayName = "StatusBar";
 
 // src/tui/components/OutputPanel.tsx
-import { useEffect, useRef } from "react";
 import { Box as Box2, Text as Text2 } from "ink";
 import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var OutputPanel = ({
   messages,
   maxHeight = 100,
-  autoScroll = true,
+  autoScroll: _autoScroll = true,
   syntaxHighlight = true
 }) => {
-  const messagesEndRef = useRef(null);
-  useEffect(() => {
-    if (autoScroll && messagesEndRef.current) {
-      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-    }
-  }, [messages, autoScroll]);
   const formatTimestamp = (date) => {
     return date.toLocaleTimeString("en-US", {
       hour: "2-digit",
@@ -21736,7 +21729,7 @@ ${code}
       paddingX: 1,
       borderStyle: "single",
       borderColor: "gray",
-      children: /* @__PURE__ */ jsx2(Box2, { flexDirection: "column", ref: messagesEndRef, children: displayMessages.length === 0 ? /* @__PURE__ */ jsx2(Text2, { color: "gray", children: "No messages yet. Start by entering a command." }) : displayMessages.map(renderMessage) })
+      children: /* @__PURE__ */ jsx2(Box2, { flexDirection: "column", children: displayMessages.length === 0 ? /* @__PURE__ */ jsx2(Text2, { color: "gray", children: "No messages yet. Start by entering a command." }) : displayMessages.map(renderMessage) })
     }
   );
 };
@@ -21821,7 +21814,7 @@ var ProgressIndicator = ({
 ProgressIndicator.displayName = "ProgressIndicator";
 
 // src/tui/components/Spinner.tsx
-import { useState, useEffect as useEffect2 } from "react";
+import { useState, useEffect } from "react";
 import { Text as Text4 } from "ink";
 import { jsxs as jsxs4 } from "react/jsx-runtime";
 var Spinner = ({
@@ -21830,7 +21823,6 @@ var Spinner = ({
   color = "yellow"
 }) => {
   const [frame, setFrame] = useState(0);
-  const [visible, setVisible] = useState(true);
   const frames = {
     dots: ["\u280B", "\u2819", "\u2839", "\u2838", "\u283C", "\u2834", "\u2826", "\u2827", "\u2807", "\u280F"],
     line: ["\u2502", "\u2524", "\u2534", "\u252C", "\u251C", "\u2500"],
@@ -21843,25 +21835,19 @@ var Spinner = ({
     arrow: 150,
     bouncing: 100
   };
-  useEffect2(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setFrame((prev) => (prev + 1) % frames[style].length);
     }, interval[style]);
     return () => clearInterval(timer);
-  }, [style]);
-  const render2 = () => {
-    if (!visible) return null;
-    return /* @__PURE__ */ jsxs4(Text4, { color, children: [
-      frames[style][frame],
-      " ",
-      message
-    ] });
-  };
-  return {
-    render: render2,
-    start: () => setVisible(true),
-    stop: () => setVisible(false)
-  };
+  }, [style, frames, interval]);
+  const currentFrames = frames[style] || frames.dots;
+  const currentFrame = currentFrames[frame % currentFrames.length];
+  return /* @__PURE__ */ jsxs4(Text4, { color, children: [
+    currentFrame,
+    " ",
+    message
+  ] });
 };
 Spinner.displayName = "Spinner";
 
@@ -21972,7 +21958,6 @@ var ANTHROPIC_MODELS = [
   {
     id: "claude-3-5-sonnet-20241022",
     name: "Claude 3.5 Sonnet",
-    provider: "anthropic",
     contextWindow: 2e5,
     maxOutputTokens: 8192,
     inputCostPer1k: 3,
@@ -21981,7 +21966,6 @@ var ANTHROPIC_MODELS = [
   {
     id: "claude-3-5-haiku-20241022",
     name: "Claude 3.5 Haiku",
-    provider: "anthropic",
     contextWindow: 2e5,
     maxOutputTokens: 4096,
     inputCostPer1k: 0.25,
@@ -21990,7 +21974,6 @@ var ANTHROPIC_MODELS = [
   {
     id: "claude-3-opus-20240229",
     name: "Claude 3 Opus",
-    provider: "anthropic",
     contextWindow: 2e5,
     maxOutputTokens: 4096,
     inputCostPer1k: 15,
@@ -22018,21 +22001,25 @@ var AnthropicProvider2 = class {
   async *streamCompletion(messages, options) {
     const client = this.getClient();
     const model = options?.model || "claude-3-5-sonnet-20241022";
+    const systemMessages = messages.filter((m) => m.role === "system");
+    const conversationMessages = messages.filter((m) => m.role !== "system");
     try {
       const stream = await client.messages.create({
         model,
-        messages: messages.map((m) => ({
+        system: systemMessages.map((m) => m.content).join("\n") || void 0,
+        messages: conversationMessages.map((m) => ({
           role: m.role,
           content: m.content
         })),
-        max_tokens: options?.maxTokens,
+        max_tokens: options?.maxTokens || 4096,
         temperature: options?.temperature,
         stop_sequences: options?.stopSequences,
         stream: true
       });
       for await (const event of stream) {
         if (event.type === "content_block_delta") {
-          const content = event.delta?.text || "";
+          const delta = event.delta;
+          const content = delta.text || "";
           yield {
             content,
             done: false
@@ -22076,21 +22063,11 @@ function createAnthropicProvider(apiKey) {
 var VSCODE_MODELS = [
   {
     id: "vscode/claude-3.5-sonnet",
-    name: "Claude 3.5 Sonnet (VS Code)",
-    provider: "vscode",
-    contextWindow: 2e5,
-    maxOutputTokens: 8192,
-    inputCostPer1k: 0,
-    outputCostPer1k: 0
+    name: "Claude 3.5 Sonnet (VS Code)"
   },
   {
     id: "vscode/gpt-4",
-    name: "GPT-4 (VS Code)",
-    provider: "vscode",
-    contextWindow: 128e3,
-    maxOutputTokens: 4096,
-    inputCostPer1k: 0,
-    outputCostPer1k: 0
+    name: "GPT-4 (VS Code)"
   }
 ];
 var VSCodeLLMProvider = class {
@@ -22157,12 +22134,9 @@ function createProvider2(config) {
         throw new Error("Anthropic provider requires API key");
       }
       return createAnthropicProvider(config.apiKey);
-    case "openai":
-      if (!config.apiKey) {
-        throw new Error("OpenAI provider requires API key");
-      }
-      return createOpenAIProvider(config.apiKey);
     case "vscode":
+      return createVSCodeLLMProvider();
+    case "local":
       return createVSCodeLLMProvider();
     default:
       throw new Error(`Unknown provider: ${config.name}`);
@@ -22179,13 +22153,14 @@ var ModelManager = class {
   totalCost = 0;
   constructor(config) {
     this.config = config;
-    this.initializeProviders();
   }
   /**
    * Initialize all configured providers
+   * @public - Must be called after construction
    */
-  async initializeProviders() {
-    for (const providerConfig of this.config.providers) {
+  async initialize() {
+    const providers = this.config?.providers || [];
+    for (const providerConfig of providers) {
       if (providerConfig.enabled) {
         try {
           const provider = createProvider2(providerConfig);
@@ -22198,6 +22173,14 @@ var ModelManager = class {
         }
       }
     }
+  }
+  /**
+   * Cleanup providers
+   */
+  async cleanup() {
+    this.providers.clear();
+    this.currentProvider = null;
+    this.currentModel = null;
   }
   /**
    * Get current provider
@@ -22292,6 +22275,7 @@ var ModelManager = class {
    * Track cost for a completion
    */
   async trackCost(messages, modelId, outputLength) {
+    if (!this.currentProvider) return;
     const provider = this.providers.get(this.currentProvider);
     if (!provider) return;
     const cost = provider.estimateCost(messages, modelId);
@@ -22571,7 +22555,8 @@ var StreamHandler = class {
     } catch (error) {
       state.status = "error";
       if (options.onError) {
-        options.onError(error);
+        const err = error instanceof Error ? error : new Error(String(error));
+        options.onError(err);
       }
       this.endStream(streamId);
     }
@@ -22824,6 +22809,70 @@ var ConfigManager = class {
 };
 
 // src/core/shared/SharedCore.ts
+function buildModelConfig(configManager) {
+  const modelsConfig = configManager.get("models");
+  const providers = modelsConfig?.providers || {};
+  const providerConfigs = [];
+  if (providers.anthropic?.apiKey) {
+    providerConfigs.push({
+      name: "anthropic",
+      apiKey: providers.anthropic.apiKey,
+      baseUrl: providers.anthropic.baseUrl,
+      models: [
+        { id: "claude-sonnet-4.5", name: "Claude Sonnet 4.5", maxTokens: 8192, contextLength: 2e5 },
+        { id: "claude-opus-4.5", name: "Claude Opus 4.5", maxTokens: 8192, contextLength: 2e5 },
+        { id: "claude-haiku-4", name: "Claude Haiku 4", maxTokens: 4096, contextLength: 2e5 }
+      ],
+      enabled: true
+    });
+  }
+  if (providers.openai?.apiKey) {
+    providerConfigs.push({
+      name: "openai",
+      apiKey: providers.openai.apiKey,
+      baseUrl: providers.openai.baseUrl,
+      models: [
+        { id: "gpt-4o", name: "GPT-4o", maxTokens: 4096, contextLength: 128e3 },
+        { id: "gpt-4o-mini", name: "GPT-4o Mini", maxTokens: 4096, contextLength: 128e3 }
+      ],
+      enabled: true
+    });
+  }
+  if (providers.gemini?.apiKey) {
+    providerConfigs.push({
+      name: "gemini",
+      apiKey: providers.gemini.apiKey,
+      models: [
+        { id: "gemini-2.0-flash", name: "Gemini 2.0 Flash", maxTokens: 8192, contextLength: 1e6 },
+        { id: "gemini-1.5-pro", name: "Gemini 1.5 Pro", maxTokens: 8192, contextLength: 2e6 }
+      ],
+      enabled: true
+    });
+  }
+  if (providers.vscode?.enabled) {
+    providerConfigs.push({
+      name: "vscode",
+      baseUrl: "http://localhost:11434",
+      models: [],
+      enabled: true
+    });
+  }
+  if (providers.local?.enabled) {
+    providerConfigs.push({
+      name: "local",
+      baseUrl: providers.local.baseUrl || "http://localhost:11434",
+      models: [],
+      enabled: true
+    });
+  }
+  return {
+    defaultModel: modelsConfig?.default || "claude-sonnet-4.5",
+    fallbackModels: modelsConfig?.fallbackChain || [],
+    providers: providerConfigs,
+    trackCosts: true,
+    countTokens: true
+  };
+}
 var SharedCore = class _SharedCore {
   static instance;
   modelManager;
@@ -22833,8 +22882,9 @@ var SharedCore = class _SharedCore {
   configManager;
   constructor() {
     this.configManager = new ConfigManager();
-    this.modelManager = new ModelManager(this.configManager);
-    this.toolManager = new ToolManager(this.configManager);
+    const modelConfig = buildModelConfig(this.configManager);
+    this.modelManager = new ModelManager(modelConfig);
+    this.toolManager = new ToolManager();
     this.streamHandler = new StreamHandler();
     this.verificationManager = new VerificationManager();
   }
@@ -22892,7 +22942,7 @@ var App = ({ command, args: args2 = [] }) => {
   });
   const [inputValue, setInputValue] = useState2("");
   const [showSpinner, setShowSpinner] = useState2(false);
-  useEffect3(() => {
+  useEffect2(() => {
     sharedCore.initialize().catch((error) => {
       console.error("Failed to initialize shared core:", error);
     });
@@ -22974,7 +23024,7 @@ var App = ({ command, args: args2 = [] }) => {
       handleThemeToggle();
     }
   }, [handleQuit, handleThemeToggle]);
-  useEffect3(() => {
+  useEffect2(() => {
     const handleKeyPress = (data) => {
       const key = data.toString();
       handleKey(key);

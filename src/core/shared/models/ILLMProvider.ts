@@ -3,6 +3,8 @@
  * Defines the contract for all LLM providers (Anthropic, OpenAI, etc.)
  */
 
+import type { ModelInfo } from './ModelConfig';
+
 export interface ILLMProvider {
   /**
    * Provider name (e.g., 'anthropic', 'openai', 'vscode')
@@ -31,6 +33,16 @@ export interface ILLMProvider {
    * Get token count for a message
    */
   countTokens(messages: LLMMessage[]): Promise<number>;
+
+  /**
+   * Get all available models from this provider
+   */
+  getModels(): ModelInfo[];
+
+  /**
+   * Get info for a specific model
+   */
+  getModelInfo(modelId: string): ModelInfo | undefined;
 }
 
 /**
@@ -60,17 +72,4 @@ export interface LLMStreamChunk {
   content: string;
   done: boolean;
   tokens?: number;
-}
-
-/**
- * Model Info
- */
-export interface ModelInfo {
-  id: string;
-  name: string;
-  provider: string;
-  contextWindow: number;
-  maxOutputTokens: number;
-  inputCostPer1k: number;
-  outputCostPer1k: number;
 }

@@ -4,16 +4,26 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk';
-import type { ILLMProvider, LLMMessage, LLMOptions, LLMStreamChunk, ModelInfo } from './ILLMProvider';
+import type { ILLMProvider, LLMMessage, LLMOptions, LLMStreamChunk } from './ILLMProvider';
+import type { ModelInfo } from './ModelConfig';
+
+/**
+ * Extended ModelInfo for Anthropic with cost information
+ */
+interface AnthropicModelInfo extends ModelInfo {
+  contextWindow: number;
+  maxOutputTokens: number;
+  inputCostPer1k: number;
+  outputCostPer1k: number;
+}
 
 /**
  * Anthropic model specifications
  */
-const ANTHROPIC_MODELS: ModelInfo[] = [
+const ANTHROPIC_MODELS: AnthropicModelInfo[] = [
   {
     id: 'claude-3-5-sonnet-20241022',
     name: 'Claude 3.5 Sonnet',
-    provider: 'anthropic',
     contextWindow: 200000,
     maxOutputTokens: 8192,
     inputCostPer1k: 3.0,
@@ -22,7 +32,6 @@ const ANTHROPIC_MODELS: ModelInfo[] = [
   {
     id: 'claude-3-5-haiku-20241022',
     name: 'Claude 3.5 Haiku',
-    provider: 'anthropic',
     contextWindow: 200000,
     maxOutputTokens: 4096,
     inputCostPer1k: 0.25,
@@ -31,7 +40,6 @@ const ANTHROPIC_MODELS: ModelInfo[] = [
   {
     id: 'claude-3-opus-20240229',
     name: 'Claude 3 Opus',
-    provider: 'anthropic',
     contextWindow: 200000,
     maxOutputTokens: 4096,
     inputCostPer1k: 15.0,
@@ -71,14 +79,19 @@ export class AnthropicProvider implements ILLMProvider {
     const client = this.getClient();
     const model = options?.model || 'claude-3-5-sonnet-20241022';
 
+    // Separate system messages from user/assistant messages
+    const systemMessages = messages.filter(m => m.role === 'system');
+    const conversationMessages = messages.filter(m => m.role !== 'system');
+
     try {
       const stream = await client.messages.create({
-        model: model as any,
-        messages: messages.map(m => ({
-          role: m.role,
+        model: model,
+        system: systemMessages.map(m => m.content).join('\n') || undefined,
+        messages: conversationMessages.map(m => ({
+          role: m.role as 'user' | 'assistant',
           content: m.content,
         })),
-        max_tokens: options?.maxTokens,
+        max_tokens: options?.maxTokens || 4096,
         temperature: options?.temperature,
         stop_sequences: options?.stopSequences,
         stream: true,
@@ -86,7 +99,9 @@ export class AnthropicProvider implements ILLMProvider {
 
       for await (const event of stream) {
         if (event.type === 'content_block_delta') {
-          const content = event.delta?.text || '';
+          // Type guard for text delta
+          const delta = event.delta as { type: string; text?: string };
+          const content = delta.text || '';
           yield {
             content,
             done: false,

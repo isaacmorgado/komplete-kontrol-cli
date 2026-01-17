@@ -3,7 +3,8 @@
  * VS Code LLM API provider for integration with VS Code's built-in LLM
  */
 
-import type { ILLMProvider, LLMMessage, LLMOptions, LLMStreamChunk, ModelInfo } from './ILLMProvider';
+import type { ILLMProvider, LLMMessage, LLMOptions, LLMStreamChunk } from './ILLMProvider';
+import type { ModelInfo } from './ModelConfig';
 
 /**
  * VS Code LLM API interface
@@ -28,20 +29,10 @@ const VSCODE_MODELS: ModelInfo[] = [
   {
     id: 'vscode/claude-3.5-sonnet',
     name: 'Claude 3.5 Sonnet (VS Code)',
-    provider: 'vscode',
-    contextWindow: 200000,
-    maxOutputTokens: 8192,
-    inputCostPer1k: 0,
-    outputCostPer1k: 0,
   },
   {
     id: 'vscode/gpt-4',
     name: 'GPT-4 (VS Code)',
-    provider: 'vscode',
-    contextWindow: 128000,
-    maxOutputTokens: 4096,
-    inputCostPer1k: 0,
-    outputCostPer1k: 0,
   },
 ];
 

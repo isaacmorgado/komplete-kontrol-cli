@@ -3,6 +3,16 @@
  * Configuration for LLM models and providers
  */
 
+/**
+ * Model Info for provider models
+ */
+export interface ModelInfo {
+  id: string;
+  name: string;
+  maxTokens?: number;
+  contextLength?: number;
+}
+
 export interface ModelConfig {
   /**
    * Default model to use (format: provider/model)

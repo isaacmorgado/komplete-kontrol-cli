@@ -3,10 +3,8 @@
  * Central manager for LLM models with multi-provider support and fallback chain
  */
 
+import type { ILLMProvider, LLMMessage, LLMOptions } from './ILLMProvider';
 import type {
-  ILLMProvider,
-  LLMMessage,
-  LLMOptions,
   ModelInfo,
   ModelConfig,
   ModelCost,
@@ -28,19 +26,21 @@ export class ModelManager {
 
   constructor(config: ModelConfig) {
     this.config = config;
-    this.initializeProviders();
+    // Don't auto-initialize - call initialize() explicitly
   }
 
   /**
    * Initialize all configured providers
+   * @public - Must be called after construction
    */
-  private async initializeProviders(): Promise<void> {
-    for (const providerConfig of this.config.providers) {
+  async initialize(): Promise<void> {
+    const providers = this.config?.providers || [];
+    for (const providerConfig of providers) {
       if (providerConfig.enabled) {
         try {
           const provider = createProvider(providerConfig);
           const available = await provider.isAvailable();
-          
+
           if (available) {
             this.providers.set(providerConfig.name, provider);
           }
@@ -49,6 +49,15 @@ export class ModelManager {
         }
       }
     }
+  }
+
+  /**
+   * Cleanup providers
+   */
+  async cleanup(): Promise<void> {
+    this.providers.clear();
+    this.currentProvider = null;
+    this.currentModel = null;
   }
 
   /**
@@ -174,6 +183,7 @@ export class ModelManager {
     modelId: string,
     outputLength: number,
   ): Promise<void> {
+    if (!this.currentProvider) return;
     const provider = this.providers.get(this.currentProvider);
     if (!provider) return;
 
@@ -273,6 +283,6 @@ export class ModelManager {
  */
 export async function createModelManager(config: ModelConfig): Promise<ModelManager> {
   const manager = new ModelManager(config);
-  await manager.initializeProviders();
+  await manager.initialize();
   return manager;
 }

@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-17 12:36:27
+**Generated**: 2026-01-17 12:53:14
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -433,12 +433,11 @@
 ├── 📁 test-results/
 ├── 📁 test-workspace-acceptance/
 ├── 📁 test-workspace-reflexion-cli/
-├── 📄 calculator.js
-├── 📄 hello.txt
-├── 📄 index.js
-├── 📄 test-orchestrator.sh
-├── 📄 test.txt
-└── 📄 unknown.ts
+└── 📄 test-orchestrator.sh
+├── 📁 test-workspace-reflexion-edge-cases/
+└── 📁 src/
+│   ├── 📄 interfaces.ts
+│   └── 📄 types.ts
 ├── 📁 test-workspace-reflexion-edge-cases 2/
 ├── 📁 test-workspace-reflexion-production/
 ├── 📁 test-workspace-reflexion-stress/
@@ -575,7 +574,6 @@
 
 ### Entry Points
 • ./cmd/komplete/main.go
-• ./test-workspace-reflexion-cli/index.js
 • ./dist/index.js
 • ./node_modules/queue-microtask/index.js
 • ./node_modules/queue-microtask/index.d.ts
@@ -750,11 +748,11 @@
 ## 📊 Project Statistics
 
 **Languages:**
-• JavaScript/TypeScript: 5260 files
+• JavaScript/TypeScript: 5259 files
 • Python: 1 files
 • Go: 50 files
 
-**Estimated LOC:** 1170041
+**Estimated LOC:** 1170353
 
 
 ---
@@ -784,6 +782,7 @@
 • **test-results/**
 • **test-workspace-acceptance/**
 • **test-workspace-reflexion-cli/**
+• **test-workspace-reflexion-edge-cases/**
 • **test-workspace-reflexion-edge-cases 2/**
 • **test-workspace-reflexion-production/**
 • **test-workspace-reflexion-stress/**

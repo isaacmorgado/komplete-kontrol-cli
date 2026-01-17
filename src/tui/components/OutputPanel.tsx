@@ -3,23 +3,18 @@
  * Displays streaming output, messages, and tool execution results
  */
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Box, Text } from 'ink';
 import { OutputPanelProps, OutputMessage } from '../types';
 
 export const OutputPanel: React.FC<OutputPanelProps> = ({
   messages,
   maxHeight = 100,
-  autoScroll = true,
+  autoScroll: _autoScroll = true,
   syntaxHighlight = true,
 }) => {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (autoScroll && messagesEndRef.current) {
-      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-    }
-  }, [messages, autoScroll]);
+  // Note: Ink's Box component handles scrolling differently from browser DOM
+  // autoScroll is accepted for API compatibility but Ink manages display
 
   const formatTimestamp = (date: Date): string => {
     return date.toLocaleTimeString('en-US', {
@@ -96,7 +91,7 @@ export const OutputPanel: React.FC<OutputPanelProps> = ({
       borderStyle="single"
       borderColor="gray"
     >
-      <Box flexDirection="column" ref={messagesEndRef}>
+      <Box flexDirection="column">
         {displayMessages.length === 0 ? (
           <Text color="gray">No messages yet. Start by entering a command.</Text>
         ) : (

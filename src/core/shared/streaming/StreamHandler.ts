@@ -87,7 +87,8 @@ export class StreamHandler {
     } catch (error) {
       state.status = 'error';
       if (options.onError) {
-        options.onError(error);
+        const err = error instanceof Error ? error : new Error(String(error));
+        options.onError(err);
       }
       this.endStream(streamId);
     }

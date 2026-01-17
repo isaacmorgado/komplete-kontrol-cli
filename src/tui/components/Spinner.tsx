@@ -13,16 +13,15 @@ export const Spinner: React.FC<SpinnerProps> = ({
   color = 'yellow',
 }) => {
   const [frame, setFrame] = useState(0);
-  const [visible, setVisible] = useState(true);
 
-  const frames = {
+  const frames: Record<string, string[]> = {
     dots: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'],
     line: ['│', '┤', '┴', '┬', '├', '─'],
     arrow: ['←', '↑', '→', '↓'],
     bouncing: ['⠁', '⠂', '⠄', '⠂'],
   };
 
-  const interval = {
+  const interval: Record<string, number> = {
     dots: 80,
     line: 120,
     arrow: 150,
@@ -35,23 +34,16 @@ export const Spinner: React.FC<SpinnerProps> = ({
     }, interval[style]);
 
     return () => clearInterval(timer);
-  }, [style]);
+  }, [style, frames, interval]);
 
-  const render = () => {
-    if (!visible) return null;
+  const currentFrames = frames[style] || frames.dots;
+  const currentFrame = currentFrames[frame % currentFrames.length];
 
-    return (
-      <Text color={color}>
-        {frames[style][frame]} {message}
-      </Text>
-    );
-  };
-
-  return {
-    render,
-    start: () => setVisible(true),
-    stop: () => setVisible(false),
-  };
+  return (
+    <Text color={color}>
+      {currentFrame} {message}
+    </Text>
+  );
 };
 
 Spinner.displayName = 'Spinner';

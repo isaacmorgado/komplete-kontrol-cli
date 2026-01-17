@@ -204,7 +204,7 @@ export interface ProgressIndicatorProps {
   current?: number;
   message?: string;
   showPercentage?: boolean;
-  style?: 'bar' | 'dots' | 'spinner';
+  style?: 'bar' | 'dots' | 'spinner' | 'arrow';
 }
 
 export interface OutputPanelProps {
