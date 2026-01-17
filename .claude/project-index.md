@@ -1,6 +1,6 @@
 # 🗂️ Project Structure: .
 
-**Generated**: 2026-01-16 12:49:12
+**Generated**: 2026-01-17 12:36:27
 **Purpose**: Quick navigation reference for Claude (token-efficient)
 
 ---
@@ -66,8 +66,34 @@
 ├── 📄 buildguide.md
 ├── 📄 bun.lock
 ├── 📄 calculator.ts
+├── 📄 CHANGELOG.md
 ├── 📄 CLAUDE.md
 ├── 📄 CLI-AUTO-COMMAND-TEST-REPORT.md
+├── 📁 cmd/
+└── 📁 komplete/
+│   ├── 📄 auto.go
+│   ├── 📄 build.go
+│   ├── 📄 checkpoint.go
+│   ├── 📄 collab.go
+│   ├── 📄 commit.go
+│   ├── 📄 compact.go
+│   ├── 📄 init.go
+│   ├── 📄 main.go
+│   ├── 📄 multirepo.go
+│   ├── 📄 personality.go
+│   ├── 📄 re.go
+│   ├── 📄 reflect.go
+│   ├── 📄 reflexion.go
+│   ├── 📄 research.go
+│   ├── 📄 researchapi.go
+│   ├── 📄 rootcause.go
+│   ├── 📄 screenshot.go
+│   ├── 📄 sparc.go
+│   ├── 📄 swarm.go
+│   ├── 📄 tui_smoke.go
+│   ├── 📄 tui.go
+│   ├── 📄 util.go
+│   └── 📄 voice.go
 ├── 📁 commands/
 ├── 📄 auto.md
 ├── 📄 build.md
@@ -167,11 +193,16 @@
 │   ├── 📄 RE-TOOLS-INTEGRATION-REPORT.md
 │   ├── 📄 REFLEXION-COMMAND-INTEGRATION-COMPLETE.md
 │   ├── 📄 REFLEXION-ORCHESTRATOR-INTEGRATION-PLAN.md
+│   ├── 📄 SCREENSHOT-TO-CODE-GUIDE.md
 │   ├── 📄 V2-IMPLEMENTATION-SUMMARY.md
 │   └── 📄 VERIFICATION-COMPLETE.md
 ├── 📄 PROJECT-NAVIGATOR-GUIDE.md
 └── 📄 REFLEXION-AGENT-IMPROVEMENTS.md
 ├── 📄 DOCUMENTATION-INDEX.md
+├── 📄 GO-IMPLEMENTATION-SUMMARY.md
+├── 📄 GO-SETUP.md
+├── 📄 go.mod
+├── 📄 go.sum
 ├── 📄 hello.ts
 ├── 📁 hooks/
 ├── 📁 .claude/
@@ -223,8 +254,50 @@
 └── 📄 ui-testing.sh
 ├── 📄 HOW-TO-USE-AUTO-COMMAND.md
 ├── 📄 install.sh
+├── 📁 internal/
+├── 📁 alignment/
+│   └── 📄 protocol.go
+├── 📁 app/
+│   └── 📄 root.go
+├── 📁 config/
+│   └── 📄 config.go
+├── 📁 llm/
+│   ├── 📄 model_manager.go
+│   ├── 📁 providers/
+│   │   ├── 📄 anthropic.go
+│   │   ├── 📄 gemini.go
+│   │   ├── 📄 local.go
+│   │   ├── 📄 mock.go
+│   │   ├── 📄 openai.go
+│   │   └── 📄 vscode.go
+│   └── 📄 types.go
+├── 📁 llmapi/
+│   └── 📄 types.go
+├── 📁 streaming/
+│   └── 📄 handler.go
+├── 📁 tools/
+│   ├── 📄 base44.go
+│   ├── 📄 mcp_transport.go
+│   ├── 📄 tavily_integration_test.go
+│   ├── 📄 tavily.go
+│   ├── 📄 tool_manager.go
+│   └── 📄 write_file.go
+├── 📁 tui/
+│   ├── 📄 app.go
+│   ├── 📁 components/
+│   │   ├── 📄 outputpanel.go
+│   │   ├── 📄 statusbar.go
+│   │   └── 📄 textinput.go
+│   ├── 📄 messages.go
+│   ├── 📄 model.go
+│   └── 📄 theme.go
+└── 📁 verification/
+│   └── 📄 manager.go
+├── 📄 komplete
 ├── 📄 komplete-kontrol-cli.code-workspace
 ├── 📄 LICENSE
+├── 📄 Makefile
+├── 📄 MIGRATION-GUIDE.md
 ├── 📄 package-lock.json
 ├── 📄 package.json
 ├── 📁 personalities/
@@ -240,6 +313,7 @@
 └── 📄 RECOMMENDATIONS.md
 ├── 📁 plans 2/
 └── 📄 ULTIMATE-TOOL-INTEGRATION-PLAN.md
+├── 📄 QA-VERIFICATION-REPORT.md
 ├── 📄 QUICK-START-GUIDE.md
 ├── 📄 README.md
 ├── 📄 run-edge-case-tests.sh
@@ -308,6 +382,13 @@
 │   ├── 📁 safety/
 │   │   ├── 📁 bounded-autonomy/
 │   │   └── 📁 constitutional/
+│   ├── 📁 shared/
+│   │   ├── 📄 ConfigManager.ts
+│   │   ├── 📁 models/
+│   │   ├── 📄 SharedCore.ts
+│   │   ├── 📁 streaming/
+│   │   ├── 📁 tools/
+│   │   └── 📁 verification/
 │   ├── 📁 vision/
 │   │   ├── 📄 types.ts
 │   │   └── 📄 ZeroDriftCapture.ts
@@ -319,6 +400,17 @@
 │   ├── 📄 re-docs.sh
 │   └── 📄 re-prompt.sh
 └── 📁 tui/
+│   ├── 📄 App.tsx
+│   ├── 📄 CommandRouter.ts
+│   ├── 📁 components/
+│   │   ├── 📄 OutputPanel.tsx
+│   │   ├── 📄 ProgressIndicator.tsx
+│   │   ├── 📄 Spinner.tsx
+│   │   └── 📄 StatusBar.tsx
+│   ├── 📄 index.ts
+│   ├── 📁 models/
+│   ├── 📁 styles/
+│   │   └── 📄 theme.ts
 │   ├── 📄 theme.ts
 │   └── 📄 types.ts
 ├── 📄 test-auto-command.sh
@@ -357,6 +449,9 @@
 └── 📁 src/
 │   └── 📄 types.ts
 ├── 📄 test.txt
+├── 📁 testdata/
+├── 📄 tavily-config.yaml
+└── 📄 tui-mock.txt
 ├── 📄 TESTING-AND-MONITORING-GUIDE.md
 ├── 📁 tests/
 ├── 📄 action-executor-test.ts
@@ -376,7 +471,8 @@
 ├── 📄 init-command-test.ts
 ├── 📁 integration/
 │   ├── 📄 agent-orchestration-integration.test.ts
-│   └── 📄 reflexion-command.test.ts
+│   ├── 📄 reflexion-command.test.ts
+│   └── 📄 screenshot-to-code.test.ts
 ├── 📁 orchestrator/
 │   ├── 📄 reflexion-integration.test.sh
 │   ├── 📄 test-decision-logic.sh
@@ -400,9 +496,11 @@
 • ./package.json
 • ./tsconfig.json
 • ./.eslintrc.json
+• ./testdata/tavily-config.yaml
 • ./personalities/performance-optimizer.yaml
 • ./personalities/security-expert.yaml
 • ./personalities/default.yaml
+• ./Makefile
 
 ### Documentation
 • ./README.md
@@ -410,18 +508,22 @@
 • ./CLAUDE.md
 • ./plans/ARCHITECTURE.md
 • ./CLI-AUTO-COMMAND-TEST-REPORT.md
+• ./QA-VERIFICATION-REPORT.md
 • ./AUTO-BUILD-LOOP-GUIDE.md
 • ./DOCUMENTATION-INDEX.md
 • ./AUTO-CONTINUE-ENHANCEMENTS.md
+• ./CHANGELOG.md
 • ./plans/ARCHITECTURE-ANALYSIS.md
 • ./plans/ARCHITECTURE.md
 • ./plans/MIGRATION-GUIDE.md
 • ./plans/IMPLEMENTATION-PHASES.md
 • ./plans/COMPONENT-LIBRARY.md
 • ./plans/RECOMMENDATIONS.md
+• ./MIGRATION-GUIDE.md
 • ./config/CLAUDE.md
 • ./AUTO-CONTINUE-FIXES-IMPLEMENTED.md
 • ./QUICK-START-GUIDE.md
+• ./GO-SETUP.md
 • ./.claude/auto-continue.local.md
 • ./.claude/project-index.md
 • ./docs/GITHUB-PUSH-AND-NAVIGATION-COMPLETE.md
@@ -447,6 +549,7 @@
 • ./test-reports/orchestrator-integration-test-results-20260116.md
 • ./test-reports/reflexion-fix-validation-20260116.md
 • ./test-reports/autocommand-modular-test-results-20260116.md
+• ./GO-IMPLEMENTATION-SUMMARY.md
 • ./AUTO-COMMAND-FINAL-TEST-REPORT.md
 • ./commands/voice.md
 • ./commands/collab.md
@@ -471,6 +574,7 @@
 • ./VERIFICATION-REPORT-MEMORY-RE-COMPACT-AUTO.md
 
 ### Entry Points
+• ./cmd/komplete/main.go
 • ./test-workspace-reflexion-cli/index.js
 • ./dist/index.js
 • ./node_modules/queue-microtask/index.js
@@ -483,16 +587,21 @@
 • ./node_modules/zod/index.d.ts
 • ./node_modules/globals/index.js
 • ./node_modules/globals/index.d.ts
+• ./node_modules/lodash/index.js
 • ./node_modules/shebang-regex/index.js
 • ./node_modules/shebang-regex/index.d.ts
 • ./node_modules/path-is-absolute/index.js
+• ./node_modules/stack-utils/index.js
 • ./node_modules/stdin-discarder/index.js
 • ./node_modules/stdin-discarder/index.d.ts
 • ./node_modules/path-type/index.js
 • ./node_modules/path-type/index.d.ts
+• ./node_modules/mimic-fn/index.js
+• ./node_modules/mimic-fn/index.d.ts
 • ./node_modules/strip-ansi/index.js
 • ./node_modules/strip-ansi/index.d.ts
 • ./node_modules/flatted/index.js
+• ./node_modules/loose-envify/index.js
 • ./node_modules/mimic-function/index.js
 • ./node_modules/mimic-function/index.d.ts
 • ./node_modules/ms/index.js
@@ -501,28 +610,43 @@
 • ./node_modules/playwright-core/index.d.ts
 • ./node_modules/escape-string-regexp/index.js
 • ./node_modules/escape-string-regexp/index.d.ts
+• ./node_modules/indent-string/index.js
+• ./node_modules/indent-string/index.d.ts
 • ./node_modules/strip-json-comments/index.js
 • ./node_modules/strip-json-comments/index.d.ts
 • ./node_modules/type-fest/index.d.ts
 • ./node_modules/commander/index.js
+• ./node_modules/ci-info/index.js
+• ./node_modules/ci-info/index.d.ts
 • ./node_modules/text-table/index.js
 • ./node_modules/fast-json-stable-stringify/index.js
 • ./node_modules/fast-json-stable-stringify/index.d.ts
 • ./node_modules/balanced-match/index.js
 • ./node_modules/path-exists/index.js
 • ./node_modules/path-exists/index.d.ts
+• ./node_modules/cli-truncate/index.js
+• ./node_modules/cli-truncate/index.d.ts
+• ./node_modules/signal-exit/index.js
+• ./node_modules/wrap-ansi/index.js
+• ./node_modules/wrap-ansi/index.d.ts
 • ./node_modules/ignore/index.js
 • ./node_modules/ignore/index.d.ts
 • ./node_modules/picomatch/index.js
 • ./node_modules/is-glob/index.js
+• ./node_modules/is-fullwidth-code-point/index.js
+• ./node_modules/is-fullwidth-code-point/index.d.ts
 • ./node_modules/ora/index.js
 • ./node_modules/ora/index.d.ts
+• ./node_modules/is-ci/index.js
 • ./node_modules/dir-glob/index.js
 • ./node_modules/color-name/index.js
 • ./node_modules/p-locate/index.js
 • ./node_modules/p-locate/index.d.ts
 • ./node_modules/js-yaml/index.js
+• ./node_modules/scheduler/index.js
 • ./node_modules/parent-module/index.js
+• ./node_modules/cli-boxes/index.js
+• ./node_modules/cli-boxes/index.d.ts
 • ./node_modules/is-path-inside/index.js
 • ./node_modules/is-path-inside/index.d.ts
 • ./node_modules/run-parallel/index.js
@@ -555,8 +679,11 @@
 • ./node_modules/slash/index.js
 • ./node_modules/slash/index.d.ts
 • ./node_modules/semver/index.js
+• ./node_modules/widest-line/index.js
+• ./node_modules/widest-line/index.d.ts
 • ./node_modules/ansi-styles/index.js
 • ./node_modules/ansi-styles/index.d.ts
+• ./node_modules/js-tokens/index.js
 • ./node_modules/acorn-jsx/index.js
 • ./node_modules/acorn-jsx/index.d.ts
 • ./node_modules/is-number/index.js
@@ -569,7 +696,10 @@
 • ./node_modules/concat-map/index.js
 • ./node_modules/restore-cursor/index.js
 • ./node_modules/restore-cursor/index.d.ts
+• ./node_modules/slice-ansi/index.js
 • ./node_modules/cross-spawn/index.js
+• ./node_modules/ansi-escapes/index.js
+• ./node_modules/ansi-escapes/index.d.ts
 • ./node_modules/import-fresh/index.js
 • ./node_modules/import-fresh/index.d.ts
 • ./node_modules/to-regex-range/index.js
@@ -593,20 +723,26 @@
 • ./node_modules/cli-spinners/index.d.ts
 • ./node_modules/merge2/index.js
 • ./node_modules/deep-is/index.js
+• ./node_modules/react/index.js
 • ./node_modules/braces/index.js
+• ./node_modules/react-reconciler/index.js
 • ./node_modules/emoji-regex/index.js
-• ./node_modules/emoji-regex/index.mjs
 • ./node_modules/emoji-regex/index.d.ts
 • ./node_modules/locate-path/index.js
 • ./node_modules/locate-path/index.d.ts
+• ./node_modules/auto-bind/index.js
+• ./node_modules/auto-bind/index.d.ts
 • ./node_modules/globby/index.js
 • ./node_modules/globby/index.d.ts
+• ./node_modules/ws/index.js
 • ./node_modules/fast-deep-equal/index.js
 • ./node_modules/fast-deep-equal/index.d.ts
 • ./node_modules/shebang-command/index.js
 • ./node_modules/glob-parent/index.js
 • ./node_modules/isexe/index.js
+• ./src/tui/index.ts
 • ./src/index.ts
+• ./internal/tui/app.go
 
 
 ---
@@ -614,10 +750,11 @@
 ## 📊 Project Statistics
 
 **Languages:**
-• JavaScript/TypeScript: 3795 files
+• JavaScript/TypeScript: 5260 files
 • Python: 1 files
+• Go: 50 files
 
-**Estimated LOC:** 1043723
+**Estimated LOC:** 1170041
 
 
 ---
@@ -631,11 +768,13 @@
 
 ### Common Directories
 • **~/**
+• **cmd/**
 • **commands/**
 • **config/**: Configuration
 • **dist/**
 • **docs/**: Documentation
 • **hooks/**: Custom hooks
+• **internal/**
 • **node_modules/**
 • **personalities/**
 • **plans/**
@@ -649,6 +788,7 @@
 • **test-workspace-reflexion-production/**
 • **test-workspace-reflexion-stress/**
 • **test-workspace-reflexion-stress 2/**
+• **testdata/**
 • **tests/**: Test files
 
 ---

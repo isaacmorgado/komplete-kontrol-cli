@@ -29,13 +29,22 @@ import {
   VoiceCommand
 } from './cli/commands';
 import createScreenshotToCodeCommand from './cli/commands/ScreenshotToCodeCommand';
+import { commandRouter } from './tui/CommandRouter';
+import { runTUI } from './tui/App';
 
 const program = new Command();
 
 program
   .name('komplete')
   .description('Ultimate AI coding assistant with autonomous capabilities')
-  .version('1.0.0');
+  .version('2.0.0')
+  .option('--tui', 'Enable new TUI interface (Ink-based)', false);
+
+program
+  .name('komplete')
+  .description('Ultimate AI coding assistant with autonomous capabilities')
+  .version('2.0.0')
+  .option('--tui', 'Enable new TUI interface (Ink-based)', false);
 
 /**
  * Initialize command context
@@ -623,4 +632,16 @@ program
  */
 program.addCommand(createScreenshotToCodeCommand());
 
-program.parse();
+// Parse command line arguments to check for TUI mode
+const args = process.argv.slice(2);
+const tuiIndex = args.indexOf('--tui');
+const useTUI = tuiIndex !== -1;
+
+if (useTUI) {
+  // Launch new TUI interface
+  const tuiArgs = args.filter(arg => arg !== '--tui');
+  runTUI(tuiArgs[0], tuiArgs.slice(1));
+} else {
+  // Traditional CLI interface
+  program.parse();
+}

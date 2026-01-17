@@ -1,13 +1,24 @@
 /**
- * TUI Message Types
- * 
- * This file defines all message types used in the Bubbletea TUI system.
- * Messages are the primary way components communicate state changes.
+ * TUI Types for Komplete Kontrol CLI
+ * Defines interfaces for TUI components and models
  */
 
 // ============================================================================
-// Core Bubbletea Messages
+// Message Types (Elm-inspired architecture)
 // ============================================================================
+
+export type AppMsg =
+  | InitMsg
+  | UpdateMsg
+  | TickMsg
+  | QuitMsg
+  | KeyMsg
+  | WindowSizeMsg
+  | CommandMsg
+  | OutputMsg
+  | ProgressMsg
+  | StatusMsg
+  | ThemeMsg;
 
 export interface InitMsg {
   type: 'init';
@@ -15,7 +26,7 @@ export interface InitMsg {
 
 export interface UpdateMsg {
   type: 'update';
-  time: Date;
+  data: unknown;
 }
 
 export interface TickMsg {
@@ -27,27 +38,13 @@ export interface QuitMsg {
   type: 'quit';
 }
 
-// ============================================================================
-// User Input Messages
-// ============================================================================
-
 export interface KeyMsg {
   type: 'key';
   key: string;
-  alt: boolean;
-  ctrl: boolean;
+  ctrl?: boolean;
+  meta?: boolean;
+  shift?: boolean;
 }
-
-export interface MouseMsg {
-  type: 'mouse';
-  x: number;
-  y: number;
-  button: string;
-}
-
-// ============================================================================
-// Window Messages
-// ============================================================================
 
 export interface WindowSizeMsg {
   type: 'window_size';
@@ -55,219 +52,286 @@ export interface WindowSizeMsg {
   height: number;
 }
 
-// ============================================================================
-// Application Messages
-// ============================================================================
-
-export interface StartCommandMsg {
-  type: 'start_command';
+export interface CommandMsg {
+  type: 'command';
   command: string;
-  args: string[];
+  args?: string[];
 }
 
-export interface AddOutputMsg {
-  type: 'add_output';
+export interface OutputMsg {
+  type: 'output';
   text: string;
-  messageType?: 'user' | 'assistant' | 'system' | 'tool' | 'error';
+  category?: 'user' | 'assistant' | 'system' | 'tool' | 'error';
+  timestamp?: Date;
 }
 
-export interface UpdateProgressMsg {
-  type: 'update_progress';
-  progress: number; // 0-100
+export interface ProgressMsg {
+  type: 'progress';
+  progress: number;
+  total?: number;
+  current?: number;
   message?: string;
 }
 
-export interface UpdateStatusMsg {
-  type: 'update_status';
+export interface StatusMsg {
+  type: 'status';
   status: 'idle' | 'running' | 'complete' | 'error';
   message?: string;
 }
 
-export interface UpdateModelMsg {
-  type: 'update_model';
-  model: {
-    name: string;
-    provider: string;
-  };
+export interface ThemeMsg {
+  type: 'theme';
+  mode: 'dark' | 'light' | 'auto';
 }
 
-export interface UpdateTokensMsg {
-  type: 'update_tokens';
+// ============================================================================
+// Model Types
+// ============================================================================
+
+export interface AppState {
+  status: 'idle' | 'running' | 'complete' | 'error';
+  currentCommand?: string;
+  messages: OutputMessage[];
+  progress: number;
+  theme: 'dark' | 'light' | 'auto';
+  modelInfo?: ModelInfo;
   tokensUsed: number;
   cost: number;
+  streaming: boolean;
 }
 
-export interface ShowModalMsg {
-  type: 'show_modal';
-  modal: {
-    title: string;
-    message?: string;
-    modalType: 'info' | 'warning' | 'error' | 'confirm';
-    onConfirm?: () => void;
-    onCancel?: () => void;
-  };
-}
-
-export interface HideModalMsg {
-  type: 'hide_modal';
-}
-
-export interface ShowHelpMsg {
-  type: 'show_help';
-}
-
-export interface HideHelpMsg {
-  type: 'hide_help';
-}
-
-export interface ShowConfigMsg {
-  type: 'show_config';
-}
-
-export interface HideConfigMsg {
-  type: 'hide_config';
-}
-
-export interface NavigateMsg {
-  type: 'navigate';
-  view: 'main' | 'help' | 'config' | 'tools';
-}
-
-export interface ThemeChangeMsg {
-  type: 'theme_change';
-  theme: 'dark' | 'light' | 'auto';
+export interface ModelInfo {
+  name: string;
+  provider: string;
+  version?: string;
+  capabilities?: string[];
 }
 
 // ============================================================================
-// Streaming Messages
+// Component Types
 // ============================================================================
 
-export interface StreamStartMsg {
-  type: 'stream_start';
-  model: string;
+export interface OutputMessage {
+  id: string;
+  type: 'user' | 'assistant' | 'system' | 'tool' | 'error';
+  content: string;
+  timestamp: Date;
+  toolName?: string;
+  toolResult?: unknown;
+}
+
+export interface ToolInfo {
+  name: string;
+  description: string;
+  status: 'available' | 'connected' | 'disconnected' | 'error';
   provider: string;
 }
 
-export interface StreamTokenMsg {
-  type: 'stream_token';
-  token: string;
+export interface TableColumn {
+  key: string;
+  header: string;
+  width?: number;
+  align?: 'left' | 'center' | 'right';
 }
 
-export interface StreamCompleteMsg {
-  type: 'stream_complete';
-  totalTokens: number;
+export interface TableRow {
+  [key: string]: string | number;
+}
+
+export interface TreeNode {
+  id: string;
+  label: string;
+  children?: TreeNode[];
+  expanded?: boolean;
+  icon?: string;
+}
+
+export interface ChartDataPoint {
+  label: string;
+  value: number;
+}
+
+export interface ConfigItem {
+  key: string;
+  label: string;
+  value: string | number | boolean;
+  type: 'text' | 'number' | 'boolean' | 'select';
+  options?: string[];
+}
+
+export interface HelpItem {
+  command: string;
+  description: string;
+  usage: string;
+  examples: string[];
+}
+
+// ============================================================================
+// View Interface
+// ============================================================================
+
+export interface View {
+  render(): string;
+}
+
+// ============================================================================
+// Update Interface (Elm-inspired)
+// ============================================================================
+
+export type Cmd = () => void;
+export type Sub<T> = () => T;
+
+export interface Update<Model, Msg> {
+  model: Model;
+  cmd?: Cmd;
+}
+
+// ============================================================================
+// Component Props Interfaces
+// ============================================================================
+
+export interface StatusBarProps {
+  model: ModelInfo;
+  tokensUsed: number;
   cost: number;
+  status: 'idle' | 'running' | 'complete' | 'error';
+  streaming?: boolean;
 }
 
-export interface StreamErrorMsg {
-  type: 'stream_error';
-  error: string;
+export interface ProgressIndicatorProps {
+  progress: number;
+  total?: number;
+  current?: number;
+  message?: string;
+  showPercentage?: boolean;
+  style?: 'bar' | 'dots' | 'spinner';
+}
+
+export interface OutputPanelProps {
+  messages: OutputMessage[];
+  maxHeight?: number;
+  autoScroll?: boolean;
+  syntaxHighlight?: boolean;
+}
+
+export interface CodePreviewProps {
+  code: string;
+  language: string;
+  currentLine?: number;
+  showLineNumbers?: boolean;
+  highlightSyntax?: boolean;
+  readOnly?: boolean;
+  filePath?: string;
+}
+
+export interface TextInputProps {
+  placeholder?: string;
+  value?: string;
+  multiline?: boolean;
+  maxLength?: number;
+  mask?: boolean;
+  onSubmit?: (value: string) => void;
+  onChange?: (value: string) => void;
+}
+
+export interface TableProps {
+  columns: TableColumn[];
+  rows: TableRow[];
+  selectedRow?: number;
+  onRowSelect?: (row: number) => void;
+  maxHeight?: number;
+}
+
+export interface SpinnerProps {
+  message?: string;
+  style?: 'dots' | 'line' | 'arrow' | 'bouncing';
+  color?: string;
+}
+
+export interface HelpPanelProps {
+  commands: HelpItem[];
+  filter?: string;
+  maxHeight?: number;
+}
+
+export interface ConfigPanelProps {
+  items: ConfigItem[];
+  onSave?: (key: string, value: unknown) => void;
+}
+
+export interface ToolListProps {
+  tools: ToolInfo[];
+  filter?: string;
+  onToolSelect?: (tool: ToolInfo) => void;
+}
+
+export interface ModalProps {
+  title: string;
+  message?: string;
+  type: 'info' | 'warning' | 'error' | 'confirm';
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  children?: View;
+  showCloseButton?: boolean;
+}
+
+export interface DropdownProps {
+  label?: string;
+  options: Array<{ value: string; label: string }>;
+  selected?: string;
+  onSelect?: (value: string) => void;
+  disabled?: boolean;
+}
+
+export interface TreeProps {
+  nodes: TreeNode[];
+  selectedId?: string;
+  onNodeSelect?: (node: TreeNode) => void;
+  onNodeExpand?: (node: TreeNode) => void;
+  maxHeight?: number;
+}
+
+export interface ChartProps {
+  title: string;
+  data: ChartDataPoint[];
+  type: 'bar' | 'line' | 'pie';
+  width?: number;
+  height?: number;
+}
+
+export interface TerminalProps {
+  command?: string;
+  onCommand?: (cmd: string) => void;
+  readOnly?: boolean;
+  maxHeight?: number;
+  showPrompt?: boolean;
+}
+
+export interface DiffViewProps {
+  before: string;
+  after: string;
+  language?: string;
+  showLineNumbers?: boolean;
+  maxHeight?: number;
 }
 
 // ============================================================================
-// Tool Messages
+// Utility Types
 // ============================================================================
 
-export interface ToolStartMsg {
-  type: 'tool_start';
-  toolName: string;
-  input: unknown;
+export interface Position {
+  x: number;
+  y: number;
 }
 
-export interface ToolCompleteMsg {
-  type: 'tool_complete';
-  toolName: string;
-  result: unknown;
+export interface Size {
+  width: number;
+  height: number;
 }
 
-export interface ToolErrorMsg {
-  type: 'tool_error';
-  toolName: string;
-  error: string;
+export interface Rect {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
-
-export interface ToolListUpdateMsg {
-  type: 'tool_list_update';
-  tools: Array<{
-    name: string;
-    description: string;
-    status: 'available' | 'connected' | 'disconnected' | 'error';
-    provider: string;
-  }>;
-}
-
-// ============================================================================
-// Verification Messages
-// ============================================================================
-
-export interface VerificationStartMsg {
-  type: 'verification_start';
-  steps: number;
-}
-
-export interface VerificationStepMsg {
-  type: 'verification_step';
-  step: number;
-  name: string;
-  status: 'running' | 'passed' | 'failed';
-}
-
-export interface VerificationCompleteMsg {
-  type: 'verification_complete';
-  passed: boolean;
-  failedSteps: string[];
-}
-
-export interface RepairPromptMsg {
-  type: 'repair_prompt';
-  step: string;
-  repairStrategy: string;
-  onApprove: () => void;
-  onReject: () => void;
-}
-
-// ============================================================================
-// Union Type for All Messages
-// ============================================================================
-
-export type Msg =
-  // Core
-  | InitMsg
-  | UpdateMsg
-  | TickMsg
-  | QuitMsg
-  // User Input
-  | KeyMsg
-  | MouseMsg
-  // Window
-  | WindowSizeMsg
-  // Application
-  | StartCommandMsg
-  | AddOutputMsg
-  | UpdateProgressMsg
-  | UpdateStatusMsg
-  | UpdateModelMsg
-  | UpdateTokensMsg
-  | ShowModalMsg
-  | HideModalMsg
-  | ShowHelpMsg
-  | HideHelpMsg
-  | ShowConfigMsg
-  | HideConfigMsg
-  | NavigateMsg
-  | ThemeChangeMsg
-  // Streaming
-  | StreamStartMsg
-  | StreamTokenMsg
-  | StreamCompleteMsg
-  | StreamErrorMsg
-  // Tools
-  | ToolStartMsg
-  | ToolCompleteMsg
-  | ToolErrorMsg
-  | ToolListUpdateMsg
-  // Verification
-  | VerificationStartMsg
-  | VerificationStepMsg
-  | VerificationCompleteMsg
-  | RepairPromptMsg;

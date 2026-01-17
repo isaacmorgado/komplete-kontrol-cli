@@ -1,48 +1,38 @@
 {
   "session_start": "2026-01-12T21:18:13Z",
-  "last_checkpoint": "2026-01-16T17:49:12Z",
+  "last_checkpoint": "2026-01-17T17:36:27Z",
   "files_changed": [
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/index.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/shared/models/ModelManager.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:49:28Z"
+      "timestamp": "2026-01-17T17:36:46Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/index.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/shared/models/ModelManager.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:49:38Z"
+      "timestamp": "2026-01-17T17:36:51Z"
     },
     {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ScreenshotToCodeCommand.ts",
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/screenshot-to-code/UICodeGenerator.ts",
       "type": "modified",
-      "timestamp": "2026-01-16T17:50:07Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/cli/commands/ScreenshotToCodeCommand.ts",
-      "type": "modified",
-      "timestamp": "2026-01-16T17:50:13Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/AgentOrchestrationBridge.ts",
-      "type": "modified",
-      "timestamp": "2026-01-16T17:50:41Z"
-    },
-    {
-      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/src/core/agents/AgentOrchestrationBridge.ts",
-      "type": "modified",
-      "timestamp": "2026-01-16T17:50:49Z"
+      "timestamp": "2026-01-17T17:37:14Z"
     },
     {
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
       "type": "modified",
-      "timestamp": "2026-01-16T17:51:11Z"
+      "timestamp": "2026-01-17T17:37:43Z"
     },
     {
       "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
       "type": "modified",
-      "timestamp": "2026-01-16T17:51:17Z"
+      "timestamp": "2026-01-17T17:39:53Z"
+    },
+    {
+      "file": "/Users/imorgado/Desktop/Projects/komplete-kontrol-cli/buildguide.md",
+      "type": "modified",
+      "timestamp": "2026-01-17T17:40:00Z"
     }
   ],
-  "change_count": 8,
-  "checkpoint_count": 56
+  "change_count": 6,
+  "checkpoint_count": 60
 }

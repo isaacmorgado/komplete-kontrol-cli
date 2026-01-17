@@ -1,0 +1,37 @@
+version: "2.0"
+models:
+  default: "claude-sonnet-4.5"
+  providers:
+    anthropic:
+      api_key: ""
+    openai:
+      api_key: ""
+    gemini:
+      api_key: ""
+    vscode:
+      enabled: false
+    local:
+      enabled: false
+  fallback_chain: []
+tools:
+  tavily:
+    enabled: true
+    api_key: "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"
+    max_results: 3
+    search_depth: "basic"
+  base44:
+    enabled: false
+  mcp_servers: []
+ui:
+  theme: "dark"
+  streaming: true
+  show_cost: true
+  show_tokens: true
+verification:
+  auto_verify: true
+  auto_repair: true
+  max_retries: 3
+alignment:
+  enabled: false
+  port: 0
+  host: ""

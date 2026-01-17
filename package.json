@@ -1,6 +1,6 @@
 {
   "name": "komplete-kontrol-cli",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Ultimate AI coding assistant integrating Roo Code, /auto, and advanced autonomous features",
   "type": "module",
   "main": "dist/index.js",
@@ -9,28 +9,43 @@
   },
   "scripts": {
     "dev": "bun run --watch src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --target node",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js --format=esm --jsx=transform --external:ink --external:react --external:ink-spinner --external:ink-text-input --external:ink-use-stdout-dimensions --external:playwright --external:playwright-core --external:chromium-bidi",
     "start": "bun run dist/index.js",
     "test": "bun test",
     "test:auto": "bun run test-auto-features.test.ts",
     "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:go": "which go || (echo 'Go is not installed. Please install Go from https://go.dev/dl/' && exit 1)",
+    "build:go": "npm run check:go && go build -v -ldflags='-s -w' -o dist/komplete ./cmd/komplete",
+    "start:go": "./dist/komplete",
+    "test:go": "npm run check:go && go test -v -race ./...",
+    "clean": "rm -rf dist",
+    "clean:go": "go clean",
+    "deps:go": "npm run check:go && go mod download",
+    "tidy:go": "npm run check:go && go mod tidy",
+    "verify:go": "npm run check:go && go mod verify",
+    "fmt:go": "npm run check:go && go fmt ./...",
+    "vet:go": "npm run check:go && go vet ./...",
+    "all:go": "npm run deps:go && npm run tidy:go && npm run build:go && npm run test:go"
   },
   "keywords": [
     "ai",
     "coding-assistant",
     "autonomous",
     "cli",
+    "go",
+    "golang",
     "typescript"
   ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.0",
-    "typescript": "^5.3.0",
-    "eslint": "^8.55.0",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
-    "@typescript-eslint/parser": "^6.13.0"
+    "@typescript-eslint/parser": "^6.13.0",
+    "esbuild": "^0.27.2",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.0"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
@@ -38,6 +53,12 @@
     "commander": "^11.1.0",
     "ora": "^8.0.1",
     "playwright": "^1.57.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "ink": "^4.4.1",
+    "ink-spinner": "^5.0.0",
+    "ink-text-input": "^5.0.1",
+    "ink-use-stdout-dimensions": "^1.0.5",
+    "ansi-escapes": "^6.2.0",
+    "strip-ansi": "^7.1.0"
   }
 }
